@@ -7,9 +7,9 @@ public class JetPack : MonoBehaviour
 
 
     Player player;
-    public Rigidbody body;
+    Rigidbody body;
     [SerializeField] bool isJetpacking = false;
-    public Camera camera;
+    Camera camera;
     [SerializeField] Vector3 cameraRotation = new Vector3(0,0,0);
     [SerializeField] float moveSpeed = 1;
     [SerializeField][Range (3, 10)] int health = 3;
