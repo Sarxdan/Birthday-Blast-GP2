@@ -9,6 +9,7 @@ public class JetPack : MonoBehaviour
     Player player;
     Rigidbody body;  
     Camera camera;
+    bool isAutoBoosting = false;
 
     [Header("Jetpack settings")]
     [SerializeField] float moveSpeed = 1;
@@ -17,6 +18,7 @@ public class JetPack : MonoBehaviour
     [SerializeField] float autoMoveSpeed = 1;
     [SerializeField] bool useGravity = false;
     [SerializeField] bool isJetpacking = false;
+    [SerializeField][Range(20, 40)] float autoBoost = 20;
     [Header("Camera settings")]
     [SerializeField] Vector3 cameraRotation = new Vector3(0,0,0);
     [SerializeField] Vector3 cameraOffsetFromPlayer = new Vector3(0,0,0);
@@ -26,7 +28,7 @@ public class JetPack : MonoBehaviour
     [SerializeField][Range(1, 10)] float maxTime = 1;
     [Tooltip("In percent")][SerializeField][Range(0.01f, 0.2f)] float healthLostPerTick = 0.1f;
     [Tooltip("Minimum health after detorioration")][SerializeField][Range(0.1f, 10)] float healthDetoriorateLimit = 1;
-
+    
     #endregion
 
     // Start is called before the first frame update
@@ -44,8 +46,18 @@ public class JetPack : MonoBehaviour
         Move();
     }
 
+    public void AutoBoost()
+    {
+        isAutoBoosting = true;   
+        Vector3 boostMovement = new Vector3();
+        boostMovement.y = autoBoost * flightBoost;  
+        body.velocity = boostMovement;  
+        isAutoBoosting = false;
+    }
+
     void Move()
     {
+        if(isAutoBoosting) return;
         Vector3 movement = new Vector3();
         movement.z = autoMoveSpeed;
         movement.x = Input.GetAxis("Horizontal") * moveSpeed; 
@@ -57,9 +69,8 @@ public class JetPack : MonoBehaviour
         else
         {
             movement.y *= -Physics.gravity.y;
-            print(movement.y);
-        }                 
-            body.velocity = movement;
+        }                    
+        body.velocity = movement;
     }
 
     public void StartJetpacking() // onödig funktion?
