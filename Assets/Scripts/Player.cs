@@ -16,14 +16,6 @@ public class Player : MonoBehaviour
     [SerializeField] bool onIsland = true; // what to call this variable?
     [SerializeField][Range (0.3f, 2)] float jumpSpeed = 1;
     [SerializeField] LayerMask groundLayers;
-
-    public bool OnIsland
-    {
-        get
-        {
-            return onIsland;
-        }
-    }
     [SerializeField] float segmentChangeTimer = 1;
 
 
@@ -53,17 +45,16 @@ public class Player : MonoBehaviour
         {
             movement.y += Input.GetAxis("Jump") * jumpSpeed;
         }
+        else if(Input.GetButtonDown("Jump"))
+        {
+            StartCoroutine(ChangeToJetPack());
+        }
         body.velocity = movement;
     }
 
     bool isTouchingGround()
     {   
         return Physics.Raycast(transform.position, Vector3.down, 1, groundLayers); //detta var ett jävla helvete att få till    
-    }
-
-    public void StartFlight(float height)
-    {               
-        StartCoroutine(ChangeToJetPack(height));
     }
 
     public void StopFlight()
@@ -74,14 +65,30 @@ public class Player : MonoBehaviour
         camera.transform.rotation = Quaternion.Euler(cameraRotation);
     }
 
-    private IEnumerator ChangeToJetPack(float height)
+    private IEnumerator ChangeToJetPack()
     {
         onIsland = false;
         Vector3 flightHeight = new Vector3();
-        flightHeight.y = height;
+        flightHeight.y = 2;
         body.velocity = flightHeight;
         yield return new WaitForSeconds(segmentChangeTimer); 
         jetPack.gameObject.SetActive(true);
         jetPack.StartJetpacking();
+    }
+
+    void OnsegmentEvent()
+    {
+        if(onIsland)
+        {
+            StartCoroutine(ChangeToJetPack());
+        }
+    }
+
+    void OnEnable() {
+        SegmentChanger.OnsegmentEvent += OnsegmentEvent;
+    }
+
+    private void OnDisable() {
+        SegmentChanger.OnsegmentEvent -= OnsegmentEvent;
     }
 }

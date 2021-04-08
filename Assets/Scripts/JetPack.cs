@@ -4,23 +4,30 @@ using UnityEngine;
 
 public class JetPack : MonoBehaviour
 {
-
+    #region variables
 
     Player player;
-    Rigidbody body;
-    [SerializeField] bool isJetpacking = false;
+    Rigidbody body;  
     Camera camera;
-    [SerializeField] Vector3 cameraRotation = new Vector3(0,0,0);
+
+    [Header("Jetpack settings")]
     [SerializeField] float moveSpeed = 1;
-    [SerializeField][Range (3, 10)] int health = 3;
-
-    [SerializeField] Vector3 cameraOffsetFromPlayer = new Vector3(0,0,0);
-    
+    [SerializeField][Range (3, 10)] float health = 3;
+    [SerializeField][Range(0.1f, 2)] float flightBoost = 1;
     [SerializeField] float autoMoveSpeed = 1;
-    [SerializeField] float detoriorateTime = 1;
-
     [SerializeField] bool useGravity = false;
-    [SerializeField] float flightBoost = 1;
+    [SerializeField] bool isJetpacking = false;
+    [Header("Camera settings")]
+    [SerializeField] Vector3 cameraRotation = new Vector3(0,0,0);
+    [SerializeField] Vector3 cameraOffsetFromPlayer = new Vector3(0,0,0);
+   
+    [Header("Detoriate settings")]
+    [SerializeField][Range(1, 10)] float minTime = 1;
+    [SerializeField][Range(1, 10)] float maxTime = 1;
+    [Tooltip("In percent")][SerializeField][Range(0.01f, 0.2f)] float healthLostPerTick = 0.1f;
+    [Tooltip("Minimum health after detorioration")][SerializeField][Range(0.1f, 10)] float healthDetoriorateLimit = 1;
+
+    #endregion
 
     // Start is called before the first frame update
     void Awake()
@@ -41,22 +48,25 @@ public class JetPack : MonoBehaviour
     {
         Vector3 movement = new Vector3();
         movement.z = autoMoveSpeed;
-        movement.x = Input.GetAxis("Horizontal") * moveSpeed;       
+        movement.x = Input.GetAxis("Horizontal") * moveSpeed; 
+        movement.y = Input.GetAxis("Jump") * flightBoost;      
         if(useGravity)
         {
-            Vector3 jumpForce = new Vector3();
-            movement.y = body.velocity.y;       
+            movement.y += body.velocity.y;       
         }
-            movement.y += Input.GetAxis("Jump") * flightBoost;      
+        else
+        {
+            movement.y *= -Physics.gravity.y;
+            print(movement.y);
+        }                 
             body.velocity = movement;
     }
 
-    public void StartJetpacking()
+    public void StartJetpacking() // onödig funktion?
     {
         isJetpacking = true;
         body.useGravity = useGravity;
-        camera.transform.rotation = Quaternion.Euler(cameraRotation);
-        camera.transform.position = transform.position + cameraOffsetFromPlayer;
+        SetCameraPosition();
         //StartCoroutine(SketchyMovements());
         //StartCoroutine(DamageOverTime());
     }
@@ -65,7 +75,7 @@ public class JetPack : MonoBehaviour
     {
         while(true)
         {
-        int chance = health/10;
+        float chance = health/10;
         if(Random.value > chance)
         {
             float addedMovement = Random.Range(-20, 20);
@@ -80,12 +90,16 @@ public class JetPack : MonoBehaviour
     {
         while(true)
         {
-            health--;
-            yield return new WaitForSeconds(detoriorateTime);
+            yield return new WaitForSeconds(Random.Range(minTime, maxTime));
+            if(health > healthDetoriorateLimit)
+            {
+                health -= health * healthLostPerTick; 
+            }
+                      
         }
     }
 
-    public void StopJetpacking()
+    void StopJetpacking() //onödig funktion?
     {
         StopAllCoroutines();
         body.useGravity = true;
@@ -95,5 +109,32 @@ public class JetPack : MonoBehaviour
     public void TakeDamage()
     {
         health --;
+    }
+
+    void OnsegmentEvent()
+    {
+        if(isJetpacking)
+        {
+            StopJetpacking();
+        }
+    }
+
+    void SetCameraPosition()
+    {
+        camera.transform.rotation = Quaternion.Euler(cameraRotation);
+        camera.transform.position = transform.position + cameraOffsetFromPlayer;
+    }
+
+    void OnEnable() {
+        if(isJetpacking)
+        {
+            SetCameraPosition();
+            StartCoroutine(DamageOverTime());
+        }      
+        SegmentChanger.OnsegmentEvent += OnsegmentEvent; // behövs en segmentchanger?
+    }
+
+    private void OnDisable() {
+        SegmentChanger.OnsegmentEvent -= OnsegmentEvent;
     }
 }
