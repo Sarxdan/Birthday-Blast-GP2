@@ -62,10 +62,6 @@ public class JetPack : MonoBehaviour
     {
         if(!isJetpacking) return;
         Move();
-        if(Input.GetButtonDown("Jump"))
-        {
-            TakeDamage(startingHealth);
-        }
     }
 
     public void AutoBoost() //change to use events?
