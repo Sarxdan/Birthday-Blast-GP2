@@ -73,7 +73,6 @@ public class Player : MonoBehaviour
         body.velocity = flightHeight;
         yield return new WaitForSeconds(segmentChangeTimer); 
         jetPack.gameObject.SetActive(true);
-        jetPack.StartJetpacking();
     }
 
     void OnsegmentEvent()
