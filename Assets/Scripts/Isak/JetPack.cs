@@ -12,6 +12,12 @@ public class JetPack : MonoBehaviour
         Moderate, 
         Severe
     }
+    enum DashDirections
+    {
+        None,
+        Left,
+        Right
+    }
 
     #region variables
 
@@ -21,8 +27,11 @@ public class JetPack : MonoBehaviour
     public float health;
     bool isAutoBoosting = false;
     float fuel = 0;
+    public float dashlength;
     Animator animator;
     [SerializeField] HealthStates healthState = HealthStates.Healthy;
+    [SerializeField] DashDirections dashDirections = DashDirections.None;
+    public bool dashOnCooldown = false;
 
     [Header("Jetpack settings")]
     [SerializeField] float moveSpeed = 1;   
@@ -31,6 +40,8 @@ public class JetPack : MonoBehaviour
     [SerializeField] bool useGravity = false;
     [SerializeField] bool isJetpacking = false;
     [SerializeField][Range(20, 40)] float autoBoost = 20;
+    [SerializeField] bool allowMovement = true;
+
     [SerializeField] ParticleSystem[] thrusters;   
 
     [Header("Health settings")]
@@ -54,11 +65,19 @@ public class JetPack : MonoBehaviour
     [SerializeField][Range(0.1f, 0.5f)] float passiveFuelUsage = 0.1f;
     [SerializeField][Range(1, 5)] float passiveFuelUsageTimer = 1;
 
+    [Header("Ability settings")]
+    [SerializeField][Range(1, 100)] float dashSpeed = 10;
+    [SerializeField][Range(0.1f, 1)] float DashLength = 0.2f;
+    [SerializeField][Range(1, 10)] float dashCooldown = 1;
+    [SerializeField] bool dashUnlocked = false;
+    [SerializeField] bool useDashAbility = false;
+
 
     #endregion
 
     void Awake()
     {
+        dashlength = DashLength;
         health = startingHealth;
         camera = Camera.main;
         fuel = startingFuel;
@@ -69,13 +88,75 @@ public class JetPack : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetButtonDown("DashAbility"))
+        {
+            useDashAbility = !useDashAbility;
+        }
         if(!isJetpacking) return;
         Move();
         Animate();
-        if(useFuel)
+        if(useDashAbility)
         {
+            GetDashInput();  
+        }     
         UseFuel();
+        SetCameraPosition();
+    }
+
+    void GetDashInput()
+    {
+        if(!dashUnlocked || dashOnCooldown) return;
+        if(Input.GetAxis("Horizontal") < 0)
+        {
+            dashDirections = DashDirections.Left;
+            dashOnCooldown = true;
+            StartCoroutine(DashInDirection(dashDirections));
         }
+        else if(Input.GetAxis("Horizontal") > 0)
+        {
+            dashDirections = DashDirections.Right;
+            dashOnCooldown = true;
+            StartCoroutine(DashInDirection(dashDirections));
+        }
+    }
+    IEnumerator DashInDirection(DashDirections directions)
+    {
+        //-------------------------------create temporary variables
+        Vector3 movement = new Vector3();
+        float cooldown = dashCooldown;
+        //---------------------------------start the dash ability
+        while(dashlength > 0)
+        {           
+            switch(directions)
+            {
+                case DashDirections.Left:
+                movement = Vector3.left * dashSpeed;
+                movement.z = body.velocity.z;
+                body.velocity = movement;
+                break;
+
+                case DashDirections.Right:
+                movement = Vector3.right * dashSpeed;
+                movement.z = body.velocity.z;
+                body.velocity = movement;
+                break;
+
+                default:
+                break;
+            }
+            dashlength -= Time.deltaTime;
+            cooldown -= Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
+        //-------------------------------------------count the remaining cooldown after dashing
+        while(cooldown > 0)
+        {
+            yield return new WaitForEndOfFrame();
+            cooldown -= Time.deltaTime;
+        }
+        dashlength = DashLength;
+        dashOnCooldown = false;
+        useDashAbility = false;
     }
 
     void Animate()
@@ -92,6 +173,7 @@ public class JetPack : MonoBehaviour
 
     void UseFuel()
     {
+        if(!useFuel) return;
         if(Input.GetAxis("Jump") > 0 || Input.GetAxis("Horizontal") != 0)
         {
             fuel -= fuelUsageOnMovement * Time.deltaTime;
@@ -119,7 +201,7 @@ public class JetPack : MonoBehaviour
 
     void Move()
     {
-        if(isAutoBoosting || fuel <= 0) return;
+        if(isAutoBoosting || fuel <= 0 || !allowMovement) return;
         float fuelPercentage = fuel/startingFuel;
         //----------------------------------------------------get all movement inputs
         Vector3 movement = new Vector3();
@@ -212,11 +294,13 @@ public class JetPack : MonoBehaviour
         camera.transform.rotation = Quaternion.Euler(cameraRotation);
         camera.transform.position = transform.position + cameraOffsetFromPlayer;
     }
+    private void OnDisable() {
+        StopAllCoroutines();
+    }
 
     void OnEnable() {
         if(isJetpacking)
         {
-            SetCameraPosition();
             StartCoroutine(DamageOverTime());
         }      
     }
