@@ -3267,6 +3267,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 37d9ece75a742ba499748b5a19b61b9c, type: 3}
   - {fileID: 8300000, guid: f43411e305dd737459051c8248cf5aeb, type: 3}
   - {fileID: 8300000, guid: 56f2b98fd01e6a94aa6628dcf09d0f15, type: 3}
+  muteAudio: 0
 --- !u!1 &167024803
 GameObject:
   m_ObjectHideFlags: 0
@@ -43244,6 +43245,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1239568734103234800, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1239568734103234802, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -43299,6 +43304,26 @@ PrefabInstance:
     - target: {fileID: 1239568734360762264, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.067
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239568734360762265, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: canDash
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239568734360762265, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: dashSpeed
+      value: 68.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239568734360762265, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: DashLength
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239568734360762265, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: dashUnlocked
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239568734360762265, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: allowMovement
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1239568734360762265, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
       propertyPath: fuelUsageOnMovement
