@@ -20,6 +20,8 @@ public class JetPack : MonoBehaviour
     Camera camera;
     public float health;
     bool isAutoBoosting = false;
+    float fuel = 0;
+    Animator animator;
     [SerializeField] HealthStates healthState = HealthStates.Healthy;
 
     [Header("Jetpack settings")]
@@ -29,7 +31,7 @@ public class JetPack : MonoBehaviour
     [SerializeField] bool useGravity = false;
     [SerializeField] bool isJetpacking = false;
     [SerializeField][Range(20, 40)] float autoBoost = 20;
-    [SerializeField] ParticleSystem[] thrusters;
+    [SerializeField] ParticleSystem[] thrusters;   
 
     [Header("Health settings")]
     [SerializeField][Range (3, 10)] float startingHealth = 3;
@@ -44,9 +46,14 @@ public class JetPack : MonoBehaviour
     [Tooltip("In percent")][SerializeField][Range(0.01f, 0.2f)] float healthLostPerTick = 0.1f;
     [Tooltip("Minimum health after detorioration")][SerializeField][Range(0.1f, 10)] float healthDetoriorateLimit = 1;
 
-    [Header("Sketchy movement settings")]
+    [Header("Fuel settings")]
+    [SerializeField][Range(100, 1000)] float startingFuel = 100;
+    [SerializeField][Range(0.1f, 2)] float fuelUsageOnMovement = 0.1f;
+    [SerializeField][Range(2, 5)] float fuelUsageOnAbilities = 2;
+    [SerializeField] bool useFuel = false;
+    [SerializeField][Range(0.1f, 0.5f)] float passiveFuelUsage = 0.1f;
+    [SerializeField][Range(1, 5)] float passiveFuelUsageTimer = 1;
 
-    [SerializeField][Range(1, 10)] float timeBetweenSketchyMovements = 1;
 
     #endregion
 
@@ -54,14 +61,50 @@ public class JetPack : MonoBehaviour
     {
         health = startingHealth;
         camera = Camera.main;
+        fuel = startingFuel;
         player = GetComponent<Player>();
         body = GetComponentInParent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         if(!isJetpacking) return;
         Move();
+        Animate();
+        if(useFuel)
+        {
+        UseFuel();
+        }
+    }
+
+    void Animate()
+    {
+        if(Input.GetAxis("Jump") > 0 || Input.GetAxis("Horizontal") != 0)
+        {
+            animator.SetBool("isMoving", true);
+        }
+        else
+        {
+            animator.SetBool("isMoving", false);
+        }
+    }
+
+    void UseFuel()
+    {
+        if(Input.GetAxis("Jump") > 0 || Input.GetAxis("Horizontal") != 0)
+        {
+            fuel -= fuelUsageOnMovement * Time.deltaTime;
+        }
+    }
+
+    void RefillFuel(float amount) //--------------------needs a way to stop refuelling when at max fuel so the player wont waste resources
+    {
+        fuel += amount;
+        if(fuel >= startingFuel)
+        {
+            fuel = startingFuel;
+        }
     }
 
     public void AutoBoost() //change to use events?
@@ -76,13 +119,13 @@ public class JetPack : MonoBehaviour
 
     void Move()
     {
-        if(isAutoBoosting) return;
-
+        if(isAutoBoosting || fuel <= 0) return;
+        float fuelPercentage = fuel/startingFuel;
         //----------------------------------------------------get all movement inputs
         Vector3 movement = new Vector3();
         movement.z = autoMoveSpeed;
-        movement.x = Input.GetAxis("Horizontal") * moveSpeed; 
-        movement.y = Input.GetAxis("Jump") * flightBoost;
+        movement.x = (Input.GetAxis("Horizontal") * fuelPercentage) * moveSpeed; 
+        movement.y = (Input.GetAxis("Jump") * fuelPercentage) * flightBoost;
 
         //----------------------------------------------------activate the thrusters
         if(Input.GetAxis("Jump") > 0) 
@@ -102,38 +145,7 @@ public class JetPack : MonoBehaviour
             {
                 movement.y *= -Physics.gravity.y;
             }      
-
         body.velocity = movement;
-    }
-
-    IEnumerator addSketchyMovements()
-    {   
-        while(true)
-        {
-            yield return new WaitForSeconds(timeBetweenSketchyMovements);
-            Vector3 sketchyMovements = new Vector3();
-            switch(healthState)
-            {
-                case HealthStates.Healthy: //add no movement
-                break;
-
-                case HealthStates.Mild: //add slight movement to one axis
-                break;
-
-                case HealthStates.Moderate: //add moderate movement to two axes
-                break;
-
-                case HealthStates.Severe: //add severe moveent to three axes
-                sketchyMovements.x = Random.Range(1, 10);
-                sketchyMovements.y = Random.Range(1, 10);
-                sketchyMovements.z = Random.Range(1, 10);
-                break;
-
-                default:             
-                break;
-            }
-            transform.Translate(sketchyMovements);
-        }        
     }
 
     IEnumerator DamageOverTime()
@@ -204,7 +216,6 @@ public class JetPack : MonoBehaviour
     void OnEnable() {
         if(isJetpacking)
         {
-            //StartCoroutine(addSketchyMovements());
             SetCameraPosition();
             StartCoroutine(DamageOverTime());
         }      
