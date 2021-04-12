@@ -31,9 +31,10 @@ public class ThirdPersonController : MonoBehaviour
 
     [Range(-50,50)]
     public float minVerticalRotation, maxVerticalRotation;
-
-
+    
     public Vector3 cameraLookOffset;
+
+    public bool invertVerticalRotation;
 
     #endregion
 
@@ -112,6 +113,8 @@ public class ThirdPersonController : MonoBehaviour
         camController.minXRotation = minVerticalRotation;
 
         camController.maxXRotation = maxVerticalRotation;
+
+        camController.invertVerticalRotation = invertVerticalRotation;
 
         #endregion
     }

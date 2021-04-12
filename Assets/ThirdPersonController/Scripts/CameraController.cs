@@ -14,6 +14,8 @@ public class CameraController : MonoBehaviour
     //Limit the vertical rotation of the camera
     public float minXRotation = -50f;
     public float maxXRotation = 50f;
+
+    public bool invertVerticalRotation;
     
     //Reference to the camera used for the ThirdPersonController
     private Transform mainCamera;
@@ -66,7 +68,7 @@ public class CameraController : MonoBehaviour
         var mouseY = Input.GetAxis("Mouse Y") * verticalSensitivity;
         
         
-        xRotation += mouseY * Time.deltaTime;
+        xRotation += (mouseY * (invertVerticalRotation?-1:1)) * Time.deltaTime;
 
         var yRotation = cameraLookAtTarget.localEulerAngles.y;
         yRotation += mouseX * Time.deltaTime;
