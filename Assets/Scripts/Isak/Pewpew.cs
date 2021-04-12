@@ -6,6 +6,7 @@ public class Pewpew : MonoBehaviour
 {
     //TODO
     //add effects to pewpew?
+    //make script use pool instead of constant instantiation
     float jetpackSpeed = 0; //variable to keep track of how fast the jetpack is moving
 
     public float JetpackSpeed
