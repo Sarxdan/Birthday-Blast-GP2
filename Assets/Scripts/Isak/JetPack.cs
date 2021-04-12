@@ -93,12 +93,12 @@ public class JetPack : MonoBehaviour
                 if(!leftAxisPushed)
                 {
                     lastKeyPressTime = Time.time;
-                    leftAxisPushed = true;   
-                    dashDirections = DashDirections.Left;
+                    leftAxisPushed = true;                       
                 }   
                 else
                 {
                     print("dash right");
+                    dashDirections = DashDirections.Left;
                     dashOnCooldown = true; 
                     rightAxisPushed = false;
                     leftAxisPushed = false;
@@ -111,10 +111,11 @@ public class JetPack : MonoBehaviour
                 {
                     lastKeyPressTime = Time.time;
                     rightAxisPushed = true;   
-                    dashDirections = DashDirections.Right;
+                    
                 }   
                 else
                 {
+                    dashDirections = DashDirections.Right;
                     print("dash left");
                     dashOnCooldown = true; 
                     rightAxisPushed = false;
