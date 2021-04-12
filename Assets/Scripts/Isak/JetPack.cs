@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class JetPack : MonoBehaviour
-{
-
-    
+{   
     enum DashDirections
     {
         None,
@@ -24,6 +22,7 @@ public class JetPack : MonoBehaviour
     DashDirections dashDirections = DashDirections.None;
     bool dashOnCooldown = false;
     bool useDashAbility = false;
+    Pewpew pewpew;
 
     [Header("movement settings")]
     [SerializeField] float moveSpeed = 1;   
@@ -48,11 +47,10 @@ public class JetPack : MonoBehaviour
 
     [Header("bool settings")]
     [SerializeField] bool dashUnlocked = false;
-    
     [SerializeField] bool useFuel = false;
     [SerializeField] bool allowMovement = true;
     [SerializeField] bool useGravity = false;
-    [SerializeField] bool isJetpacking = false;
+    [SerializeField] bool pewpewUnlocked = false;
 
     #endregion
 
@@ -62,14 +60,17 @@ public class JetPack : MonoBehaviour
         currentFuel = startingFuel;
         body = GetComponentInParent<Rigidbody>();
         animator = GetComponent<Animator>();
+        pewpew = transform.parent.GetComponentInChildren<Pewpew>();
+        
     }
 
     void Update() //vad ska hände när man får game over? falla ner en bit? UI uppdateras? 
     {
-        if(!isJetpacking || gameOver) return;
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(gameOver) return;
+        if(pewpew != null)
         {
-            LooseFuel(startingFuel);
+            pewpew.gameObject.SetActive(pewpewUnlocked);
+            pewpew.JetpackSpeed = autoMoveSpeed;
         }
         Move();
         Animate();

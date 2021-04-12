@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    float projectileSpeed = 1;
+    Rigidbody body;
+
+    public float ProjectileSpeed
     {
-        
+        set {projectileSpeed = value;}
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    // Start is called before the first frame update
+    private void Awake() {
+        body = GetComponent<Rigidbody>();
+    }
+    private void Start() {
+        body.AddForce(Vector3.forward * projectileSpeed, ForceMode.Impulse);
+    }
+
+    private void OnTriggerEnter(Collider other) {
+        Destroy(other.gameObject);
+        Destroy(gameObject);
     }
 }
