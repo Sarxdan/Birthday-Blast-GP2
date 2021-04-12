@@ -21,7 +21,9 @@ public class JetPack : MonoBehaviour
     Animator animator;  
     DashDirections dashDirections = DashDirections.None;
     bool dashOnCooldown = false;
-    bool useDashAbility = false;
+    bool rightAxisPushed = false;
+    bool leftAxisPushed = false;
+    float lastKeyPressTime = 0;
     Pewpew pewpew;
 
     [Header("movement settings")]
@@ -43,7 +45,8 @@ public class JetPack : MonoBehaviour
     [Header("Ability settings")]
     [SerializeField][Range(1, 100)] float dashSpeed = 10;
     [SerializeField][Range(0.1f, 1)] float DashLength = 0.2f;
-    [SerializeField][Range(1, 10)] float dashCooldown = 1;   
+    [SerializeField][Range(0.1f, 10)] float dashCooldown = 1;   
+    [SerializeField][Range(0.1f, 1)][Tooltip("timer for using the dash ability")] float doubleTapTimer = 1;
 
     [Header("bool settings")]
     [SerializeField] bool dashUnlocked = false;
@@ -60,8 +63,7 @@ public class JetPack : MonoBehaviour
         currentFuel = startingFuel;
         body = GetComponentInParent<Rigidbody>();
         animator = GetComponent<Animator>();
-        pewpew = transform.parent.GetComponentInChildren<Pewpew>();
-        
+        pewpew = transform.parent.GetComponentInChildren<Pewpew>();        
     }
 
     void Update() //vad ska hände när man får game over? falla ner en bit? UI uppdateras? 
@@ -73,32 +75,60 @@ public class JetPack : MonoBehaviour
             pewpew.JetpackSpeed = autoMoveSpeed;
         }
         Move();
-        Animate();
-        GetDashInput();     
+        Animate();    
         UseFuel();
         SetCameraPosition();
+        GetDashInput();
     }
 
     void GetDashInput()
     {
         if(!dashUnlocked) return;
         if(dashOnCooldown) return;
-        if(Input.GetButtonDown("DashAbility"))
+        if(Input.GetButtonDown("Horizontal"))
         {
-            useDashAbility = !useDashAbility;
-        }  
-        if(Input.GetAxis("Horizontal") < 0 && useDashAbility)
-        {
-            dashDirections = DashDirections.Left;
-            dashOnCooldown = true;
-            StartCoroutine(DashInDirection(dashDirections));
+            if(Input.GetAxis("Horizontal") < 0)
+            {
+                        
+                if(!leftAxisPushed)
+                {
+                    lastKeyPressTime = Time.time;
+                    leftAxisPushed = true;   
+                    dashDirections = DashDirections.Left;
+                }   
+                else
+                {
+                    print("dash right");
+                    dashOnCooldown = true; 
+                    rightAxisPushed = false;
+                    leftAxisPushed = false;
+                    StartCoroutine(DashInDirection(dashDirections));
+                }                                      
+            }
+            else if(Input.GetAxis("Horizontal") > 0)
+            {
+                if(!rightAxisPushed)
+                {
+                    lastKeyPressTime = Time.time;
+                    rightAxisPushed = true;   
+                    dashDirections = DashDirections.Right;
+                }   
+                else
+                {
+                    print("dash left");
+                    dashOnCooldown = true; 
+                    rightAxisPushed = false;
+                    leftAxisPushed = false;
+                    StartCoroutine(DashInDirection(dashDirections));
+                }            
+            }       
         }
-        else if(Input.GetAxis("Horizontal") > 0 && useDashAbility)
+                     
+        if(Time.time - lastKeyPressTime > doubleTapTimer)
         {
-            dashDirections = DashDirections.Right;
-            dashOnCooldown = true;
-            StartCoroutine(DashInDirection(dashDirections));
-        }
+            rightAxisPushed = false;
+            leftAxisPushed = false;
+        }             
     }
 
     IEnumerator DashInDirection(DashDirections directions)
@@ -138,7 +168,6 @@ public class JetPack : MonoBehaviour
             cooldown -= Time.deltaTime;
         }
         dashOnCooldown = false;
-        useDashAbility = false;
     }
 
     void Animate()
