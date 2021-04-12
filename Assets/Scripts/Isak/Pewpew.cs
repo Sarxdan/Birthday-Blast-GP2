@@ -24,13 +24,13 @@ public class Pewpew : MonoBehaviour
             offset.z = offsetBetweenBarrelAndProjectile;
             Instantiate(projectilePrefab, barrelFront.transform.position + offset, Quaternion.identity);
             canShoot = false;
-            StartCoroutine(WeaponCoolingDown())
+            StartCoroutine(WeaponCoolingDown());
         }
 
         IEnumerator WeaponCoolingDown()
         {
             yield return new WaitForSeconds(fireRate);
-            
+
         }
     }
 }
