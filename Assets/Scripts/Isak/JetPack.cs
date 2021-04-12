@@ -5,13 +5,7 @@ using UnityEngine;
 public class JetPack : MonoBehaviour
 {
 
-    enum HealthStates
-    {
-        Healthy,
-        Mild,
-        Moderate, 
-        Severe
-    }
+    
     enum DashDirections
     {
         None,
@@ -21,111 +15,99 @@ public class JetPack : MonoBehaviour
 
     #region variables
 
-    Player player;
     Rigidbody body;  
     Camera camera;
-    public float health;
     bool isAutoBoosting = false;
-    float fuel = 0;
-    public float dashlength;
-    Animator animator;
-    [SerializeField] HealthStates healthState = HealthStates.Healthy;
-    [SerializeField] DashDirections dashDirections = DashDirections.None;
-    public bool dashOnCooldown = false;
+    bool gameOver = false;
+    public float currentFuel = 0;
+    Animator animator;  
+    DashDirections dashDirections = DashDirections.None;
+    bool dashOnCooldown = false;
+    bool useDashAbility = false;
 
-    [Header("Jetpack settings")]
+    [Header("movement settings")]
     [SerializeField] float moveSpeed = 1;   
     [SerializeField][Range(0.1f, 2)] float flightBoost = 1;
     [SerializeField] float autoMoveSpeed = 1;
-    [SerializeField] bool useGravity = false;
-    [SerializeField] bool isJetpacking = false;
-    [SerializeField][Range(20, 40)] float autoBoost = 20;
-    [SerializeField] bool allowMovement = true;
-
+    [SerializeField][Range(20, 40)] float autoBoost = 20;  
     [SerializeField] ParticleSystem[] thrusters;   
-
-    [Header("Health settings")]
-    [SerializeField][Range (3, 10)] float startingHealth = 3;
 
     [Header("Camera settings")]
     [SerializeField] Vector3 cameraRotation = new Vector3(0,0,0);
     [SerializeField] Vector3 cameraOffsetFromPlayer = new Vector3(0,0,0);
-   
-    [Header("Detoriate settings")]
-    [SerializeField][Range(1, 10)] float minTime = 1;
-    [SerializeField][Range(1, 10)] float maxTime = 1;
-    [Tooltip("In percent")][SerializeField][Range(0.01f, 0.2f)] float healthLostPerTick = 0.1f;
-    [Tooltip("Minimum health after detorioration")][SerializeField][Range(0.1f, 10)] float healthDetoriorateLimit = 1;
 
     [Header("Fuel settings")]
     [SerializeField][Range(100, 1000)] float startingFuel = 100;
     [SerializeField][Range(0.1f, 2)] float fuelUsageOnMovement = 0.1f;
-    [SerializeField][Range(2, 5)] float fuelUsageOnAbilities = 2;
-    [SerializeField] bool useFuel = false;
-    [SerializeField][Range(0.1f, 0.5f)] float passiveFuelUsage = 0.1f;
-    [SerializeField][Range(1, 5)] float passiveFuelUsageTimer = 1;
+    [SerializeField][Range(2, 5)] float fuelUsageOnAbilities = 2;    
 
     [Header("Ability settings")]
     [SerializeField][Range(1, 100)] float dashSpeed = 10;
     [SerializeField][Range(0.1f, 1)] float DashLength = 0.2f;
-    [SerializeField][Range(1, 10)] float dashCooldown = 1;
-    [SerializeField] bool dashUnlocked = false;
-    [SerializeField] bool useDashAbility = false;
+    [SerializeField][Range(1, 10)] float dashCooldown = 1;   
 
+    [Header("bool settings")]
+    [SerializeField] bool dashUnlocked = false;
+    
+    [SerializeField] bool useFuel = false;
+    [SerializeField] bool allowMovement = true;
+    [SerializeField] bool useGravity = false;
+    [SerializeField] bool isJetpacking = false;
 
     #endregion
 
     void Awake()
-    {
-        dashlength = DashLength;
-        health = startingHealth;
+    {       
         camera = Camera.main;
-        fuel = startingFuel;
-        player = GetComponent<Player>();
+        currentFuel = startingFuel;
         body = GetComponentInParent<Rigidbody>();
         animator = GetComponent<Animator>();
     }
 
-    void Update()
+    void Update() //vad ska hände när man får game over? falla ner en bit? UI uppdateras? 
     {
-        if(Input.GetButtonDown("DashAbility"))
+        if(!isJetpacking || gameOver) return;
+        if(Input.GetKeyDown(KeyCode.Space))
         {
-            useDashAbility = !useDashAbility;
+            LooseFuel(startingFuel);
         }
-        if(!isJetpacking) return;
         Move();
         Animate();
-        if(useDashAbility)
-        {
-            GetDashInput();  
-        }     
+        GetDashInput();     
         UseFuel();
         SetCameraPosition();
     }
 
     void GetDashInput()
     {
-        if(!dashUnlocked || dashOnCooldown) return;
-        if(Input.GetAxis("Horizontal") < 0)
+        if(!dashUnlocked) return;
+        if(dashOnCooldown) return;
+        if(Input.GetButtonDown("DashAbility"))
+        {
+            useDashAbility = !useDashAbility;
+        }  
+        if(Input.GetAxis("Horizontal") < 0 && useDashAbility)
         {
             dashDirections = DashDirections.Left;
             dashOnCooldown = true;
             StartCoroutine(DashInDirection(dashDirections));
         }
-        else if(Input.GetAxis("Horizontal") > 0)
+        else if(Input.GetAxis("Horizontal") > 0 && useDashAbility)
         {
             dashDirections = DashDirections.Right;
             dashOnCooldown = true;
             StartCoroutine(DashInDirection(dashDirections));
         }
     }
+
     IEnumerator DashInDirection(DashDirections directions)
     {
+        float dashlengthLeft = DashLength;
         //-------------------------------create temporary variables
         Vector3 movement = new Vector3();
         float cooldown = dashCooldown;
         //---------------------------------start the dash ability
-        while(dashlength > 0)
+        while(dashlengthLeft > 0)
         {           
             switch(directions)
             {
@@ -144,7 +126,7 @@ public class JetPack : MonoBehaviour
                 default:
                 break;
             }
-            dashlength -= Time.deltaTime;
+            dashlengthLeft -= Time.deltaTime;
             cooldown -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
         }
@@ -154,7 +136,6 @@ public class JetPack : MonoBehaviour
             yield return new WaitForEndOfFrame();
             cooldown -= Time.deltaTime;
         }
-        dashlength = DashLength;
         dashOnCooldown = false;
         useDashAbility = false;
     }
@@ -176,21 +157,43 @@ public class JetPack : MonoBehaviour
         if(!useFuel) return;
         if(Input.GetAxis("Jump") > 0 || Input.GetAxis("Horizontal") != 0)
         {
-            fuel -= fuelUsageOnMovement * Time.deltaTime;
+            currentFuel -= fuelUsageOnMovement * Time.deltaTime;
+            checkFuel();
+        }
+        else if(dashOnCooldown)
+        {
+            currentFuel -= fuelUsageOnAbilities * Time.deltaTime;
+            checkFuel();
+        }
+    }
+
+    public void LooseFuel(float amount)
+    {
+        if(!useFuel) return;
+        currentFuel -= amount;
+        checkFuel();
+    }
+
+    void checkFuel() //helping function to check if fuel is zero
+    {
+        if(currentFuel <= 0)
+        {
+            gameOver = true;
         }
     }
 
     void RefillFuel(float amount) //--------------------needs a way to stop refuelling when at max fuel so the player wont waste resources
     {
-        fuel += amount;
-        if(fuel >= startingFuel)
+        currentFuel += amount;
+        if(currentFuel >= startingFuel)
         {
-            fuel = startingFuel;
+            currentFuel = startingFuel;
         }
     }
 
     public void AutoBoost() //change to use events?
     {
+        if(gameOver) return;
         //----------------------------------------------------------makes the player boost upwards, useful to make sure the player does not fall too far
         isAutoBoosting = true;   
         Vector3 boostMovement = new Vector3();
@@ -201,13 +204,12 @@ public class JetPack : MonoBehaviour
 
     void Move()
     {
-        if(isAutoBoosting || fuel <= 0 || !allowMovement) return;
-        float fuelPercentage = fuel/startingFuel;
+        if(isAutoBoosting || !allowMovement) return;
         //----------------------------------------------------get all movement inputs
         Vector3 movement = new Vector3();
         movement.z = autoMoveSpeed;
-        movement.x = (Input.GetAxis("Horizontal") * fuelPercentage) * moveSpeed; 
-        movement.y = (Input.GetAxis("Jump") * fuelPercentage) * flightBoost;
+        movement.x = Input.GetAxis("Horizontal") * moveSpeed; 
+        movement.y = Input.GetAxis("Jump") * flightBoost;
 
         //----------------------------------------------------activate the thrusters
         if(Input.GetAxis("Jump") > 0) 
@@ -230,78 +232,13 @@ public class JetPack : MonoBehaviour
         body.velocity = movement;
     }
 
-    IEnumerator DamageOverTime()
-    {
-        while(true)
-        {
-            yield return new WaitForSeconds(Random.Range(minTime, maxTime));
-            if(health > healthDetoriorateLimit)
-            {
-                TakeDamage(health * healthLostPerTick); 
-            }                     
-        }
-    }
-
-    void TakeDamage(float damage) // can be better, MUCH better
-    {
-        health -= damage;
-        if(health < startingHealth)
-        {
-            healthState = HealthStates.Mild;
-            if(health < startingHealth/2)
-            {
-                healthState = HealthStates.Moderate;
-                if(health < startingHealth/4)
-                {
-                    healthState = HealthStates.Severe;
-                }
-            }
-        }
-        if(health <= 0)
-        {
-            JetpackDestroyed();
-        }
-    }  
-
-    void JetpackDestroyed()
-    {
-        Destroy(gameObject);
-    }
-    void RepairJetpack(float amount) //same as TakeDamage()
-    {
-        health += amount;
-        if(health > startingHealth/4)
-        {
-            healthState = HealthStates.Moderate;
-            if(health > startingHealth/2)
-            {
-                healthState = HealthStates.Moderate;
-                if(health < startingHealth)
-                {
-                    healthState = HealthStates.Mild;
-                }
-            }
-        }
-        if(health >= startingHealth)
-        {
-            health = startingHealth;
-            healthState = HealthStates.Healthy;
-        }
-    }
-
     void SetCameraPosition()
     {
         camera.transform.rotation = Quaternion.Euler(cameraRotation);
         camera.transform.position = transform.position + cameraOffsetFromPlayer;
     }
+
     private void OnDisable() {
         StopAllCoroutines();
-    }
-
-    void OnEnable() {
-        if(isJetpacking)
-        {
-            StartCoroutine(DamageOverTime());
-        }      
     }
 }
