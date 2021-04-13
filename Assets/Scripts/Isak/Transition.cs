@@ -6,80 +6,63 @@ using UnityEngine.UI; //testing
 public class Transition : MonoBehaviour
 {
     public static Events.LoadSceneEvent onTransitionEvent;
-    enum PlayerState
+
+    enum PlayerStates
     {
-        Adventure,
-        Jetpack
+        Jetpack, 
+        OnFoot
     }
-    [SerializeField][Tooltip("current state of the player")] PlayerState playerState = PlayerState.Adventure;
-    [SerializeField] KeyCode interactKey = KeyCode.E;
+    public Collider player;
+    bool isInteracted = false;
+
+    [SerializeField] PlayerStates transitionTo = PlayerStates.Jetpack;
     [SerializeField] Text transitionText;
     [SerializeField] float sceneTransitionTime = 1;
     [SerializeField][Tooltip("name of scene to load after transition, case sensitive")] string sceneToLoad = string.Empty;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnTriggerStay(Collider other) {
+    private void OnTriggerEnter(Collider other) {
         if(other.tag == "Player")
         {
-            GetInput(other);
-        }
-    }
-    private void OnTriggerExit(Collider other) {
-        if(other.tag == "Player")
-        {
-            transitionText.text = string.Empty;
-        }
-    }
-    
-    void GetInput(Collider other) //print info to ui
-    {
-        transitionText.text = "Press " + interactKey + " to continue";
-        if(Input.GetKeyDown(interactKey))
-        {
-            transitionText.text = string.Empty;
-            StartTransit(other);
-        }
+            player = other.GetComponent<Collider>();
+        }  
     }
 
-    void StartTransit(Collider other)
+    void CheckTransition()
     {
-        switch(playerState)
+        switch(transitionTo)
         {
-            case PlayerState.Adventure:
-            print(playerState);
-            TransitionToJetpack(other);
+            case PlayerStates.Jetpack:
+            if(isInteracted)
+            {
+                TransitionToJetpack();
+            }           
             break;
-            case PlayerState.Jetpack:
-            print(playerState);
-            TransitionToIsland(other);
-            break;
-            default:
-            Debug.LogError("Something went wrong with the transition code");
+
+            case PlayerStates.OnFoot:
+            TransitionToIsland();
             break;
         }
     }
 
-    void TransitionToJetpack(Collider other)
+    public void Interacting()
     {
-        CharacterController controller = other.GetComponent<CharacterController>();
-        Vector3 movement = new Vector3();
+        if(isInteracted) return;
+        isInteracted = true;
+        CheckTransition();
+    }
+
+    void TransitionToJetpack()
+    {
+        StateSwitcher switcher = player.GetComponent<StateSwitcher>();
+        switcher.SwitchStates = true;
         StartCoroutine(TransitionToNewScene());
     }
 
-    void TransitionToIsland(Collider other)
+    void TransitionToIsland()
     {
-        JetPack jetPack = other.GetComponent<JetPack>();
-        jetPack.AllowMovement = false;
+        StateSwitcher switcher = player.GetComponent<StateSwitcher>();
+        switcher.SwitchStates = true;
         StartCoroutine(TransitionToNewScene());
     }
 
