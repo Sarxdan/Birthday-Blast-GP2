@@ -13,16 +13,27 @@ public class StateSwitcher : MonoBehaviour
     {
         set{switchStates = value;}
     }
+    Camera camera;
     PlayerStates currentState;
     [SerializeField] PlayerStates startingState = PlayerStates.OnJetpack;
     [SerializeField] bool switchStates = false;
-    [SerializeField] PlayerMovement playerMovement;
-    [SerializeField] CameraController CameraController;
-    [SerializeField] ThirdPersonController thirdPersonController;
-    [SerializeField] JetPack jetPack;
+    PlayerMovement playerMovement;
+    CameraController cameraController;
+    ThirdPersonController thirdPersonController;
+    JetPack jetPack;
 
     private void Awake() {
+        SetUpComponents();
         SwitchState(startingState);
+    }
+
+    void SetUpComponents()
+    {
+        playerMovement = GetComponent<PlayerMovement>();
+        cameraController = GetComponent<CameraController>();
+        thirdPersonController = GetComponent<ThirdPersonController>();
+        jetPack = GetComponentInChildren<JetPack>();
+        camera = Camera.main;
     }
 
     private void Update() {
@@ -52,16 +63,19 @@ public class StateSwitcher : MonoBehaviour
             case PlayerStates.OnJetpack:           
             
             playerMovement.enabled = false;
-            CameraController.enabled = false;
+            cameraController.enabled = false;
             thirdPersonController.enabled = false;
             jetPack.gameObject.SetActive(true);
+            camera.gameObject.SetActive(true);
+            gameObject.transform.rotation = Quaternion.Euler(0,0,0);
             break;
 
             case PlayerStates.OnLand:
             playerMovement.enabled = true;
-            CameraController.enabled = true;
+            cameraController.enabled = true;
             thirdPersonController.enabled = true;
             jetPack.gameObject.SetActive(false);
+            camera.gameObject.SetActive(false);
             break;
 
         }
