@@ -18,11 +18,11 @@ public class JetPack : MonoBehaviour
         set{allowMovement = value;}
     }
 
-    Rigidbody body;  
+    Rigidbody body; 
     Camera camera;
     bool isAutoBoosting = false;
     bool gameOver = false;
-    public float currentFuel = 0;
+    float currentFuel = 0;
     Animator animator;  
     DashDirections dashDirections = DashDirections.None;
     bool dashOnCooldown = false;
@@ -68,7 +68,7 @@ public class JetPack : MonoBehaviour
         currentFuel = startingFuel;
         body = GetComponentInParent<Rigidbody>();
         animator = GetComponent<Animator>();
-        pewpew = transform.parent.GetComponentInChildren<Pewpew>();        
+        pewpew = GetComponentInChildren<Pewpew>();       
     }
 
     void Update() //vad ska hände när man får game over? falla ner en bit? UI uppdateras? 
