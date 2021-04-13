@@ -22,9 +22,15 @@ public class Transition : MonoBehaviour
     // Start is called before the first frame update
 
     private void OnTriggerEnter(Collider other) {
+        
         if(other.tag == "Player")
         {
             player = other.GetComponent<Collider>();
+            if(transitionTo == PlayerStates.OnFoot)
+            {
+                TransitionToIsland();
+            }
+
         }  
     }
 
@@ -66,7 +72,7 @@ public class Transition : MonoBehaviour
         StartCoroutine(TransitionToNewScene());
     }
 
-    IEnumerator TransitionToNewScene() //dont load scene here, change to sending information to gamemanager when created
+    IEnumerator TransitionToNewScene() 
     {
         yield return new WaitForSeconds(sceneTransitionTime);
         if(onTransitionEvent != null)

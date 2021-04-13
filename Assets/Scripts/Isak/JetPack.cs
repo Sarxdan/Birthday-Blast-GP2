@@ -80,7 +80,7 @@ public class JetPack : MonoBehaviour
             pewpew.JetpackSpeed = autoMoveSpeed;
         }
         Move();
-        Animate();    
+        //Animate();    
         UseFuel();
         SetCameraPosition();
         GetDashInput();
