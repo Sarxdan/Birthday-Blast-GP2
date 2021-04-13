@@ -19,7 +19,7 @@ public class ObjectPool : MonoBehaviour
         for(int i = 0; i < pool.Length; i++)
         {
             print("test");
-            pool[i] = Instantiate(objectToPool, transform.position, Quaternion.identity);
+            pool[i] = Instantiate(objectToPool, transform);
             pool[i].SetActive(false);
 
         }

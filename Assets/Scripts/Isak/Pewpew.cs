@@ -14,12 +14,19 @@ public class Pewpew : MonoBehaviour
         set {jetpackSpeed = value;}
     }
     bool canShoot = true;
+    int ammo;
     [SerializeField][Range(0.1f, 1)] float fireRate = 1;
     [SerializeField][Range(1, 100)] float projectileSpeed = 1;
-    [SerializeField][Range(10, 100)] int ammo = 1;
+    [SerializeField][Range(10, 100)] int maxAmmo = 1;
     [SerializeField] GameObject barrelFront;
     [SerializeField] GameObject projectilePrefab;
+    [SerializeField] float projectileMaxRange = 1;
     [SerializeField][Range(0.01f, 1)] float offsetBetweenBarrelAndProjectile = 1; // any better names available?
+    [SerializeField] ObjectPool projectilePool;
+
+    private void Awake() {
+        ammo = maxAmmo;
+    }
 
     private void Update() {
         Shoot();
@@ -30,10 +37,7 @@ public class Pewpew : MonoBehaviour
         if(!canShoot || ammo <= 0) return;
         if(Input.GetButtonDown("Pewpew"))
         {
-            Vector3 offset = new Vector3();
-            offset.z = offsetBetweenBarrelAndProjectile;
-            Projectile projectile = Instantiate(projectilePrefab, barrelFront.transform.position + offset, Quaternion.identity).GetComponent<Projectile>();
-            projectile.ProjectileSpeed = projectileSpeed + jetpackSpeed;
+            SetUpProjectile();
             canShoot = false;
             ammo--;
             StartCoroutine(WeaponCoolingDown());
@@ -43,6 +47,26 @@ public class Pewpew : MonoBehaviour
         {
             yield return new WaitForSeconds(fireRate);
             canShoot = true;
+        }
+    }
+
+    private void SetUpProjectile()
+    {
+        Vector3 projectileSpawn = barrelFront.transform.position;
+        projectileSpawn.z += offsetBetweenBarrelAndProjectile;
+        Projectile projectile = projectilePool.usePooledObject().GetComponent<Projectile>();
+        projectile.ProjectileSpeed = projectileSpeed + jetpackSpeed;
+        projectile.MaxBulletRange = projectileMaxRange;
+        projectile.gameObject.transform.position = projectileSpawn;
+        projectile.gameObject.SetActive(true);
+    }
+
+    void RefillAmmo(int amount) // add restriction so the player wont use resources in vain
+    {
+        ammo += amount;
+        if(ammo >= maxAmmo)
+        {
+            ammo = maxAmmo;
         }
     }
 }
