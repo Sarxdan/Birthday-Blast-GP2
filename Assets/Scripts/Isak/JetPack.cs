@@ -13,11 +13,16 @@ public class JetPack : MonoBehaviour
 
     #region variables
 
-    Rigidbody body;  
+    public bool AllowMovement
+    {
+        set{allowMovement = value;}
+    }
+
+    Rigidbody body; 
     Camera camera;
     bool isAutoBoosting = false;
     bool gameOver = false;
-    public float currentFuel = 0;
+    float currentFuel = 0;
     Animator animator;  
     DashDirections dashDirections = DashDirections.None;
     bool dashOnCooldown = false;
@@ -28,9 +33,9 @@ public class JetPack : MonoBehaviour
 
     [Header("movement settings")]
     [SerializeField] float moveSpeed = 1;   
-    [SerializeField][Range(0.1f, 2)] float flightBoost = 1;
+    [SerializeField]float flightBoost = 1;
     [SerializeField] float autoMoveSpeed = 1;
-    [SerializeField][Range(20, 40)] float autoBoost = 20;  
+    [SerializeField]float autoBoost = 20;  
     [SerializeField] ParticleSystem[] thrusters;   
 
     [Header("Camera settings")]
@@ -38,15 +43,15 @@ public class JetPack : MonoBehaviour
     [SerializeField] Vector3 cameraOffsetFromPlayer = new Vector3(0,0,0);
 
     [Header("Fuel settings")]
-    [SerializeField][Range(100, 1000)] float startingFuel = 100;
-    [SerializeField][Range(0.1f, 2)] float fuelUsageOnMovement = 0.1f;
-    [SerializeField][Range(2, 5)] float fuelUsageOnAbilities = 2;    
+    [SerializeField]float startingFuel = 100;
+    [SerializeField]float fuelUsageOnMovement = 0.1f;
+    [SerializeField]float fuelUsageOnAbilities = 2;    
 
     [Header("Ability settings")]
-    [SerializeField][Range(1, 100)] float dashSpeed = 10;
-    [SerializeField][Range(0.1f, 1)] float DashLength = 0.2f;
-    [SerializeField][Range(0.1f, 10)] float dashCooldown = 1;   
-    [SerializeField][Range(0.1f, 1)][Tooltip("timer for using the dash ability")] float doubleTapTimer = 1;
+    [SerializeField]float dashSpeed = 10;
+    [SerializeField]float DashLength = 0.2f;
+    [SerializeField]float dashCooldown = 1;   
+    [SerializeField][Tooltip("timer for using the dash ability")] float doubleTapTimer = 1;
 
     [Header("bool settings")]
     [SerializeField] bool dashUnlocked = false;
@@ -63,7 +68,7 @@ public class JetPack : MonoBehaviour
         currentFuel = startingFuel;
         body = GetComponentInParent<Rigidbody>();
         animator = GetComponent<Animator>();
-        pewpew = transform.parent.GetComponentInChildren<Pewpew>();        
+        pewpew = GetComponentInChildren<Pewpew>();       
     }
 
     void Update() //vad ska hände när man får game over? falla ner en bit? UI uppdateras? 
