@@ -30,14 +30,29 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity;
     //Forward direction relative to the camera.
     private Vector3 forwardLookDir;
+    
+    
+    
+    //Input values
+    private float horizontal;
+    private float vertical;
 
     private void Start()
     {
         controller = GetComponent<CharacterController>();
         camController = GetComponent<CameraController>();
+        
+        
     }
     
-    public void Movement()
+    public void FetchMovementInput(float _horizontal, float _vertical)
+    {
+        horizontal = _horizontal;
+        vertical = _vertical;
+    }
+
+
+    public void Move()
     {
         //Check if player is currently in contact with objects from certain layers
         isGrounded = Physics.CheckSphere(groundCheckPosition.position, groundDistanceCheck, groundMask);
@@ -48,25 +63,21 @@ public class PlayerMovement : MonoBehaviour
         
         
         velocity.y += gravity * Time.deltaTime;
-        
-        //Get input and store into values
-        var horizontalInput = Input.GetAxisRaw("Horizontal");
-        var verticalInput = Input.GetAxisRaw("Vertical");
-        
+
         //Get the forward direction from the camera
         forwardLookDir = camController.forwardLookDir;
 
         //Direction of movement, (normalized)/unit vector
         var movementDirection =
-            (forwardLookDir * verticalInput + camController.cameraLookDirectionTransform.right * horizontalInput)
+            (forwardLookDir * vertical + camController.cameraLookDirectionTransform.right * horizontal)
             .normalized;
 
         //Move in direction * movementSpeed
         controller.Move(movementDirection * (Time.deltaTime * movementSpeed));
         
         
-        if(Input.GetButtonDown("Jump") && isGrounded)
-            Jump();
+        //if(Input.GetButtonDown("Jump") && isGrounded)
+        //    Jump();
 
         //Gravity
         controller.Move(velocity * Time.deltaTime);
@@ -84,6 +95,12 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.Slerp(transform.rotation,lookRotation, Time.deltaTime * playerRotationSpeed);
     }
 
+    public void TryJump()
+    {
+        if(isGrounded)
+            Jump();
+    }
+    
     private void Jump()
     {
         velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);

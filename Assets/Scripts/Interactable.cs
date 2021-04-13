@@ -3,80 +3,45 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using System;
+using UnityEngine.Serialization;
 
-[Serializable]
-public class InteractEvent : UnityEvent {}
 
 public class Interactable : MonoBehaviour
 {
-    public KeyCode interactKeyBind;
-    public float interactRange = 5f;
+    public float interactRadius = 5f;
 
-    [Header("Player can interact with this object once every X seconds")]
-    public float timeBetweenInteractions = 1;
-
-    private float timeSinceLastInteraction = 0;
+    public float minimumTimeBetweenInteractions = 2f;
+    private float timeSinceLastInteraction = 0f;
     
-
     [Header("Call function when player interacts with object")]
     public InteractEvent OnInteractEvent;
 
-
-    private Transform playerTransform;
-
-    private void Start()
+    public void TryToInteract(PlayerInteraction player)
     {
-        playerTransform = GetPlayer();
+        var distanceFromPlayer = Vector3.Distance(transform.position, player.transform.position);
+        
+        if (distanceFromPlayer <= interactRadius && timeSinceLastInteraction >= minimumTimeBetweenInteractions)
+        {
+            Interact();
+        }
     }
 
     private void Update()
     {
         timeSinceLastInteraction += Time.deltaTime;
-        
-        if(Input.GetKeyDown(interactKeyBind))
-            TryToInteract();
-        
-    }
-
-    private void TryToInteract()
-    {
-        if(CanInteract() == false) return;
-
-        if (playerTransform == false)
-            playerTransform = GetPlayer();
-        
-        Interact();
     }
 
     private void Interact()
     {
         timeSinceLastInteraction = 0;
-
         OnInteractEvent?.Invoke();
     }
-
-    private bool CanInteract()
-    {
-        return InRange(Vector3.Distance(transform.position, playerTransform.position)) 
-               &&
-               timeSinceLastInteraction >= timeBetweenInteractions;
-
-    }
     
-    private bool InRange(float distance)
-    {
-        return distance <= interactRange;
-    }
-
-    private Transform GetPlayer()
-    {
-        return FindObjectOfType<ThirdPersonController>().transform;
-    }
-
 
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, interactRange);
+        Gizmos.DrawWireSphere(transform.position, interactRadius);
+
     }
 }

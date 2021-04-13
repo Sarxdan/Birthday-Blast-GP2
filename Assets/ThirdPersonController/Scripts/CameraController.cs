@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UIElements;
 using Cursor = UnityEngine.Cursor;
@@ -14,8 +15,6 @@ public class CameraController : MonoBehaviour
     //Limit the vertical rotation of the camera
     public float minXRotation = -50f;
     public float maxXRotation = 50f;
-
-    public bool invertVerticalRotation;
     
     //Reference to the camera used for the ThirdPersonController
     private Transform mainCamera;
@@ -38,15 +37,21 @@ public class CameraController : MonoBehaviour
 
     private float xRotation = 0f;
 
+    //Inputs
+    private float mouseXInput;
+    private float mouseYInput;
+
 
     private void OnEnable()
     {
+        
+        #if UNITY_STANDALONE
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
-        
-        
+        #endif
+
         if (mainCamera == null)
-            mainCamera = Camera.main.transform;
+            mainCamera = GameObject.FindGameObjectWithTag("PlayerCam").transform;
         
         if (TransformToChildren.Length > 0)
         {
@@ -58,20 +63,88 @@ public class CameraController : MonoBehaviour
     }
 
 
+    public void FetchCameraInput(float mouseX, float mouseY)
+    {
+        mouseXInput = mouseX * horizontalSensitivity;
+        mouseYInput = mouseY * verticalSensitivity;
+        
+    }
+
+    private bool FingerOnScreen()
+    {
+        return Input.touchCount > 0;
+    }
+    
+    private bool Finger0OnUI()
+    {
+        return FingerOnScreen() && EventSystem.current.IsPointerOverGameObject(0);
+    }
+
+    private bool Finger1OnUI()
+    {
+        return FingerOnScreen() && EventSystem.current.IsPointerOverGameObject(1);
+    }
+    
+    private bool CanRotateCameraOnMobile()
+    {
+        if(FingerOnScreen())
+            return !Finger0OnUI() || !Finger1OnUI();
+
+
+        return false;
+    }
+    
     public void HandleCamera()
     {
+
+        
+#if UNITY_IOS || UNITY_ANDROID
+
+        if (Input.touchCount > 0)
+        {
+            if (CanRotateCameraOnMobile())
+            {
+                if (Finger0OnUI() == false)
+                {
+                    var deltaTouchPos = Input.GetTouch(0).deltaPosition;
+
+                    mouseXInput = deltaTouchPos.x * horizontalSensitivity;
+                    mouseYInput = -deltaTouchPos.y * verticalSensitivity;
+                }
+                else if (Finger1OnUI())
+                {
+                    var deltaTouchPos = Input.GetTouch(1).deltaPosition;
+
+                    mouseXInput = deltaTouchPos.x * horizontalSensitivity;
+                    mouseYInput = -deltaTouchPos.y * verticalSensitivity;
+                }
+            }
+            else
+            {
+                mouseXInput = 0;
+                mouseYInput = 0;
+            }
+        }
+        else
+        {
+            
+            //Reset rotation movement to 0 when not touching the screen
+            mouseXInput = 0;
+            mouseYInput = 0;
+        }
+#endif
+        
+        
         cameraLookDirectionTransform.rotation = Quaternion.Euler(0f,mainCamera.eulerAngles.y,0f);
 
         forwardLookDir = cameraLookDirectionTransform.forward;
-
-        var mouseX = Input.GetAxis("Mouse X") * horizontalSensitivity;
-        var mouseY = Input.GetAxis("Mouse Y") * verticalSensitivity;
         
         
-        xRotation += (mouseY * (invertVerticalRotation?-1:1)) * Time.deltaTime;
+        
+        xRotation += mouseYInput * Time.deltaTime;
 
         var yRotation = cameraLookAtTarget.localEulerAngles.y;
-        yRotation += mouseX * Time.deltaTime;
+        yRotation += mouseXInput * Time.deltaTime;
         
         xRotation = Mathf.Clamp(xRotation, minXRotation, maxXRotation);
         

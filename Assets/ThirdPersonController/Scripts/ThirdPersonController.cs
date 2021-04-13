@@ -21,20 +21,17 @@ public class ThirdPersonController : MonoBehaviour
     #region CameraControls
 
     [Header("Camera variables")] 
-    [Range(1, 300)]
+    [Range(1, 100)]
     public float cameraSensitivityX;
-
     
-
-    [Range(1,300)]
+    [Range(1,100)]
     public float cameraSensitivityY;
 
     [Range(-50,50)]
     public float minVerticalRotation, maxVerticalRotation;
-    
-    public Vector3 cameraLookOffset;
 
-    public bool invertVerticalRotation;
+
+    public Vector3 cameraLookOffset;
 
     #endregion
 
@@ -56,8 +53,8 @@ public class ThirdPersonController : MonoBehaviour
 
     #region Components
 
-    private CameraController camController;
-    private PlayerMovement playerMovement;
+    [HideInInspector] public CameraController camController;
+    [HideInInspector] public PlayerMovement playerMovement;
 
     [Header("Component management")]
     public bool disablePlayerMovement;
@@ -114,8 +111,6 @@ public class ThirdPersonController : MonoBehaviour
 
         camController.maxXRotation = maxVerticalRotation;
 
-        camController.invertVerticalRotation = invertVerticalRotation;
-
         #endregion
     }
 
@@ -130,7 +125,7 @@ public class ThirdPersonController : MonoBehaviour
 
     private void DoPlayerMovement()
     {
-        playerMovement.Movement();
+        playerMovement.Move();
     }
 
     private void DoCameraMovement()
