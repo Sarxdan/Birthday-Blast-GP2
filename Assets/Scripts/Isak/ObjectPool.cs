@@ -8,7 +8,7 @@ public class ObjectPool : MonoBehaviour
     GameObject[] pool;
     [SerializeField] GameObject objectToPool;
     [SerializeField] int amountOfObjects;
-    // Start is called before the first frame update
+
     private void Awake() {
         pool = new GameObject[amountOfObjects];
         fillPool();
@@ -18,7 +18,6 @@ public class ObjectPool : MonoBehaviour
     {
         for(int i = 0; i < pool.Length; i++)
         {
-            print("test");
             pool[i] = Instantiate(objectToPool, transform);
             pool[i].SetActive(false);
 
@@ -35,10 +34,5 @@ public class ObjectPool : MonoBehaviour
             }
         }
         return null; //all objects are in use
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
     }
 }

@@ -14,48 +14,34 @@ public class Transition : MonoBehaviour
     }
     public Collider player;
     bool isInteracted = false;
+    bool cantTriggerAgain = false;
 
     [SerializeField] PlayerStates transitionTo = PlayerStates.Jetpack;
     [SerializeField] Text transitionText;
     [SerializeField] float sceneTransitionTime = 1;
     [SerializeField][Tooltip("name of scene to load after transition, case sensitive")] string sceneToLoad = string.Empty;
+    [SerializeField] bool transmit = false;
     // Start is called before the first frame update
 
     private void OnTriggerEnter(Collider other) {
-        
+        if(cantTriggerAgain) return;
         if(other.tag == "Player")
         {
             player = other.GetComponent<Collider>();
             if(transitionTo == PlayerStates.OnFoot)
             {
                 TransitionToIsland();
+                cantTriggerAgain = true;
             }
 
         }  
-    }
-
-    void CheckTransition()
-    {
-        switch(transitionTo)
-        {
-            case PlayerStates.Jetpack:
-            if(isInteracted)
-            {
-                TransitionToJetpack();
-            }           
-            break;
-
-            case PlayerStates.OnFoot:
-            TransitionToIsland();
-            break;
-        }
     }
 
     public void Interacting()
     {
         if(isInteracted) return;
         isInteracted = true;
-        CheckTransition();
+        TransitionToJetpack();
     }
 
     void TransitionToJetpack()

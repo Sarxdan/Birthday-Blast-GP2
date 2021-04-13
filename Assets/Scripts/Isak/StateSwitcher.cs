@@ -13,6 +13,9 @@ public class StateSwitcher : MonoBehaviour
     {
         set{switchStates = value;}
     }
+
+    CapsuleCollider collider;
+    CharacterController characterController;
     Camera jetpackCamera; //camera used for jetpack
     Camera playerCamera; //camera used for playercontroller
     PlayerStates currentState;
@@ -30,12 +33,14 @@ public class StateSwitcher : MonoBehaviour
 
     void SetUpComponents()
     {
+        characterController = GetComponent<CharacterController>();
         playerMovement = GetComponent<PlayerMovement>();
         cameraController = GetComponent<CameraController>();
         thirdPersonController = GetComponent<ThirdPersonController>();
         jetPack = GetComponentInChildren<JetPack>();
         jetpackCamera = Camera.main;
         playerCamera = GameObject.FindGameObjectWithTag("PlayerCam").GetComponent<Camera>();
+        collider = GetComponent<CapsuleCollider>();
     }
 
     private void Update() {
@@ -77,6 +82,7 @@ public class StateSwitcher : MonoBehaviour
     }
     void SetPlayerActive(bool isActive)
     {
+        characterController.enabled = isActive;
         playerCamera.gameObject.SetActive(isActive);
         playerMovement.enabled = isActive;
         cameraController.enabled = isActive;
@@ -84,6 +90,7 @@ public class StateSwitcher : MonoBehaviour
     }
     void SetJetpackActive(bool isActive)
     {
+        collider.enabled = isActive;
         jetpackCamera.gameObject.SetActive(isActive);
         jetPack.gameObject.SetActive(isActive);        
     }
