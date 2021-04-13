@@ -37,7 +37,7 @@ public class JetpackInputManager : MonoBehaviour
         EnableMobileComponents(true);
 #endif
     }
-    
+
     private void EnableMobileComponents(bool enable)
     {
         foreach (var mobileUIComponent in MobileUIComponents)
