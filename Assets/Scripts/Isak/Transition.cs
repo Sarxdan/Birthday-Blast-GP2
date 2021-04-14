@@ -33,7 +33,6 @@ public class Transition : MonoBehaviour
                 TransitionToIsland();
                 cantTriggerAgain = true;
             }
-
         }  
     }
 
@@ -53,8 +52,10 @@ public class Transition : MonoBehaviour
 
     void TransitionToIsland()
     {
-        StateSwitcher switcher = player.GetComponent<StateSwitcher>();
-        switcher.SwitchStates = true;
+        //StateSwitcher switcher = player.GetComponent<StateSwitcher>();
+        //switcher.SwitchStates = true;
+        JetPack jetPack = player.GetComponentInChildren<JetPack>();
+        jetPack.StartLanding();
         StartCoroutine(TransitionToNewScene());
     }
 
