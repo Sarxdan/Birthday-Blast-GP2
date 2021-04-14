@@ -7,20 +7,10 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public List<Item> items = new List<Item>();
-
-    public int resources;
-    public int upgrades;
-    public int currency;
-    public int other;
-    
-    public void EquipItem(Item item)
-    {
-        items.Add(item);
-        IncreaseAmount(item.itemType);
-    }
-    
     public static Inventory instance;
+
+    public int baseResourceCount;
+
     private void Awake()
     {
         if(instance != null)
@@ -31,28 +21,11 @@ public class Inventory : MonoBehaviour
         }
     }
 
-    public int ItemSpecificCount(Item item) //Returns how many of the same item specified the inventory has
+    public void EquipResource()
     {
-        return items.Count(_item => _item.name == item.name);
+        baseResourceCount++;
     }
+    
 
-    private void IncreaseAmount(ItemType itemType)
-    {
-        switch (itemType)
-        {
-            case ItemType.Default:
-                other++;
-                break;
-            case ItemType.Resource:
-                resources++;
-                break;
-            case  ItemType.Upgrade:
-                upgrades++;
-                break;
-            case ItemType.Currency:
-                currency++;
-                break;
-        }
-    }
     
 }
