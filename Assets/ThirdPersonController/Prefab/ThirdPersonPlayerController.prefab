@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 69697130}
   - component: {fileID: 69697129}
-  - component: {fileID: 69697128}
   - component: {fileID: 69697131}
   - component: {fileID: 69697132}
   m_Layer: 0
@@ -62,7 +61,7 @@ Camera:
   field of view: 40
   orthographic: 0
   orthographic size: 10
-  m_Depth: -1
+  m_Depth: 1
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -77,14 +76,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &69697128
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 69697127}
-  m_Enabled: 1
 --- !u!114 &69697131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -508,7 +499,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7775468, y: 1}
+    m_SensorSize: {x: 1.7769231, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
