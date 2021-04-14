@@ -13,11 +13,7 @@ public class StateSwitcher : MonoBehaviour
     {
         set{switchStates = value;}
     }
-
-    CapsuleCollider collider;
-    CharacterController characterController;
-    Camera jetpackCamera; //camera used for jetpack
-    Camera playerCamera; //camera used for playercontroller
+    Camera camera;
     PlayerStates currentState;
     [SerializeField] PlayerStates startingState = PlayerStates.OnJetpack;
     [SerializeField] bool switchStates = false;
@@ -33,14 +29,11 @@ public class StateSwitcher : MonoBehaviour
 
     void SetUpComponents()
     {
-        characterController = GetComponent<CharacterController>();
         playerMovement = GetComponent<PlayerMovement>();
         cameraController = GetComponent<CameraController>();
         thirdPersonController = GetComponent<ThirdPersonController>();
         jetPack = GetComponentInChildren<JetPack>();
-        jetpackCamera = Camera.main;
-        playerCamera = GameObject.FindGameObjectWithTag("PlayerCam").GetComponent<Camera>();
-        collider = GetComponent<CapsuleCollider>();
+        camera = Camera.main;
     }
 
     private void Update() {
@@ -68,30 +61,23 @@ public class StateSwitcher : MonoBehaviour
         {
 
             case PlayerStates.OnJetpack:           
-            SetPlayerActive(false);
-            SetJetpackActive(true);
+            
+            playerMovement.enabled = false;
+            cameraController.enabled = false;
+            thirdPersonController.enabled = false;
+            jetPack.gameObject.SetActive(true);
+            camera.gameObject.SetActive(true);
             gameObject.transform.rotation = Quaternion.Euler(0,0,0);
             break;
 
-            case PlayerStates.OnLand:           
-            SetPlayerActive(true);
-            SetJetpackActive(false);
+            case PlayerStates.OnLand:
+            playerMovement.enabled = true;
+            cameraController.enabled = true;
+            thirdPersonController.enabled = true;
+            jetPack.gameObject.SetActive(false);
+            camera.gameObject.SetActive(false);
             break;
             
         }
-    }
-    void SetPlayerActive(bool isActive)
-    {
-        characterController.enabled = isActive;
-        playerCamera.gameObject.SetActive(isActive);
-        playerMovement.enabled = isActive;
-        cameraController.enabled = isActive;
-        thirdPersonController.enabled = isActive;
-    }
-    void SetJetpackActive(bool isActive)
-    {
-        collider.enabled = isActive;
-        jetpackCamera.gameObject.SetActive(isActive);
-        jetPack.gameObject.SetActive(isActive);        
     }
 }

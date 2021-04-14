@@ -13,6 +13,11 @@ public class JetPack : MonoBehaviour
 
     #region variables
 
+    public bool AllowMovement
+    {
+        set{allowMovement = value;}
+    }
+
     Rigidbody body; 
     Camera camera;
     bool isAutoBoosting = false;
@@ -24,7 +29,6 @@ public class JetPack : MonoBehaviour
     bool rightAxisPushed = false;
     bool leftAxisPushed = false;
     float lastKeyPressTime = 0;
-    bool isLanding = false;
     Pewpew pewpew;
 
     [Header("movement settings")]
@@ -52,6 +56,7 @@ public class JetPack : MonoBehaviour
     [Header("bool settings")]
     [SerializeField] bool dashUnlocked = false;
     [SerializeField] bool useFuel = false;
+    [SerializeField] bool allowMovement = true;
     [SerializeField] bool useGravity = false;
     [SerializeField] bool pewpewUnlocked = false;
 
@@ -69,17 +74,16 @@ public class JetPack : MonoBehaviour
     void Update() //vad ska hände när man får game over? falla ner en bit? UI uppdateras? 
     {
         if(gameOver) return;
-        if(isLanding) return;
         if(pewpew != null)
         {
             pewpew.gameObject.SetActive(pewpewUnlocked);
             pewpew.JetpackSpeed = autoMoveSpeed;
         }
         Move();
-        //Animate();            
+        Animate();    
+        UseFuel();
         SetCameraPosition();
         GetDashInput();
-        UseFuel();
     }
 
     void GetDashInput()
@@ -226,7 +230,6 @@ public class JetPack : MonoBehaviour
     public void AutoBoost() //change to use events?
     {
         if(gameOver) return;
-        if(isLanding) return;
         //----------------------------------------------------------makes the player boost upwards, useful to make sure the player does not fall too far
         isAutoBoosting = true;   
         Vector3 boostMovement = new Vector3();
@@ -237,7 +240,7 @@ public class JetPack : MonoBehaviour
 
     void Move()
     {
-        if(isAutoBoosting) return;
+        if(isAutoBoosting || !allowMovement) return;
         //----------------------------------------------------get all movement inputs
         Vector3 movement = new Vector3();
         movement.z = autoMoveSpeed;
@@ -273,10 +276,5 @@ public class JetPack : MonoBehaviour
 
     private void OnDisable() {
         StopAllCoroutines();
-    }
-
-    public void StartLanding()
-    {
-        isLanding = true;
     }
 }

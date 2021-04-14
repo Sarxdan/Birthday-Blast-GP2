@@ -75,9 +75,6 @@ public class PlayerMovement : MonoBehaviour
         //Move in direction * movementSpeed
         controller.Move(movementDirection * (Time.deltaTime * movementSpeed));
         
-        
-        //if(Input.GetButtonDown("Jump") && isGrounded)
-        //    Jump();
 
         //Gravity
         controller.Move(velocity * Time.deltaTime);
