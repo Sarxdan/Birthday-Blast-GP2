@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class JetPack : MonoBehaviour
 {   
@@ -59,6 +60,12 @@ public class JetPack : MonoBehaviour
     [SerializeField] bool allowMovement = true;
     [SerializeField] bool useGravity = false;
     [SerializeField] bool pewpewUnlocked = false;
+    
+    
+    //Input values
+
+    private float horizontalSteerInput;
+    private float verticalSteerInput;
 
     #endregion
 
@@ -242,13 +249,13 @@ public class JetPack : MonoBehaviour
     {
         if(isAutoBoosting || !allowMovement) return;
         //----------------------------------------------------get all movement inputs
-        Vector3 movement = new Vector3();
+        var movement = new Vector3();
         movement.z = autoMoveSpeed;
-        movement.x = Input.GetAxis("Horizontal") * moveSpeed; 
-        movement.y = Input.GetAxis("Jump") * flightBoost;
+        movement.x = horizontalSteerInput * moveSpeed; 
+        movement.y = verticalSteerInput * flightBoost;
 
         //----------------------------------------------------activate the thrusters
-        if(Input.GetAxis("Jump") > 0) 
+        if(verticalSteerInput > 0) 
         {                  
             foreach(ParticleSystem thruster in thrusters)
             {
@@ -277,4 +284,31 @@ public class JetPack : MonoBehaviour
     private void OnDisable() {
         StopAllCoroutines();
     }
+
+
+
+    #region Inputs
+
+    public void OnSteerInput(float horizontal, float vertical)
+    {
+        horizontalSteerInput = horizontal;
+        verticalSteerInput = vertical;
+        
+        Debug.Log("Jetpack X: " + horizontal + " Jetpack Y: " + vertical);
+    }
+
+    public void OnDashInput()
+    {
+        Debug.Log("Jetpack DASH");
+        var direction = horizontalSteerInput > 0 ? DashDirections.Right : DashDirections.Left;
+
+        StartCoroutine(DashInDirection(direction));
+    }
+
+    public void OnActionInput()
+    {
+        Debug.Log("Jetpack ACTION");
+    }
+
+    #endregion
 }

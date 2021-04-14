@@ -77,7 +77,7 @@ public class StateSwitcher : MonoBehaviour
             jetPack.gameObject.SetActive(false);
             camera.gameObject.SetActive(false);
             break;
-
+            
         }
     }
 }
