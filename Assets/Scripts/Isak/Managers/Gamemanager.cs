@@ -22,7 +22,6 @@ public class Gamemanager : Singleton<Gamemanager>
     public KeyItems unlockedItems;
     [SerializeField] bool DebugMode = false;
     GameState currentGameState = GameState.Pregame;
-
     void LoadLevel(string levelName)
     {
         if(DebugMode)

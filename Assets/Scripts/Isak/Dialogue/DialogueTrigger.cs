@@ -58,13 +58,39 @@ public class DialogueTrigger : MonoBehaviour
 
     bool CheckCurrentDialogue() // this will look like shit, improve over iterations
     {   
-        if(dialogueToCheck.dialogueRequirements.jetpack == Gamemanager.instance.unlockedItems.jetpack && dialogueToCheck.dialogueRequirements.pewpew == Gamemanager.instance.unlockedItems.pewpew)
-        {
-            return true;
+        if(dialogueToCheck.dialogueRequirements.jetpack && !dialogueToCheck.dialogueRequirements.pewpew) //if only jetpack is unlocked
+        {       
+            if(Gamemanager.instance.unlockedItems.jetpack && !Gamemanager.instance.unlockedItems.pewpew)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-        else
+        else if(!dialogueToCheck.dialogueRequirements.jetpack && dialogueToCheck.dialogueRequirements.pewpew) //if only pewpew is unlocked
         {
-            return false;
+            if(!Gamemanager.instance.unlockedItems.jetpack && Gamemanager.instance.unlockedItems.pewpew)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
+        else if(dialogueToCheck.dialogueRequirements.jetpack && dialogueToCheck.dialogueRequirements.pewpew) //if both are unlocked
+        {
+            if(Gamemanager.instance.unlockedItems.jetpack && Gamemanager.instance.unlockedItems.pewpew)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        return false;
     }
 }
