@@ -185,7 +185,7 @@ public class JetPack : MonoBehaviour
 
     void Animate()
     {
-        if(Input.GetAxis("Jump") > 0 || Input.GetAxis("Horizontal") != 0)
+        if(verticalSteerInput > 0 || horizontalSteerInput != 0)
         {
             animator.SetBool("isMoving", true);
         }
@@ -198,7 +198,7 @@ public class JetPack : MonoBehaviour
     void UseFuel()
     {
         if(!useFuel) return;
-        if(Input.GetAxis("Jump") > 0 || Input.GetAxis("Horizontal") != 0)
+        if(verticalSteerInput > 0 || horizontalSteerInput != 0)
         {
             currentFuel -= fuelUsageOnMovement * Time.deltaTime;
             checkFuel();
@@ -293,13 +293,10 @@ public class JetPack : MonoBehaviour
     {
         horizontalSteerInput = horizontal;
         verticalSteerInput = vertical;
-        
-        Debug.Log("Jetpack X: " + horizontal + " Jetpack Y: " + vertical);
     }
 
     public void OnDashInput()
     {
-        Debug.Log("Jetpack DASH");
         var direction = horizontalSteerInput > 0 ? DashDirections.Right : DashDirections.Left;
 
         StartCoroutine(DashInDirection(direction));
