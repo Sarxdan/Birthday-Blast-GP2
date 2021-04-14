@@ -727,8 +727,8 @@ GameObject:
   - component: {fileID: 7091049536324791368}
   - component: {fileID: 7091049536324791364}
   - component: {fileID: 7091049536324791365}
-  - component: {fileID: 805797298}
   - component: {fileID: 6985610037676910393}
+  - component: {fileID: 805797298}
   - component: {fileID: 7091049536324791371}
   m_Layer: 6
   m_Name: ThirdPersonPlayerController
@@ -819,22 +819,6 @@ MonoBehaviour:
   TransformToChildren:
   - {fileID: 7091049536584943186}
   - {fileID: 69697130}
---- !u!114 &805797298
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7091049536324791369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 401d42e5d5d839b4aaca786d182db473, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxInteractRange: 5
-  interactableMask:
-    serializedVersion: 2
-    m_Bits: 256
 --- !u!114 &6985610037676910393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -909,6 +893,22 @@ MonoBehaviour:
         m_CallState: 2
   MobileUIComponents:
   - {fileID: 4974734266895056953}
+--- !u!114 &805797298
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7091049536324791369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 401d42e5d5d839b4aaca786d182db473, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxInteractRange: 5
+  interactableMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &7091049536324791371
 MonoBehaviour:
   m_ObjectHideFlags: 0

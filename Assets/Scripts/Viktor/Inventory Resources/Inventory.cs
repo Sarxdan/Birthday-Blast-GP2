@@ -4,12 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Inventory : MonoBehaviour
 {
+    public List<Item> items = new List<Item>();
+    
     public static Inventory instance;
 
-    public int baseResourceCount;
+    public int scrapCount;
 
     private void Awake()
     {
@@ -19,11 +22,19 @@ public class Inventory : MonoBehaviour
         {
             instance = this;
         }
+        
+        
+        DontDestroyOnLoad(gameObject);
     }
 
-    public void EquipResource()
+    public void EquipItem(Item item)
     {
-        baseResourceCount++;
+        items.Add(item);
+    }
+    
+    public void IncreaseScrap(int amount)
+    {
+        scrapCount += amount;
     }
     
 
