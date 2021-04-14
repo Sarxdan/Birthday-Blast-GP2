@@ -11,7 +11,7 @@ public class MainMenu : MonoBehaviour
     }
 
 
-    //os‰ker pÂ vad som ‰r mest optimalt ang buildindex och hur den borde anv‰ndas :)  /Mikael
+    //os√§ker p√• vad som √§r mest optimalt ang buildindex och hur den borde anv√§ndas :)  /Mikael
     public void Credits ()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2);

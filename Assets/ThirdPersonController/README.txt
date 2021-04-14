@@ -3,11 +3,10 @@
 (if the controller is NOT working)
 (if the controller is NOT working)
 
+1. Remove the Existing ThirdPersonController from the scene
 
-1. Remove ThirdPersonController from the scene
+2. Make sure there is no Cinemachine component on any camera in the scene before using ThirdPersonController
 
-2. GameObject -> Cinemachine -> Virtual Camera
+3. Drag in ThirdPersonController again.
 
-3. Remove the newly created Camera (NOT MainCamera)
-
-4. Done
+4. Done (should work now)
