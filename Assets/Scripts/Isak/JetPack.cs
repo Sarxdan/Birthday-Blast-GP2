@@ -13,11 +13,6 @@ public class JetPack : MonoBehaviour
 
     #region variables
 
-    public bool AllowMovement
-    {
-        set{allowMovement = value;}
-    }
-
     Rigidbody body; 
     Camera camera;
     bool isAutoBoosting = false;
@@ -57,7 +52,6 @@ public class JetPack : MonoBehaviour
     [Header("bool settings")]
     [SerializeField] bool dashUnlocked = false;
     [SerializeField] bool useFuel = false;
-    [SerializeField] bool allowMovement = true;
     [SerializeField] bool useGravity = false;
     [SerializeField] bool pewpewUnlocked = false;
 
@@ -82,10 +76,10 @@ public class JetPack : MonoBehaviour
             pewpew.JetpackSpeed = autoMoveSpeed;
         }
         Move();
-        //Animate();    
-        UseFuel();
+        //Animate();            
         SetCameraPosition();
         GetDashInput();
+        UseFuel();
     }
 
     void GetDashInput()
@@ -243,7 +237,7 @@ public class JetPack : MonoBehaviour
 
     void Move()
     {
-        if(isAutoBoosting || !allowMovement) return;
+        if(isAutoBoosting) return;
         //----------------------------------------------------get all movement inputs
         Vector3 movement = new Vector3();
         movement.z = autoMoveSpeed;

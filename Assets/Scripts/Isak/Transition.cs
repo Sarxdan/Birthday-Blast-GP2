@@ -12,7 +12,6 @@ public class Transition : MonoBehaviour
         Jetpack, 
         OnFoot
     }
-    public Collider player;
     bool isInteracted = false;
     bool cantTriggerAgain = false;
 
@@ -21,13 +20,11 @@ public class Transition : MonoBehaviour
     [SerializeField] float sceneTransitionTime = 1;
     [SerializeField][Tooltip("name of scene to load after transition, case sensitive")] string sceneToLoad = string.Empty;
     [SerializeField] bool transmit = false;
-    // Start is called before the first frame update
 
     private void OnTriggerEnter(Collider other) {
         if(cantTriggerAgain) return;
         if(other.tag == "Player")
         {
-            player = other.GetComponent<Collider>();
             if(transitionTo == PlayerStates.OnFoot)
             {
                 TransitionToIsland();
@@ -45,16 +42,14 @@ public class Transition : MonoBehaviour
 
     void TransitionToJetpack()
     {
-        StateSwitcher switcher = player.GetComponent<StateSwitcher>();
+        StateSwitcher switcher = GameObject.FindGameObjectWithTag("Player").GetComponent<StateSwitcher>();
         switcher.SwitchStates = true;
         StartCoroutine(TransitionToNewScene());
     }
 
     void TransitionToIsland()
     {
-        //StateSwitcher switcher = player.GetComponent<StateSwitcher>();
-        //switcher.SwitchStates = true;
-        JetPack jetPack = player.GetComponentInChildren<JetPack>();
+        JetPack jetPack = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<JetPack>();
         jetPack.StartLanding();
         StartCoroutine(TransitionToNewScene());
     }
