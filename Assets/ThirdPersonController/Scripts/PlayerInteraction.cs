@@ -1,20 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
+using TMPro;
 
 public class PlayerInteraction : MonoBehaviour
 {
     private Interactable interactableObject;
     public float maxInteractRange = 5f;
     public LayerMask interactableMask;
+    
+    public TextMeshProUGUI interactTextUI;
+
+    private void Update()
+    {
+        interactTextUI.text = ClosestInteractable() == null ? "" : ClosestInteractable().interactText;
+    }
 
     public void OnInteract()
     {
-        if (ClosestInteractable() == null) return;
-        
-         interactableObject = ClosestInteractable();
+        if (ClosestInteractable() == null)
+        {
+            return;
+        }
+
+        interactableObject = ClosestInteractable();
          
          interactableObject.TryToInteract(this);
     }
