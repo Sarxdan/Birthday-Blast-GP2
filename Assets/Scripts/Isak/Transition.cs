@@ -14,10 +14,8 @@ public class Transition : MonoBehaviour
     }
     bool isInteracted = false;
     bool cantTriggerAgain = false;
-
     [SerializeField] PlayerStates transitionTo = PlayerStates.Jetpack;
     [SerializeField][Tooltip("name of scene to load after transition, case sensitive")] string sceneToLoad = string.Empty;
-    [SerializeField] bool transmit = false;
 
     private void OnTriggerEnter(Collider other) {
         if(cantTriggerAgain) return;
