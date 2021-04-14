@@ -3,9 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Dialogue 
+[CreateAssetMenu(fileName = "Dialogue")]
+public class Dialogue : ScriptableObject
 {
-    public string name;
-    
-    [TextArea(3, 10)]public string[] sentence;
+    [SerializeField] string name;
+    [SerializeField] bool repeatDialogue = false;
+    [SerializeField][TextArea(3, 10)] string[] sentences;
+
+    public string Name
+    {
+        get{return name;}
+    }
+
+    public bool RepeatDialogue
+    {
+        get{return repeatDialogue;}
+    }
+
+    public string[] Sentences
+    {
+        get{return sentences;}
+    }
 }

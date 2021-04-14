@@ -4,11 +4,27 @@ using UnityEngine;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public Dialogue dialogue;
-
-    public void TriggerDialogue()
+    public static Events.DialogueEvent onNPCDialogue;
+    [SerializeField] Dialogue dialogue;
+    int timesSpokenWith = 0;
+    string GetNextDialogue()
     {
-        print("test");
-        FindObjectOfType<DialogueManager>().StartDialogue(dialogue);
+        string nextDialogue = dialogue.Sentences[timesSpokenWith];
+        if(timesSpokenWith != dialogue.Sentences.Length - 1)
+        {
+            timesSpokenWith++;
+        }
+        else if(dialogue.RepeatDialogue)
+        {
+            timesSpokenWith = 0;
+        }      
+        return nextDialogue;
+    }
+    public void TriggerDialogue()
+    {   
+        if(onNPCDialogue != null)
+        {
+            onNPCDialogue(GetNextDialogue());
+        }
     }
 }
