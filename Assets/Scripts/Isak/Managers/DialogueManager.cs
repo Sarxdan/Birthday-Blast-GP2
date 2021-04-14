@@ -29,7 +29,6 @@ public class DialogueManager : Singleton<DialogueManager>
     }
     void OnNPCDialogue(string dialogue, string name)
     {
-        
         if(onNPCDialogue != null)
         {
             onNPCDialogue(dialogue, name);
