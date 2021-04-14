@@ -10,10 +10,15 @@ public class Singleton<T> : MonoBehaviour where T: Singleton<T>
     // Start is called before the first frame update
     protected virtual void Awake()
     {
-        if(instance != null) Destroy(gameObject);
-
-        instance = (T)this;
-        DontDestroyOnLoad(gameObject);
+        if(instance != null)
+        {
+            Destroy(gameObject);
+        } 
+        else
+        {
+            instance = (T)this;
+            DontDestroyOnLoad(gameObject);
+        }        
     }
 
     protected virtual void OnDestroy() {

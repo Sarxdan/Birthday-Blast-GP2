@@ -77,7 +77,7 @@ public class StateSwitcher : MonoBehaviour
             SetPlayerActive(true);
             SetJetpackActive(false);
             break;
-
+            
         }
     }
     void SetPlayerActive(bool isActive)

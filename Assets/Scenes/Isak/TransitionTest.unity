@@ -715,6 +715,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: IsakPlayerTest
       objectReference: {fileID: 0}
+    - target: {fileID: 9153378007904819375, guid: 5f76dd27ab33c8c45baca981afca7a9a, type: 3}
+      propertyPath: switchStates
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9153378007904819375, guid: 5f76dd27ab33c8c45baca981afca7a9a, type: 3}
+      propertyPath: startingState
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f76dd27ab33c8c45baca981afca7a9a, type: 3}
 --- !u!1 &1980890646
@@ -748,10 +756,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44f037ea360e87c4f8b4de9a4527b1f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   transitionTo: 0
-  transitionText: {fileID: 1591415090}
-  sceneTransitionTime: 1
+  sceneTransitionTime: 0
   sceneToLoad: JetpackSegment
   transmit: 0
 --- !u!65 &1980890648
