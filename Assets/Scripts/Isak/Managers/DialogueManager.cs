@@ -5,25 +5,11 @@ using UnityEngine.UI;
 
 public class DialogueManager : Singleton<DialogueManager>
 {
+    public static Events.DialogueEvent onNPCDialogue;
     Queue<string> sentences;
-    [SerializeField] Text npcText; //change to sending event to a UI manager
-    [SerializeField] float textExistTimer = 1;
 
     private void Start() {
-        npcText.text = string.Empty;
         sentences = new Queue<string>();
-    }
-    public void StartDialogue(string dialogue)
-    {
-        StopAllCoroutines();
-        npcText.text = dialogue;
-        StartCoroutine(RemoveText());
-    }
-
-    IEnumerator RemoveText()
-    {
-        yield return new WaitForSeconds(textExistTimer);
-        npcText.text = string.Empty;
     }
 
     public void DisplayNextSentence()
@@ -41,12 +27,20 @@ public class DialogueManager : Singleton<DialogueManager>
     {
         Debug.Log("End of conversation");
     }
+    void OnNPCDialogue(string dialogue, string name)
+    {
+        
+        if(onNPCDialogue != null)
+        {
+            onNPCDialogue(dialogue, name);
+        }
+    }
 
     private void OnEnable() {
-        DialogueTrigger.onNPCDialogue += StartDialogue;
+            DialogueTrigger.onNPCDialogue += OnNPCDialogue;       
     }
 
     private void OnDisable() {
-        DialogueTrigger.onNPCDialogue -= StartDialogue;
+            DialogueTrigger.onNPCDialogue -= OnNPCDialogue;
     }
 }

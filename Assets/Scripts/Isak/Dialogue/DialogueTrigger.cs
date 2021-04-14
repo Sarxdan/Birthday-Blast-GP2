@@ -24,7 +24,7 @@ public class DialogueTrigger : MonoBehaviour
     {   
         if(onNPCDialogue != null)
         {
-            onNPCDialogue(GetNextDialogue());
+            onNPCDialogue(GetNextDialogue(), dialogue.Name);
         }
     }
 }

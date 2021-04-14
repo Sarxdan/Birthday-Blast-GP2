@@ -5,7 +5,16 @@ using UnityEngine.SceneManagement;
 
 public class Gamemanager : Singleton<Gamemanager>
 {
+
+    enum GameState
+    {
+        Pregame,
+        Playing,
+        Paused
+    }
+
     [SerializeField] bool DebugMode = false;
+    GameState currentGameState = GameState.Pregame;
 
     void LoadLevel(string levelName)
     {
@@ -17,6 +26,23 @@ public class Gamemanager : Singleton<Gamemanager>
         {
             SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
         }        
+    }
+
+    void UpdateGameState(GameState newState)
+    {
+        currentGameState = newState;
+        switch(currentGameState)
+        {
+            case GameState.Pregame:
+            Time.timeScale = 1;
+            break;
+            case GameState.Playing:
+            Time.timeScale = 1;
+            break;
+            case GameState.Paused:
+            Time.timeScale = 0;
+            break;
+        }
     }
 
     private void OnEnable() {
