@@ -51,7 +51,7 @@ public class JetpackInputManager : MonoBehaviour
 
     private void OnEnable()
     {
-        controls.GroundMovement.Enable();
+        controls.Jetpack.Enable();
         
         SubscribeToEvents();
 
@@ -62,7 +62,7 @@ public class JetpackInputManager : MonoBehaviour
 
     private void OnDisable()
     {
-        controls.GroundMovement.Disable();
+        controls.Jetpack.Disable();
         
         UnSubscribeFromEvents();
 
