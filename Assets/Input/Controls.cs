@@ -328,17 +328,6 @@ public class @Controls : IInputActionCollection, IDisposable
             ""bindings"": [
                 {
                     ""name"": """",
-                    ""id"": ""3d31d6e2-63c8-41b9-bf0d-789c1ede1c0a"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Dash"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""5ce3aa2b-ddd6-4cac-9990-458c5d5eee4f"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
@@ -362,18 +351,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 {
                     ""name"": ""up"",
                     ""id"": ""86d87980-51f9-4a89-a925-21377d496e6c"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Steering"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""ca381b00-8644-4e0c-8359-ddc4f41bd8e1"",
-                    ""path"": ""<Keyboard>/s"",
+                    ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -426,17 +404,6 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""isPartOfComposite"": true
                 },
                 {
-                    ""name"": ""down"",
-                    ""id"": ""47a8287f-fe4f-4701-b929-db95ab8ea3be"",
-                    ""path"": ""<Keyboard>/downArrow"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Steering"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
                     ""name"": ""left"",
                     ""id"": ""68166285-dabe-421a-afcd-312eb23af128"",
                     ""path"": ""<Keyboard>/leftArrow"",
@@ -451,6 +418,61 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": ""right"",
                     ""id"": ""aa0d2d92-ea5a-434d-a98c-8f5199461163"",
                     ""path"": ""<Keyboard>/rightArrow"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Steering"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Gamepad - left stick"",
+                    ""id"": ""e67021e8-5191-436c-9cbd-376fbbfe5895"",
+                    ""path"": ""2DVector"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Steering"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""up"",
+                    ""id"": ""0961549e-2427-47b6-97c1-3e6d12854d96"",
+                    ""path"": ""<GamePad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Steering"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""down"",
+                    ""id"": ""c5907db0-a28c-4905-b92c-dd26dad377c5"",
+                    ""path"": ""<GamePad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Steering"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""left"",
+                    ""id"": ""68c18932-26ed-413b-89ff-c516a1de01f7"",
+                    ""path"": ""<GamePad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Steering"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""right"",
+                    ""id"": ""12f62d02-ebf4-4c64-9cb7-532e69f603d7"",
+                    ""path"": ""<GamePad>/leftStick/right"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
