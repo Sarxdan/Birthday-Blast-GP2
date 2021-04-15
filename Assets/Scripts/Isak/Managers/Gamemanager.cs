@@ -64,9 +64,11 @@ public class Gamemanager : Singleton<Gamemanager>
 
     private void OnEnable() {
         Transition.onTransitionEvent += LoadLevel;
+        JetPack.onPlayerDeath += LoadLevel;
     }
     protected override void OnDestroy() {
         base.OnDestroy();
         Transition.onTransitionEvent -= LoadLevel;
+        JetPack.onPlayerDeath += LoadLevel;
     }
 }
