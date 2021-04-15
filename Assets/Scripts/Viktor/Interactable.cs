@@ -8,6 +8,8 @@ using UnityEngine.Serialization;
 
 public class Interactable : MonoBehaviour
 {
+    public string interactText = "*interact*";
+    
     public float interactRadius = 5f;
 
     public float minimumTimeBetweenInteractions = 2f;
