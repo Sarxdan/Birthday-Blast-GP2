@@ -883,12 +883,24 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 58380478107321874, guid: 2d0890e8cf337c2489c6d2f39cb60136, type: 3}
+      propertyPath: test.list.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 58380478107321874, guid: 2d0890e8cf337c2489c6d2f39cb60136, type: 3}
       propertyPath: unlockedItems.pewpew
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 58380478107321874, guid: 2d0890e8cf337c2489c6d2f39cb60136, type: 3}
       propertyPath: unlockedItems.jetpack
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58380478107321874, guid: 2d0890e8cf337c2489c6d2f39cb60136, type: 3}
+      propertyPath: test.list.Array.data[0]
+      value: jetpack
+      objectReference: {fileID: 0}
+    - target: {fileID: 58380478107321874, guid: 2d0890e8cf337c2489c6d2f39cb60136, type: 3}
+      propertyPath: test.list.Array.data[1]
+      value: pewpew
       objectReference: {fileID: 0}
     - target: {fileID: 58380478107321875, guid: 2d0890e8cf337c2489c6d2f39cb60136, type: 3}
       propertyPath: m_Name
@@ -1112,16 +1124,16 @@ MonoBehaviour:
   dialogues:
   - dialogue: {fileID: 11400000, guid: 1ebeb977063db9f48aed4d97c6ac3e8c, type: 2}
     dialogueRequirements:
-      jetpack: 1
+      jetpack: 0
       pewpew: 0
   - dialogue: {fileID: 11400000, guid: 8b2b294e159a53546bb4ed0eaf011f78, type: 2}
     dialogueRequirements:
       jetpack: 0
-      pewpew: 1
+      pewpew: 0
   - dialogue: {fileID: 11400000, guid: cebc57e69c548be4186e1a56b6849d49, type: 2}
     dialogueRequirements:
-      jetpack: 1
-      pewpew: 1
+      jetpack: 0
+      pewpew: 0
   defaultDialogue: {fileID: 11400000, guid: 158d3003925398647a984bcaa77f178e, type: 2}
 --- !u!114 &1546840109
 MonoBehaviour:
@@ -1135,6 +1147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b50cef069b20b48983ce3fd52a6248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  interactText: '*interact*'
   interactRadius: 5
   minimumTimeBetweenInteractions: 2
   OnInteractEvent:

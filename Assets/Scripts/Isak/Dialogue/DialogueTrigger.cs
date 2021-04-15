@@ -60,6 +60,7 @@ public class DialogueTrigger : MonoBehaviour
     bool CheckCurrentDialogue() // this will look like shit, improve over iterations
     {   
         bool meetsReqiurements = true;
+
         if(dialogueToCheck.dialogueRequirements.jetpack != Gamemanager.instance.unlockedItems.jetpack) 
         {       
             meetsReqiurements = false;
@@ -68,6 +69,7 @@ public class DialogueTrigger : MonoBehaviour
         {
             meetsReqiurements = false;
         }
+        
         return meetsReqiurements;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class UIManager : Singleton<UIManager>
 {
     public static Events.DialogueEvent onNPCDialogue;
-    public InGameUI inGameUI;
+    InGameUI inGameUI;
     // Start is called before the first frame update
     protected override void Awake()
     {

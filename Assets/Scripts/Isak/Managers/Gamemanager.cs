@@ -12,9 +12,15 @@ public class Gamemanager : Singleton<Gamemanager>
         Playing,
         Paused
     }
+    enum PlayerState
+    {
+        OnJetpack,
+        Onland
+    }
     public KeyItems.Items unlockedItems;
     [SerializeField] bool DebugMode = false;
     GameState currentGameState = GameState.Pregame;
+    PlayerState currentPlayerState = PlayerState.OnJetpack;
     void LoadLevel(string levelName)
     {
         if(DebugMode)
@@ -25,6 +31,18 @@ public class Gamemanager : Singleton<Gamemanager>
         {
             SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
         }        
+    }
+
+    void UpdatePlayerState(PlayerState newState) // send events to ui so correct ui for flight/land is used
+    {
+        currentPlayerState = newState;
+        switch(currentPlayerState)
+        {
+            case PlayerState.OnJetpack:
+            break;
+            case PlayerState.Onland:
+            break;
+        }
     }
 
     void UpdateGameState(GameState newState)
