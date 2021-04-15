@@ -24,7 +24,6 @@ public class JetPack : MonoBehaviour
     Camera camera;
     bool isAutoBoosting = false;
     bool gameOver = false;
-    float currentFuel = 0;
     Animator animator;  
     DashDirections dashDirections = DashDirections.None;
     bool dashOnCooldown = false;
@@ -32,7 +31,7 @@ public class JetPack : MonoBehaviour
     bool leftAxisPushed = false;
     float lastKeyPressTime = 0;
     Pewpew pewpew;
-    int health;
+    public int health;
 
     [Header("movement settings")]
     [SerializeField] float moveSpeed = 1;   
@@ -59,7 +58,7 @@ public class JetPack : MonoBehaviour
     [SerializeField] bool pewpewUnlocked = false;
 
     [Header("health settings")]
-    [SerializeField] int startingHealth;
+    [SerializeField] int startingHealth = 10;
 
     [Header("other settings")]
     [SerializeField][Tooltip("string reference, case sensitive")] string sceneToLoadOnDeath = string.Empty;
@@ -95,8 +94,11 @@ public class JetPack : MonoBehaviour
         SetCameraPosition();
         GetDashInput();
         {
-            if(Input.GetButtonDown("Horizontal")) //testing
-            looseHealth(startingHealth); 
+            if(Input.GetButtonDown("Horizontal"))
+            {
+                //looseHealth(startingHealth);
+            } //testing
+             
         }         
     }
 
@@ -268,8 +270,13 @@ public class JetPack : MonoBehaviour
         camera.transform.position = transform.position + cameraOffsetFromPlayer;
     }
 
+    private void OnEnable() {
+        DamagePlayer.onPlayerCollision += looseHealth;
+    }
+
     private void OnDisable() {
         StopAllCoroutines();
+        DamagePlayer.onPlayerCollision -= looseHealth;
     }
 
     #region Inputs
