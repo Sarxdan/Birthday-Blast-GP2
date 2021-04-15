@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+[RequireComponent(typeof(Rigidbody))]
 public class Obstacle : MonoBehaviour
 {
     [SerializeField] Vector3 movementDirection = new Vector3(0, 0, 0);
@@ -11,6 +11,7 @@ public class Obstacle : MonoBehaviour
 
     private void Awake() {
         body = GetComponent<Rigidbody>();
+        body.useGravity = false;
         timeUntilReturn = returnTime;
     }
     private void Update() {
