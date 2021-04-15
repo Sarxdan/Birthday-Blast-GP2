@@ -44,7 +44,6 @@ public class UIManager : Singleton<UIManager>
     {
         if(Input.GetKeyDown(KeyCode.Escape))
         {
-            print(Time.timeScale);
             TogglePauseMenu(); // använd viktors input!!!
         }
     }

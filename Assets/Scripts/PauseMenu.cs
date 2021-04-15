@@ -16,4 +16,10 @@ public class PauseMenu : MonoBehaviour
             onResumeClicked();
         }
     }
+
+    public void QuitGame()
+    {
+        print("quitting game");
+        Application.Quit();
+    }
 }
