@@ -17,13 +17,4 @@ public class DamagePlayer : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collision other) {
-        if(other.gameObject.GetComponentInChildren<JetPack>() != null || other.gameObject.GetComponent<ThirdPersonController>() != null)
-        {
-            if(onPlayerCollision != null)
-            {
-                onPlayerCollision(damageOnCollision);
-            }
-        }
-    }
 }
