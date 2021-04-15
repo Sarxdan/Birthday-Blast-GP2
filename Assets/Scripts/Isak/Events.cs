@@ -8,4 +8,5 @@ public class Events
     public delegate void LoadSceneEvent(string levelName);
     public delegate void DialogueEvent(string dialogue, string name);
     public delegate void DamagePlayerEvent(int amount);
+    public delegate void GameStateEvent(Gamemanager.GameState newState);
 }

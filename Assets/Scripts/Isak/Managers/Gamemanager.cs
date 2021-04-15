@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Gamemanager : Singleton<Gamemanager>
 {
 
-    enum GameState
+    public enum GameState
     {
         Pregame,
         Playing,
@@ -70,10 +70,12 @@ public class Gamemanager : Singleton<Gamemanager>
     private void OnEnable() {
         Transition.onTransitionEvent += LoadLevel;
         JetPack.onPlayerDeath += LoadLevel;
+        UIManager.onGamePaused += UpdateGameState;
     }
     protected override void OnDestroy() {
         base.OnDestroy();
         Transition.onTransitionEvent -= LoadLevel;
         JetPack.onPlayerDeath += LoadLevel;
+        UIManager.onGamePaused -= UpdateGameState;
     }
 }
