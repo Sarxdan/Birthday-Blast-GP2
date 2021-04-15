@@ -5,10 +5,11 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour
 {
     [System.Serializable]
-    protected class MultipleDialogues
+    protected class MultipleDialogues : KeyItems
     {
         public Dialogue dialogue;
-        public Gamemanager.KeyItems dialogueRequirements;
+        public KeyItems.Items dialogueRequirements;
+
     }
 
     [SerializeField][Tooltip("fill if optional dialogues, such as fetch quest dialogues, are needed, else keep empty and just use default dialogue")] MultipleDialogues[] dialogues;
@@ -58,39 +59,15 @@ public class DialogueTrigger : MonoBehaviour
 
     bool CheckCurrentDialogue() // this will look like shit, improve over iterations
     {   
-        if(dialogueToCheck.dialogueRequirements.jetpack && !dialogueToCheck.dialogueRequirements.pewpew) //if only jetpack is unlocked
+        bool meetsReqiurements = true;
+        if(dialogueToCheck.dialogueRequirements.jetpack != Gamemanager.instance.unlockedItems.jetpack) 
         {       
-            if(Gamemanager.instance.unlockedItems.jetpack && !Gamemanager.instance.unlockedItems.pewpew)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            meetsReqiurements = false;
         }
-        else if(!dialogueToCheck.dialogueRequirements.jetpack && dialogueToCheck.dialogueRequirements.pewpew) //if only pewpew is unlocked
+        if(dialogueToCheck.dialogueRequirements.pewpew != Gamemanager.instance.unlockedItems.pewpew)
         {
-            if(!Gamemanager.instance.unlockedItems.jetpack && Gamemanager.instance.unlockedItems.pewpew)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            meetsReqiurements = false;
         }
-        else if(dialogueToCheck.dialogueRequirements.jetpack && dialogueToCheck.dialogueRequirements.pewpew) //if both are unlocked
-        {
-            if(Gamemanager.instance.unlockedItems.jetpack && Gamemanager.instance.unlockedItems.pewpew)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-        return false;
+        return meetsReqiurements;
     }
 }

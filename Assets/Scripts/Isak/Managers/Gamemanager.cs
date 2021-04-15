@@ -5,12 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class Gamemanager : Singleton<Gamemanager>
 {
-    [System.Serializable]
-    public struct KeyItems // make this struct not public?
-    {
-        public bool jetpack;
-        public bool pewpew;
-    }
 
     enum GameState
     {
@@ -18,8 +12,7 @@ public class Gamemanager : Singleton<Gamemanager>
         Playing,
         Paused
     }
-
-    public KeyItems unlockedItems;
+    public KeyItems.Items unlockedItems;
     [SerializeField] bool DebugMode = false;
     GameState currentGameState = GameState.Pregame;
     void LoadLevel(string levelName)

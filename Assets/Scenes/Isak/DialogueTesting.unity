@@ -882,6 +882,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 58380478107321874, guid: 2d0890e8cf337c2489c6d2f39cb60136, type: 3}
+      propertyPath: unlockedItems.pewpew
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 58380478107321874, guid: 2d0890e8cf337c2489c6d2f39cb60136, type: 3}
+      propertyPath: unlockedItems.jetpack
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 58380478107321875, guid: 2d0890e8cf337c2489c6d2f39cb60136, type: 3}
       propertyPath: m_Name
       value: GameManager
@@ -1102,11 +1110,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogues:
-  - dialogue: {fileID: 11400000, guid: fa8c50c1630fa3240979894d1dc7cd17, type: 2}
+  - dialogue: {fileID: 11400000, guid: 1ebeb977063db9f48aed4d97c6ac3e8c, type: 2}
     dialogueRequirements:
       jetpack: 1
       pewpew: 0
-  defaultDialogue: {fileID: 11400000, guid: 34302dc38579f5f41bb9dfef60f7fb1b, type: 2}
+  - dialogue: {fileID: 11400000, guid: 8b2b294e159a53546bb4ed0eaf011f78, type: 2}
+    dialogueRequirements:
+      jetpack: 0
+      pewpew: 1
+  - dialogue: {fileID: 11400000, guid: cebc57e69c548be4186e1a56b6849d49, type: 2}
+    dialogueRequirements:
+      jetpack: 1
+      pewpew: 1
+  defaultDialogue: {fileID: 11400000, guid: 158d3003925398647a984bcaa77f178e, type: 2}
 --- !u!114 &1546840109
 MonoBehaviour:
   m_ObjectHideFlags: 0
