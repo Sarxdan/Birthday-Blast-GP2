@@ -23,6 +23,10 @@ public class Gamemanager : Singleton<Gamemanager>
     PlayerState currentPlayerState = PlayerState.OnJetpack;
     void LoadLevel(string levelName)
     {
+        
+        SceneManager.LoadScene(levelName);
+        
+        /*  Old code
         if(DebugMode)
         {
             SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Single);
@@ -31,6 +35,7 @@ public class Gamemanager : Singleton<Gamemanager>
         {
             SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
         }        
+        */
     }
 
     void UpdatePlayerState(PlayerState newState) // send events to ui so correct ui for flight/land is used
