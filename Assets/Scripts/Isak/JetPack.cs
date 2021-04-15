@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class JetPack : MonoBehaviour
 {   
+    public static Events.LoadSceneEvent onPlayerDeath;
     enum DashDirections
     {
         None,
@@ -31,6 +32,7 @@ public class JetPack : MonoBehaviour
     bool leftAxisPushed = false;
     float lastKeyPressTime = 0;
     Pewpew pewpew;
+    int health;
 
     [Header("movement settings")]
     [SerializeField] float moveSpeed = 1;   
@@ -42,11 +44,6 @@ public class JetPack : MonoBehaviour
     [Header("Camera settings")]
     [SerializeField] Vector3 cameraRotation = new Vector3(0,0,0);
     [SerializeField] Vector3 cameraOffsetFromPlayer = new Vector3(0,0,0);
-
-    [Header("Fuel settings")]
-    [SerializeField]float startingFuel = 100;
-    [SerializeField]float fuelUsageOnMovement = 0.1f;
-    [SerializeField]float fuelUsageOnAbilities = 2;    
 
     [Header("Ability settings")]
     [SerializeField]float dashSpeed = 10;
@@ -60,6 +57,13 @@ public class JetPack : MonoBehaviour
     [SerializeField] bool allowMovement = true;
     [SerializeField] bool useGravity = false;
     [SerializeField] bool pewpewUnlocked = false;
+
+    [Header("health settings")]
+    [SerializeField] int startingHealth;
+
+    [Header("other settings")]
+    [SerializeField][Tooltip("string reference, case sensitive")] string sceneToLoadOnDeath = string.Empty;
+    [SerializeField][Tooltip("time until loading scene after death")] float sceneTransitionTime = 1;
     
     
     //Input values
@@ -71,11 +75,11 @@ public class JetPack : MonoBehaviour
 
     void Awake()
     {       
+        health = startingHealth;
         camera = Camera.main;
-        currentFuel = startingFuel;
         body = GetComponentInParent<Rigidbody>();
         animator = GetComponent<Animator>();
-        pewpew = GetComponentInChildren<Pewpew>();       
+        pewpew = GetComponentInChildren<Pewpew>();     
     }
 
     void Update() //vad ska hände när man får game over? falla ner en bit? UI uppdateras? 
@@ -88,9 +92,31 @@ public class JetPack : MonoBehaviour
         }
         Move();
         Animate();    
-        UseFuel();
         SetCameraPosition();
         GetDashInput();
+        {
+            if(Input.GetButtonDown("Horizontal")) //testing
+            looseHealth(startingHealth); 
+        }         
+    }
+
+    void looseHealth(int amount)
+    {
+        health -= amount;
+        if(health <= 0)
+        {
+            StartCoroutine(Death());          
+        }
+    }
+
+    IEnumerator Death()
+    {
+        gameOver = true;
+        yield return new WaitForSeconds(sceneTransitionTime);
+        if(onPlayerDeath != null)
+        {
+            onPlayerDeath(sceneToLoadOnDeath);
+        }
     }
 
     void GetDashInput()
@@ -195,45 +221,6 @@ public class JetPack : MonoBehaviour
         }
     }
 
-    void UseFuel()
-    {
-        if(!useFuel) return;
-        if(verticalSteerInput > 0 || horizontalSteerInput != 0)
-        {
-            currentFuel -= fuelUsageOnMovement * Time.deltaTime;
-            checkFuel();
-        }
-        else if(dashOnCooldown)
-        {
-            currentFuel -= fuelUsageOnAbilities * Time.deltaTime;
-            checkFuel();
-        }
-    }
-
-    public void LooseFuel(float amount)
-    {
-        if(!useFuel) return;
-        currentFuel -= amount;
-        checkFuel();
-    }
-
-    void checkFuel() //helping function to check if fuel is zero
-    {
-        if(currentFuel <= 0)
-        {
-            gameOver = true;
-        }
-    }
-
-    void RefillFuel(float amount) //--------------------needs a way to stop refuelling when at max fuel so the player wont waste resources
-    {
-        currentFuel += amount;
-        if(currentFuel >= startingFuel)
-        {
-            currentFuel = startingFuel;
-        }
-    }
-
     public void AutoBoost() //change to use events?
     {
         if(gameOver) return;
@@ -284,8 +271,6 @@ public class JetPack : MonoBehaviour
     private void OnDisable() {
         StopAllCoroutines();
     }
-
-
 
     #region Inputs
 
