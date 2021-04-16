@@ -6,14 +6,21 @@ public class DamagePlayer : MonoBehaviour
 {  
     public static Events.DamagePlayerEvent onPlayerCollision;
     [SerializeField] int damageOnCollision = 1;
+    [SerializeField] bool canBeDestroyedByPlayer = true;
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision other) {
-        if(other.gameObject.GetComponentInChildren<JetPack>() != null || other.gameObject.GetComponent<ThirdPersonController>() != null)
+        JetPack jetPack = other.gameObject.GetComponentInChildren<JetPack>();
+        if( jetPack != null || other.gameObject.GetComponent<ThirdPersonController>() != null)
         {
-            if(onPlayerCollision != null)
+            if(canBeDestroyedByPlayer && jetPack.Invulnerable)
+            {
+                Destroy(gameObject);
+            } 
+            else if(onPlayerCollision != null)
             {
                 onPlayerCollision(damageOnCollision);
             }
+            
         }
     }
 

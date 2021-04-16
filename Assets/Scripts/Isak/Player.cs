@@ -84,10 +84,10 @@ public class Player : MonoBehaviour
     }
 
     void OnEnable() {
-        SegmentChanger.OnsegmentEvent += OnsegmentEvent;
+        
     }
 
     private void OnDisable() {
-        SegmentChanger.OnsegmentEvent -= OnsegmentEvent;
+        
     }
 }
