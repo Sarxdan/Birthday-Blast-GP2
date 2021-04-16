@@ -12,7 +12,20 @@ public class Inventory : MonoBehaviour
     public int magicRocks;
     public int currency;
     public int magicRootCount;
-    
+
+    public static Inventory instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+        {
+            Destroy(gameObject);
+        }
+        
+        DontDestroyOnLoad(gameObject);
+    }
 
     public void PickUpResource(Resource resource)
     {

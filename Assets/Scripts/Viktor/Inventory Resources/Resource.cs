@@ -9,7 +9,7 @@ public class Resource : PickUp
 
     public void PickUpResource()
     {
-        FindObjectOfType<Inventory>().PickUpResource(this);
+        Inventory.instance.PickUpResource(this);
         
         if (DestroyOnPickUp)
         {
