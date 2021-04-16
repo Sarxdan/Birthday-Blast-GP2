@@ -8,35 +8,37 @@ using UnityEngine.Serialization;
 
 public class Inventory : MonoBehaviour
 {
-    public List<Item> items = new List<Item>();
-    
-    public static Inventory instance;
-
     public int scrapCount;
+    public int magicRocks;
+    public int currency;
+    public int magicRootCount;
+    
 
-    private void Awake()
+    public void PickUpResource(Resource resource)
     {
-        if(instance != null)
-            Destroy(gameObject);
-        else
+        var resourceType = resource.resourceType;
+        switch (resourceType)
         {
-            instance = this;
+            case ResourceTypes.Scrap:
+                scrapCount += resource.value;
+                break;
+            case ResourceTypes.MagicRock:
+                magicRootCount += resource.value;
+                break;
+            case ResourceTypes.Currency:
+                currency += resource.value;
+                break;
+            case ResourceTypes.MagicRoot:
+                magicRootCount += resource.value;
+                break;
         }
-        
-        
-        DontDestroyOnLoad(gameObject);
     }
+}
 
-    public void EquipItem(Item item)
-    {
-        items.Add(item);
-    }
-    
-    public void IncreaseScrap(int amount)
-    {
-        scrapCount += amount;
-    }
-    
-
-    
+public enum ResourceTypes
+{
+    Scrap,
+    MagicRock,
+    Currency,
+    MagicRoot
 }

@@ -16,7 +16,14 @@ public class PlayerInteraction : MonoBehaviour
 
     private void Update()
     {
-        interactTextUI.text = ClosestInteractable() == null ? "" : ClosestInteractable().interactText;
+        if (ClosestInteractable() && InInteractDistance(ClosestInteractable()))
+        {
+            interactTextUI.text = ClosestInteractable() == null ? "" : ClosestInteractable().interactText;
+        }
+        else
+        {
+            interactTextUI.text = "";
+        }
     }
 
     public void OnInteract()
@@ -55,5 +62,12 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         return closestInteractable;
+    }
+
+
+    private bool InInteractDistance(Interactable closestInteractable)
+    {
+        var interactDistance = closestInteractable.interactRadius;
+        return Vector3.Distance(closestInteractable.transform.position, transform.position) <= interactDistance;
     }
 }
