@@ -5,13 +5,14 @@ using UnityEngine;
 public class OutOfBounds : MonoBehaviour
 {       
 
-    [SerializeField] float enableMovementTimer = 1;
+    float enableMovementTimer = 0.1f;
     Collider collider;
-    public Vector3 lastPlayerPositionOnLand;
+    Vector3[] lastPlayerPositionsOnLand = new Vector3[3];
     ThirdPersonController thirdPersonController;
     PlayerMovement playerMovement;
-    public float startTimer = 2;
-    public float timer;
+    float startTimer = 0.5f;
+    float timer;
+    int index = 0;
 
     private void Awake() {
         thirdPersonController = FindObjectOfType<ThirdPersonController>();
@@ -19,7 +20,7 @@ public class OutOfBounds : MonoBehaviour
         collider = GetComponent<Collider>();
         collider.isTrigger = true;
         timer = startTimer;
-        lastPlayerPositionOnLand = thirdPersonController.transform.position;
+        lastPlayerPositionsOnLand[0] = thirdPersonController.transform.position; // in case the player INSTANTLY jumps off the island
     }
     private void Update() {
         if(playerMovement.isGrounded)
@@ -27,11 +28,15 @@ public class OutOfBounds : MonoBehaviour
             timer -= Time.deltaTime;
             if(timer <= 0)
             {
-                lastPlayerPositionOnLand = thirdPersonController.gameObject.transform.position;
+                lastPlayerPositionsOnLand[index] = thirdPersonController.gameObject.transform.position;
                 timer = startTimer;
-                print(lastPlayerPositionOnLand);
-            }
-            
+                print(lastPlayerPositionsOnLand);
+                index++;
+                if(index >= lastPlayerPositionsOnLand.Length)
+                {
+                    index = 0;
+                }
+            }           
         }
     }
 
@@ -43,10 +48,11 @@ public class OutOfBounds : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.tag == "Player")
         {
+            int lastIndex = lastPlayerPositionsOnLand.Length - 1;
             print("test");
             StartCoroutine(EnablePlayerAfterSeconds());
             thirdPersonController.disablePlayerMovement = true;
-            other.transform.position = lastPlayerPositionOnLand;           
+            other.transform.position = lastPlayerPositionsOnLand[lastIndex];           
         }       
     }
 
