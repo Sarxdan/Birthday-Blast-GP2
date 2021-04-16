@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueManager : Singleton<DialogueManager>
+public class DialogueManager : Singleton<DialogueManager> //skickar atm endast events, helt onödig
 {
     public static Events.DialogueEvent onNPCDialogue;
     Queue<string> sentences;

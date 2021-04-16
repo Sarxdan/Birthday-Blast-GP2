@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueTrigger : MonoBehaviour
+public class DialogueTrigger : MonoBehaviour //add errorhandling if default dialogue is empty
 {
     [System.Serializable]
-    protected class MultipleDialogues : KeyItems
+    protected class OptionalDialogues
     {
         public Dialogue dialogue;
         public KeyItems.Items dialogueRequirements;
 
     }
 
-    [SerializeField][Tooltip("fill if optional dialogues, such as fetch quest dialogues, are needed, else keep empty and just use default dialogue")] MultipleDialogues[] dialogues;
+    [SerializeField][Tooltip("fill if optional dialogues, such as fetch quest dialogues, are needed, else keep empty and just use default dialogue")] OptionalDialogues[] optionalDialogues;
     public static Events.DialogueEvent onNPCDialogue;
     [SerializeField] Dialogue defaultDialogue;
-    MultipleDialogues dialogueToCheck;
+    OptionalDialogues dialogueToCheck;
     Dialogue dialogueToUse;
     int timesSpokenWith = 0;
     string GetNextDialogue()
@@ -41,10 +41,10 @@ public class DialogueTrigger : MonoBehaviour
     }
     Dialogue ChooseDialogue()
     {
-        if(dialogues.Length != 0)
+        if(optionalDialogues.Length != 0)
         {
             bool useDialogue = false;
-            foreach(MultipleDialogues dialogue in dialogues)
+            foreach(OptionalDialogues dialogue in optionalDialogues)
             {
                 dialogueToCheck = dialogue;
                 useDialogue = CheckCurrentDialogue();
