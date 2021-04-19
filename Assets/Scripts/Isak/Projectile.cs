@@ -39,10 +39,15 @@ public class Projectile : MonoBehaviour
         
         if (isHoming)
         {
-            var projectileForwardDir = transform.forward;
-            var directionToTarget = (target.position - transform.position).normalized;
+            if (Vector3.Distance(target.position, transform.position) > 3f) //Only allow auto aim to happen when the projectile is some distance away
+            {
+                var projectileForwardDir = transform.forward;
+                var directionToTarget = (target.position - transform.position).normalized;
 
-            finalMoveDirection = Vector3.Lerp(projectileForwardDir, directionToTarget, Time.deltaTime * homingAccuracy);
+                finalMoveDirection =
+                    Vector3.Lerp(projectileForwardDir, directionToTarget, Time.deltaTime * homingAccuracy);
+            }
+
         }
         
         var newPos = transform.position + (finalMoveDirection * (speed * Time.fixedDeltaTime));
