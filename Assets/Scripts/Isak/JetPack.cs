@@ -115,6 +115,7 @@ public class JetPack : MonoBehaviour
     {
         if(invulnerable) return;
         health -= amount;
+        Debug.Log("jetpack took some damage");
         if(health <= 0)
         {
             StartCoroutine(Death());          
@@ -150,7 +151,6 @@ public class JetPack : MonoBehaviour
                 }   
                 else
                 {
-                    print("dash right");
                     dashDirections = DashDirections.Left;
                     dashOnCooldown = true; 
                     ResetAxisBools();
@@ -166,7 +166,6 @@ public class JetPack : MonoBehaviour
                 }   
                 else
                 {
-                    print("dash left");
                     dashDirections = DashDirections.Right;                   
                     dashOnCooldown = true; 
                     ResetAxisBools();
@@ -189,7 +188,6 @@ public class JetPack : MonoBehaviour
                 }   
                 else
                 {
-                    print("dash forward");
                     dashDirections = DashDirections.Forward;   
                     forwardDashUnlocked = true; 
                     ResetAxisBools();
@@ -287,11 +285,13 @@ public class JetPack : MonoBehaviour
 
     private void OnEnable() {
         DamagePlayer.onPlayerCollision += looseHealth;
+        Projectile.onPlayerHit += looseHealth;
     }
 
     private void OnDisable() {
         StopAllCoroutines();
         DamagePlayer.onPlayerCollision -= looseHealth;
+        Projectile.onPlayerHit -= looseHealth;
     }
 
     #region Inputs
