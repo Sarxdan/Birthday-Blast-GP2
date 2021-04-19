@@ -36,10 +36,10 @@ public class DialogueManager : Singleton<DialogueManager> //skickar atm endast e
     }
 
     private void OnEnable() {
-            DialogueTrigger.onNPCDialogue += OnNPCDialogue;       
+            //DialogueTrigger.onNPCDialogue += OnNPCDialogue;       
     }
 
     private void OnDisable() {
-            DialogueTrigger.onNPCDialogue -= OnNPCDialogue;
+            //DialogueTrigger.onNPCDialogue -= OnNPCDialogue;
     }
 }

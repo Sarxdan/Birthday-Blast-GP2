@@ -16,49 +16,64 @@ public class Pewpew : MonoBehaviour
     bool canShoot = true;
     int ammo;
     [SerializeField][Range(0.1f, 1)] float fireRate = 1;
-    [SerializeField][Range(1, 100)] float projectileSpeed = 1;
     [SerializeField][Range(10, 100)] int maxAmmo = 1;
-    [SerializeField] GameObject barrelFront;
-    [SerializeField] GameObject projectilePrefab;
-    [SerializeField] float projectileMaxRange = 1;
-    [SerializeField][Range(0.01f, 1)] float offsetBetweenBarrelAndProjectile = 1; // any better names available?
-    [SerializeField] ObjectPool projectilePool;
+    [SerializeField] float projectileRadius = 1;
+    [SerializeField] ParticleSystem effects;
+    [SerializeField] LayerMask enemyLayer;
 
     private void Awake() {
         ammo = maxAmmo;
     }
 
     private void Update() {
-        Shoot();
+        GetInput();
+    }
+
+    void GetInput()
+    {
+        if(CanShoot() && Input.GetButtonDown("Pewpew"))
+        {
+            Shoot();
+        }
+    }
+
+    bool CanShoot()
+    {
+        if(canShoot) return true;
+        if(ammo > 0) return true;
+        else
+        {
+            return false;
+        }        
     }
 
     void Shoot()
     {
-        if(!canShoot || ammo <= 0) return;
-        if(Input.GetButtonDown("Pewpew"))
+        ammo --;
+        canShoot = false;
+        //effects.startLifetime = projectileRadius;
+        effects.Play();
+        Collider[] colliders;
+        colliders = Physics.OverlapSphere(transform.position, projectileRadius, enemyLayer);
+        foreach(Collider collider in colliders)
         {
-            SetUpProjectile();
-            canShoot = false;
-            ammo--;
-            StartCoroutine(WeaponCoolingDown());
+            Enemy enemy = collider.gameObject.GetComponent<Enemy>();
+            if(enemy != null)
+            {
+                enemy.FleeFromPlayer(transform.position);
+            }
         }
-
-        IEnumerator WeaponCoolingDown()
-        {
-            yield return new WaitForSeconds(fireRate);
-            canShoot = true;
-        }
+        StartCoroutine(WeaponCoolingDown());
+    }
+    private void OnDrawGizmos() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, projectileRadius);       
     }
 
-    private void SetUpProjectile()
+    IEnumerator WeaponCoolingDown()
     {
-        Vector3 projectileSpawn = barrelFront.transform.position;
-        projectileSpawn.z += offsetBetweenBarrelAndProjectile;
-        Projectile projectile = projectilePool.usePooledObject().GetComponent<Projectile>();
-        projectile.ProjectileSpeed = projectileSpeed + jetpackSpeed;
-        projectile.MaxBulletRange = projectileMaxRange;
-        projectile.gameObject.transform.position = projectileSpawn;
-        projectile.gameObject.SetActive(true);
+        yield return new WaitForSeconds(fireRate);
+        canShoot = true;
     }
 
     void RefillAmmo(int amount) // add restriction so the player wont use resources in vain
