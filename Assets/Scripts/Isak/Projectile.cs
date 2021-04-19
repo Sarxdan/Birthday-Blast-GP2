@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+
+    public static Events.DamagePlayerEvent onPlayerHit;
+
+    [SerializeField] int damage = 1;
     public Rigidbody rb;
     
     [HideInInspector] public float speed; 
@@ -57,7 +61,10 @@ public class Projectile : MonoBehaviour
     private void ProjectileHit()
     {
         //Add damage to player here
-        
+        if(onPlayerHit != null)
+        {
+            onPlayerHit(damage);
+        }
         Debug.Log("Projectile hit player");
         Destroy(gameObject);
     }

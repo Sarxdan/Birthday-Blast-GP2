@@ -9,11 +9,16 @@ public class Checkpoint : MonoBehaviour
     public static Events.PositionEvent onCheckPointTriggered;
     Vector3 position;
     Collider collider;
+    [SerializeField] GameObject playerSpawn;
     // Start is called before the first frame update
-    private void Awake() {
-        position = transform.position;
+    private void Awake() {       
         collider = GetComponent<Collider>();
         collider.isTrigger = true;
+        if(playerSpawn == null)
+        {
+            Debug.LogError("No spawnpoint found in " + name + ", please create one now");
+        }
+        position = playerSpawn.transform.position;
     }
 
     private void OnTriggerEnter(Collider other) {

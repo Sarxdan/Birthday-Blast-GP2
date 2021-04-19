@@ -38,7 +38,6 @@ public class CheckpointManager : Singleton<CheckpointManager>
     private void UpdateLatestCheckpoint(Vector3 position)
     {
         latestCheckPoint = position;   
-        print("new checkpoint");
     }
 
     private void OnEnable() {

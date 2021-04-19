@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Obstacle : DamagePlayer
 {
+    [SerializeField] bool canBeDestroyedByPlayer = true;
     [SerializeField] Vector3 movementDirection = new Vector3(0, 0, 0);
     [SerializeField][Range(1, 10)] float returnTime = 1;
     protected Rigidbody body;
@@ -27,6 +28,33 @@ public class Obstacle : DamagePlayer
             timeUntilReturn = returnTime;
             movementDirection = -movementDirection;
         }
+    }
+
+    protected override void OnCollisionEnter(Collision other)
+    {
+        base.OnCollisionEnter(other);
+        JetPack jetPack = other.gameObject.GetComponentInChildren<JetPack>();
+        if(jetPack != null)
+        {
+            if(canBeDestroyedByPlayer && jetPack.Invulnerable)
+            {
+                Destroy(gameObject);
+            } 
+        }
+    }
+
+    protected override void OnTriggerEnter(Collider other)
+    {
+        base.OnTriggerEnter(other);
+        JetPack jetPack = other.gameObject.GetComponentInChildren<JetPack>();
+        if(jetPack != null)
+        {
+            if(canBeDestroyedByPlayer && jetPack.Invulnerable)
+            {
+                Destroy(gameObject);
+            } 
+        }
+        
     }
 
 }
