@@ -6,7 +6,7 @@ public class Obstacle : DamagePlayer
 {
     [SerializeField] Vector3 movementDirection = new Vector3(0, 0, 0);
     [SerializeField][Range(1, 10)] float returnTime = 1;
-    Rigidbody body;
+    protected Rigidbody body;
     float timeUntilReturn;
 
     private void Awake() {
@@ -14,7 +14,7 @@ public class Obstacle : DamagePlayer
         body.useGravity = false;
         timeUntilReturn = returnTime;
     }
-    private void Update() {
+    protected virtual void Update() {
         MoveObject();       
     }
 

@@ -56,11 +56,11 @@ public class UIManager : Singleton<UIManager>
     }
 
     private void OnEnable() {
-        DialogueManager.onNPCDialogue += OnNPCDialogue;
+        DialogueTrigger.onNPCDialogue += OnNPCDialogue;
         PauseMenu.onResumeClicked += TogglePauseMenu;
     }
     private void OnDisable() {
-        DialogueManager.onNPCDialogue -= OnNPCDialogue; 
+        DialogueTrigger.onNPCDialogue -= OnNPCDialogue; 
         PauseMenu.onResumeClicked += TogglePauseMenu;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class DamagePlayer : MonoBehaviour
 {  
     public static Events.DamagePlayerEvent onPlayerCollision;
-    [SerializeField] int damageOnCollision = 1;
+    [SerializeField] int damageToPlayerOnCollision = 1;
     [SerializeField] bool canBeDestroyedByPlayer = true;
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision other) {
@@ -18,7 +18,7 @@ public class DamagePlayer : MonoBehaviour
             } 
             else if(onPlayerCollision != null)
             {
-                onPlayerCollision(damageOnCollision);
+                onPlayerCollision(damageToPlayerOnCollision);
             }
             
         }
