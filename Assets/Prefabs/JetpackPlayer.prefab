@@ -9969,7 +9969,7 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -10123,21 +10123,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   flightBoost: 0.644
-  autoMoveSpeed: 9.01
-  autoBoost: 26.95
-  thrusters:
-  - {fileID: 674636115}
-  - {fileID: 131042557}
+  startingAutoMoveSpeed: 1
+  autoMoveSpeedIncreaseOverTime: 1
+  maxAutoMoveSpeed: 1
   cameraRotation: {x: 0, y: 0, z: 0}
   cameraOffsetFromPlayer: {x: 0, y: 1.76, z: -5.76}
   dashSpeed: 68.3
-  DashLength: 0.2
+  dashLength: 0.2
   dashCooldown: 1
+  forwardDashSpeed: 10
   doubleTapTimer: 1
   dashUnlocked: 1
-  useFuel: 1
-  allowMovement: 1
-  useGravity: 1
+  forwardDashUnlocked: 0
   pewpewUnlocked: 0
   startingHealth: 0
   sceneToLoadOnDeath: 
