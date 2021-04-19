@@ -30,7 +30,6 @@ public class OutOfBounds : MonoBehaviour
             {
                 lastPlayerPositionsOnLand[index] = thirdPersonController.gameObject.transform.position;
                 timer = startTimer;
-                print(lastPlayerPositionsOnLand);
                 index++;
                 if(index >= lastPlayerPositionsOnLand.Length)
                 {
@@ -49,7 +48,6 @@ public class OutOfBounds : MonoBehaviour
         if(other.tag == "Player")
         {
             int lastIndex = lastPlayerPositionsOnLand.Length - 1;
-            print("test");
             StartCoroutine(EnablePlayerAfterSeconds());
             thirdPersonController.disablePlayerMovement = true;
             other.transform.position = lastPlayerPositionsOnLand[lastIndex];           

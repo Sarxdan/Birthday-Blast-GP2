@@ -10,17 +10,17 @@ public class DamagePlayer : MonoBehaviour
     // Start is called before the first frame update
     private void OnCollisionEnter(Collision other) {
         JetPack jetPack = other.gameObject.GetComponentInChildren<JetPack>();
-        if( jetPack != null || other.gameObject.GetComponent<ThirdPersonController>() != null)
+        PlayerHealth playerHealth = other.gameObject.GetComponent<PlayerHealth>();
+        if( jetPack != null || playerHealth != null)
         {
             if(canBeDestroyedByPlayer && jetPack.Invulnerable)
             {
                 Destroy(gameObject);
             } 
             else if(onPlayerCollision != null)
-            {
+            {           
                 onPlayerCollision(damageToPlayerOnCollision);
-            }
-            
+            }           
         }
     }
 
