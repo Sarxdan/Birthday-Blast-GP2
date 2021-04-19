@@ -33,7 +33,9 @@ public class BossPhase
     [Header("Movement Modifiers")] 
     public bool bossMovement;
     public float bossMovementSpeed;
-    
+    [Header("How far the boss can move horizontally from center to right/left)")] 
+    public float maxHorizontalDistance;
+
     private Boss boss;
 
     public void DoPhaseMechanics(Boss _boss)
@@ -44,14 +46,24 @@ public class BossPhase
 
         if (fireProjectiles)
         {
+            var target = _boss.playerTarget;
             if (Time.time >= nextTimeToFire)
             {
                 nextTimeToFire = Time.time + (1 / fireRate);
-                FireProjectiles(_boss.playerTarget);
+                FireProjectiles(target);
             }
             Debug.Log("During this phase, boss will shoot projectiles");
         }
-        
+
+        if (bossMovement)
+        {
+            _boss.MoveHorizontally(bossMovementSpeed);
+        }
+        else
+        {
+            _boss.transform.position = _boss.originalSpawnPoint;
+        }
+
     }
 
 
@@ -60,6 +72,6 @@ public class BossPhase
         boss.projectileSpawnPoint.LookAt(target);
         boss.ShootProjectile();
     }
-
+    
     
 }

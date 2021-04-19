@@ -5,23 +5,33 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
+    //Phases
     public BossPhase[] bossPhases;
 
     private int currentSphase = 0;
-    
-    
     private float currPhaseTimer = 0.0f;
     private bool inPhase;
 
+    //Player
     [HideInInspector] public Transform playerTarget;
+    
+    //Projectiles
     public Transform projectileSpawnPoint;
-
     public GameObject projectilePrefab;
+
+    //Horizontal Movement
+    [HideInInspector] public Vector3 originalSpawnPoint;
+    private Vector3 farLeftPos;
+    private Vector3 farRightPos;
 
     private void Start()
     {
         playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
         
+        originalSpawnPoint = transform.position;
+        farLeftPos = originalSpawnPoint + -transform.right * 7.5f;
+        farRightPos = originalSpawnPoint + transform.right * 7.5f;
+
         StartBoss();
     }
 
@@ -89,6 +99,26 @@ public class Boss : MonoBehaviour
         projectileScript.target = playerTarget;
         projectileScript.isHoming = bossPhases[currentSphase].homingProjectiles;
         projectileScript.homingAccuracy = bossPhases[currentSphase].homingAccuracy;
+    }
+    
+    
+    public void MoveHorizontally(float speed)
+    {
+        
+        //Currently not working
+        
+        
+        return;
+        
+        var distFromLeftPoint = Vector3.Distance(transform.position, farLeftPos);
+        var distFromRightPoint = Vector3.Distance(transform.position, farRightPos);
+
+        if (distFromLeftPoint < 1)
+            speed = -1;
+        else if (distFromRightPoint < 1)
+            speed = 1;
+
+        transform.Translate(transform.right * (speed * Time.deltaTime));
     }
 
     #endregion
