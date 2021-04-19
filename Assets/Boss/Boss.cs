@@ -14,7 +14,9 @@ public class Boss : MonoBehaviour
     private bool inPhase;
 
     [HideInInspector] public Transform playerTarget;
+    public Transform projectileSpawnPoint;
 
+    public GameObject projectilePrefab;
 
     private void Start()
     {
@@ -72,4 +74,18 @@ public class Boss : MonoBehaviour
             }
         }   
     }
+
+
+
+    #region BossMechanics
+
+    public void ShootProjectile(Vector3 direction)
+    {
+        var newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
+        var projectileScript = newProjectile.GetComponent<Projectile>();
+        
+        projectileScript.speed = bossPhases[currentSphase].projectileSpeed;
+    }
+
+    #endregion
 }

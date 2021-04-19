@@ -1,51 +1,42 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public Rigidbody rb;
+    
+    public float speed;
+    public float lifeTime = 7.5f;
 
-    float projectileSpeed = 1;
-    float maxBulletRange = 1;
-    float bulletRangeLeft;
-    public float MaxBulletRange
+    private void Start()
     {
-        set{maxBulletRange = value;}
+        Destroy(gameObject,lifeTime);
     }
-    Rigidbody body;
 
-    public float ProjectileSpeed
+    private void OnTriggerEnter(Collider other)
     {
-        set {projectileSpeed = value;}
-    }
-
-    // Start is called before the first frame update
-    private void Awake() {
-        body = GetComponent<Rigidbody>();
-    }
-
-    private void OnTriggerEnter(Collider other) {
-        Destroy(other.gameObject); //do something else other than destroying?
-        gameObject.SetActive(false);
-    }
-
-    private void OnEnable() {
-        bulletRangeLeft = maxBulletRange;
-        body.AddForce(Vector3.forward * projectileSpeed, ForceMode.Impulse);
-        StartCoroutine(BulletRange());
-    }
-
-    IEnumerator BulletRange()
-    {
-        while(gameObject.activeSelf)
+        if (other.CompareTag("Player"))
         {
-            yield return new WaitForEndOfFrame();
-            bulletRangeLeft -= Time.deltaTime;
-            if(bulletRangeLeft <= 0)
-            {
-                gameObject.SetActive(false);
-            }
+            ProjectileHit();
         }
         
+        Destroy(gameObject);
+    }
+    
+
+    private void FixedUpdate()
+    {
+        var newPos = transform.position + (transform.forward * (speed * Time.fixedDeltaTime));
+        rb.MovePosition(newPos);
+    }
+
+    private void ProjectileHit()
+    {
+        //Add damage to player here
+        
+        Debug.Log("Projectile hit player");
+        Destroy(gameObject);
     }
 }

@@ -15,8 +15,12 @@ public class BossPhase
 
     [Header("Basic Projectiles")]
     public bool fireProjectiles;
-    [Header("Projectiles per second")] public float fireRate;
+    [Header("Projectiles per second")] 
+    public float fireRate;
     public float projectileSpeed;
+    
+    //FirerateTimer
+    private float nextTimeToFire = 0.0f;
 
     [Space] 
     
@@ -39,9 +43,12 @@ public class BossPhase
 
         if (fireProjectiles)
         {
+            if (Time.time >= nextTimeToFire)
+            {
+                nextTimeToFire = Time.time + (1 / fireRate);
+                FireProjectiles(_boss.playerTarget);
+            }
             Debug.Log("During this phase, boss will shoot projectiles");
-
-            FireProjectiles(_boss.playerTarget);
         }
         
     }
@@ -49,6 +56,11 @@ public class BossPhase
 
     public void FireProjectiles(Transform target)
     {
+        boss.projectileSpawnPoint.LookAt(target);
+        var dirToPlayer = target.position - boss.projectileSpawnPoint.position;
+
+        boss.ShootProjectile(dirToPlayer);
+        
         if (explosiveProjectiles)
         {
             Debug.Log("Explosion on impact");
