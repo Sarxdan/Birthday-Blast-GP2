@@ -24,9 +24,10 @@ public class BossPhase
 
     [Space] 
     
-    [Header("Modify Projectiles")] 
+    [Header("Modify Projectiles")]
     public bool explosiveProjectiles;
     public bool homingProjectiles;
+    [Range(1,25)] public float homingAccuracy;
 
 
     [Header("Movement Modifiers")] 
@@ -57,19 +58,7 @@ public class BossPhase
     public void FireProjectiles(Transform target)
     {
         boss.projectileSpawnPoint.LookAt(target);
-        var dirToPlayer = target.position - boss.projectileSpawnPoint.position;
-
-        boss.ShootProjectile(dirToPlayer);
-        
-        if (explosiveProjectiles)
-        {
-            Debug.Log("Explosion on impact");
-        }
-
-        if (homingProjectiles)
-        {
-            Debug.Log("Homing projectiles");
-        }
+        boss.ShootProjectile();
     }
 
     

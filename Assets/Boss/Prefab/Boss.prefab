@@ -340,33 +340,36 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossPhases:
   - name: Phase 1
-    phaseDuration: 7.5
-    phaseDowntime: 2
-    fireProjectiles: 1
-    fireRate: 1
-    projectileSpeed: 50
-    explosiveProjectiles: 0
-    homingProjectiles: 0
-    bossMovement: 0
-    bossMovementSpeed: 0
-  - name: Phase 2
     phaseDuration: 10
     phaseDowntime: 2
     fireProjectiles: 1
-    fireRate: 3
-    projectileSpeed: 65
+    fireRate: 1
+    projectileSpeed: 20
     explosiveProjectiles: 0
     homingProjectiles: 0
+    homingAccuracy: 1
+    bossMovement: 0
+    bossMovementSpeed: 0
+  - name: Phase 2
+    phaseDuration: 15
+    phaseDowntime: 2
+    fireProjectiles: 1
+    fireRate: 3
+    projectileSpeed: 30
+    explosiveProjectiles: 0
+    homingProjectiles: 1
+    homingAccuracy: 15
     bossMovement: 0
     bossMovementSpeed: 0
   - name: Phase 3
-    phaseDuration: 15
+    phaseDuration: 20
     phaseDowntime: 3
     fireProjectiles: 1
     fireRate: 5
-    projectileSpeed: 70
+    projectileSpeed: 45
     explosiveProjectiles: 0
-    homingProjectiles: 0
+    homingProjectiles: 1
+    homingAccuracy: 20
     bossMovement: 0
     bossMovementSpeed: 0
   playerTarget: {fileID: 0}

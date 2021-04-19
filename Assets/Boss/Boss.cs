@@ -79,12 +79,16 @@ public class Boss : MonoBehaviour
 
     #region BossMechanics
 
-    public void ShootProjectile(Vector3 direction)
+    public void ShootProjectile()
     {
         var newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
         var projectileScript = newProjectile.GetComponent<Projectile>();
         
         projectileScript.speed = bossPhases[currentSphase].projectileSpeed;
+
+        projectileScript.target = playerTarget;
+        projectileScript.isHoming = bossPhases[currentSphase].homingProjectiles;
+        projectileScript.homingAccuracy = bossPhases[currentSphase].homingAccuracy;
     }
 
     #endregion

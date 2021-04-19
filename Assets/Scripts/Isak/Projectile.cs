@@ -7,8 +7,14 @@ public class Projectile : MonoBehaviour
 {
     public Rigidbody rb;
     
-    public float speed;
+    [HideInInspector] public float speed; 
     public float lifeTime = 7.5f;
+
+    [HideInInspector] public bool isHoming;
+    [HideInInspector] public float homingAccuracy;
+    
+    [HideInInspector] public Transform target;
+
 
     private void Start()
     {
@@ -28,7 +34,18 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        var newPos = transform.position + (transform.forward * (speed * Time.fixedDeltaTime));
+
+        var finalMoveDirection = transform.forward;
+        
+        if (isHoming)
+        {
+            var projectileForwardDir = transform.forward;
+            var directionToTarget = (target.position - transform.position).normalized;
+
+            finalMoveDirection = Vector3.Lerp(projectileForwardDir, directionToTarget, Time.deltaTime * homingAccuracy);
+        }
+        
+        var newPos = transform.position + (finalMoveDirection * (speed * Time.fixedDeltaTime));
         rb.MovePosition(newPos);
     }
 
