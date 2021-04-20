@@ -113,21 +113,12 @@ public class Boss : MonoBehaviour
     
     public void MoveHorizontally(float speed)
     {
-        
-        //Currently not working
-        
-        
-        return;
-        
-        var distFromLeftPoint = Vector3.Distance(transform.position, farLeftPos);
-        var distFromRightPoint = Vector3.Distance(transform.position, farRightPos);
+        Vector3 pos = originalSpawnPoint;
+        pos.x += bossPhases[currentSphase].moveAmount *
+                         Mathf.Sin(Time.time * speed);
 
-        if (distFromLeftPoint < 1)
-            speed = -1;
-        else if (distFromRightPoint < 1)
-            speed = 1;
+        transform.position = pos;
 
-        transform.Translate(transform.right * (speed * Time.deltaTime));
     }
 
     #endregion

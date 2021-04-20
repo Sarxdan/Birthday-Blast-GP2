@@ -11,9 +11,9 @@ public class UIManager : Singleton<UIManager>
     InGameUI inGameUI;
     PauseMenu pauseMenu;
     
-    protected override void Awake()
+    protected override void Start()
     {
-        base.Awake();
+        base.Start();
         inGameUI = GetComponentInChildren<InGameUI>();
         pauseMenu = GetComponentInChildren<PauseMenu>();
         TogglePauseMenu();

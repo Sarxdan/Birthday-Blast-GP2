@@ -33,7 +33,7 @@ public class BossPhase
     public bool bossMovement;
     public float bossMovementSpeed;
     [Header("How far the boss can move horizontally from center to right/left)")] 
-    public float maxHorizontalDistance;
+    public float moveAmount;
 
     private Boss boss;
 
