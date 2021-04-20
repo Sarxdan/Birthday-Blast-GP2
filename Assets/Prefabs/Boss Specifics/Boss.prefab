@@ -340,10 +340,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossPhases:
   - name: Phase 1
-    phaseDuration: 10
+    phaseDuration: 7
     phaseDowntime: 2
     fireProjectiles: 1
-    fireRate: 1
+    fireRate: 1.5
     projectileSpeed: 20
     tripleProjectile: 0
     explosiveProjectiles: 0
@@ -353,20 +353,20 @@ MonoBehaviour:
     bossMovementSpeed: 0
     moveAmount: 0
   - name: Phase 2
-    phaseDuration: 15
-    phaseDowntime: 2
+    phaseDuration: 12.5
+    phaseDowntime: 3
     fireProjectiles: 1
     fireRate: 3
     projectileSpeed: 30
     tripleProjectile: 1
     explosiveProjectiles: 0
-    homingProjectiles: 1
-    homingAccuracy: 15
+    homingProjectiles: 0
+    homingAccuracy: 1
     bossMovement: 1
     bossMovementSpeed: 3
     moveAmount: 5
   - name: Phase 3
-    phaseDuration: 20
+    phaseDuration: 15
     phaseDowntime: 3
     fireProjectiles: 1
     fireRate: 5
