@@ -5,15 +5,24 @@ using UnityEngine.UI;
 
 public class InGameUI : MonoBehaviour
 {
+
+    [SerializeField] Text health;
     [SerializeField] Text npcText;
     [SerializeField] Text npcName;
     [SerializeField] float textExistTimer = 1;
     // Start is called before the first frame update
-    private void Awake() {
-        npcName.text = string.Empty;
-        npcText.text = string.Empty;
+    private void Awake()
+    {
+        ClearScreen();
+        UpdateHealthText(10);
     }
 
+    private void ClearScreen()
+    {
+        npcName.text = string.Empty;
+        npcText.text = string.Empty;
+        health.text = string.Empty;
+    }
 
     void PrintNPCText(string dialogue, string name)
     {
@@ -21,6 +30,11 @@ public class InGameUI : MonoBehaviour
         npcText.text = dialogue;
         npcName.text = name;
         StartCoroutine(RemoveText());
+    }
+
+    void UpdateHealthText(int amount)
+    {
+        health.text = amount.ToString();
     }
 
     IEnumerator RemoveText()
@@ -37,9 +51,11 @@ public class InGameUI : MonoBehaviour
     
     private void OnEnable() {
         UIManager.onNPCDialogue += PrintNPCText;
+        UIManager.onPlayerHealthChange += UpdateHealthText;
     }
 
     private void OnDisable() {
         UIManager.onNPCDialogue -= PrintNPCText;
+        UIManager.onPlayerHealthChange -= UpdateHealthText;
     }
 }

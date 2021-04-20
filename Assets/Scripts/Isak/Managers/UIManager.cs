@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,10 @@ public class UIManager : Singleton<UIManager>
 {
     public static Events.GameStateEvent onGamePaused;
     public static Events.DialogueEvent onNPCDialogue;
+    public static Events.DamagePlayerEvent onPlayerHealthChange;
     InGameUI inGameUI;
     PauseMenu pauseMenu;
-    // Start is called before the first frame update
+    
     protected override void Awake()
     {
         base.Awake();
@@ -55,12 +57,25 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    private void OnPlayerHealthChange(int amount)
+    {
+        if(onPlayerHealthChange != null)
+        {
+            onPlayerHealthChange(amount);
+        }
+    }
+
     private void OnEnable() {
         DialogueTrigger.onNPCDialogue += OnNPCDialogue;
         PauseMenu.onResumeClicked += TogglePauseMenu;
+        JetPack.onPlayerHealthChange += OnPlayerHealthChange;
+        PlayerHealth.onPlayerHealthChange += OnPlayerHealthChange;
     }
+
     private void OnDisable() {
         DialogueTrigger.onNPCDialogue -= OnNPCDialogue; 
         PauseMenu.onResumeClicked += TogglePauseMenu;
+        JetPack.onPlayerHealthChange -= OnPlayerHealthChange;
+        PlayerHealth.onPlayerHealthChange -= OnPlayerHealthChange;
     }
 }
