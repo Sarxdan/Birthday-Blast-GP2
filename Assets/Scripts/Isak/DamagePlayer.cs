@@ -13,7 +13,7 @@ public class DamagePlayer : MonoBehaviour
         PlayerHealth playerHealth = other.gameObject.GetComponent<PlayerHealth>();
         if( jetPack != null || playerHealth != null)
         {
-            if(onPlayerCollision != null)
+            if(onPlayerCollision != null && !jetPack.Invulnerable)
             {           
                 onPlayerCollision(damageToPlayerOnCollision);
             }           
@@ -25,7 +25,7 @@ public class DamagePlayer : MonoBehaviour
         PlayerHealth playerHealth = other.gameObject.GetComponent<PlayerHealth>();
         if( jetPack != null || playerHealth != null)
         {
-            if(onPlayerCollision != null)
+            if(onPlayerCollision != null && !jetPack.Invulnerable)
             {           
                 onPlayerCollision(damageToPlayerOnCollision);
             }           

@@ -5,8 +5,7 @@ using UnityEngine.InputSystem;
 
 public class JetPack : MonoBehaviour
 {   
-    public static Events.EmptyEvent onPlayerDeath;
-    public static Events.DamagePlayerEvent onPlayerHealthChange;
+
     enum DashDirections
     {
         None,
@@ -25,7 +24,7 @@ public class JetPack : MonoBehaviour
     Rigidbody body; 
     Camera camera;
     bool isAutoBoosting = false;
-    bool gameOver = false;
+    public bool gameOver = false;
     Animator animator;  
     DashDirections dashDirections = DashDirections.None;
     bool dashOnCooldown = false;
@@ -36,7 +35,6 @@ public class JetPack : MonoBehaviour
     bool invulnerable = false;
     float lastKeyPressTime = 0;
     Pewpew pewpew;
-    int health;
     float autoMoveSpeed;
 
     [Header("movement settings")]
@@ -61,14 +59,7 @@ public class JetPack : MonoBehaviour
     [SerializeField] bool dashUnlocked = false;
     [SerializeField] bool forwardDashUnlocked = false;
     [SerializeField] bool pewpewUnlocked = false;
-
-    [Header("health settings")]
-    [SerializeField] int startingHealth = 10;
-
-    [Header("other settings")]
-    [SerializeField][Tooltip("time until loading scene after death")] float sceneTransitionTime = 1;
-    
-    
+       
     //Input values
 
     private float horizontalSteerInput;
@@ -79,18 +70,10 @@ public class JetPack : MonoBehaviour
     void Awake()
     {       
         autoMoveSpeed = startingAutoMoveSpeed;
-        health = startingHealth;
         camera = Camera.main;
         body = GetComponentInParent<Rigidbody>();
         animator = GetComponent<Animator>();
         pewpew = GetComponentInChildren<Pewpew>();         
-    }
-
-    private void Start() {
-        if(onPlayerHealthChange != null)
-        {
-            onPlayerHealthChange(health);
-        }   
     }
 
     void Update() //vad ska hände när man får game over? falla ner en bit? UI uppdateras? 
@@ -115,31 +98,6 @@ public class JetPack : MonoBehaviour
         if(autoMoveSpeed >= maxAutoMoveSpeed)
         {
             autoMoveSpeed = maxAutoMoveSpeed;
-        }
-    }
-
-    void looseHealth(int amount)
-    {
-        if(invulnerable) return;
-        health -= amount;
-        if(onPlayerHealthChange != null)
-        {
-            onPlayerHealthChange(health);
-        }
-        if(health <= 0)
-        {
-            StartCoroutine(Death());          
-        }
-    }
-
-    IEnumerator Death()
-    {
-        gameOver = true;
-        body.useGravity = true;
-        yield return new WaitForSeconds(sceneTransitionTime);
-        if(onPlayerDeath != null)
-        {
-            onPlayerDeath();
         }
     }
 
@@ -294,15 +252,21 @@ public class JetPack : MonoBehaviour
         camera.transform.position = transform.position + cameraOffsetFromPlayer;
     }
 
+    void OnPlayerDeath()
+    {
+        gameOver = true;
+        body.useGravity = true;
+        body.freezeRotation = false;
+        StopAllCoroutines();
+    }
+
     private void OnEnable() {
-        DamagePlayer.onPlayerCollision += looseHealth;
-        Projectile.onPlayerHit += looseHealth;
+        PlayerHealth.onPlayerDeath += OnPlayerDeath;
     }
 
     private void OnDisable() {
         StopAllCoroutines();
-        DamagePlayer.onPlayerCollision -= looseHealth;
-        Projectile.onPlayerHit -= looseHealth;
+        PlayerHealth.onPlayerDeath -= OnPlayerDeath;
     }
 
     #region Inputs

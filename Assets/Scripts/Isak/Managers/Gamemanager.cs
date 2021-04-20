@@ -19,6 +19,7 @@ public class Gamemanager : Singleton<Gamemanager>
     }
     public KeyItems.Items unlockedItems;
     [SerializeField] bool DebugMode = false;
+    [SerializeField] float timeUntilReloadOnPlayerDeath = 1;
     GameState currentGameState = GameState.Pregame;
     PlayerState currentPlayerState = PlayerState.OnJetpack;
     void LoadLevel(string levelName)
@@ -69,19 +70,23 @@ public class Gamemanager : Singleton<Gamemanager>
 
     void OnPlayerDeath()
     {
+        StartCoroutine(PlayerDeath());       
+    }
+
+    IEnumerator PlayerDeath()
+    {
+        yield return new WaitForSeconds(timeUntilReloadOnPlayerDeath);
         LoadLevel(SceneManager.GetActiveScene().name);
     }
 
     private void OnEnable() {
         Transition.onTransitionEvent += LoadLevel;
-        JetPack.onPlayerDeath += OnPlayerDeath;
         UIManager.onGamePaused += UpdateGameState;
         PlayerHealth.onPlayerDeath += OnPlayerDeath;
     }
     protected override void OnDestroy() {
         base.OnDestroy();
         Transition.onTransitionEvent -= LoadLevel;
-        JetPack.onPlayerDeath -= OnPlayerDeath;
         UIManager.onGamePaused -= UpdateGameState;
         PlayerHealth.onPlayerDeath -= OnPlayerDeath;
     }
