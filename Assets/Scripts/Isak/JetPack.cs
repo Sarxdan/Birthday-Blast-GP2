@@ -20,11 +20,15 @@ public class JetPack : MonoBehaviour
     {
         get{return invulnerable;}
     }
+    public bool GameOver
+    {
+        get{return gameOver;}
+    }
 
     Rigidbody body; 
     Camera camera;
     bool isAutoBoosting = false;
-    public bool gameOver = false;
+     bool gameOver = false;
     Animator animator;  
     DashDirections dashDirections = DashDirections.None;
     bool dashOnCooldown = false;

@@ -19,7 +19,7 @@ public class CheckpointManager : Singleton<CheckpointManager>
     IEnumerator Setup()
     {
         print("setting up");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1); //needs a better fix
         player = GameObject.FindGameObjectWithTag("Player").transform;
         thirdPersonController = FindObjectOfType<ThirdPersonController>();
         latestCheckPoint = player.localPosition;
@@ -33,9 +33,12 @@ public class CheckpointManager : Singleton<CheckpointManager>
 
     void MovePlayerToCheckpoint()
     {
-        thirdPersonController.disablePlayerMovement = true;
-        StartCoroutine(EnablePlayerAfterSeconds());        
-        player.position = latestCheckPoint;
+        if(player != null)
+        {
+            thirdPersonController.disablePlayerMovement = true;
+            StartCoroutine(EnablePlayerAfterSeconds());        
+            player.position = latestCheckPoint;
+        }       
     }
 
     IEnumerator EnablePlayerAfterSeconds()
@@ -50,6 +53,7 @@ public class CheckpointManager : Singleton<CheckpointManager>
 
     void OnPlayerHealthChange(int amount)
     {
+        print("test");
         MovePlayerToCheckpoint();
     }
     void OnSceneLoaded()
