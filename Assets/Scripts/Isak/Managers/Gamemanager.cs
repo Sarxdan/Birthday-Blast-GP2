@@ -67,15 +67,20 @@ public class Gamemanager : Singleton<Gamemanager>
         }
     }
 
+    void OnPlayerDeath()
+    {
+        LoadLevel(SceneManager.GetActiveScene().name);
+    }
+
     private void OnEnable() {
         Transition.onTransitionEvent += LoadLevel;
-        JetPack.onPlayerDeath += LoadLevel;
+        JetPack.onPlayerDeath += OnPlayerDeath;
         UIManager.onGamePaused += UpdateGameState;
     }
     protected override void OnDestroy() {
         base.OnDestroy();
         Transition.onTransitionEvent -= LoadLevel;
-        JetPack.onPlayerDeath += LoadLevel;
+        JetPack.onPlayerDeath += OnPlayerDeath;
         UIManager.onGamePaused -= UpdateGameState;
     }
 }

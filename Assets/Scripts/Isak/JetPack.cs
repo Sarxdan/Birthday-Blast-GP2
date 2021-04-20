@@ -5,7 +5,8 @@ using UnityEngine.InputSystem;
 
 public class JetPack : MonoBehaviour
 {   
-    public static Events.LoadSceneEvent onPlayerDeath;
+    public static Events.EmptyEvent onPlayerDeath;
+    public static Events.DamagePlayerEvent onPlayerHealthChange;
     enum DashDirections
     {
         None,
@@ -83,7 +84,14 @@ public class JetPack : MonoBehaviour
         camera = Camera.main;
         body = GetComponentInParent<Rigidbody>();
         animator = GetComponent<Animator>();
-        pewpew = GetComponentInChildren<Pewpew>();     
+        pewpew = GetComponentInChildren<Pewpew>();         
+    }
+
+    private void Start() {
+        if(onPlayerHealthChange != null)
+        {
+            onPlayerHealthChange(health);
+        }   
     }
 
     void Update() //vad ska hände när man får game over? falla ner en bit? UI uppdateras? 
@@ -115,7 +123,10 @@ public class JetPack : MonoBehaviour
     {
         if(invulnerable) return;
         health -= amount;
-        Debug.Log("jetpack took some damage");
+        if(onPlayerHealthChange != null)
+        {
+            onPlayerHealthChange(health);
+        }
         if(health <= 0)
         {
             StartCoroutine(Death());          
@@ -125,10 +136,11 @@ public class JetPack : MonoBehaviour
     IEnumerator Death()
     {
         gameOver = true;
+        body.useGravity = true;
         yield return new WaitForSeconds(sceneTransitionTime);
         if(onPlayerDeath != null)
         {
-            onPlayerDeath(sceneToLoadOnDeath);
+            onPlayerDeath();
         }
     }
 

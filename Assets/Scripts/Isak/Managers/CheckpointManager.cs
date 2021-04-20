@@ -40,14 +40,19 @@ public class CheckpointManager : Singleton<CheckpointManager>
         latestCheckPoint = position;   
     }
 
+    void OnPlayerHealthChange(int amount)
+    {
+        MovePlayerToCheckpoint();
+    }
+
     private void OnEnable() {
         Checkpoint.onCheckPointTriggered += UpdateLatestCheckpoint;
-        PlayerHealth.onPlayerDamaged += MovePlayerToCheckpoint;
+        PlayerHealth.onPlayerHealthChange += OnPlayerHealthChange;
     }
 
     private void OnDisable() {
         Checkpoint.onCheckPointTriggered -= UpdateLatestCheckpoint;
-        PlayerHealth.onPlayerDamaged -= MovePlayerToCheckpoint;
+        PlayerHealth.onPlayerHealthChange -= OnPlayerHealthChange;
     }
 
 }

@@ -5,23 +5,23 @@ using UnityEngine;
 public class PlayerHealth : Health
 {
 
-    public static Events.EmptyEvent onPlayerDamaged;
+    public static Events.DamagePlayerEvent onPlayerHealthChange;
 
     // Start is called before the first frame update
     public override void TakeDamage(int damage)
-    {
-        if(onPlayerDamaged != null)
-        {
-            onPlayerDamaged();
-        }
+    {       
         base.TakeDamage(damage);
-        print(health);
+        if(onPlayerHealthChange != null)
+        {
+            onPlayerHealthChange(health);
+        }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void Start() {
+        if(onPlayerHealthChange != null)
+        {
+            onPlayerHealthChange(health);
+        }
     }
 
     private void OnEnable() {
