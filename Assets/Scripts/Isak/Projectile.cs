@@ -13,6 +13,9 @@ public class Projectile : MonoBehaviour
     
     [HideInInspector] public float speed; 
     public float lifeTime = 7.5f;
+    public bool childProjectile;
+    [HideInInspector] public float maxRangeAllowed;
+    [HideInInspector] public Vector3 origin;
 
     [HideInInspector] public bool isHoming;
     [HideInInspector] public float homingAccuracy;
@@ -41,6 +44,12 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (childProjectile) return;
+        
+        if (Vector3.Distance(origin, transform.position) > maxRangeAllowed)
+        {
+            Destroy(gameObject);
+        }
 
         var finalMoveDirection = transform.forward;
         
@@ -53,6 +62,8 @@ public class Projectile : MonoBehaviour
 
                 finalMoveDirection =
                     Vector3.Lerp(projectileForwardDir, directionToTarget, Time.deltaTime * homingAccuracy);
+
+                transform.rotation = Quaternion.LookRotation(finalMoveDirection, Vector3.forward);
             }
 
         }

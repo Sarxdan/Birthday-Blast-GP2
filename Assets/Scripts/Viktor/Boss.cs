@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
+    public float spawnTime = 5f;
+    private bool isSpawning;
+    [HideInInspector] public Vector3 destinationSpawnPoint;
+    
     //Phases
     public BossPhase[] bossPhases;
 
@@ -21,7 +25,6 @@ public class Boss : MonoBehaviour
     public GameObject tripleProjectilePrefab;
 
     //Horizontal Movement
-    [HideInInspector] public Vector3 originalSpawnPoint;
     private Vector3 farLeftPos;
     private Vector3 farRightPos;
 
@@ -29,15 +32,22 @@ public class Boss : MonoBehaviour
     {
         playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
         
-        originalSpawnPoint = transform.position;
-        farLeftPos = originalSpawnPoint + -transform.right * 7.5f;
-        farRightPos = originalSpawnPoint + transform.right * 7.5f;
+        farLeftPos = destinationSpawnPoint + -transform.right * 7.5f;
+        farRightPos = destinationSpawnPoint + transform.right * 7.5f;
 
         StartBoss();
     }
 
-    public void StartBoss() 
+    public void StartBoss()
     {
+        StartCoroutine(OnBossSpawn());
+    }
+
+    private IEnumerator OnBossSpawn()
+    {
+        isSpawning = true;
+        yield return new WaitForSeconds(spawnTime);
+        isSpawning = false;
         inPhase = true;
     }
 
@@ -85,6 +95,10 @@ public class Boss : MonoBehaviour
                 StartCoroutine(EndPhase());
             }
         }   
+        else if (isSpawning)
+        {
+            transform.position = Vector3.Lerp(transform.position, destinationSpawnPoint, Time.deltaTime);
+        }
     }
 
 
@@ -108,13 +122,16 @@ public class Boss : MonoBehaviour
             projectileScript.target = playerTarget;
             projectileScript.isHoming = bossPhases[currentSphase].homingProjectiles;
             projectileScript.homingAccuracy = bossPhases[currentSphase].homingAccuracy;
+            projectileScript.origin = projectileSpawnPoint.position;
+            projectileScript.maxRangeAllowed =
+                Vector3.Distance(projectileSpawnPoint.position, playerTarget.position);
         }
     }
     
     
     public void MoveHorizontally(float speed)
     {
-        Vector3 pos = originalSpawnPoint;
+        Vector3 pos = destinationSpawnPoint;
         pos.x += bossPhases[currentSphase].moveAmount *
                          Mathf.Sin(Time.time * speed);
 
