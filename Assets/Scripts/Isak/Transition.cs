@@ -5,23 +5,18 @@ using UnityEngine.UI; //testing
 
 public class Transition : MonoBehaviour
 {
-    public static Events.LoadSceneEvent onTransitionEvent;
+    public static Events.TransitionEvent onTransition;
 
-    enum PlayerStates
-    {
-        Jetpack, 
-        OnFoot
-    }
     bool isInteracted = false;
     bool cantTriggerAgain = false;
-    [SerializeField] PlayerStates transitionTo = PlayerStates.Jetpack;
+    [SerializeField] Gamemanager.PlayerStates transitionTo = Gamemanager.PlayerStates.OnJetpack;
     [SerializeField][Tooltip("name of scene to load after transition, case sensitive")] string sceneToLoad = string.Empty;
 
     private void OnTriggerEnter(Collider other) {
         if(cantTriggerAgain) return;
         if(other.tag == "Player")
         {
-            if(transitionTo == PlayerStates.OnFoot)
+            if(transitionTo == Gamemanager.PlayerStates.Onland)
             {
                 TransitionToIsland();
                 cantTriggerAgain = true;
@@ -38,17 +33,17 @@ public class Transition : MonoBehaviour
 
     void TransitionToJetpack()
     {
-        if(onTransitionEvent != null)
+        if(onTransition != null)
         {
-            onTransitionEvent(sceneToLoad);
+            onTransition(sceneToLoad, transitionTo);
         }
     }
 
     void TransitionToIsland()
     {
-        if(onTransitionEvent != null)
+        if(onTransition != null)
         {
-            onTransitionEvent(sceneToLoad);
+            onTransition(sceneToLoad, transitionTo);
         }
     }
 }

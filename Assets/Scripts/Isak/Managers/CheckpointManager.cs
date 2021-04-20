@@ -7,11 +7,19 @@ public class CheckpointManager : Singleton<CheckpointManager>
 {
     public Vector3 latestCheckPoint;
     float enableMovementTimer = 0.1f;
-    ThirdPersonController thirdPersonController;
-    Transform player;
+    public ThirdPersonController thirdPersonController;
+    public Transform player;
     // Start is called before the first frame update
-    protected override void Start() {
+    protected override void Start()
+    {
         base.Start();
+        StartCoroutine(Setup());
+    }
+
+    IEnumerator Setup()
+    {
+        print("setting up");
+        yield return new WaitForSeconds(1);
         player = GameObject.FindGameObjectWithTag("Player").transform;
         thirdPersonController = FindObjectOfType<ThirdPersonController>();
         latestCheckPoint = player.localPosition;
@@ -44,15 +52,21 @@ public class CheckpointManager : Singleton<CheckpointManager>
     {
         MovePlayerToCheckpoint();
     }
+    void OnSceneLoaded()
+    {
+        StartCoroutine(Setup());
+    }
 
     private void OnEnable() {
         Checkpoint.onCheckPointTriggered += UpdateLatestCheckpoint;
         PlayerHealth.onPlayerHealthChange += OnPlayerHealthChange;
+        Gamemanager.onSceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable() {
         Checkpoint.onCheckPointTriggered -= UpdateLatestCheckpoint;
         PlayerHealth.onPlayerHealthChange -= OnPlayerHealthChange;
+        Gamemanager.onSceneLoaded -= OnSceneLoaded;
     }
 
 }

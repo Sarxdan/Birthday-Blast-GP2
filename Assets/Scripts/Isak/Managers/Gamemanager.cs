@@ -5,27 +5,30 @@ using UnityEngine.SceneManagement;
 
 public class Gamemanager : Singleton<Gamemanager>
 {
-
+    public static Events.EmptyEvent onSceneLoaded;
     public enum GameState
     {
         Pregame,
         Playing,
         Paused
     }
-    enum PlayerState
+    public enum PlayerStates
     {
         OnJetpack,
         Onland
     }
     public KeyItems.Items unlockedItems;
     [SerializeField] bool DebugMode = false;
-    [SerializeField] float timeUntilReloadOnPlayerDeath = 1;
     GameState currentGameState = GameState.Pregame;
-    PlayerState currentPlayerState = PlayerState.OnJetpack;
+    [SerializeField]PlayerStates currentPlayerState = PlayerStates.OnJetpack;
     void LoadLevel(string levelName)
     {
         
         SceneManager.LoadScene(levelName);
+        if(onSceneLoaded != null)
+        {
+            onSceneLoaded();
+        }
         
         /*  Old code
         if(DebugMode)
@@ -39,14 +42,14 @@ public class Gamemanager : Singleton<Gamemanager>
         */
     }
 
-    void UpdatePlayerState(PlayerState newState) // send events to ui so correct ui for flight/land is used
+    void UpdatePlayerState(PlayerStates newState) // send events to ui so correct ui for flight/land is used
     {
         currentPlayerState = newState;
         switch(currentPlayerState)
         {
-            case PlayerState.OnJetpack:
+            case PlayerStates.OnJetpack:
             break;
-            case PlayerState.Onland:
+            case PlayerStates.Onland:
             break;
         }
     }
@@ -75,18 +78,33 @@ public class Gamemanager : Singleton<Gamemanager>
 
     IEnumerator PlayerDeath()
     {
-        yield return new WaitForSeconds(timeUntilReloadOnPlayerDeath);
+        switch(currentPlayerState)
+        {
+            case PlayerStates.OnJetpack:
+            yield return new WaitForSeconds(3);
+            break;
+            case PlayerStates.Onland:
+            yield return new WaitForEndOfFrame();
+            break;
+        }
+        
         LoadLevel(SceneManager.GetActiveScene().name);
     }
 
+    void OnTransition(string level, PlayerStates newState)
+    {
+        UpdatePlayerState(newState);
+        LoadLevel(level);
+    }
+
     private void OnEnable() {
-        Transition.onTransitionEvent += LoadLevel;
+        Transition.onTransition += OnTransition;
         UIManager.onGamePaused += UpdateGameState;
         PlayerHealth.onPlayerDeath += OnPlayerDeath;
     }
     protected override void OnDestroy() {
         base.OnDestroy();
-        Transition.onTransitionEvent -= LoadLevel;
+        Transition.onTransition -= OnTransition;
         UIManager.onGamePaused -= UpdateGameState;
         PlayerHealth.onPlayerDeath -= OnPlayerDeath;
     }
