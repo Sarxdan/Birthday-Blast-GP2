@@ -22,9 +22,8 @@ public class BossPhase
     //FirerateTimer
     private float nextTimeToFire = 0.0f;
 
-    [Space] 
-    
-    [Header("Modify Projectiles")]
+    [Space] [Header("Modify Projectiles")] 
+    public bool tripleProjectile;
     public bool explosiveProjectiles;
     public bool homingProjectiles;
     [Range(1,25)] public float homingAccuracy;
@@ -34,7 +33,7 @@ public class BossPhase
     public bool bossMovement;
     public float bossMovementSpeed;
     [Header("How far the boss can move horizontally from center to right/left)")] 
-    public float maxHorizontalDistance;
+    public float moveAmount;
 
     private Boss boss;
 

@@ -10,8 +10,8 @@ public class CheckpointManager : Singleton<CheckpointManager>
     ThirdPersonController thirdPersonController;
     Transform player;
     // Start is called before the first frame update
-    protected override void Awake() {
-        base.Awake();
+    protected override void Start() {
+        base.Start();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         thirdPersonController = FindObjectOfType<ThirdPersonController>();
         latestCheckPoint = player.localPosition;

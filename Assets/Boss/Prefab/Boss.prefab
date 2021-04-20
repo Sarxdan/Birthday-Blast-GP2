@@ -345,36 +345,43 @@ MonoBehaviour:
     fireProjectiles: 1
     fireRate: 1
     projectileSpeed: 20
+    tripleProjectile: 0
     explosiveProjectiles: 0
     homingProjectiles: 0
     homingAccuracy: 1
-    bossMovement: 1
-    bossMovementSpeed: 10
+    bossMovement: 0
+    bossMovementSpeed: 0
+    moveAmount: 0
   - name: Phase 2
     phaseDuration: 15
     phaseDowntime: 2
     fireProjectiles: 1
     fireRate: 3
     projectileSpeed: 30
+    tripleProjectile: 1
     explosiveProjectiles: 0
     homingProjectiles: 1
     homingAccuracy: 15
     bossMovement: 1
-    bossMovementSpeed: 10
+    bossMovementSpeed: 3
+    moveAmount: 5
   - name: Phase 3
     phaseDuration: 20
     phaseDowntime: 3
     fireProjectiles: 1
     fireRate: 5
     projectileSpeed: 45
+    tripleProjectile: 1
     explosiveProjectiles: 0
     homingProjectiles: 1
     homingAccuracy: 20
-    bossMovement: 0
-    bossMovementSpeed: 0
+    bossMovement: 1
+    bossMovementSpeed: 7
+    moveAmount: 10
   playerTarget: {fileID: 0}
   projectileSpawnPoint: {fileID: 783143935798147867}
   projectilePrefab: {fileID: 3505596204604672477, guid: d03c76bd71c45014ca84ecdaf39da9b9, type: 3}
+  tripleProjectilePrefab: {fileID: 3505596204604672477, guid: 81c642fd2179c6b41b849100cd7e4f68, type: 3}
   originalSpawnPoint: {x: 0, y: 0, z: 0}
 --- !u!1 &108999902267733292
 GameObject:

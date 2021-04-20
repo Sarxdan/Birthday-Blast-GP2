@@ -1168,7 +1168,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7784201, y: 1}
+    m_SensorSize: {x: 1.7787056, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1399,6 +1399,7 @@ GameObject:
   - component: {fileID: 6985610037676910393}
   - component: {fileID: 805797298}
   - component: {fileID: 7091049536324791371}
+  - component: {fileID: 644702796}
   m_Layer: 6
   m_Name: ThirdPersonPlayerController
   m_TagString: Player
@@ -1609,6 +1610,19 @@ MonoBehaviour:
   playerMovement: {fileID: 0}
   disablePlayerMovement: 0
   disableCameraController: 0
+--- !u!114 &644702796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7091049536324791369}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 829d85e5370f0de41aba126d7111bb14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 3
 --- !u!1 &7091049536467537024
 GameObject:
   m_ObjectHideFlags: 0

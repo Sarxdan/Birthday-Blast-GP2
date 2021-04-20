@@ -31,8 +31,11 @@ public class Projectile : MonoBehaviour
         {
             ProjectileHit();
         }
-        
-        Destroy(gameObject);
+
+        if (!other.CompareTag("Projectile"))
+        {
+            Destroy(gameObject);
+        }
     }
     
 
