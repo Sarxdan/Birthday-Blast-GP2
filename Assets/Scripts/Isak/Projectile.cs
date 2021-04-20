@@ -46,7 +46,7 @@ public class Projectile : MonoBehaviour
         
         if (isHoming)
         {
-            if (Vector3.Distance(target.position, transform.position) > 3f) //Only allow auto aim to happen when the projectile is some distance away
+            if (Vector3.Distance(target.position, transform.position) > 2) //Only allow auto aim to happen when the projectile is some distance away
             {
                 var projectileForwardDir = transform.forward;
                 var directionToTarget = (target.position - transform.position).normalized;
