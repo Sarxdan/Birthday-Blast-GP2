@@ -68,14 +68,12 @@ public class UIManager : Singleton<UIManager>
     private void OnEnable() {
         DialogueTrigger.onNPCDialogue += OnNPCDialogue;
         PauseMenu.onResumeClicked += TogglePauseMenu;
-        JetPack.onPlayerHealthChange += OnPlayerHealthChange;
         PlayerHealth.onPlayerHealthChange += OnPlayerHealthChange;
     }
 
     private void OnDisable() {
         DialogueTrigger.onNPCDialogue -= OnNPCDialogue; 
         PauseMenu.onResumeClicked += TogglePauseMenu;
-        JetPack.onPlayerHealthChange -= OnPlayerHealthChange;
         PlayerHealth.onPlayerHealthChange -= OnPlayerHealthChange;
     }
 }

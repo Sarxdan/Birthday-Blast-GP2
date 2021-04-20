@@ -8568,6 +8568,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1611789851}
     - target: {fileID: 1239568734360762265, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: healthTest
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1239568734360762265, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
       propertyPath: useGravity
       value: 0
       objectReference: {fileID: 0}
@@ -45606,6 +45610,25 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1233322638}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1235566275 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1239568734103234806, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+  m_PrefabInstance: {fileID: 271852849}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1235566279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235566275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 829d85e5370f0de41aba126d7111bb14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startingHealth: 5
+  sceneTransitionTime: 2.17
 --- !u!1 &1247108113
 GameObject:
   m_ObjectHideFlags: 0
