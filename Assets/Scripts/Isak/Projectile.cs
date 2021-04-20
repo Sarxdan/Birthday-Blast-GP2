@@ -8,11 +8,14 @@ public class Projectile : MonoBehaviour
 
     public static Events.DamagePlayerEvent onPlayerHit;
 
-    [SerializeField] int damage = 1;
+    [SerializeField] private int damage = 1;
     public Rigidbody rb;
     
     [HideInInspector] public float speed; 
     public float lifeTime = 7.5f;
+    public bool childProjectile;
+    [HideInInspector] public float maxRangeAllowed;
+    [HideInInspector] public Vector3 origin;
 
     [HideInInspector] public bool isHoming;
     [HideInInspector] public float homingAccuracy;
@@ -41,6 +44,12 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (childProjectile) return;
+        
+        if (Vector3.Distance(origin, transform.position) > maxRangeAllowed)
+        {
+            Destroy(gameObject);
+        }
 
         var finalMoveDirection = transform.forward;
         
@@ -53,6 +62,8 @@ public class Projectile : MonoBehaviour
 
                 finalMoveDirection =
                     Vector3.Lerp(projectileForwardDir, directionToTarget, Time.deltaTime * homingAccuracy);
+
+                transform.rotation = Quaternion.LookRotation(finalMoveDirection, Vector3.forward);
             }
 
         }
@@ -68,7 +79,6 @@ public class Projectile : MonoBehaviour
         {
             onPlayerHit(damage);
         }
-        Debug.Log("Projectile hit player");
         Destroy(gameObject);
     }
 }

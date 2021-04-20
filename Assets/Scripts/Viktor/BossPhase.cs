@@ -26,7 +26,7 @@ public class BossPhase
     public bool tripleProjectile;
     public bool explosiveProjectiles;
     public bool homingProjectiles;
-    [Range(1,25)] public float homingAccuracy;
+    [Range(0,2)] public float homingAccuracy;
 
 
     [Header("Movement Modifiers")] 
@@ -60,7 +60,7 @@ public class BossPhase
         }
         else
         {
-            _boss.transform.position = _boss.originalSpawnPoint;
+            _boss.transform.position = _boss.destinationSpawnPoint;
         }
 
     }

@@ -25,7 +25,8 @@ public class BossTrigger : MonoBehaviour
 
     private void SpawnBoss()
     {
-        var spawnedBoss = Instantiate(bossPrefab, bossSpawnPoint.position, bossSpawnPoint.rotation);
+        var spawnedBoss = Instantiate(bossPrefab, bossSpawnPoint.position + new Vector3(0,-50,0), bossSpawnPoint.rotation);
+        spawnedBoss.destinationSpawnPoint = bossSpawnPoint.position;
         spawnedBoss.StartBoss();
         bossTriggered = true;
     }
