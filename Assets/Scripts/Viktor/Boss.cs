@@ -38,13 +38,11 @@ public class Boss : MonoBehaviour
 
     public void StartBoss() 
     {
-        Debug.Log("Boss has begun!");
         inPhase = true;
     }
 
     public void EndBoss()
     {
-        Debug.Log("Boss is over");
         Destroy(gameObject);
     }
 
@@ -52,16 +50,19 @@ public class Boss : MonoBehaviour
     {
         currentSphase++;
         inPhase = true;
-        Debug.Log("Started next phase!");
     }
 
     private IEnumerator EndPhase()
     {
-        Debug.Log("End of phase : " + bossPhases[currentSphase]);
         inPhase = false;
         currPhaseTimer = 0.0f;
 
-        Debug.Log("Time until next phase : " + bossPhases[currentSphase].phaseDowntime);
+        if (currentSphase == bossPhases.Length - 1)
+        {
+            //Do something here at end of boss
+            //Ex: fly away?
+        }
+        
         yield return new WaitForSeconds(bossPhases[currentSphase].phaseDowntime);
         if (currentSphase == bossPhases.Length - 1)
         {
