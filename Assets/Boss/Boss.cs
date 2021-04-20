@@ -18,6 +18,7 @@ public class Boss : MonoBehaviour
     //Projectiles
     public Transform projectileSpawnPoint;
     public GameObject projectilePrefab;
+    public GameObject tripleProjectilePrefab;
 
     //Horizontal Movement
     [HideInInspector] public Vector3 originalSpawnPoint;
@@ -91,14 +92,22 @@ public class Boss : MonoBehaviour
 
     public void ShootProjectile()
     {
-        var newProjectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
-        var projectileScript = newProjectile.GetComponent<Projectile>();
-        
-        projectileScript.speed = bossPhases[currentSphase].projectileSpeed;
+        var prefab = projectilePrefab;
+        if (bossPhases[currentSphase].tripleProjectile)
+        {
+            prefab = tripleProjectilePrefab;
+        }
 
-        projectileScript.target = playerTarget;
-        projectileScript.isHoming = bossPhases[currentSphase].homingProjectiles;
-        projectileScript.homingAccuracy = bossPhases[currentSphase].homingAccuracy;
+        var newProjectile = Instantiate(prefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
+        var projectileScripts = newProjectile.GetComponentsInChildren<Projectile>();
+        foreach (var projectileScript in projectileScripts)
+        {
+            projectileScript.speed = bossPhases[currentSphase].projectileSpeed;
+
+            projectileScript.target = playerTarget;
+            projectileScript.isHoming = bossPhases[currentSphase].homingProjectiles;
+            projectileScript.homingAccuracy = bossPhases[currentSphase].homingAccuracy;
+        }
     }
     
     
