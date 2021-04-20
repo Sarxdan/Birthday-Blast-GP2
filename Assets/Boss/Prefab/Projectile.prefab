@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 3505596204604672476}
   m_Layer: 0
   m_Name: Projectile
-  m_TagString: Untagged
+  m_TagString: Projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -126,6 +126,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0251c9dfdbd91f4d91c330d583695d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 1
   rb: {fileID: 3505596204604672475}
   speed: 5
   lifeTime: 7.5
+  isHoming: 0
+  homingAccuracy: 0
+  target: {fileID: 0}
