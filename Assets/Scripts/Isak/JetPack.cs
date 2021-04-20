@@ -8,7 +8,7 @@ public class JetPack : MonoBehaviour
 
     enum DashDirections
     {
-        None,
+        None,  
         Left,
         Right,
         Forward

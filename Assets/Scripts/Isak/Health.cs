@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    [SerializeField]protected int health;
+    protected int health;
     [SerializeField] int startingHealth = 1;
     // Start is called before the first frame update
     protected virtual void Awake() {

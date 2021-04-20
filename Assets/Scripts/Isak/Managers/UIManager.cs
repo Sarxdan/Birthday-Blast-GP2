@@ -59,10 +59,8 @@ public class UIManager : Singleton<UIManager>
 
     private void OnPlayerHealthChange(int amount)
     {
-        print("test1");
         if(onPlayerHealthChange != null)
         {
-            print("test2");
             onPlayerHealthChange(amount);
         }
     }
