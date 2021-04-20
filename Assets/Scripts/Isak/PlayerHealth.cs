@@ -6,6 +6,7 @@ public class PlayerHealth : Health
 {
 
     public static Events.DamagePlayerEvent onPlayerHealthChange;
+    public static Events.EmptyEvent onPlayerDeath;
 
     // Start is called before the first frame update
     public override void TakeDamage(int damage)
@@ -14,6 +15,14 @@ public class PlayerHealth : Health
         if(onPlayerHealthChange != null)
         {
             onPlayerHealthChange(health);
+        }
+    }
+    protected override void Death()
+    {
+        base.Death();
+        if(onPlayerDeath != null)
+        {
+            onPlayerDeath();
         }
     }
 

@@ -66,7 +66,6 @@ public class JetPack : MonoBehaviour
     [SerializeField] int startingHealth = 10;
 
     [Header("other settings")]
-    [SerializeField][Tooltip("string reference, case sensitive")] string sceneToLoadOnDeath = string.Empty;
     [SerializeField][Tooltip("time until loading scene after death")] float sceneTransitionTime = 1;
     
     

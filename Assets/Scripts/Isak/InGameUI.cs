@@ -14,7 +14,6 @@ public class InGameUI : MonoBehaviour
     private void Awake()
     {
         ClearScreen();
-        UpdateHealthText(10);
     }
 
     private void ClearScreen()

@@ -76,11 +76,13 @@ public class Gamemanager : Singleton<Gamemanager>
         Transition.onTransitionEvent += LoadLevel;
         JetPack.onPlayerDeath += OnPlayerDeath;
         UIManager.onGamePaused += UpdateGameState;
+        PlayerHealth.onPlayerDeath += OnPlayerDeath;
     }
     protected override void OnDestroy() {
         base.OnDestroy();
         Transition.onTransitionEvent -= LoadLevel;
-        JetPack.onPlayerDeath += OnPlayerDeath;
+        JetPack.onPlayerDeath -= OnPlayerDeath;
         UIManager.onGamePaused -= UpdateGameState;
+        PlayerHealth.onPlayerDeath -= OnPlayerDeath;
     }
 }

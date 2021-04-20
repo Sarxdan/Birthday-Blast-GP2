@@ -22,7 +22,7 @@ public class Health : MonoBehaviour
 
     protected virtual void Death()
     {
-        Destroy(gameObject);
+        
     }
 
     // Update is called once per frame
