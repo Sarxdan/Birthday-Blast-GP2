@@ -13,7 +13,6 @@ public class Projectile : MonoBehaviour
     
     [HideInInspector] public float speed; 
     public float lifeTime = 7.5f;
-    public bool childProjectile;
     [HideInInspector] public float maxRangeAllowed;
     [HideInInspector] public Vector3 origin;
 
@@ -45,8 +44,6 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (childProjectile) return;
-        
         if (Vector3.Distance(origin, transform.position) > maxRangeAllowed)
         {
             Destroy(gameObject);
