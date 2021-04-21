@@ -24,6 +24,10 @@ public class JetPack : MonoBehaviour
     {
         get{return gameOver;}
     }
+    public float AutoMoveSpeed
+    {
+        get{return autoMoveSpeed;} //added
+    }
 
     Rigidbody body; 
     Camera camera;
@@ -40,6 +44,8 @@ public class JetPack : MonoBehaviour
     float lastKeyPressTime = 0;
     Pewpew pewpew;
     float autoMoveSpeed;
+
+    public Vector3 movement; //added
 
     [Header("movement settings")]
     [SerializeField] float moveSpeed = 1;   
@@ -243,7 +249,6 @@ public class JetPack : MonoBehaviour
        void Move()
     {
 
-        var movement = new Vector3();
         movement.z = autoMoveSpeed;
         movement.x = horizontalSteerInput * moveSpeed; 
      
