@@ -9,5 +9,6 @@ public class KeyItems
     {
         public bool jetpack;
         public bool pewpew;
+        public bool shovel;
     }
 }

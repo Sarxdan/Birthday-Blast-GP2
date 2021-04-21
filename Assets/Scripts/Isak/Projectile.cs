@@ -21,6 +21,7 @@ public class Projectile : MonoBehaviour
     [HideInInspector] public float homingAccuracy;
     
     [HideInInspector] public Transform target;
+    [HideInInspector] public Vector3 moveDir;
 
 
     private void Start()
@@ -51,7 +52,7 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
         }
 
-        var finalMoveDirection = transform.forward;
+        var finalMoveDirection = moveDir;
         
         if (isHoming)
         {

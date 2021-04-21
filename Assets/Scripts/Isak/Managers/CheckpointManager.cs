@@ -5,21 +5,14 @@ using UnityEngine;
 
 public class CheckpointManager : Singleton<CheckpointManager>
 {
-    public Vector3 latestCheckPoint;
+    Vector3 latestCheckPoint;
     float enableMovementTimer = 0.1f;
-    public ThirdPersonController thirdPersonController;
-    public Transform player;
+    ThirdPersonController thirdPersonController;
+    Transform player;
     // Start is called before the first frame update
-    protected override void Start()
-    {
-        base.Start();
-        StartCoroutine(Setup());
-    }
 
-    IEnumerator Setup()
+    void Setup()
     {
-        print("setting up");
-        yield return new WaitForSeconds(1); //needs a better fix
         player = GameObject.FindGameObjectWithTag("Player").transform;
         thirdPersonController = FindObjectOfType<ThirdPersonController>();
         latestCheckPoint = player.localPosition;
@@ -53,24 +46,19 @@ public class CheckpointManager : Singleton<CheckpointManager>
 
     void OnPlayerHealthChange(int amount)
     {
-        print("test");
         MovePlayerToCheckpoint();
-    }
-    void OnSceneLoaded()
-    {
-        StartCoroutine(Setup());
     }
 
     private void OnEnable() {
         Checkpoint.onCheckPointTriggered += UpdateLatestCheckpoint;
         PlayerHealth.onPlayerHealthChange += OnPlayerHealthChange;
-        Gamemanager.onSceneLoaded += OnSceneLoaded;
+        Gamemanager.onSceneLoaded += Setup;
     }
 
     private void OnDisable() {
         Checkpoint.onCheckPointTriggered -= UpdateLatestCheckpoint;
         PlayerHealth.onPlayerHealthChange -= OnPlayerHealthChange;
-        Gamemanager.onSceneLoaded -= OnSceneLoaded;
+        Gamemanager.onSceneLoaded -= Setup;
     }
 
 }

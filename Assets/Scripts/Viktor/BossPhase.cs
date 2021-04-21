@@ -24,7 +24,6 @@ public class BossPhase
 
     [Space] [Header("Modify Projectiles")] 
     public bool tripleProjectile;
-    public bool explosiveProjectiles;
     public bool homingProjectiles;
     [Range(0,2)] public float homingAccuracy;
 
@@ -36,12 +35,11 @@ public class BossPhase
     public float moveAmount;
 
     private Boss boss;
-
+    
     public void DoPhaseMechanics(Boss _boss)
     {
         //Get reference to boss
         boss = _boss;
-        Debug.Log("Phase : " + name + " is going on right now");
 
         if (fireProjectiles)
         {
@@ -51,17 +49,8 @@ public class BossPhase
                 nextTimeToFire = Time.time + (1 / fireRate);
                 FireProjectiles(target);
             }
-            Debug.Log("During this phase, boss will shoot projectiles");
         }
-
-        if (bossMovement)
-        {
-            _boss.MoveHorizontally(bossMovementSpeed);
-        }
-        else
-        {
-            _boss.transform.position = _boss.destinationSpawnPoint;
-        }
+        
 
     }
 

@@ -69,6 +69,10 @@ public class DialogueTrigger : MonoBehaviour //add errorhandling if default dial
         {
             meetsReqiurements = false;
         }
+        if(dialogueToCheck.dialogueRequirements.shovel != Gamemanager.instance.unlockedItems.shovel)
+        {
+            meetsReqiurements = false;
+        }
         
         return meetsReqiurements;
     }

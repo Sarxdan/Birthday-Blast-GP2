@@ -10,6 +10,12 @@ public class BossTrigger : MonoBehaviour
     
     private bool bossTriggered; //Turn true once boss has been triggered
 
+
+    private Boss spawnedBoss;
+    private bool bossIsSpawning;
+
+    public float bossSpawnSpeed = 1f;
+
     private void Start()
     {
         bossTriggered = false;
@@ -23,11 +29,34 @@ public class BossTrigger : MonoBehaviour
     }
 
 
+    private void Update()
+    {
+        if (bossIsSpawning)
+        {
+            var distFromSpawnPoint = Vector3.Distance(spawnedBoss.transform.position, bossSpawnPoint.position);
+            spawnedBoss.transform.position = Vector3.Lerp(spawnedBoss.transform.position, bossSpawnPoint.position,
+                Time.deltaTime * bossSpawnSpeed);
+            
+            if (distFromSpawnPoint < 1)
+            {
+                bossIsSpawning = false;
+                StartBoss();
+            }
+        }
+    }
+
+
     private void SpawnBoss()
     {
-        var spawnedBoss = Instantiate(bossPrefab, bossSpawnPoint.position + new Vector3(0,-50,0), bossSpawnPoint.rotation);
-        spawnedBoss.destinationSpawnPoint = bossSpawnPoint.position;
-        spawnedBoss.StartBoss();
+        spawnedBoss = Instantiate(bossPrefab, bossSpawnPoint.position + new Vector3(0,-50,0), bossSpawnPoint.rotation);
+        bossIsSpawning = true;
+        
         bossTriggered = true;
+    }
+
+
+    private void StartBoss()
+    {
+        spawnedBoss.StartBoss();
     }
 }

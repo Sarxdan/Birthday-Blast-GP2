@@ -14,6 +14,55 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43360028019734850, guid: a31ae8ec798e6e34f865f423473c6f13, type: 2}
+--- !u!114 &631392287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183532784997118773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfca8714eea1d454ba661d3f4c3162fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyOnPickUp: 1
+  resourceType: 0
+  value: 1
+--- !u!114 &631392288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 183532784997118773}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b50cef069b20b48983ce3fd52a6248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredItems:
+    jetpack: 0
+    pewpew: 0
+    shovel: 1
+  interactText: '*Dig*'
+  interactRadius: 1.5
+  minimumTimeBetweenInteractions: 2
+  OnInteractEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 631392287}
+        m_TargetAssemblyTypeName: Resource, Assembly-CSharp
+        m_MethodName: PickUpResource
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &183532784997217685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24,6 +73,10 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 667489653062c564d99245ec5eab3439, type: 3}
       propertyPath: m_Name
       value: DigNode_Easy_Flag
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 667489653062c564d99245ec5eab3439, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 667489653062c564d99245ec5eab3439, type: 3}
       propertyPath: m_IsActive
@@ -47,31 +100,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 667489653062c564d99245ec5eab3439, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.524
+      value: -8.37
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 667489653062c564d99245ec5eab3439, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.997
+      value: 25.432
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 667489653062c564d99245ec5eab3439, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.184
+      value: 15.952
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 667489653062c564d99245ec5eab3439, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.9930174
+      value: 0.9899621
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 667489653062c564d99245ec5eab3439, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 667489653062c564d99245ec5eab3439, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 667489653062c564d99245ec5eab3439, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.11796816
+      value: -0.14133322
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 667489653062c564d99245ec5eab3439, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -83,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 667489653062c564d99245ec5eab3439, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -13.55
+      value: -16.25
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 667489653062c564d99245ec5eab3439, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -111,6 +164,10 @@ PrefabInstance:
     - target: {fileID: 1293663669456902, guid: bb300cb76438b164cb8d80ce9afb85ba, type: 3}
       propertyPath: m_Name
       value: SM_Terrain_DustPile_Small_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1293663669456902, guid: bb300cb76438b164cb8d80ce9afb85ba, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4277523050980900, guid: bb300cb76438b164cb8d80ce9afb85ba, type: 3}
       propertyPath: m_RootOrder
@@ -185,6 +242,10 @@ PrefabInstance:
     - target: {fileID: 1976401696516608, guid: 7aec7d7b6b4e5f24f832c33028ee90d9, type: 3}
       propertyPath: m_Name
       value: SM_Terrain_Rubble_Pebbles_02 (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976401696516608, guid: 7aec7d7b6b4e5f24f832c33028ee90d9, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4687956973215160, guid: 7aec7d7b6b4e5f24f832c33028ee90d9, type: 3}
       propertyPath: m_RootOrder
