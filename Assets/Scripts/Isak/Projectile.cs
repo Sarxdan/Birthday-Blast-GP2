@@ -13,7 +13,6 @@ public class Projectile : MonoBehaviour
     
     [HideInInspector] public float speed; 
     public float lifeTime = 7.5f;
-    public bool childProjectile;
     [HideInInspector] public float maxRangeAllowed;
     [HideInInspector] public Vector3 origin;
 
@@ -21,6 +20,7 @@ public class Projectile : MonoBehaviour
     [HideInInspector] public float homingAccuracy;
     
     [HideInInspector] public Transform target;
+    [HideInInspector] public Vector3 moveDir;
 
 
     private void Start()
@@ -44,14 +44,12 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (childProjectile) return;
-        
         if (Vector3.Distance(origin, transform.position) > maxRangeAllowed)
         {
             Destroy(gameObject);
         }
 
-        var finalMoveDirection = transform.forward;
+        var finalMoveDirection = moveDir;
         
         if (isHoming)
         {
