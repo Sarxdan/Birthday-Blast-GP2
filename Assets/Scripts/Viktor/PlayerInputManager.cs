@@ -10,6 +10,10 @@ using UnityEngine.InputSystem;
 [Serializable] public class CameraRotateEvent : UnityEvent<float,float>{}
 [Serializable] public class InteractEvent : UnityEvent{}
 
+[Serializable] public class ShootEvent : UnityEvent{}
+
+[Serializable] public class DashEvent : UnityEvent{}
+
 public class PlayerInputManager : MonoBehaviour
 {
     private Controls controls;
@@ -22,6 +26,8 @@ public class PlayerInputManager : MonoBehaviour
     public CameraRotateEvent cameraRotateEvent;
 
     public InteractEvent interactEvent;
+    public ShootEvent shootEvent;
+    public DashEvent dashEvent;
     
     #endregion
     
@@ -87,6 +93,8 @@ public class PlayerInputManager : MonoBehaviour
         
         //Actions
         controls.GroundMovement.Interact.performed += OnInteract;
+        controls.GroundMovement.Shoot.started += OnShoot;
+        controls.GroundMovement.Dash.performed += OnDash;
     }
 
     private void UnSubscribeFromEvents()
@@ -98,6 +106,8 @@ public class PlayerInputManager : MonoBehaviour
         
         controls.GroundMovement.CameraRotate.performed -= OnCameraRotate;
         controls.GroundMovement.CameraRotate.canceled -= OnCameraRotate;
+        
+        
     }
 
     #region MovementMethods
@@ -125,13 +135,33 @@ public class PlayerInputManager : MonoBehaviour
         cameraRotateEvent?.Invoke(rotationInput.x,rotationInput.y);
     }
 
+
+    private void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            dashEvent?.Invoke();
+        }
+    }
+
     #endregion
 
     #region ActionMethods
     
-    private void OnInteract(InputAction.CallbackContext obj)
+    private void OnInteract(InputAction.CallbackContext context)
     {
-        interactEvent?.Invoke();
+        if (context.started)
+        {
+            interactEvent?.Invoke();
+        }
+    }
+
+    private void OnShoot(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            shootEvent?.Invoke();
+        }
     }
     
     #endregion
