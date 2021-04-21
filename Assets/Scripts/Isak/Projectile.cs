@@ -13,6 +13,8 @@ public class Projectile : MonoBehaviour
     
     [HideInInspector] public float speed; 
     public float lifeTime = 7.5f;
+    [HideInInspector] public float maxRangeAllowed;
+    [HideInInspector] public Vector3 origin;
 
     [HideInInspector] public bool isHoming;
     [HideInInspector] public float homingAccuracy;
@@ -28,8 +30,6 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("OnTriggerEnter()");
-        
         if (other.CompareTag("Player"))
         {
             ProjectileHit();
@@ -44,11 +44,8 @@ public class Projectile : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (transform.position.z <= target.position.z - 500)
+        if (Vector3.Distance(origin, transform.position) > maxRangeAllowed)
         {
-            Debug.Log("Player Z : " + target.position.z);
-            Debug.Log("Projectile Z : " + transform.position.z);
-            Debug.Log("Max range");
             Destroy(gameObject);
         }
 
@@ -75,11 +72,9 @@ public class Projectile : MonoBehaviour
 
     private void ProjectileHit()
     {
-        Debug.Log("ProjectileHit()");
         //Add damage to player here
         if(onPlayerHit != null)
-        {
-            Debug.Log("DamageEvent");
+        {          
             onPlayerHit(damage);
         }
         Destroy(gameObject);
