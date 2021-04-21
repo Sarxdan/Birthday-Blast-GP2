@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 504227062550666546}
   - component: {fileID: 1680339750458866513}
   - component: {fileID: 7853426230014253907}
+  - component: {fileID: 9068716539497922165}
   m_Layer: 8
   m_Name: DigNode_Hard_rubble
   m_TagString: Untagged
@@ -117,12 +118,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b50cef069b20b48983ce3fd52a6248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interactText: '*interact*'
-  interactRadius: 5
+  requiredItems:
+    jetpack: 0
+    pewpew: 0
+    shovel: 1
+  interactText: '*Dig*'
+  interactRadius: 1.5
   minimumTimeBetweenInteractions: 2
   OnInteractEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7853426230014253907}
+        m_TargetAssemblyTypeName: Resource, Assembly-CSharp
+        m_MethodName: PickUpResource
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &7853426230014253907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138,6 +155,20 @@ MonoBehaviour:
   DestroyOnPickUp: 1
   resourceType: 0
   value: 1
+--- !u!64 &9068716539497922165
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552187764414852946}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: 5bfa71ab734a19043928746934bb1f70, type: 3}
 --- !u!1001 &3676795683152535258
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &9026376 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7853426230014253907, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
+  m_PrefabInstance: {fileID: 2055273388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfca8714eea1d454ba661d3f4c3162fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &404944126
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -130,13 +141,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 631392288, guid: 8555004cda0a2ef408016904f1363128, type: 3}
+      propertyPath: interactText
+      value: '"Dig"'
+      objectReference: {fileID: 0}
+    - target: {fileID: 631392288, guid: 8555004cda0a2ef408016904f1363128, type: 3}
+      propertyPath: interactRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 631392288, guid: 8555004cda0a2ef408016904f1363128, type: 3}
+      propertyPath: requiredItems.shovel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 183532784997084949, guid: 8555004cda0a2ef408016904f1363128, type: 3}
       propertyPath: m_RootOrder
       value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 183532784997084949, guid: 8555004cda0a2ef408016904f1363128, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.80868
+      value: -4.88
       objectReference: {fileID: 0}
     - target: {fileID: 183532784997084949, guid: 8555004cda0a2ef408016904f1363128, type: 3}
       propertyPath: m_LocalPosition.y
@@ -144,7 +167,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 183532784997084949, guid: 8555004cda0a2ef408016904f1363128, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.2676077
+      value: -7.03
       objectReference: {fileID: 0}
     - target: {fileID: 183532784997084949, guid: 8555004cda0a2ef408016904f1363128, type: 3}
       propertyPath: m_LocalRotation.w
@@ -537,6 +560,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 823142548}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &846177045 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4240392758346505069, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
+  m_PrefabInstance: {fileID: 1350843374}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfca8714eea1d454ba661d3f4c3162fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1014053179
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -890,15 +924,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 267640336892432960, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.82
+      value: 9.67
       objectReference: {fileID: 0}
     - target: {fileID: 267640336892432960, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.16
+      value: 0.62
       objectReference: {fileID: 0}
     - target: {fileID: 267640336892432960, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.07
+      value: -7.09
       objectReference: {fileID: 0}
     - target: {fileID: 267640336892432960, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -931,6 +965,46 @@ PrefabInstance:
     - target: {fileID: 267640336892661344, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
       propertyPath: m_Name
       value: DigNode_Medium_StickCross
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399744207593054482, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
+      propertyPath: interactText
+      value: '"Dig"'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399744207593054482, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
+      propertyPath: interactRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399744207593054482, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
+      propertyPath: requiredItems.shovel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399744207593054482, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399744207593054482, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399744207593054482, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 846177045}
+    - target: {fileID: 1399744207593054482, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399744207593054482, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PickUpResource
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399744207593054482, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Resource, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399744207593054482, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
@@ -1019,7 +1093,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1546840108
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1035,16 +1109,19 @@ MonoBehaviour:
   optionalDialogues:
   - dialogue: {fileID: 11400000, guid: 1ebeb977063db9f48aed4d97c6ac3e8c, type: 2}
     dialogueRequirements:
-      jetpack: 1
+      jetpack: 0
       pewpew: 0
+      shovel: 1
   - dialogue: {fileID: 11400000, guid: 8b2b294e159a53546bb4ed0eaf011f78, type: 2}
     dialogueRequirements:
       jetpack: 0
       pewpew: 1
+      shovel: 0
   - dialogue: {fileID: 11400000, guid: cebc57e69c548be4186e1a56b6849d49, type: 2}
     dialogueRequirements:
       jetpack: 1
       pewpew: 1
+      shovel: 1
   defaultDialogue: {fileID: 11400000, guid: 158d3003925398647a984bcaa77f178e, type: 2}
 --- !u!114 &1546840109
 MonoBehaviour:
@@ -1058,6 +1135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b50cef069b20b48983ce3fd52a6248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  requiredItems:
+    jetpack: 0
+    pewpew: 0
+    shovel: 0
   interactText: '*interact*'
   interactRadius: 5
   minimumTimeBetweenInteractions: 2
@@ -1137,11 +1218,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 550117752422095216, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.0610003
+      value: 0.63
       objectReference: {fileID: 0}
     - target: {fileID: 550117752422095216, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -14.965
+      value: -6.98
       objectReference: {fileID: 0}
     - target: {fileID: 550117752422095216, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1174,6 +1255,50 @@ PrefabInstance:
     - target: {fileID: 552187764414852946, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
       propertyPath: m_Name
       value: DigNode_Hard_rubble
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680339750458866513, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
+      propertyPath: interactText
+      value: '"Dig"'
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680339750458866513, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
+      propertyPath: interactRadius
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680339750458866513, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
+      propertyPath: requiredItems.shovel
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680339750458866513, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680339750458866513, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680339750458866513, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 9026376}
+    - target: {fileID: 1680339750458866513, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680339750458866513, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PickUpResource
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680339750458866513, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Resource, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680339750458866513, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3681197491952501602, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.119
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
