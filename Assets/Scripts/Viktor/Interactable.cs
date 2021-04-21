@@ -8,6 +8,8 @@ using UnityEngine.Serialization;
 
 public class Interactable : MonoBehaviour
 {
+
+    [SerializeField] KeyItems.Items requiredItems;
     public string interactText = "*interact*";
     
     public float interactRadius = 5f;
@@ -35,6 +37,7 @@ public class Interactable : MonoBehaviour
 
     private void Interact()
     {
+        if(!CheckRequiredItems()) return;
         timeSinceLastInteraction = 0;
         OnInteractEvent?.Invoke();
     }
@@ -45,5 +48,27 @@ public class Interactable : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, interactRadius);
 
+    }
+
+    //added functions
+
+    bool CheckRequiredItems() // this will look like shit, improve over iterations
+    {   
+        bool meetsReqiurements = true;
+
+        if(requiredItems.jetpack != Gamemanager.instance.unlockedItems.jetpack) 
+        {       
+            meetsReqiurements = false;
+        }
+        if(requiredItems.pewpew != Gamemanager.instance.unlockedItems.pewpew)
+        {
+            meetsReqiurements = false;
+        }
+        if(requiredItems.shovel != Gamemanager.instance.unlockedItems.shovel)
+        {
+            meetsReqiurements = false;
+        }
+        
+        return meetsReqiurements;
     }
 }
