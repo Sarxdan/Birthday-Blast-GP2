@@ -74,7 +74,7 @@ public class Projectile : MonoBehaviour
     {
         //Add damage to player here
         if(onPlayerHit != null)
-        {
+        {          
             onPlayerHit(damage);
         }
         Destroy(gameObject);

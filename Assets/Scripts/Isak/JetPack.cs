@@ -33,7 +33,6 @@ public class JetPack : MonoBehaviour
     Camera camera;
     bool isAutoBoosting = false;
      bool gameOver = false;
-    Animator animator;  
     DashDirections dashDirections = DashDirections.None;
     bool dashOnCooldown = false;
     bool forwardDashOnCooldown = false;
@@ -82,7 +81,6 @@ public class JetPack : MonoBehaviour
         autoMoveSpeed = startingAutoMoveSpeed;
         camera = Camera.main;
         body = GetComponentInParent<Rigidbody>();
-        animator = GetComponent<Animator>();
         pewpew = GetComponentInChildren<Pewpew>();         
     }
 
@@ -94,8 +92,7 @@ public class JetPack : MonoBehaviour
             pewpew.gameObject.SetActive(pewpewUnlocked);
             pewpew.JetpackSpeed = autoMoveSpeed;
         }
-        Move();
-        Animate();    
+        Move();   
         SetCameraPosition();
         GetDashInput();
         float moveSpeedIncreasePerFrame = Time.deltaTime * autoMoveSpeedIncreaseOverTime;
@@ -235,17 +232,6 @@ public class JetPack : MonoBehaviour
         dashOnCooldown = false;
     }
 
-    void Animate()
-    {
-        if(horizontalSteerInput != 0)
-        {
-            animator.SetBool("isMoving", true);
-        }
-        else
-        {
-            animator.SetBool("isMoving", false);
-        }
-    } 
        void Move()
     {
 
