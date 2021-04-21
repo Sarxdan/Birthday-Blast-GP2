@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 565843947164012844}
   - component: {fileID: 574769483717952804}
   - component: {fileID: 504227062550666546}
-  m_Layer: 0
+  - component: {fileID: 1680339750458866513}
+  - component: {fileID: 7853426230014253907}
+  m_Layer: 8
   m_Name: DigNode_Hard_rubble
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,6 +105,39 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1680339750458866513
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552187764414852946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b50cef069b20b48983ce3fd52a6248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactText: '*interact*'
+  interactRadius: 5
+  minimumTimeBetweenInteractions: 2
+  OnInteractEvent:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &7853426230014253907
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 552187764414852946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfca8714eea1d454ba661d3f4c3162fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyOnPickUp: 1
+  resourceType: 0
+  value: 1
 --- !u!1001 &3676795683152535258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -113,6 +148,10 @@ PrefabInstance:
     - target: {fileID: 1976401696516608, guid: 7aec7d7b6b4e5f24f832c33028ee90d9, type: 3}
       propertyPath: m_Name
       value: SM_Terrain_Rubble_Pebbles_02 (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1976401696516608, guid: 7aec7d7b6b4e5f24f832c33028ee90d9, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 4687956973215160, guid: 7aec7d7b6b4e5f24f832c33028ee90d9, type: 3}
       propertyPath: m_RootOrder
