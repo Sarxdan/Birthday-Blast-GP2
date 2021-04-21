@@ -29,9 +29,13 @@ public class Pewpew : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void OnShootInput()
+    private void Update() {
+        GetInput();
+    }
+
+    void GetInput()
     {
-        if (CanShoot())
+        if(CanShoot() && Input.GetButtonDown("Pewpew"))
         {
             Shoot();
         }

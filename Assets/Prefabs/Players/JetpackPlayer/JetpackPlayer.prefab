@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2972316005612773026}
   - component: {fileID: 5299239327856660241}
   m_Layer: 5
-  m_Name: ForwardDash
+  m_Name: Dash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1119,34 +1119,6 @@ PrefabInstance:
       propertyPath: MobileUIComponents.Array.data[0]
       value: 
       objectReference: {fileID: 3878241437249178344}
-    - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: onShootEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: onShootEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: onShootEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 5931061931656681321}
-    - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: onShootEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: onShootEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnShootInput
-      objectReference: {fileID: 0}
-    - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: onShootEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Pewpew, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: onShootEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 8813712086394248350, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
       propertyPath: m_Name
       value: Jetpack
@@ -1158,14 +1130,3 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 862964480281502981, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
   m_PrefabInstance: {fileID: 7899787306325726600}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5931061931656681321 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4606887562241524449, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-  m_PrefabInstance: {fileID: 7899787306325726600}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0addc19d8ae94dc4d8f7c560972ef36f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

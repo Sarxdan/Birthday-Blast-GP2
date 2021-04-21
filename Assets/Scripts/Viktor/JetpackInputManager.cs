@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 
 [Serializable] public class OnSteerEvent : UnityEvent<float,float>{}
 [Serializable] public class OnDashEvent : UnityEvent{}
-[Serializable] public class  OnShootEvent : UnityEvent{}
+[Serializable] public class  OnActionEvent : UnityEvent{}
 
 public class JetpackInputManager : MonoBehaviour
 {
@@ -20,7 +20,7 @@ public class JetpackInputManager : MonoBehaviour
 
     public OnSteerEvent onSteerEvent;
     public OnDashEvent onDashEvent;
-    public OnShootEvent onShootEvent;
+    public OnActionEvent onActionEvent;
     
     #endregion
     
@@ -77,7 +77,7 @@ public class JetpackInputManager : MonoBehaviour
         controls.Jetpack.Steering.canceled += OnSteer;
 
         controls.Jetpack.Dash.started += OnDash;
-        controls.Jetpack.Shoot.started += OnShoot;
+        controls.Jetpack.Action.started += OnAction;
     }
 
     private void UnSubscribeFromEvents()
@@ -86,7 +86,7 @@ public class JetpackInputManager : MonoBehaviour
         controls.Jetpack.Steering.canceled -= OnSteer;
 
         controls.Jetpack.Dash.started -= OnDash;
-        controls.Jetpack.Shoot.started -= OnShoot;
+        controls.Jetpack.Action.started -= OnAction;
     }
 
     #region MovementMethods
@@ -112,15 +112,13 @@ public class JetpackInputManager : MonoBehaviour
 
     #region ActionMethods
     
-    private void OnShoot(InputAction.CallbackContext context)
+    private void OnAction(InputAction.CallbackContext context)
     {
         if (context.started)
         {
-            onShootEvent?.Invoke();
+            onActionEvent?.Invoke();
         }
     }
-
-    
     
     #endregion
 }
