@@ -5,10 +5,6 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-    public float spawnTime = 5f;
-    private bool isSpawning;
-    [HideInInspector] public Vector3 destinationSpawnPoint;
-    
     //Phases
     public BossPhase[] bossPhases;
 
@@ -23,33 +19,25 @@ public class Boss : MonoBehaviour
     public Transform projectileSpawnPoint;
     public GameObject projectilePrefab;
     public GameObject tripleProjectilePrefab;
+    
+    
+    //Center position
+    public Vector3 bossCenterPos;
+    public Vector3 newBossPosition;
 
-    //Horizontal Movement
-    private Vector3 farLeftPos;
-    private Vector3 farRightPos;
+    public float distanceFromPlayer = 90f;
+    
 
     private void Start()
     {
         playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
-        
-        farLeftPos = destinationSpawnPoint + -transform.right * 7.5f;
-        farRightPos = destinationSpawnPoint + transform.right * 7.5f;
-
-        StartBoss();
     }
 
     public void StartBoss()
     {
-        StartCoroutine(OnBossSpawn());
-    }
-
-    private IEnumerator OnBossSpawn()
-    {
-        isSpawning = true;
-        yield return new WaitForSeconds(spawnTime);
-        isSpawning = false;
         inPhase = true;
     }
+
 
     public void EndBoss()
     {
@@ -94,11 +82,10 @@ public class Boss : MonoBehaviour
             {
                 StartCoroutine(EndPhase());
             }
-        }   
-        else if (isSpawning)
-        {
-            transform.position = Vector3.Lerp(transform.position, destinationSpawnPoint, Time.deltaTime);
         }
+
+        newBossPosition.z = playerTarget.position.z + distanceFromPlayer;
+        transform.position = newBossPosition;
     }
 
 
@@ -107,35 +94,65 @@ public class Boss : MonoBehaviour
 
     public void ShootProjectile()
     {
+        #region Select Projectile
+        
         var prefab = projectilePrefab;
         if (bossPhases[currentSphase].tripleProjectile)
         {
             prefab = tripleProjectilePrefab;
         }
+        
+        #endregion
+
+        #region Spawn Projectile(s)
 
         var newProjectile = Instantiate(prefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
         var projectileScripts = newProjectile.GetComponentsInChildren<Projectile>();
+
+        #endregion
+
+        #region Populate Projectile Variables/Fields
+        
         foreach (var projectileScript in projectileScripts)
         {
+            //Set speed of projectile
             projectileScript.speed = bossPhases[currentSphase].projectileSpeed;
 
+            //Projectile target
+            var jetpackVelocityVector = playerTarget.GetComponent<Rigidbody>().velocity;
+            var rawDirToPlayer = (playerTarget.position - projectileSpawnPoint.position) *
+                                     Vector3.Distance(playerTarget.position, projectileSpawnPoint.position);
+            
+            var predictedPlayerDirection = rawDirToPlayer + jetpackVelocityVector;
+            
             projectileScript.target = playerTarget;
+            projectileScript.moveDir = predictedPlayerDirection;
+            
+            //Set homing variables
             projectileScript.isHoming = bossPhases[currentSphase].homingProjectiles;
             projectileScript.homingAccuracy = bossPhases[currentSphase].homingAccuracy;
+            
+            //Projectile origin SpawnPoint
             projectileScript.origin = projectileSpawnPoint.position;
+            
+            //Max range traveled allowed
             projectileScript.maxRangeAllowed =
                 Vector3.Distance(projectileSpawnPoint.position, playerTarget.position);
         }
+
+        #endregion
     }
+    
+    
     
     
     public void MoveHorizontally(float speed)
     {
-        Vector3 pos = destinationSpawnPoint;
-        pos.x += bossPhases[currentSphase].moveAmount *
+        newBossPosition = bossCenterPos;
+        newBossPosition.x += bossPhases[currentSphase].moveAmount *
                          Mathf.Sin(Time.time * speed);
 
-        transform.position = pos;
+        transform.position = newBossPosition;
 
     }
 

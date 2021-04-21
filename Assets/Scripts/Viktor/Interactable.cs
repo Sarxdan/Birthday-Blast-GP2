@@ -11,6 +11,7 @@ public class Interactable : MonoBehaviour
 
     [SerializeField] KeyItems.Items requiredItems;
     public string interactText = "*interact*";
+    public string unableToInteracteText = "Can't interact!";
     
     public float interactRadius = 5f;
 
@@ -37,7 +38,6 @@ public class Interactable : MonoBehaviour
 
     private void Interact()
     {
-        if(!CheckRequiredItems()) return;
         timeSinceLastInteraction = 0;
         OnInteractEvent?.Invoke();
     }
@@ -52,7 +52,7 @@ public class Interactable : MonoBehaviour
 
     //added functions
 
-    bool CheckRequiredItems() // this will look like shit, improve over iterations
+    public bool CheckRequiredItems() // this will look like shit, improve over iterations
     {   
         bool meetsReqiurements = true;
 
