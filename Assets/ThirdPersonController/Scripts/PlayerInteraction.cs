@@ -43,8 +43,11 @@ public class PlayerInteraction : MonoBehaviour
         }
 
         interactableObject = ClosestInteractable();
-         
-        interactableObject.TryToInteract(this);
+
+        if (interactableObject.CheckRequiredItems())
+        {
+            interactableObject.TryToInteract(this);
+        }
     }
     
     private Interactable ClosestInteractable()
