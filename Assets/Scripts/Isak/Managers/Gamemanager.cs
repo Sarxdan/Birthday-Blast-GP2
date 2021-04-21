@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,10 +26,7 @@ public class Gamemanager : Singleton<Gamemanager>
     {
         
         SceneManager.LoadScene(levelName);
-        if(onSceneLoaded != null)
-        {
-            onSceneLoaded();
-        }
+        
         
         /*  Old code
         if(DebugMode)
@@ -97,15 +95,26 @@ public class Gamemanager : Singleton<Gamemanager>
         LoadLevel(level);
     }
 
+    private void SceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(onSceneLoaded != null)
+        {
+            onSceneLoaded();
+        }
+    }
+
     private void OnEnable() {
         Transition.onTransition += OnTransition;
         UIManager.onGamePaused += UpdateGameState;
         PlayerHealth.onPlayerDeath += OnPlayerDeath;
+        SceneManager.sceneLoaded += SceneLoaded;
     }
+   
     protected override void OnDestroy() {
         base.OnDestroy();
         Transition.onTransition -= OnTransition;
         UIManager.onGamePaused -= UpdateGameState;
         PlayerHealth.onPlayerDeath -= OnPlayerDeath;
+        SceneManager.sceneLoaded -= SceneLoaded;
     }
 }
