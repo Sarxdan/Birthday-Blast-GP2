@@ -49,6 +49,30 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""9672920f-1f5d-41ec-a9b9-042e37dce4ed"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Shoot"",
+                    ""type"": ""Button"",
+                    ""id"": ""81010a50-5ee0-4ca5-abac-d48e6f7db480"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""86df0abe-7d1f-486a-92de-ced87a38f7c5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -293,6 +317,72 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""CameraRotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7cf135d9-0dc5-4444-a68c-d40d884a9fcc"",
+                    ""path"": ""<GamePad>/select"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d7c7cfec-3b83-4f6a-aee6-d879e10e99f8"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""19e368ed-ce03-40c0-8240-c8f7e06a6421"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7845dde3-9596-409a-aaa3-4c399c1334b5"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shoot"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""92d2c71b-d2f0-431b-82b2-813a92ad8344"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fef9f029-f8e8-4539-bb48-6b24d42c67ed"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -317,7 +407,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Action"",
+                    ""name"": ""Shoot"",
                     ""type"": ""Button"",
                     ""id"": ""0e78e9e4-c5dd-444a-a8df-f0343b3944ef"",
                     ""expectedControlType"": ""Button"",
@@ -330,6 +420,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": """",
                     ""id"": ""5ce3aa2b-ddd6-4cac-9990-458c5d5eee4f"",
                     ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f34115f-e3fd-44c3-9e06-dee483ec5933"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -483,11 +584,11 @@ public class @Controls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""a27368fa-65bd-498d-97ae-6c38b3dc39c5"",
-                    ""path"": ""<Keyboard>/e"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Action"",
+                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -498,7 +599,7 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Action"",
+                    ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -513,11 +614,14 @@ public class @Controls : IInputActionCollection, IDisposable
         m_GroundMovement_Movement = m_GroundMovement.FindAction("Movement", throwIfNotFound: true);
         m_GroundMovement_Interact = m_GroundMovement.FindAction("Interact", throwIfNotFound: true);
         m_GroundMovement_CameraRotate = m_GroundMovement.FindAction("CameraRotate", throwIfNotFound: true);
+        m_GroundMovement_Pause = m_GroundMovement.FindAction("Pause", throwIfNotFound: true);
+        m_GroundMovement_Shoot = m_GroundMovement.FindAction("Shoot", throwIfNotFound: true);
+        m_GroundMovement_Dash = m_GroundMovement.FindAction("Dash", throwIfNotFound: true);
         // Jetpack
         m_Jetpack = asset.FindActionMap("Jetpack", throwIfNotFound: true);
         m_Jetpack_Dash = m_Jetpack.FindAction("Dash", throwIfNotFound: true);
         m_Jetpack_Steering = m_Jetpack.FindAction("Steering", throwIfNotFound: true);
-        m_Jetpack_Action = m_Jetpack.FindAction("Action", throwIfNotFound: true);
+        m_Jetpack_Shoot = m_Jetpack.FindAction("Shoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -571,6 +675,9 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_GroundMovement_Movement;
     private readonly InputAction m_GroundMovement_Interact;
     private readonly InputAction m_GroundMovement_CameraRotate;
+    private readonly InputAction m_GroundMovement_Pause;
+    private readonly InputAction m_GroundMovement_Shoot;
+    private readonly InputAction m_GroundMovement_Dash;
     public struct GroundMovementActions
     {
         private @Controls m_Wrapper;
@@ -579,6 +686,9 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_GroundMovement_Movement;
         public InputAction @Interact => m_Wrapper.m_GroundMovement_Interact;
         public InputAction @CameraRotate => m_Wrapper.m_GroundMovement_CameraRotate;
+        public InputAction @Pause => m_Wrapper.m_GroundMovement_Pause;
+        public InputAction @Shoot => m_Wrapper.m_GroundMovement_Shoot;
+        public InputAction @Dash => m_Wrapper.m_GroundMovement_Dash;
         public InputActionMap Get() { return m_Wrapper.m_GroundMovement; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -600,6 +710,15 @@ public class @Controls : IInputActionCollection, IDisposable
                 @CameraRotate.started -= m_Wrapper.m_GroundMovementActionsCallbackInterface.OnCameraRotate;
                 @CameraRotate.performed -= m_Wrapper.m_GroundMovementActionsCallbackInterface.OnCameraRotate;
                 @CameraRotate.canceled -= m_Wrapper.m_GroundMovementActionsCallbackInterface.OnCameraRotate;
+                @Pause.started -= m_Wrapper.m_GroundMovementActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_GroundMovementActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_GroundMovementActionsCallbackInterface.OnPause;
+                @Shoot.started -= m_Wrapper.m_GroundMovementActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_GroundMovementActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_GroundMovementActionsCallbackInterface.OnShoot;
+                @Dash.started -= m_Wrapper.m_GroundMovementActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_GroundMovementActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_GroundMovementActionsCallbackInterface.OnDash;
             }
             m_Wrapper.m_GroundMovementActionsCallbackInterface = instance;
             if (instance != null)
@@ -616,6 +735,15 @@ public class @Controls : IInputActionCollection, IDisposable
                 @CameraRotate.started += instance.OnCameraRotate;
                 @CameraRotate.performed += instance.OnCameraRotate;
                 @CameraRotate.canceled += instance.OnCameraRotate;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
             }
         }
     }
@@ -626,14 +754,14 @@ public class @Controls : IInputActionCollection, IDisposable
     private IJetpackActions m_JetpackActionsCallbackInterface;
     private readonly InputAction m_Jetpack_Dash;
     private readonly InputAction m_Jetpack_Steering;
-    private readonly InputAction m_Jetpack_Action;
+    private readonly InputAction m_Jetpack_Shoot;
     public struct JetpackActions
     {
         private @Controls m_Wrapper;
         public JetpackActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Dash => m_Wrapper.m_Jetpack_Dash;
         public InputAction @Steering => m_Wrapper.m_Jetpack_Steering;
-        public InputAction @Action => m_Wrapper.m_Jetpack_Action;
+        public InputAction @Shoot => m_Wrapper.m_Jetpack_Shoot;
         public InputActionMap Get() { return m_Wrapper.m_Jetpack; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -649,9 +777,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Steering.started -= m_Wrapper.m_JetpackActionsCallbackInterface.OnSteering;
                 @Steering.performed -= m_Wrapper.m_JetpackActionsCallbackInterface.OnSteering;
                 @Steering.canceled -= m_Wrapper.m_JetpackActionsCallbackInterface.OnSteering;
-                @Action.started -= m_Wrapper.m_JetpackActionsCallbackInterface.OnAction;
-                @Action.performed -= m_Wrapper.m_JetpackActionsCallbackInterface.OnAction;
-                @Action.canceled -= m_Wrapper.m_JetpackActionsCallbackInterface.OnAction;
+                @Shoot.started -= m_Wrapper.m_JetpackActionsCallbackInterface.OnShoot;
+                @Shoot.performed -= m_Wrapper.m_JetpackActionsCallbackInterface.OnShoot;
+                @Shoot.canceled -= m_Wrapper.m_JetpackActionsCallbackInterface.OnShoot;
             }
             m_Wrapper.m_JetpackActionsCallbackInterface = instance;
             if (instance != null)
@@ -662,9 +790,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Steering.started += instance.OnSteering;
                 @Steering.performed += instance.OnSteering;
                 @Steering.canceled += instance.OnSteering;
-                @Action.started += instance.OnAction;
-                @Action.performed += instance.OnAction;
-                @Action.canceled += instance.OnAction;
+                @Shoot.started += instance.OnShoot;
+                @Shoot.performed += instance.OnShoot;
+                @Shoot.canceled += instance.OnShoot;
             }
         }
     }
@@ -675,11 +803,14 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnCameraRotate(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
     }
     public interface IJetpackActions
     {
         void OnDash(InputAction.CallbackContext context);
         void OnSteering(InputAction.CallbackContext context);
-        void OnAction(InputAction.CallbackContext context);
+        void OnShoot(InputAction.CallbackContext context);
     }
 }
