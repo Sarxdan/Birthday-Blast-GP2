@@ -131,13 +131,6 @@ public class Boss : MonoBehaviour
             //Set homing variables
             projectileScript.isHoming = bossPhases[currentSphase].homingProjectiles;
             projectileScript.homingAccuracy = bossPhases[currentSphase].homingAccuracy;
-            
-            //Projectile origin SpawnPoint
-            projectileScript.origin = projectileSpawnPoint.position;
-            
-            //Max range traveled allowed
-            projectileScript.maxRangeAllowed =
-                Vector3.Distance(projectileSpawnPoint.position, playerTarget.position);
         }
 
         #endregion

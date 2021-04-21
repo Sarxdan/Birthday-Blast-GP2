@@ -130,10 +130,11 @@ MonoBehaviour:
   damage: 1
   rb: {fileID: 3505596204604672475}
   speed: 5
-  lifeTime: 7.5
+  lifeTime: 15
   isHoming: 0
   homingAccuracy: 0
   target: {fileID: 0}
+  moveDir: {x: 0, y: 0, z: 0}
 --- !u!1001 &2351946755758533227
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,6 +142,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3505596204604672423}
     m_Modifications:
+    - target: {fileID: 64256133758241220, guid: 92e28f246530c3246b75444e4fbd1b4c, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1866674195470710853, guid: 92e28f246530c3246b75444e4fbd1b4c, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Cardboard_Rocket_01

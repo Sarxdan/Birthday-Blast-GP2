@@ -78,8 +78,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1067c2d691d2e1f438f72885b95a9c42, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnTime: 5
-  destinationSpawnPoint: {x: 0, y: 0, z: 0}
   bossPhases:
   - name: Phase 1
     phaseDuration: 5
@@ -88,7 +86,6 @@ MonoBehaviour:
     fireRate: 1.5
     projectileSpeed: 20
     tripleProjectile: 0
-    explosiveProjectiles: 0
     homingProjectiles: 1
     homingAccuracy: 0.5
     bossMovement: 0
@@ -101,7 +98,6 @@ MonoBehaviour:
     fireRate: 3
     projectileSpeed: 30
     tripleProjectile: 0
-    explosiveProjectiles: 0
     homingProjectiles: 1
     homingAccuracy: 1.5
     bossMovement: 1
@@ -114,7 +110,6 @@ MonoBehaviour:
     fireRate: 10
     projectileSpeed: 45
     tripleProjectile: 0
-    explosiveProjectiles: 0
     homingProjectiles: 0
     homingAccuracy: 0
     bossMovement: 1
@@ -127,7 +122,6 @@ MonoBehaviour:
     fireRate: 5
     projectileSpeed: 45
     tripleProjectile: 1
-    explosiveProjectiles: 0
     homingProjectiles: 1
     homingAccuracy: 2
     bossMovement: 1
@@ -135,8 +129,11 @@ MonoBehaviour:
     moveAmount: 15
   playerTarget: {fileID: 0}
   projectileSpawnPoint: {fileID: 783143935798147867}
-  projectilePrefab: {fileID: 3505596204604672477, guid: d03c76bd71c45014ca84ecdaf39da9b9, type: 3}
+  projectilePrefab: {fileID: 3505596204604672477, guid: 81c642fd2179c6b41b849100cd7e4f68, type: 3}
   tripleProjectilePrefab: {fileID: 3505596204604672477, guid: 81c642fd2179c6b41b849100cd7e4f68, type: 3}
+  bossCenterPos: {x: 0, y: 0, z: 0}
+  newBossPosition: {x: 0, y: 0, z: 0}
+  distanceFromPlayer: 90
 --- !u!1 &5752432771820540910
 GameObject:
   m_ObjectHideFlags: 0
