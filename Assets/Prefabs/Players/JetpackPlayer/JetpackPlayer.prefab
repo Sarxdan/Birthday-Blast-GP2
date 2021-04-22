@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 5
-  invulnerableTime: 1
+  invulnerableTime: 10
 --- !u!95 &1626824355
 Animator:
   serializedVersion: 3
@@ -236,7 +236,7 @@ Animator:
   m_GameObject: {fileID: 1239568734103234806}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4f363b679b2c7e2429834bfc5c6b9587, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3eef80f8c731e364e87c5350ce80eb82, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1170,6 +1170,10 @@ PrefabInstance:
     - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
       propertyPath: onShootEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 1880519896101445968, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
+      propertyPath: startingAutoMoveSpeed
+      value: 3.86
       objectReference: {fileID: 0}
     - target: {fileID: 3973303884868879694, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
       propertyPath: m_IsActive

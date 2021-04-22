@@ -27,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 69697127}
   m_LocalRotation: {x: 0.22594242, y: -0.022122124, z: 0.005132406, w: 0.97387594}
-  m_LocalPosition: {x: -2.28, y: 31.866999, z: 2.144}
+  m_LocalPosition: {x: 0.5, y: 6.3999996, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 7091049536324791370}
@@ -2247,8 +2247,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7091049535512482920}
-  m_LocalRotation: {x: 0.22594245, y: -0.022122124, z: 0.0051324065, w: 0.97387594}
-  m_LocalPosition: {x: 0.5, y: 6.4, z: -11}
+  m_LocalRotation: {x: 0.22594242, y: -0.022122124, z: 0.005132406, w: 0.97387594}
+  m_LocalPosition: {x: 0.5, y: 6.3999996, z: -11}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 7091049535684989316}
@@ -2284,7 +2284,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7798165, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2554,8 +2554,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2.1
-  m_Radius: 0.6
+  m_Height: 2
+  m_Radius: 0.5
   m_SlopeLimit: 45
   m_StepOffset: 0.15
   m_SkinWidth: 0.08
@@ -2692,6 +2692,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  shootEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  dashEvent:
+    m_PersistentCalls:
+      m_Calls: []
   MobileUIComponents:
   - {fileID: 4974734266895056953}
 --- !u!114 &805797298

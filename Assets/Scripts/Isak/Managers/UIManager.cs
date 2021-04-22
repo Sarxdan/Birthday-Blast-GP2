@@ -8,6 +8,7 @@ public class UIManager : Singleton<UIManager>
     public static Events.GameStateEvent onGamePaused;
     public static Events.DialogueEvent onNPCDialogue;
     public static Events.DamagePlayerEvent onPlayerHealthChange;
+    public static Events.FuelEvent onFuelUse;
     InGameUI inGameUI;
     PauseMenu pauseMenu;
     
@@ -65,15 +66,24 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    private void OnFuelUse(float amount)
+    {
+        if(onFuelUse != null)
+        {
+            onFuelUse(amount);
+        }
+    }
     private void OnEnable() {
         DialogueTrigger.onNPCDialogue += OnNPCDialogue;
         PauseMenu.onResumeClicked += TogglePauseMenu;
         PlayerHealth.onPlayerHealthChange += OnPlayerHealthChange;
+        JetPack.onFuelUse += OnFuelUse;
     }
 
     private void OnDisable() {
         DialogueTrigger.onNPCDialogue -= OnNPCDialogue; 
         PauseMenu.onResumeClicked += TogglePauseMenu;
         PlayerHealth.onPlayerHealthChange -= OnPlayerHealthChange;
-    }
+        JetPack.onFuelUse -= OnFuelUse;
+    }  
 }

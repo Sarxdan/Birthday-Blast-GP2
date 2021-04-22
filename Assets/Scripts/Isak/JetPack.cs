@@ -6,6 +6,8 @@ using UnityEngine.InputSystem;
 public class JetPack : MonoBehaviour
 {   
 
+    public static Events.FuelEvent onFuelUse;
+
     enum DashDirections
     {
         None,  
@@ -44,6 +46,10 @@ public class JetPack : MonoBehaviour
     Pewpew pewpew;
     float autoMoveSpeed;
 
+    bool fuelEmpty = false;
+    bool useFuel = false;
+    float fuel;
+
     public Vector3 movement; //added
 
     [Header("movement settings")]
@@ -68,6 +74,12 @@ public class JetPack : MonoBehaviour
     [SerializeField] bool dashUnlocked = false;
     [SerializeField] bool forwardDashUnlocked = false;
     [SerializeField] bool pewpewUnlocked = false;
+
+    [Header("Fuel settings")]
+    [SerializeField][Tooltip("time until fuel recharges")] float fuelRechargeTime = 1;
+    [SerializeField] float fuelUsageWhenDashing = 1; 
+    [SerializeField][Tooltip("How fast fuel recharges")] float fuelRechargePerTick = 1;
+    [SerializeField] float maxFuel = 100;
        
     //Input values
 
@@ -78,10 +90,18 @@ public class JetPack : MonoBehaviour
 
     void Awake()
     {       
+        fuel = maxFuel;
         autoMoveSpeed = startingAutoMoveSpeed;
         camera = Camera.main;
         body = GetComponentInParent<Rigidbody>();
-        pewpew = GetComponentInChildren<Pewpew>();         
+        pewpew = GetComponentInChildren<Pewpew>();  
+        StartCoroutine(FuelRecharger());       
+    }
+    private void Start() {
+        if(onFuelUse != null)
+        {
+            onFuelUse(fuel);
+        }
     }
 
     void Update() //vad ska hände när man får game over? falla ner en bit? UI uppdateras? 
@@ -99,6 +119,37 @@ public class JetPack : MonoBehaviour
         IncreaseAutoMoveSpeed(moveSpeedIncreasePerFrame);      
     }
 
+    IEnumerator FuelRecharger()
+    {
+        bool recharging = false;
+        while(true)
+        {
+            if(useFuel)
+            {
+                recharging = false;
+                yield return new WaitForSeconds(fuelRechargeTime);
+                recharging = true;
+                useFuel = false;
+            }
+            if(recharging)
+            {
+                yield return new WaitForEndOfFrame();
+                fuel += fuelRechargePerTick * Time.deltaTime;
+                if(fuel >= maxFuel)
+                {
+                    fuel = maxFuel;
+                    recharging = false;
+                    fuelEmpty = false;
+                }
+                if(onFuelUse != null)
+                {
+                    onFuelUse(fuel);
+                }
+            }
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
     void IncreaseAutoMoveSpeed(float amount)
     {
         autoMoveSpeed += amount;
@@ -109,7 +160,8 @@ public class JetPack : MonoBehaviour
     }
 
     void GetDashInput()
-    {       
+    {   
+        if(fuelEmpty) return;
         if(dashOnCooldown) return;
 
         if(Input.GetButtonDown("Horizontal"))
@@ -185,8 +237,24 @@ public class JetPack : MonoBehaviour
         forwardAxisPushed = false;
     }
 
+    void UseFuel(float amount)
+    {
+        fuel -= amount;
+        if(fuel <= 0)
+        {
+            fuel = 0;
+            fuelEmpty = true;
+        }
+        if(onFuelUse != null)
+        {
+            onFuelUse(fuel);
+        }
+    }
+
     IEnumerator DashInDirection(DashDirections directions)
     {
+        UseFuel(fuelUsageWhenDashing);
+        useFuel = true;
         float dashlengthLeft = dashLength;
         //-------------------------------create temporary variables
         Vector3 movement = new Vector3();
