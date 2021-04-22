@@ -53,6 +53,7 @@ public class InGameUI : MonoBehaviour
     void SetupFuelSlider(float maxValue)
     {
         fuelBar.maxValue = maxValue;
+        fuelBar.value = maxValue;
     }
     
     private void OnEnable() {

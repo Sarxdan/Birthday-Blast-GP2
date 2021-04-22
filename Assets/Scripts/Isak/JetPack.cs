@@ -120,17 +120,29 @@ public class JetPack : MonoBehaviour
         IncreaseAutoMoveSpeed(moveSpeedIncreasePerFrame);      
     }
 
-    IEnumerator FuelRecharger()
+    IEnumerator FuelRecharger() //verkar vara en bug att fuel rechargar tidigare per dash? (dash -> vänta en kort tid -> dash -> recharge startar tidigare)
     {
         bool recharging = false;
+        float rechargeTimeLeft = 0;
         while(true)
         {
-            if(useFuel)
+            if(useFuel) //if player just dashed, then reset recharge timer
             {
-                recharging = false;
-                yield return new WaitForSeconds(fuelRechargeTime);
-                recharging = true;
+                print("starting charging counter");
+                rechargeTimeLeft = fuelRechargeTime;
+                yield return new WaitForEndOfFrame();
                 useFuel = false;
+                recharging = false;              
+            }
+            else if(rechargeTimeLeft > 0) //if player did not dash again, then start counting down the recharge time
+            {
+                yield return new WaitForEndOfFrame();
+                rechargeTimeLeft -= Time.deltaTime;  
+                print(rechargeTimeLeft);          
+            }
+            else if(rechargeTimeLeft <= 0)
+            {
+                recharging = true;
             }
             if(recharging)
             {
