@@ -20,7 +20,7 @@ public class PlayerHealth : Health
         }
         StartCoroutine(Invulnerable());
     }
-
+    
     IEnumerator Invulnerable()
     {       
         Animator animator = GetComponent<Animator>();

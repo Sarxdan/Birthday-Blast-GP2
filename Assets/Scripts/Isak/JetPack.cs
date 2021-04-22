@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class JetPack : MonoBehaviour
+public class JetPack : Fuel
 {   
 
-    public static Events.FuelEvent onFuelUse;
-    public static Events.FuelEvent onJetpackAwake;
+    //public static Events.FuelEvent onFuelUse;
+    //public static Events.FuelEvent onJetpackAwake;
 
     enum DashDirections
     {
@@ -47,9 +47,9 @@ public class JetPack : MonoBehaviour
     Pewpew pewpew;
     float autoMoveSpeed;
 
-    bool fuelEmpty = false;
-    bool useFuel = false;
-    float fuel;
+    //bool overCharged = false;
+    //bool useFuel = false;
+    //float fuel;
 
     public Vector3 movement; //added
 
@@ -77,10 +77,10 @@ public class JetPack : MonoBehaviour
     [SerializeField] bool pewpewUnlocked = false;
 
     [Header("Fuel settings")]
-    [SerializeField][Tooltip("time until fuel recharges")] float fuelRechargeTime = 1;
-    [SerializeField] float fuelUsageWhenDashing = 1; 
-    [SerializeField][Tooltip("How fast fuel recharges")] float fuelRechargePerTick = 1;
-    [SerializeField] float maxFuel = 100;
+    //[SerializeField][Tooltip("time until fuel recharges")] float fuelRechargeTime = 1;
+    //[SerializeField] float fuelUsageWhenDashing = 1; 
+    //[SerializeField][Tooltip("How fast fuel recharges")] float fuelRechargePerTick = 1;
+    //[SerializeField] float maxFuel = 100;
        
     //Input values
 
@@ -89,19 +89,21 @@ public class JetPack : MonoBehaviour
 
     #endregion
 
-    void Awake()
+    protected override void Awake()
     {       
-        fuel = maxFuel;
+        base.Awake();
+        //fuel = maxFuel;
         autoMoveSpeed = startingAutoMoveSpeed;
         camera = Camera.main;
         body = GetComponentInParent<Rigidbody>();
         pewpew = GetComponentInChildren<Pewpew>();  
-        StartCoroutine(FuelRecharger());       
+        //StartCoroutine(FuelRecharger());       
     }
-    private void Start() {
-        if(onJetpackAwake != null)
+    protected override void Start() {
+        base.Start();
+        //if(onJetpackAwake != null)
         {
-            onJetpackAwake(maxFuel);
+            //onJetpackAwake(maxFuel);
         }
     }
 
@@ -120,46 +122,46 @@ public class JetPack : MonoBehaviour
         IncreaseAutoMoveSpeed(moveSpeedIncreasePerFrame);      
     }
 
-    IEnumerator FuelRecharger() 
-    {
-        bool recharging = false;
-        float rechargeTimeLeft = 0;
-        while(true)
-        {
-            if(useFuel) //if player just dashed, then reset recharge timer
-            {
-                rechargeTimeLeft = fuelRechargeTime;
-                yield return new WaitForEndOfFrame();
-                useFuel = false;
-                recharging = false;              
-            }
-            else if(rechargeTimeLeft > 0) //if player did not dash again, then start counting down the recharge time
-            {
-                yield return new WaitForEndOfFrame();
-                rechargeTimeLeft -= Time.deltaTime;          
-            }
-            else if(rechargeTimeLeft <= 0)
-            {
-                recharging = true;
-            }
-            if(recharging)
-            {
-                yield return new WaitForEndOfFrame();
-                fuel += fuelRechargePerTick * Time.deltaTime;
-                if(fuel >= maxFuel)
-                {
-                    fuel = maxFuel;
-                    recharging = false;
-                    fuelEmpty = false;
-                }
-                if(onFuelUse != null)
-                {
-                    onFuelUse(fuel);
-                }
-            }
-            yield return new WaitForEndOfFrame();
-        }
-    }
+    //IEnumerator FuelRecharger() 
+    //{
+        //bool recharging = false;
+        //float rechargeTimeLeft = 0;
+        //while(true)
+       // {
+           // if(useFuel) //if player just dashed, then reset recharge timer
+            //{
+               // rechargeTimeLeft = fuelRechargeTime;
+                //yield return new WaitForEndOfFrame();
+               // useFuel = false;
+              //  recharging = false;              
+           // }
+            //else if(rechargeTimeLeft > 0) //if player did not dash again, then start counting down the recharge time
+           // {
+           //     yield return new WaitForEndOfFrame();
+           //     rechargeTimeLeft -= Time.deltaTime;          
+          //  }
+            //else if(rechargeTimeLeft <= 0)
+           // {
+            //    recharging = true;
+           // }
+           // if(recharging)
+           // {
+               // yield return new WaitForEndOfFrame();
+               // fuel += fuelRechargePerTick * Time.deltaTime;
+               // if(fuel >= maxFuel)
+               // {
+                //    fuel = maxFuel;
+                //    recharging = false;
+                //    overCharged = false;
+               // }
+               // if(onFuelUse != null)
+               // {
+                //    onFuelUse(fuel);
+               // }
+           // }
+           // yield return new WaitForEndOfFrame();
+        //}
+    //}
 
     void IncreaseAutoMoveSpeed(float amount)
     {
@@ -172,7 +174,7 @@ public class JetPack : MonoBehaviour
 
     void GetDashInput()
     {   
-        if(fuelEmpty) return;
+        if(overCharged) return;
         if(dashOnCooldown) return;
 
         if(Input.GetButtonDown("Horizontal"))
@@ -248,23 +250,24 @@ public class JetPack : MonoBehaviour
         forwardAxisPushed = false;
     }
 
-    void UseFuel(float amount)
-    {
-        fuel -= amount;
-        if(fuel <= 0)
-        {
-            fuel = 0;
-            fuelEmpty = true;
-        }
-        if(onFuelUse != null)
-        {
-            onFuelUse(fuel);
-        }
-    }
+    //void UseFuel(float amount)
+    //{
+        //fuel -= amount;
+        //if(fuel <= 0)
+        //{
+            //fuel = 0;
+            //overCharged = true;
+        //}
+        //if(onFuelUse != null)
+        //{
+            //onFuelUse(fuel);
+        //}
+    //}
+
 
     IEnumerator DashInDirection(DashDirections directions)
     {
-        UseFuel(fuelUsageWhenDashing);
+        UseFuel(fuelUsage);
         useFuel = true;
         float dashlengthLeft = dashLength;
         //-------------------------------create temporary variables

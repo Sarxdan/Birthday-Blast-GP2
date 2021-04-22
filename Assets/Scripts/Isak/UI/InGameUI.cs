@@ -16,20 +16,6 @@ public class InGameUI : MonoBehaviour
     {
         ClearScreen();
     }
-    private void Update() { //remove later??
-    Level level = FindObjectOfType<Level>();
-    if(level == null) return;
-        switch(level.levelType) 
-        {
-            case LevelType.Island: 
-            fuelBar.gameObject.SetActive(false);
-            break;
-
-            case LevelType.Jetpack:
-            fuelBar.gameObject.SetActive(true);
-            break;
-        }
-    }
 
     private void ClearScreen()
     {

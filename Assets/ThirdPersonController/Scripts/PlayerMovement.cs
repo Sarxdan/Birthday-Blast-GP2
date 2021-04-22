@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
     //Components
     private CharacterController controller;
     private CameraController camController;
@@ -26,7 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
 
     //velocity used to simulate gravity.
-    private Vector3 velocity;
+    public Vector3 velocity;
     //Forward direction relative to the camera.
     private Vector3 forwardLookDir;
     
@@ -57,11 +58,13 @@ public class PlayerMovement : MonoBehaviour
         isGrounded = Physics.CheckSphere(groundCheckPosition.position, groundDistanceCheck, groundMask);
         
         //Reset velocity if grounded
+
         if (isGrounded && velocity.y < 0)
-            velocity.y = 0f;
+        velocity.y = 0f;
         
         
         velocity.y += gravity * Time.deltaTime;
+        
 
         //Get the forward direction from the camera
         forwardLookDir = camController.forwardLookDir;
