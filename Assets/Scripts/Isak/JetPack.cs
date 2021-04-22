@@ -7,6 +7,7 @@ public class JetPack : MonoBehaviour
 {   
 
     public static Events.FuelEvent onFuelUse;
+    public static Events.FuelEvent onJetpackAwake;
 
     enum DashDirections
     {
@@ -98,9 +99,9 @@ public class JetPack : MonoBehaviour
         StartCoroutine(FuelRecharger());       
     }
     private void Start() {
-        if(onFuelUse != null)
+        if(onJetpackAwake != null)
         {
-            onFuelUse(fuel);
+            onJetpackAwake(maxFuel);
         }
     }
 

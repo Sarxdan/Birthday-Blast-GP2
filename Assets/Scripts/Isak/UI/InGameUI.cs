@@ -9,7 +9,7 @@ public class InGameUI : MonoBehaviour
     [SerializeField] Text health;
     [SerializeField] Text npcText;
     [SerializeField] Text npcName;
-    [SerializeField] Text fuelText;
+    [SerializeField] Slider fuelBar;
     [SerializeField] float textExistTimer = 1;
     // Start is called before the first frame update
     private void Awake()
@@ -22,7 +22,7 @@ public class InGameUI : MonoBehaviour
         npcName.text = string.Empty;
         npcText.text = string.Empty;
         health.text = string.Empty;
-        fuelText.text = string.Empty;
+        //fuelBar.text = string.Empty;
     }
 
     void PrintNPCText(string dialogue, string name)
@@ -47,18 +47,25 @@ public class InGameUI : MonoBehaviour
     // Update is called once per frame
     void UpdateFuelText(float amount)
     {
-        fuelText.text = amount.ToString();
+        fuelBar.value = amount;
+    }
+
+    void SetupFuelSlider(float maxValue)
+    {
+        fuelBar.maxValue = maxValue;
     }
     
     private void OnEnable() {
         UIManager.onNPCDialogue += PrintNPCText;
         UIManager.onPlayerHealthChange += UpdateHealthText;
         UIManager.onFuelUse += UpdateFuelText;
+        UIManager.onJetpackAwake += SetupFuelSlider;
     }
 
     private void OnDisable() {
         UIManager.onNPCDialogue -= PrintNPCText;
         UIManager.onPlayerHealthChange -= UpdateHealthText;
         UIManager.onFuelUse -= UpdateFuelText;
+        UIManager.onJetpackAwake -= SetupFuelSlider;
     }
 }
