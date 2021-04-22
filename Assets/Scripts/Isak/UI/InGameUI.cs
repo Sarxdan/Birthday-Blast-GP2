@@ -55,12 +55,29 @@ public class InGameUI : MonoBehaviour
         fuelBar.maxValue = maxValue;
         fuelBar.value = maxValue;
     }
+
+    void OnSceneLoaded() //fix later so it wont speak with gamemanager directly
+    {
+        switch(Gamemanager.instance.CurrentPlayerState)
+        {
+            case Gamemanager.PlayerStates.OnJetpack:
+            print("jetpack");
+            fuelBar.enabled = true;
+            break;
+
+            case Gamemanager.PlayerStates.Onland:
+            print("onland");
+            fuelBar.enabled = false;
+            break;
+        }
+    }
     
     private void OnEnable() {
         UIManager.onNPCDialogue += PrintNPCText;
         UIManager.onPlayerHealthChange += UpdateHealthText;
         UIManager.onFuelUse += UpdateFuelText;
         UIManager.onJetpackAwake += SetupFuelSlider;
+        UIManager.onSceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable() {
@@ -68,5 +85,6 @@ public class InGameUI : MonoBehaviour
         UIManager.onPlayerHealthChange -= UpdateHealthText;
         UIManager.onFuelUse -= UpdateFuelText;
         UIManager.onJetpackAwake -= SetupFuelSlider;
+        UIManager.onSceneLoaded -= OnSceneLoaded;
     }
 }

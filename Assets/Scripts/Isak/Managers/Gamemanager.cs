@@ -18,6 +18,10 @@ public class Gamemanager : Singleton<Gamemanager>
         OnJetpack,
         Onland
     }
+    public PlayerStates CurrentPlayerState
+    {
+        get{return currentPlayerState;}
+    }
     public KeyItems.Items unlockedItems;
     [SerializeField] bool DebugMode = false;
     GameState currentGameState = GameState.Pregame;
