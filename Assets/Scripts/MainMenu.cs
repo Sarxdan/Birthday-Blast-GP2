@@ -5,13 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public string FirstGameScene = "IslandScene";
+    public string FirstGameScene = "S_GameScene";
     public string MenuScene = "Menu";
     public string CreditsScene = "Credits";
     
    public void PlayGame () 
     {
-        SceneManager.LoadScene("IslandScene");
+        PlayerPrefs.DeleteAll();
+        SceneManager.LoadScene(FirstGameScene);
     }
 
 
