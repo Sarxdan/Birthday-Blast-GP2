@@ -10024,21 +10024,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc05bf6fd5ceca489d426e0069c79d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  movement: {x: 0, y: 0, z: 0}
+  moveSpeed: 6
   flightBoost: 0.6
   startingAutoMoveSpeed: 1
-  autoMoveSpeedIncreaseOverTime: 0.1
-  maxAutoMoveSpeed: 5
+  autoMoveSpeedIncreaseOverTime: 0.2
+  maxAutoMoveSpeed: 6
   cameraRotation: {x: 0, y: 0, z: 0}
   cameraOffsetFromPlayer: {x: 0, y: 1.76, z: -5.76}
-  dashSpeed: 50
-  dashLength: 0.2
-  dashCooldown: 1
+  dashSpeed: 35
+  dashLength: 0.1
+  dashCooldown: 2
   forwardDashSpeed: 10
-  doubleTapTimer: 1
+  doubleTapTimer: 2
   dashUnlocked: 1
   forwardDashUnlocked: 1
   pewpewUnlocked: 1
+  fuelRechargeTime: 0.5
+  fuelUsageWhenDashing: 1
+  fuelRechargePerTick: 1
+  maxFuel: 100
 --- !u!95 &1584787612423215384
 Animator:
   serializedVersion: 3
@@ -10100,21 +10105,9 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onActionEvent:
+  onShootEvent:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1880519896101445968}
-        m_TargetAssemblyTypeName: JetPack, Assembly-CSharp
-        m_MethodName: OnActionInput
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   MobileUIComponents:
   - {fileID: 0}
 --- !u!1 &8980656405874189896
