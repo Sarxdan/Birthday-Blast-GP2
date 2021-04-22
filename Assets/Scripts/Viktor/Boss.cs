@@ -107,12 +107,21 @@ public class Boss : MonoBehaviour
         #region Spawn Projectile(s)
 
         var newProjectile = Instantiate(prefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
-        var projectileScripts = newProjectile.GetComponentsInChildren<Projectile>();
+        var projectileScript = newProjectile.GetComponent<Projectile>();
 
         #endregion
 
         #region Populate Projectile Variables/Fields
+
+        projectileScript.speed = bossPhases[currentSphase].projectileSpeed;
+        projectileScript.moveDirection = (playerTarget.position - projectileSpawnPoint.position).normalized;
         
+        projectileScript.isHoming = bossPhases[currentSphase].homingProjectiles;
+        projectileScript.homingAccuracy = bossPhases[currentSphase].homingAccuracy;
+
+        projectileScript.target = playerTarget;
+        /*
+        Old code
         foreach (var projectileScript in projectileScripts)
         {
             //Set speed of projectile
@@ -131,14 +140,9 @@ public class Boss : MonoBehaviour
             //Set homing variables
             projectileScript.isHoming = bossPhases[currentSphase].homingProjectiles;
             projectileScript.homingAccuracy = bossPhases[currentSphase].homingAccuracy;
-            
-            //Projectile origin SpawnPoint
-            projectileScript.origin = projectileSpawnPoint.position;
-            
-            //Max range traveled allowed
-            projectileScript.maxRangeAllowed =
-                Vector3.Distance(projectileSpawnPoint.position, playerTarget.position);
         }
+        
+        */
 
         #endregion
     }
