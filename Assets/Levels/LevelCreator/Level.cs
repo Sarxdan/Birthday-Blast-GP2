@@ -8,3 +8,9 @@ public class Level : MonoBehaviour
     public int levelID = 0;
     public LevelType levelType = LevelType.Island;
 }
+
+public enum LevelType
+{
+    Island,
+    Jetpack
+}

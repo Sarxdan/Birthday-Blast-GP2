@@ -6,11 +6,6 @@ using UnityEngine;
 using UnityEditor;
 
 
-public enum LevelType
-{
-    Island,
-    Jetpack
-}
 
 public class LevelCreator : EditorWindow
 {
