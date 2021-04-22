@@ -1135,98 +1135,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1030249543011719717, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
       propertyPath: MobileUIComponents.Array.data[0]
       value: 
       objectReference: {fileID: 3878241437249178344}
-    - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: onShootEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: onShootEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: onShootEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 5931061931656681321}
-    - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: onShootEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: onShootEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: OnShootInput
-      objectReference: {fileID: 0}
-    - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: onShootEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: Pewpew, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: onShootEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 1880519896101445968, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: maxFuel
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1880519896101445968, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: dashSpeed
-      value: 13
-      objectReference: {fileID: 0}
-    - target: {fileID: 1880519896101445968, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: dashLength
-      value: 0.4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1880519896101445968, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: fuelRechargeTime
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1880519896101445968, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: fuelRechargePerTick
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1880519896101445968, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: startingAutoMoveSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1880519896101445968, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: autoMoveSpeedIncreaseOverTime
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3973303884868879694, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8813712086394248350, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
       propertyPath: m_Name
       value: Jetpack
       objectReference: {fileID: 0}
-    - target: {fileID: 8980656405874189896, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 1584787612423215384, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
 --- !u!4 &7374771023278387341 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 862964480281502981, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
   m_PrefabInstance: {fileID: 7899787306325726600}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5931061931656681321 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4606887562241524449, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-  m_PrefabInstance: {fileID: 7899787306325726600}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0addc19d8ae94dc4d8f7c560972ef36f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
