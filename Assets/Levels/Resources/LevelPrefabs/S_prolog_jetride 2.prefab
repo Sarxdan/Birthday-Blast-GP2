@@ -16,6 +16,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &6883899622041331344
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 990069535596035142}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1.71
+  m_Height: 5.2529955
+  m_Direction: 1
+  m_Center: {x: -0.19, y: 1.69, z: -0.58}
 --- !u!114 &1123800645861143942
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32,20 +46,6 @@ MonoBehaviour:
   canBeDestroyedByPlayer: 0
   movementDirection: {x: 0, y: 0, z: 0}
   returnTime: 1
---- !u!136 &6883899622041331344
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 990069535596035142}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1.71
-  m_Height: 5.2529955
-  m_Direction: 1
-  m_Center: {x: -0.19, y: 1.69, z: -0.58}
 --- !u!1 &1442038970213189982
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +182,34 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!136 &5439802667300424130
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2867161768611134785}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.16
+  m_Height: 0.2811378
+  m_Direction: 1
+  m_Center: {x: 0.35, y: 0.03, z: -0.46}
+--- !u!136 &6739664467832961872
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2867161768611134785}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.23
+  m_Height: 0.2811378
+  m_Direction: 1
+  m_Center: {x: 0.25, y: 0.03, z: 0.12}
 --- !u!114 &1627249665181535235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,34 +226,6 @@ MonoBehaviour:
   canBeDestroyedByPlayer: 0
   movementDirection: {x: 0, y: 0, z: 0}
   returnTime: 1
---- !u!136 &6739664467832961872
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2867161768611134785}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.23
-  m_Height: 0.2811378
-  m_Direction: 1
-  m_Center: {x: 0.25, y: 0.03, z: 0.12}
---- !u!136 &5439802667300424130
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2867161768611134785}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.16
-  m_Height: 0.2811378
-  m_Direction: 1
-  m_Center: {x: 0.35, y: 0.03, z: -0.46}
 --- !u!1 &3060021141693892380
 GameObject:
   m_ObjectHideFlags: 0
@@ -4785,7 +4785,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4608804988055076, guid: 9d8bbbb9bf9f20a4ea09ffc827b92239, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.66
+      value: -4.07
       objectReference: {fileID: 0}
     - target: {fileID: 4608804988055076, guid: 9d8bbbb9bf9f20a4ea09ffc827b92239, type: 3}
       propertyPath: m_LocalPosition.z
