@@ -26,7 +26,7 @@ public class CheckpointManager : Singleton<CheckpointManager>
 
     void MovePlayerToCheckpoint()
     {
-        if(player != null)
+        if(player != null && thirdPersonController != null)
         {
             thirdPersonController.disablePlayerMovement = true;
             StartCoroutine(EnablePlayerAfterSeconds());        
