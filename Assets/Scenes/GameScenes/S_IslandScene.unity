@@ -358,6 +358,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 631392288, guid: 8555004cda0a2ef408016904f1363128, type: 3}
+      propertyPath: requiredItems.shovel
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 183532784997084949, guid: 8555004cda0a2ef408016904f1363128, type: 3}
       propertyPath: m_RootOrder
       value: 20
@@ -462,6 +466,10 @@ PrefabInstance:
     - target: {fileID: 552187764414852946, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
       propertyPath: m_Name
       value: DigNode_Hard_rubble
+      objectReference: {fileID: 0}
+    - target: {fileID: 1680339750458866513, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
+      propertyPath: requiredItems.shovel
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7d73da38de73ffc4cb4dfaab5445859d, type: 3}
@@ -913,6 +921,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2086786793065088556, guid: f815c2f2842967345928dd004146400e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2086786793065088556, guid: f815c2f2842967345928dd004146400e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2483040923366406288, guid: f815c2f2842967345928dd004146400e, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -964,6 +980,18 @@ PrefabInstance:
     - target: {fileID: 4171821454875243655, guid: f815c2f2842967345928dd004146400e, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859981961509987082, guid: f815c2f2842967345928dd004146400e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859981961509987082, guid: f815c2f2842967345928dd004146400e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859981961509987082, guid: f815c2f2842967345928dd004146400e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f815c2f2842967345928dd004146400e, type: 3}
@@ -1388,6 +1416,10 @@ PrefabInstance:
     - target: {fileID: 267640336892661344, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
       propertyPath: m_Name
       value: DigNode_Medium_StickCross
+      objectReference: {fileID: 0}
+    - target: {fileID: 1399744207593054482, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
+      propertyPath: requiredItems.shovel
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
@@ -1941,6 +1973,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 69697130, guid: dfdac6e7bf72e3446abf2a9b6204843c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 69697130, guid: dfdac6e7bf72e3446abf2a9b6204843c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.3999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 69697130, guid: dfdac6e7bf72e3446abf2a9b6204843c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091049535512482922, guid: dfdac6e7bf72e3446abf2a9b6204843c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.3999996
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091049535512482922, guid: dfdac6e7bf72e3446abf2a9b6204843c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.22594242
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091049535512482922, guid: dfdac6e7bf72e3446abf2a9b6204843c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.005132406
+      objectReference: {fileID: 0}
     - target: {fileID: 7091049536324791369, guid: dfdac6e7bf72e3446abf2a9b6204843c, type: 3}
       propertyPath: m_Name
       value: ThirdPersonPlayerController
@@ -2285,6 +2341,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6576657f0ac73bf42a7e36edcd2bf546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  itemUnlocked:
+    jetpack: 0
+    pewpew: 0
+    shovel: 1
 --- !u!4 &1667745240
 Transform:
   m_ObjectHideFlags: 0

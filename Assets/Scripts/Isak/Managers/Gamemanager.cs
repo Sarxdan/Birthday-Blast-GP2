@@ -13,47 +13,16 @@ public class Gamemanager : Singleton<Gamemanager>
         Playing,
         Paused
     }
-    public enum PlayerStates
+    public KeyItems.Items UnlockedItems
     {
-        OnJetpack,
-        Onland
+        get{return unlockedItems;}
     }
-    public PlayerStates CurrentPlayerState
-    {
-        get{return currentPlayerState;}
-    }
-    public KeyItems.Items unlockedItems;
-    [SerializeField] bool DebugMode = false;
+    [SerializeField] KeyItems.Items unlockedItems;
     GameState currentGameState = GameState.Pregame;
-    [SerializeField]PlayerStates currentPlayerState = PlayerStates.OnJetpack;
-    void LoadLevel(string levelName)
-    {
-        
-        SceneManager.LoadScene(levelName);
-        
-        
-        /*  Old code
-        if(DebugMode)
-        {
-            SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Single);
-        }
-        else
-        {
-            SceneManager.LoadSceneAsync(levelName, LoadSceneMode.Additive);
-        }        
-        */
-    }
 
-    void UpdatePlayerState(PlayerStates newState) // send events to ui so correct ui for flight/land is used
-    {
-        currentPlayerState = newState;
-        switch(currentPlayerState)
-        {
-            case PlayerStates.OnJetpack:
-            break;
-            case PlayerStates.Onland:
-            break;
-        }
+    void LoadLevel(int levelIndex)
+    {       
+        SceneManager.LoadScene(levelIndex);
     }
 
     void UpdateGameState(GameState newState)
@@ -80,45 +49,47 @@ public class Gamemanager : Singleton<Gamemanager>
 
     IEnumerator PlayerDeath()
     {
-        switch(currentPlayerState)
-        {
-            case PlayerStates.OnJetpack:
-            yield return new WaitForSeconds(3);
-            break;
-            case PlayerStates.Onland:
-            yield return new WaitForEndOfFrame();
-            break;
-        }
-        
-        LoadLevel(SceneManager.GetActiveScene().name);
-    }
-
-    void OnTransition(string level, PlayerStates newState)
-    {
-        UpdatePlayerState(newState);
-        LoadLevel(level);
+        yield return new WaitForEndOfFrame();
+        LoadLevel(SceneManager.GetActiveScene().buildIndex);
     }
 
     private void SceneLoaded(Scene scene, LoadSceneMode mode)
-    {
+    {      
         if(onSceneLoaded != null)
         {
             onSceneLoaded();
         }
     }
 
+    void OnKeyItemPickUp(KeyItems.Items item)
+    {
+        if(item.jetpack) 
+        {       
+            unlockedItems.jetpack = true;
+        }
+        if(item.pewpew) 
+        {       
+            unlockedItems.pewpew = true;
+        }
+        if(item.shovel) 
+        {       
+            unlockedItems.shovel = true;
+        }
+        
+    }
+
     private void OnEnable() {
-        Transition.onTransition += OnTransition;
         UIManager.onGamePaused += UpdateGameState;
         PlayerHealth.onPlayerDeath += OnPlayerDeath;
         SceneManager.sceneLoaded += SceneLoaded;
+        Shovel.onShovelPickup += OnKeyItemPickUp;
     }
    
     protected override void OnDestroy() {
         base.OnDestroy();
-        Transition.onTransition -= OnTransition;
         UIManager.onGamePaused -= UpdateGameState;
         PlayerHealth.onPlayerDeath -= OnPlayerDeath;
         SceneManager.sceneLoaded -= SceneLoaded;
+        Shovel.onShovelPickup -= OnKeyItemPickUp;
     }
 }

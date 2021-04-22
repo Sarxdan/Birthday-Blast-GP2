@@ -16,13 +16,26 @@ public class InGameUI : MonoBehaviour
     {
         ClearScreen();
     }
+    private void Update() { //remove later??
+    Level level = FindObjectOfType<Level>();
+    if(level == null) return;
+        switch(level.levelType) 
+        {
+            case LevelType.Island: 
+            fuelBar.gameObject.SetActive(false);
+            break;
+
+            case LevelType.Jetpack:
+            fuelBar.gameObject.SetActive(true);
+            break;
+        }
+    }
 
     private void ClearScreen()
     {
         npcName.text = string.Empty;
         npcText.text = string.Empty;
         health.text = string.Empty;
-        //fuelBar.text = string.Empty;
     }
 
     void PrintNPCText(string dialogue, string name)
@@ -55,29 +68,11 @@ public class InGameUI : MonoBehaviour
         fuelBar.maxValue = maxValue;
         fuelBar.value = maxValue;
     }
-
-    void OnSceneLoaded() //fix later so it wont speak with gamemanager directly
-    {
-        switch(Gamemanager.instance.CurrentPlayerState)
-        {
-            case Gamemanager.PlayerStates.OnJetpack:
-            print("jetpack");
-            fuelBar.enabled = true;
-            break;
-
-            case Gamemanager.PlayerStates.Onland:
-            print("onland");
-            fuelBar.enabled = false;
-            break;
-        }
-    }
-    
     private void OnEnable() {
         UIManager.onNPCDialogue += PrintNPCText;
         UIManager.onPlayerHealthChange += UpdateHealthText;
         UIManager.onFuelUse += UpdateFuelText;
         UIManager.onJetpackAwake += SetupFuelSlider;
-        UIManager.onSceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable() {
@@ -85,6 +80,5 @@ public class InGameUI : MonoBehaviour
         UIManager.onPlayerHealthChange -= UpdateHealthText;
         UIManager.onFuelUse -= UpdateFuelText;
         UIManager.onJetpackAwake -= SetupFuelSlider;
-        UIManager.onSceneLoaded -= OnSceneLoaded;
     }
 }

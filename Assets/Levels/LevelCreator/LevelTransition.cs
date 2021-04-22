@@ -7,6 +7,7 @@ using UnityEngine.Serialization;
 
 public class LevelTransition : MonoBehaviour
 {
+    public static Events.TransitionEvent onLevelTransit;
     [Header("Insert LVL ID of the level you want to transition TO")]
     public int nextLevel;
 
@@ -14,7 +15,11 @@ public class LevelTransition : MonoBehaviour
     {
         PlayerPrefs.SetInt("TransitionLevelID",nextLevel);
         var scene = SceneManager.GetActiveScene();
-        SceneManager.LoadScene(scene.buildIndex);
+        if(onLevelTransit != null)
+        {
+            onLevelTransit(scene.buildIndex);
+        }
+        //SceneManager.LoadScene(scene.buildIndex);
     }
 
     private void OnTriggerEnter(Collider other)

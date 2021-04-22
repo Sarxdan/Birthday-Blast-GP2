@@ -4,9 +4,14 @@ using UnityEngine;
 
 public class Shovel : MonoBehaviour
 {
+    public static Events.UnlockKeyItemEvent onShovelPickup;
+    [SerializeField] KeyItems.Items itemUnlocked;
     public void UnlockShovel()
     {
-        Gamemanager.instance.unlockedItems.shovel = true;
+        if(onShovelPickup != null)
+        {
+            onShovelPickup(itemUnlocked);
+        }
         Destroy(gameObject);
     }
 }

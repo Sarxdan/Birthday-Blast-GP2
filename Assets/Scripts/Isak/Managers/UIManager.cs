@@ -10,7 +10,6 @@ public class UIManager : Singleton<UIManager>
     public static Events.DamagePlayerEvent onPlayerHealthChange;
     public static Events.FuelEvent onFuelUse;
     public static Events.FuelEvent onJetpackAwake;
-    public static Events.EmptyEvent onSceneLoaded;
     InGameUI inGameUI;
     PauseMenu pauseMenu;
     
@@ -76,14 +75,6 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    void OnSceneLoaded()
-    {
-        if(onSceneLoaded != null)
-        {
-            onSceneLoaded();
-        }
-    }
-
     private void OnJetpackAwake(float amount)
     {
         if(onJetpackAwake != null)
@@ -98,7 +89,6 @@ public class UIManager : Singleton<UIManager>
         PlayerHealth.onPlayerHealthChange += OnPlayerHealthChange;
         JetPack.onFuelUse += OnFuelUse;
         JetPack.onJetpackAwake += OnJetpackAwake;
-        Gamemanager.onSceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable() {
@@ -107,6 +97,5 @@ public class UIManager : Singleton<UIManager>
         PlayerHealth.onPlayerHealthChange -= OnPlayerHealthChange;
         JetPack.onFuelUse -= OnFuelUse;
         JetPack.onJetpackAwake -= OnJetpackAwake;
-        Gamemanager.onSceneLoaded -= OnSceneLoaded;
     }  
 }
