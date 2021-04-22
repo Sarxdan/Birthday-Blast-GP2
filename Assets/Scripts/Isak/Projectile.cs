@@ -8,67 +8,52 @@ public class Projectile : MonoBehaviour
 
     public static Events.DamagePlayerEvent onPlayerHit;
 
-    [SerializeField] private int damage = 1;
+    public int damage;
+    public float speed;
     public Rigidbody rb;
-    
-    [HideInInspector] public float speed; 
-    public float lifeTime = 7.5f;
-    [HideInInspector] public float maxRangeAllowed;
-    [HideInInspector] public Vector3 origin;
-
-    [HideInInspector] public bool isHoming;
-    [HideInInspector] public float homingAccuracy;
-    
+    [HideInInspector] public Vector3 moveDirection;
     [HideInInspector] public Transform target;
-    [HideInInspector] public Vector3 moveDir;
+
+
+    public bool isHoming;
+    public float homingAccuracy;
 
 
     private void Start()
     {
-        Destroy(gameObject,lifeTime);
+        Destroy(gameObject,12.5f);
     }
+
+    private void Update()
+    {
+        
+        
+        if (isHoming)
+        {
+            moveDirection = Vector3.Lerp(transform.position, target.position, Time.fixedDeltaTime * homingAccuracy);
+            var rotation = Quaternion.LookRotation(moveDirection, Vector3.forward);
+            transform.rotation = rotation;
+        }
+
+        rb.MovePosition(transform.position + (moveDirection * (speed * Time.fixedDeltaTime)));
+    }
+
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("Projectile hit Player");
             ProjectileHit();
         }
 
         if (!other.CompareTag("Projectile"))
         {
+            Debug.Log("Projectile hit something");
             Destroy(gameObject);
         }
     }
-    
 
-    private void FixedUpdate()
-    {
-        if (Vector3.Distance(origin, transform.position) > maxRangeAllowed)
-        {
-            Destroy(gameObject);
-        }
-
-        var finalMoveDirection = moveDir;
-        
-        if (isHoming)
-        {
-            if (Vector3.Distance(target.position, transform.position) > 2) //Only allow auto aim to happen when the projectile is some distance away
-            {
-                var projectileForwardDir = transform.forward;
-                var directionToTarget = (target.position - transform.position).normalized;
-
-                finalMoveDirection =
-                    Vector3.Lerp(projectileForwardDir, directionToTarget, Time.deltaTime * homingAccuracy);
-
-                transform.rotation = Quaternion.LookRotation(finalMoveDirection, Vector3.forward);
-            }
-
-        }
-        
-        var newPos = transform.position + (finalMoveDirection * (speed * Time.fixedDeltaTime));
-        rb.MovePosition(newPos);
-    }
 
     private void ProjectileHit()
     {

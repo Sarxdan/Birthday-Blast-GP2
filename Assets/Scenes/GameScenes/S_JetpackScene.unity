@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -12291,7 +12291,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1225011912922166208, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1239568734103234802, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
       propertyPath: m_RootOrder
@@ -12371,11 +12371,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1412294382032590331, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1725220336103311638, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5015735416341488657, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
       propertyPath: m_IsActive
@@ -12383,11 +12383,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6522809196665458886, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7200552337840508845, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7646859201864935312, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
       propertyPath: m_IsActive
@@ -12396,6 +12396,18 @@ PrefabInstance:
     - target: {fileID: 8627028070919910616, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627028070919910616, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: maxAutoMoveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627028070919910616, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: startingAutoMoveSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627028070919910616, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: autoMoveSpeedIncreaseOverTime
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8673903593193180304, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
@@ -32960,8 +32972,8 @@ GameObject:
   - component: {fileID: 2070747640}
   - component: {fileID: 2070747639}
   - component: {fileID: 2070747638}
-  - component: {fileID: 2070747637}
   - component: {fileID: 2070747636}
+  - component: {fileID: 2070747637}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
