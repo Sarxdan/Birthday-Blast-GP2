@@ -11638,6 +11638,34 @@ PrefabInstance:
       propertyPath: nextLevel
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7784056178707813390, guid: 98efee7703848e144a9b9eabafb7e5d8, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7784056178707813390, guid: 98efee7703848e144a9b9eabafb7e5d8, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7784056178707813390, guid: 98efee7703848e144a9b9eabafb7e5d8, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1792744159568830264}
+    - target: {fileID: 7784056178707813390, guid: 98efee7703848e144a9b9eabafb7e5d8, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7784056178707813390, guid: 98efee7703848e144a9b9eabafb7e5d8, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: LoadScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 7784056178707813390, guid: 98efee7703848e144a9b9eabafb7e5d8, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: LevelTransition, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 7784056178707813390, guid: 98efee7703848e144a9b9eabafb7e5d8, type: 3}
+      propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8834021171675632429, guid: 98efee7703848e144a9b9eabafb7e5d8, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -11705,6 +11733,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8834021171675632429, guid: 98efee7703848e144a9b9eabafb7e5d8, type: 3}
   m_PrefabInstance: {fileID: 5562039993240807415}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1792744159568830264 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6183810312112961743, guid: 98efee7703848e144a9b9eabafb7e5d8, type: 3}
+  m_PrefabInstance: {fileID: 5562039993240807415}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 413135f9d7e5dc24aaa95356eb81339f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5570022881794947593
 PrefabInstance:
   m_ObjectHideFlags: 0

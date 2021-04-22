@@ -106,14 +106,18 @@ public class PlayerInputManager : MonoBehaviour
         
         controls.GroundMovement.CameraRotate.performed -= OnCameraRotate;
         controls.GroundMovement.CameraRotate.canceled -= OnCameraRotate;
-        
-        
+
+        controls.GroundMovement.Interact.performed -= OnInteract;
+        controls.GroundMovement.Shoot.started -= OnShoot;
+        controls.GroundMovement.Dash.performed -= OnDash;
+
     }
 
     #region MovementMethods
 
     private void OnJump(InputAction.CallbackContext context)
     {
+        Debug.Log("Jump");
         if (context.started)
         {
             jumpInputEvent?.Invoke();
@@ -150,6 +154,8 @@ public class PlayerInputManager : MonoBehaviour
     
     private void OnInteract(InputAction.CallbackContext context)
     {
+        Debug.Log("Interact");
+        
         if (context.performed)
         {
             interactEvent?.Invoke();

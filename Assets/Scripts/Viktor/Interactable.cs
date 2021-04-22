@@ -23,12 +23,8 @@ public class Interactable : MonoBehaviour
 
     public void TryToInteract(PlayerInteraction player)
     {
-        var distanceFromPlayer = Vector3.Distance(transform.position, player.transform.position);
-        
-        if (distanceFromPlayer <= interactRadius && timeSinceLastInteraction >= minimumTimeBetweenInteractions)
-        {
-            Interact();
-        }
+        Debug.Log("Tried to interact");
+        Interact();
     }
 
     private void Update()
@@ -38,6 +34,7 @@ public class Interactable : MonoBehaviour
 
     private void Interact()
     {
+        Debug.Log("Interact");
         timeSinceLastInteraction = 0;
         OnInteractEvent?.Invoke();
     }
@@ -53,10 +50,10 @@ public class Interactable : MonoBehaviour
     //added functions
 
     public bool CheckRequiredItems() // this will look like shit, improve over iterations
-    {   
+    {
+
         bool meetsReqiurements = true;
         
-
         if(requiredItems.jetpack != Gamemanager.instance.UnlockedItems.jetpack) 
         {       
             meetsReqiurements = false;

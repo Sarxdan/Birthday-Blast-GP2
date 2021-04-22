@@ -15,11 +15,13 @@ public class LevelTransition : MonoBehaviour
     {
         PlayerPrefs.SetInt("TransitionLevelID",nextLevel);
         var scene = SceneManager.GetActiveScene();
+        /*
         if(onLevelTransit != null)
         {
             onLevelTransit(scene.buildIndex);
         }
-        //SceneManager.LoadScene(scene.buildIndex);
+        */
+        SceneManager.LoadScene(scene.buildIndex);
     }
 
     private void OnTriggerEnter(Collider other)
