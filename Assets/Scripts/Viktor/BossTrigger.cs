@@ -23,9 +23,9 @@ public class BossTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag("Player") || bossTriggered != false) return;
-        
-        SpawnBoss();
+        if (!other.CompareTag("Player") || bossTriggered) return;
+        Debug.Log("Start boss");
+        StartBoss();
     }
 
 
@@ -48,7 +48,7 @@ public class BossTrigger : MonoBehaviour
 
     private void SpawnBoss()
     {
-        spawnedBoss = Instantiate(bossPrefab, bossSpawnPoint.position + new Vector3(0,-50,0), bossSpawnPoint.rotation);
+        spawnedBoss = Instantiate(bossPrefab, bossSpawnPoint.position, bossSpawnPoint.rotation);
         bossIsSpawning = true;
         
         bossTriggered = true;
@@ -57,6 +57,7 @@ public class BossTrigger : MonoBehaviour
 
     private void StartBoss()
     {
+        spawnedBoss = Instantiate(bossPrefab, bossSpawnPoint.position, bossSpawnPoint.rotation);
         spawnedBoss.StartBoss();
     }
 }

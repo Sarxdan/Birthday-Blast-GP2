@@ -13,7 +13,7 @@ public class Projectile : MonoBehaviour
     public Rigidbody rb;
     [HideInInspector] public Vector3 moveDirection;
     [HideInInspector] public Transform target;
-
+    
 
     public bool isHoming;
     public float homingAccuracy;

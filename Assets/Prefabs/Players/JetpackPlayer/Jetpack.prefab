@@ -9987,7 +9987,6 @@ GameObject:
   m_Component:
   - component: {fileID: 862964480281502981}
   - component: {fileID: 1880519896101445968}
-  - component: {fileID: 1584787612423215384}
   - component: {fileID: 1315663827854122777}
   m_Layer: 6
   m_Name: Jetpack
@@ -10024,40 +10023,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc05bf6fd5ceca489d426e0069c79d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  movement: {x: 0, y: 0, z: 0}
+  moveSpeed: 6
   flightBoost: 0.6
-  startingAutoMoveSpeed: 1
-  autoMoveSpeedIncreaseOverTime: 0.1
-  maxAutoMoveSpeed: 5
+  startingAutoMoveSpeed: 3
+  autoMoveSpeedIncreaseOverTime: 0.01
+  maxAutoMoveSpeed: 10
   cameraRotation: {x: 0, y: 0, z: 0}
   cameraOffsetFromPlayer: {x: 0, y: 1.76, z: -5.76}
-  dashSpeed: 50
-  dashLength: 0.2
+  dashSpeed: 13
+  dashLength: 0.4
   dashCooldown: 1
   forwardDashSpeed: 10
-  doubleTapTimer: 1
+  doubleTapTimer: 0.2
   dashUnlocked: 1
   forwardDashUnlocked: 1
   pewpewUnlocked: 1
---- !u!95 &1584787612423215384
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8813712086394248350}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3eef80f8c731e364e87c5350ce80eb82, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  fuelRechargeTime: 3
+  fuelUsageWhenDashing: 1
+  fuelRechargePerTick: 2
+  maxFuel: 5
 --- !u!114 &1315663827854122777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10100,12 +10085,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  onActionEvent:
+  onShootEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1880519896101445968}
-        m_TargetAssemblyTypeName: JetPack, Assembly-CSharp
-        m_MethodName: OnActionInput
+      - m_Target: {fileID: 4606887562241524449}
+        m_TargetAssemblyTypeName: Pewpew, Assembly-CSharp
+        m_MethodName: OnShootInput
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10340,3 +10325,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 613651238566608691, guid: 38703f1d6dfbd89419f20284d49e30dd, type: 3}
   m_PrefabInstance: {fileID: 9147195708608913677}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4606887562241524449 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4692660497903707116, guid: 38703f1d6dfbd89419f20284d49e30dd, type: 3}
+  m_PrefabInstance: {fileID: 9147195708608913677}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0addc19d8ae94dc4d8f7c560972ef36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
