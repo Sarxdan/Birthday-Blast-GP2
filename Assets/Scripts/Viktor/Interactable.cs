@@ -55,6 +55,7 @@ public class Interactable : MonoBehaviour
     public bool CheckRequiredItems() // this will look like shit, improve over iterations
     {   
         bool meetsReqiurements = true;
+        
 
         if(requiredItems.jetpack != Gamemanager.instance.unlockedItems.jetpack) 
         {       

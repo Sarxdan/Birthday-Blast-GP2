@@ -150,7 +150,7 @@ public class PlayerInputManager : MonoBehaviour
     
     private void OnInteract(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.performed)
         {
             interactEvent?.Invoke();
         }

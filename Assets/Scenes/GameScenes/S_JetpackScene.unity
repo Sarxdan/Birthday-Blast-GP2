@@ -11506,8 +11506,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 740344438}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.02, z: -6.19}
-  m_LocalScale: {x: 9.53, y: 1, z: 20.37}
+  m_LocalPosition: {x: 0, y: 0.4, z: 71.4428}
+  m_LocalScale: {x: 9.53, y: 1, z: 175.64212}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -12289,6 +12289,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1235566279, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: invulnerableTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1225011912922166208, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -12394,12 +12398,36 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8627028070919910616, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: dashSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627028070919910616, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8627028070919910616, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: dashLength
+      value: 10.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627028070919910616, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: dashCooldown
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627028070919910616, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: doubleTapTimer
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627028070919910616, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
       propertyPath: maxAutoMoveSpeed
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627028070919910616, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: fuelRechargePerTick
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8627028070919910616, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: fuelUsageWhenDashing
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8627028070919910616, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
       propertyPath: startingAutoMoveSpeed
@@ -29480,6 +29508,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2086786793065088556, guid: f815c2f2842967345928dd004146400e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2086786793065088556, guid: f815c2f2842967345928dd004146400e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2483040923366406288, guid: f815c2f2842967345928dd004146400e, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -29527,6 +29563,18 @@ PrefabInstance:
     - target: {fileID: 2483040923366406290, guid: f815c2f2842967345928dd004146400e, type: 3}
       propertyPath: m_Name
       value: UIManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859981961509987082, guid: f815c2f2842967345928dd004146400e, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859981961509987082, guid: f815c2f2842967345928dd004146400e, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8859981961509987082, guid: f815c2f2842967345928dd004146400e, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f815c2f2842967345928dd004146400e, type: 3}
