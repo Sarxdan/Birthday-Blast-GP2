@@ -31,6 +31,7 @@ public class UIManager : Singleton<UIManager>
             if(onGamePaused != null)
             {
                 onGamePaused(Gamemanager.GameState.Paused);
+                Cursor.visible = true;
             }
         }
         else
@@ -39,6 +40,7 @@ public class UIManager : Singleton<UIManager>
             if(onGamePaused != null)
             {
                 onGamePaused(Gamemanager.GameState.Playing);
+                Cursor.visible = false;
             }
         }
     }
