@@ -2284,7 +2284,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7790698, y: 1}
+    m_SensorSize: {x: 1.7775629, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2655,6 +2655,18 @@ MonoBehaviour:
       - m_Target: {fileID: 7091049536324791364}
         m_TargetAssemblyTypeName: PlayerMovement, Assembly-CSharp
         m_MethodName: TryJump
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 336802986}
+        m_TargetAssemblyTypeName: AdventureJetpack, Assembly-CSharp
+        m_MethodName: OnJump
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3086,6 +3098,7 @@ MonoBehaviour:
   fuelRechargePerTick: 3.08
   maxFuel: 10
   jumpHeight: 3.08
+  maxJumpsInAir: 1
 --- !u!1 &8816279691785363439
 GameObject:
   m_ObjectHideFlags: 0

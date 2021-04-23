@@ -9,6 +9,9 @@ public class AdventureJetpack : Fuel //make script check if jetpack is unlocked
     CharacterController controller;
     Renderer[] jetpack;
 
+    public int maxJumpsInAir;
+    private int currentJumpCount;
+
     // Start is called before the first frame update
     protected override void Awake() {
         base.Awake();
@@ -19,6 +22,8 @@ public class AdventureJetpack : Fuel //make script check if jetpack is unlocked
         {
             renderer.enabled = false;
         }
+
+        currentJumpCount = maxJumpsInAir;
     }
 
     // Update is called once per frame
@@ -28,10 +33,19 @@ public class AdventureJetpack : Fuel //make script check if jetpack is unlocked
         {
             renderer.enabled = Gamemanager.instance.UnlockedItems.jetpack;
         }
-        if(!Gamemanager.instance.UnlockedItems.jetpack) return;
-        if(playerMovement == null) return;
-        if(Input.GetButtonDown("Jump") && !playerMovement.isGrounded && !overCharged) //player is jumping in air
-        {            
+
+        if (playerMovement.isGrounded)
+        {
+            currentJumpCount = maxJumpsInAir;
+        }
+    }
+
+
+    public void OnJump()
+    {
+        if (!playerMovement.isGrounded && !overCharged && Gamemanager.instance.UnlockedItems.jetpack && currentJumpCount > 0)
+        {
+            currentJumpCount--;
             playerMovement.velocity.y = Mathf.Sqrt(jumpHeight * -2f * playerMovement.gravity);
             UseFuel(fuelUsage);
         }
