@@ -114,10 +114,6 @@ public class JetPack : Fuel
         {
             pewpew.gameObject.SetActive(pewpewUnlocked);
             pewpew.JetpackSpeed = autoMoveSpeed;
-            if(Input.GetButtonDown("Pewpew")) //added
-            {
-                pewpew.OnShootInput();
-            }
         }
         Move();   
         SetCameraPosition();

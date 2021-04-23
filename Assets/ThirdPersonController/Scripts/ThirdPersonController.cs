@@ -123,10 +123,6 @@ public class ThirdPersonController : MonoBehaviour
         {
             renderer.enabled = Gamemanager.instance.UnlockedItems.pewpew;
         }
-        if(Gamemanager.instance.UnlockedItems.pewpew && Input.GetButtonDown("Pewpew") && pewpew != null)
-        {
-            pewpew.OnShootInput();
-        }
         if (disablePlayerMovement != true)
             DoPlayerMovement();
 
