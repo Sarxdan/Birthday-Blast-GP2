@@ -7,7 +7,7 @@ using UnityEngine;
 public class ThirdPersonController : MonoBehaviour
 {
 
-    Pewpew pewpew; //added
+    public Pewpew pewpew; //added
 
     #region MovementControls
 
@@ -118,15 +118,8 @@ public class ThirdPersonController : MonoBehaviour
     }
 
     private void Update()
-    {
-        foreach(Renderer renderer in pewpew.GetComponentsInChildren<Renderer>()) //added, make sure pistol is not visible at start
-        {
-            renderer.enabled = Gamemanager.instance.UnlockedItems.pewpew;
-        }
-        if(Gamemanager.instance.UnlockedItems.pewpew && Input.GetButtonDown("Pewpew") && pewpew != null)
-        {
-            pewpew.OnShootInput();
-        }
+    {     
+        pewpew.gameObject.SetActive(Gamemanager.instance.UnlockedItems.pewpew);
         if (disablePlayerMovement != true)
             DoPlayerMovement();
 

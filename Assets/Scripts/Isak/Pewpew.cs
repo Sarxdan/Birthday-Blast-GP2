@@ -39,6 +39,8 @@ public class Pewpew : MonoBehaviour
 
     bool CanShoot()
     {
+        if (Gamemanager.instance.UnlockedItems.pewpew == false) return false;
+        
         if(canShoot) return true;
         if(ammo > 0) return true;
         else

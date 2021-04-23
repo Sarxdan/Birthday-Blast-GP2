@@ -76,7 +76,7 @@ public class JetPack : Fuel
     [SerializeField] bool forwardDashUnlocked = false;
     [SerializeField] bool pewpewUnlocked = false;
 
-    [Header("Fuel settings")]
+    //[Header("Fuel settings")]
     //[SerializeField][Tooltip("time until fuel recharges")] float fuelRechargeTime = 1;
     //[SerializeField] float fuelUsageWhenDashing = 1; 
     //[SerializeField][Tooltip("How fast fuel recharges")] float fuelRechargePerTick = 1;
@@ -114,10 +114,6 @@ public class JetPack : Fuel
         {
             pewpew.gameObject.SetActive(pewpewUnlocked);
             pewpew.JetpackSpeed = autoMoveSpeed;
-            if(Input.GetButtonDown("Pewpew"))
-            {
-                pewpew.OnShootInput();
-            }
         }
         Move();   
         SetCameraPosition();
