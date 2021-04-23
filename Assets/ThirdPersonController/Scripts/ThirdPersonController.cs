@@ -6,6 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement),typeof(CameraController))]
 public class ThirdPersonController : MonoBehaviour
 {
+
+    Pewpew pewpew; //added
+
     #region MovementControls
 
     [Header("Movement variables")]
@@ -67,7 +70,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         camController = GetComponent<CameraController>();
         playerMovement = GetComponent<PlayerMovement>();
-        
+        pewpew = GetComponentInChildren<Pewpew>(); //added
         UpdateControllerVariables();
     }
     
@@ -116,6 +119,14 @@ public class ThirdPersonController : MonoBehaviour
 
     private void Update()
     {
+        foreach(Renderer renderer in pewpew.GetComponentsInChildren<Renderer>()) //added, make sure pistol is not visible at start
+        {
+            renderer.enabled = Gamemanager.instance.UnlockedItems.pewpew;
+        }
+        if(Gamemanager.instance.UnlockedItems.pewpew && Input.GetButtonDown("Pewpew") && pewpew != null)
+        {
+            pewpew.OnShootInput();
+        }
         if (disablePlayerMovement != true)
             DoPlayerMovement();
 
