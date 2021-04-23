@@ -82,7 +82,7 @@ public class Gamemanager : Singleton<Gamemanager>
         UIManager.onGamePaused += UpdateGameState;
         PlayerHealth.onPlayerDeath += OnPlayerDeath;
         SceneManager.sceneLoaded += SceneLoaded;
-        Shovel.onShovelPickup += OnKeyItemPickUp;
+        KeyItemPickup.onKeyItemPickup += OnKeyItemPickUp;
     }
    
     protected override void OnDestroy() {
@@ -90,6 +90,6 @@ public class Gamemanager : Singleton<Gamemanager>
         UIManager.onGamePaused -= UpdateGameState;
         PlayerHealth.onPlayerDeath -= OnPlayerDeath;
         SceneManager.sceneLoaded -= SceneLoaded;
-        Shovel.onShovelPickup -= OnKeyItemPickUp;
+        KeyItemPickup.onKeyItemPickup -= OnKeyItemPickUp;
     }
 }

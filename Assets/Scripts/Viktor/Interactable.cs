@@ -53,20 +53,29 @@ public class Interactable : MonoBehaviour
     {
 
         bool meetsReqiurements = true;
-        
-        if(requiredItems.jetpack && !Gamemanager.instance.UnlockedItems.jetpack) 
-        {       
-            meetsReqiurements = false;
-        }
-        if(requiredItems.pewpew && !Gamemanager.instance.UnlockedItems.pewpew)
+
+        if(requiredItems.jetpack)
         {
-            meetsReqiurements = false;
+            if(!Gamemanager.instance.UnlockedItems.jetpack) 
+            {       
+                meetsReqiurements = false;
+            }
         }
-        if(requiredItems.shovel && !Gamemanager.instance.UnlockedItems.shovel)
+        if(requiredItems.shovel)
         {
-            meetsReqiurements = false;
+            if(!Gamemanager.instance.UnlockedItems.shovel) 
+            {       
+                meetsReqiurements = false;
+            }
         }
-        
+        if(requiredItems.pewpew)
+        {
+            if(!Gamemanager.instance.UnlockedItems.pewpew) 
+            {       
+                meetsReqiurements = false;
+            }
+        }
+
         return meetsReqiurements;
     }
 }
