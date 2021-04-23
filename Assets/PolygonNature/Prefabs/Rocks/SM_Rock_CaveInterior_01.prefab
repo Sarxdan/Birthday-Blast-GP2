@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 33815882503923394}
   - component: {fileID: 23940244950800696}
   - component: {fileID: 95423544791047510}
-  - component: {fileID: 7224208042705987755}
+  - component: {fileID: 2886304545134109405}
+  - component: {fileID: 5294369246576037688}
   m_Layer: 0
   m_Name: SM_Rock_CaveInterior_01
   m_TagString: Untagged
@@ -103,8 +104,8 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!64 &7224208042705987755
-MeshCollider:
+--- !u!65 &2886304545134109405
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -113,7 +114,19 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 4300000, guid: be29c05fe22794a498aaaca44bd506d6, type: 3}
+  serializedVersion: 2
+  m_Size: {x: 3.623725, y: 6.1281815, z: 8.151049}
+  m_Center: {x: -3.3018394, y: 1.6659822, z: 0.22497463}
+--- !u!65 &5294369246576037688
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442022014647454}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.123629, y: 6.1281815, z: 7.7633853}
+  m_Center: {x: 3.0557115, y: 1.6659822, z: 0.076919794}
