@@ -10023,6 +10023,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc05bf6fd5ceca489d426e0069c79d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fuelRechargeTime: 3
+  fuelUsage: 1
+  fuelRechargePerTick: 2
+  maxFuel: 5
   movement: {x: 0, y: 0, z: 0}
   moveSpeed: 6
   flightBoost: 0.6
@@ -10039,10 +10043,6 @@ MonoBehaviour:
   dashUnlocked: 1
   forwardDashUnlocked: 1
   pewpewUnlocked: 1
-  fuelRechargeTime: 3
-  fuelUsageWhenDashing: 1
-  fuelRechargePerTick: 2
-  maxFuel: 5
 --- !u!114 &1315663827854122777
 MonoBehaviour:
   m_ObjectHideFlags: 0

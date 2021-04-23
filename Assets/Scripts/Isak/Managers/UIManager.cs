@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -12,7 +13,15 @@ public class UIManager : Singleton<UIManager>
     public static Events.FuelEvent onJetpackAwake;
     InGameUI inGameUI;
     PauseMenu pauseMenu;
-    
+
+
+    private Controls controls;
+
+    private void Awake()
+    {
+        controls = new Controls();
+    }
+
     protected override void Start()
     {
         base.Start();
@@ -31,6 +40,7 @@ public class UIManager : Singleton<UIManager>
             if(onGamePaused != null)
             {
                 onGamePaused(Gamemanager.GameState.Paused);
+                Cursor.visible = true;
             }
         }
         else
@@ -39,18 +49,19 @@ public class UIManager : Singleton<UIManager>
             if(onGamePaused != null)
             {
                 onGamePaused(Gamemanager.GameState.Playing);
+                Cursor.visible = false;
             }
         }
     }
-
-    // Update is called once per frame
-    void Update()
+    
+    public void OnTogglePause(InputAction.CallbackContext context)
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if (context.performed)
         {
-            TogglePauseMenu(); // använd viktors input!!!
+            TogglePauseMenu();
         }
     }
+    
     void OnNPCDialogue(string dialogue, string name)
     {
         if(onNPCDialogue != null)
@@ -84,6 +95,9 @@ public class UIManager : Singleton<UIManager>
     }
 
     private void OnEnable() {
+        
+        controls.Enable();
+        
         DialogueTrigger.onNPCDialogue += OnNPCDialogue;
         PauseMenu.onResumeClicked += TogglePauseMenu;
         PlayerHealth.onPlayerHealthChange += OnPlayerHealthChange;
@@ -94,6 +108,9 @@ public class UIManager : Singleton<UIManager>
     }
 
     private void OnDisable() {
+        
+        controls.Disable();
+        
         DialogueTrigger.onNPCDialogue -= OnNPCDialogue; 
         PauseMenu.onResumeClicked -= TogglePauseMenu;
         PlayerHealth.onPlayerHealthChange -= OnPlayerHealthChange;
