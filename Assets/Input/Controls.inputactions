@@ -38,14 +38,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Pause",
-                    "type": "Button",
-                    "id": "9672920f-1f5d-41ec-a9b9-042e37dce4ed",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Shoot",
                     "type": "Button",
                     "id": "81010a50-5ee0-4ca5-abac-d48e6f7db480",
@@ -302,28 +294,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "CameraRotate",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "7cf135d9-0dc5-4444-a68c-d40d884a9fcc",
-                    "path": "<GamePad>/select",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pause",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d7c7cfec-3b83-4f6a-aee6-d879e10e99f8",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Pause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -587,6 +557,44 @@
                     "processors": "",
                     "groups": "",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Menu",
+            "id": "2a850fe5-294f-47b7-b3f2-ad2ec9cb3290",
+            "actions": [
+                {
+                    "name": "TogglePause",
+                    "type": "Button",
+                    "id": "6bc8cbe9-d31b-4b84-bc12-0bfb96c8b8b9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "a3f581b6-4d24-4693-a627-679f76aa9f30",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TogglePause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "50f50ab9-703e-42ac-9de7-93f55017a820",
+                    "path": "<Gamepad>/select",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "TogglePause",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
