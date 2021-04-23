@@ -23,24 +23,17 @@ public class AdventureJetpack : Fuel //make script check if jetpack is unlocked
 
     // Update is called once per frame
     void Update()
-    {
+    {        
+        foreach(Renderer renderer in jetpack) 
+        {
+            renderer.enabled = Gamemanager.instance.UnlockedItems.jetpack;
+        }
         if(!Gamemanager.instance.UnlockedItems.jetpack) return;
         if(playerMovement == null) return;
         if(Input.GetButtonDown("Jump") && !playerMovement.isGrounded && !overCharged) //player is jumping in air
-        {
-            foreach(Renderer renderer in jetpack) 
-            {
-                renderer.enabled = true;
-            }
+        {            
             playerMovement.velocity.y = Mathf.Sqrt(jumpHeight * -2f * playerMovement.gravity);
             UseFuel(fuelUsage);
-        }
-        else if(playerMovement.isGrounded) //player touches ground
-        {
-                foreach(Renderer renderer in jetpack) 
-            {
-                renderer.enabled = false;
-            }
         }
     }
 }
