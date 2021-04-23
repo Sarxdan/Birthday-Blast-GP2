@@ -110,10 +110,14 @@ public class JetPack : Fuel
     void Update() //vad ska hände när man får game over? falla ner en bit? UI uppdateras? 
     {
         if(gameOver) return;
-        if(pewpew != null)
+        if(pewpew != null && pewpewUnlocked)
         {
             pewpew.gameObject.SetActive(pewpewUnlocked);
             pewpew.JetpackSpeed = autoMoveSpeed;
+            if(Input.GetButtonDown("Pewpew"))
+            {
+                pewpew.OnShootInput();
+            }
         }
         Move();   
         SetCameraPosition();
