@@ -6,7 +6,6 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
 {
     
     PlayerMovement playerMovement;
-    CharacterController controller;
     Renderer[] jetpack;  
     public int currentJumpCount;
     bool jetpackUnlocked = false;
@@ -16,6 +15,10 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
     [SerializeField] float jumpHeight = 1;
     [SerializeField] int maxJumpsInAir;
     [SerializeField] float coyoteTime = 1;
+
+    [Header("Particle effects")]
+    [SerializeField] ParticleSystem[] fireStreams;
+    [SerializeField] ParticleSystem dashEffect;
 
     // Start is called before the first frame update
     protected override void Awake() {
@@ -56,11 +59,11 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
     protected override IEnumerator DashInDirection(DashDirections directions)
     {
         bool groundedStart = playerMovement.isGrounded;
-        print(groundedStart);
         player.disablePlayerMovement = true;
         yield return base.DashInDirection(directions);
         while(dashTimeLeft > 0)
-        {           
+        {   
+            dashEffect.Play();        
             switch(directions)
             {
                 case DashDirections.Forward:
@@ -76,21 +79,30 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
             cooldown -= Time.deltaTime;
             yield return new WaitForEndOfFrame();           
         }
+        dashEffect.Stop();
         invulnerable = false;
-        player.disablePlayerMovement = false;
-        print(playerMovement.isGrounded);
         if(!playerMovement.isGrounded && groundedStart)
         {
-            player.disablePlayerMovement = true;
-            print("test");
+            foreach(ParticleSystem fireStream in fireStreams)
+                {
+                    fireStream.Play();
+                }
             float coyoteTimeLeft = coyoteTime;
             while(coyoteTimeLeft > 0)
             {
+                
                 coyoteTimeLeft -= Time.deltaTime;
                 cooldown -= Time.deltaTime;
                 yield return new WaitForEndOfFrame();
+                if(Input.anyKey)
+                {
+                    coyoteTimeLeft = 0;
+                }
             }
-        
+            foreach(ParticleSystem fireStream in fireStreams)
+                {
+                    fireStream.Stop();
+                }
         }
         player.disablePlayerMovement = false;
         

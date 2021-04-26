@@ -51,6 +51,10 @@ public class PlayerMovement : MonoBehaviour
         vertical = _vertical;
     }
 
+    public void CheckIfGrounded() //added
+    {
+        isGrounded = Physics.CheckSphere(groundCheckPosition.position, groundDistanceCheck, groundMask);
+    }
 
     public void Move()
     {

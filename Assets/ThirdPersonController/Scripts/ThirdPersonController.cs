@@ -119,6 +119,7 @@ public class ThirdPersonController : MonoBehaviour
 
     private void Update()
     {     
+        playerMovement.CheckIfGrounded(); //added
         pewpew.gameObject.SetActive(Gamemanager.instance.UnlockedItems.pewpew);
         if (disablePlayerMovement != true)
             DoPlayerMovement();
