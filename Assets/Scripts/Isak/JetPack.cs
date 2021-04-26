@@ -3,19 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class JetPack : Fuel
+public class JetPack : JetpackBase
 {   
 
     //public static Events.FuelEvent onFuelUse;
     //public static Events.FuelEvent onJetpackAwake;
 
-    enum DashDirections
-    {
-        None,  
-        Left,
-        Right,
-        Forward
-    }
+    //enum DashDirections
+    //    None,  
+        //Left,
+        //Right,
+        //Forward
+    //}
 
     #region variables
 
@@ -32,18 +31,18 @@ public class JetPack : Fuel
         get{return autoMoveSpeed;} //added
     }
 
-    Rigidbody body; 
+    //Rigidbody body; 
     Camera camera;
     bool isAutoBoosting = false;
      bool gameOver = false;
-    DashDirections dashDirections = DashDirections.None;
-    bool dashOnCooldown = false;
-    bool forwardDashOnCooldown = false;
-    bool rightAxisPushed = false;
-    bool leftAxisPushed = false;
-    bool forwardAxisPushed = false;
-    bool invulnerable = false;
-    float lastKeyPressTime = 0;
+    //DashDirections dashDirections = DashDirections.None;
+    //bool dashOnCooldown = false;
+    //bool forwardDashOnCooldown = false;
+    //bool rightAxisPushed = false;
+    //bool leftAxisPushed = false;
+    //bool forwardAxisPushed = false;
+    //protected bool invulnerable = false;
+    //float lastKeyPressTime = 0;
     Pewpew pewpew;
     float autoMoveSpeed;
 
@@ -51,7 +50,7 @@ public class JetPack : Fuel
     //bool useFuel = false;
     //float fuel;
 
-    public Vector3 movement; //added
+    
 
     [Header("movement settings")]
     [SerializeField] float moveSpeed = 1;   
@@ -65,15 +64,15 @@ public class JetPack : Fuel
     [SerializeField] Vector3 cameraOffsetFromPlayer = new Vector3(0,0,0);
 
     [Header("Ability settings")]
-    [SerializeField]float dashSpeed = 10;
-    [SerializeField]float dashLength = 0.2f;
-    [SerializeField]float dashCooldown = 1;  
-    [SerializeField]float forwardDashSpeed = 10;
-    [SerializeField][Tooltip("timer for using the dash ability")] float doubleTapTimer = 1;
+    //[SerializeField]float dashSpeed = 10;
+    //[SerializeField]float dashLength = 0.2f;
+    //[SerializeField]float dashCooldown = 1;  
+    //[SerializeField]float forwardDashSpeed = 10;
+    //[SerializeField][Tooltip("timer for using the dash ability")] float doubleTapTimer = 1;
 
     [Header("bool settings")]
-    [SerializeField] bool dashUnlocked = false;
-    [SerializeField] bool forwardDashUnlocked = false;
+    //[SerializeField] bool dashUnlocked = false;
+    //[SerializeField] bool forwardDashUnlocked = false;
     [SerializeField] bool pewpewUnlocked = false;
 
     //[Header("Fuel settings")]
@@ -95,21 +94,23 @@ public class JetPack : Fuel
         //fuel = maxFuel;
         autoMoveSpeed = startingAutoMoveSpeed;
         camera = Camera.main;
-        body = GetComponentInParent<Rigidbody>();
+        //body = GetComponentInParent<Rigidbody>();
         pewpew = GetComponentInChildren<Pewpew>();  
         //StartCoroutine(FuelRecharger());       
     }
     protected override void Start() {
         base.Start();
+        
         //if(onJetpackAwake != null)
         {
             //onJetpackAwake(maxFuel);
         }
     }
 
-    void Update() //vad ska hände när man får game over? falla ner en bit? UI uppdateras? 
+    protected override void Update() //vad ska hände när man får game over? falla ner en bit? UI uppdateras? 
     {
         if(gameOver) return;
+        base.Update();  
         if(pewpew != null && pewpewUnlocked)
         {
             pewpew.gameObject.SetActive(pewpewUnlocked);
@@ -117,7 +118,7 @@ public class JetPack : Fuel
         }
         Move();   
         SetCameraPosition();
-        GetDashInput();
+        //GetDashInput();
         float moveSpeedIncreasePerFrame = Time.deltaTime * autoMoveSpeedIncreaseOverTime;
         IncreaseAutoMoveSpeed(moveSpeedIncreasePerFrame);      
     }
@@ -172,15 +173,15 @@ public class JetPack : Fuel
         }
     }
 
-    void GetDashInput()
+    protected override void GetDashInput()
     {   
         if(overCharged) return;
         if(dashOnCooldown) return;
+        if(!dashUnlocked) return;
+        base.GetDashInput();
 
         if(Input.GetButtonDown("Horizontal"))
         {
-
-            if(!dashUnlocked) return;
             
             if(Input.GetAxis("Horizontal") < 0)
             {
@@ -214,41 +215,20 @@ public class JetPack : Fuel
                 }            
             }       
         }
-        if(Input.GetButtonDown("Vertical"))
-        {
-
-            if(!forwardDashUnlocked) return;
-
-            if(Input.GetAxis("Vertical") > 0)
-            {
-                if(!forwardAxisPushed)
-                {
-                    lastKeyPressTime = Time.time;
-                    forwardAxisPushed = true;   
-                    
-                }   
-                else
-                {
-                    dashDirections = DashDirections.Forward;   
-                    forwardDashUnlocked = true; 
-                    ResetAxisBools();
-                    StartCoroutine(DashInDirection(dashDirections));
-                } 
-            }
-        }
+        
                      
-        if(Time.time - lastKeyPressTime > doubleTapTimer)
-        {
-            ResetAxisBools();
-        }             
+        //if(Time.time - lastKeyPressTime > doubleTapTimer)
+        //{
+            //ResetAxisBools();
+        //}             
     }
 
-    void ResetAxisBools()
-    {
-        rightAxisPushed = false;
-        leftAxisPushed = false;
-        forwardAxisPushed = false;
-    }
+    //void ResetAxisBools()
+    //{
+        //rightAxisPushed = false;
+        //leftAxisPushed = false;
+        //forwardAxisPushed = false;
+    //}
 
     //void UseFuel(float amount)
     //{
@@ -265,16 +245,19 @@ public class JetPack : Fuel
     //}
 
 
-    IEnumerator DashInDirection(DashDirections directions)
+    protected override IEnumerator DashInDirection(DashDirections directions)
     {
-        UseFuel(fuelUsage);
-        useFuel = true;
-        float dashlengthLeft = dashLength;
+        yield return base.DashInDirection(directions);
+       // UseFuel(fuelUsage);
+        //useFuel = true;
+        //float dashlengthLeft = dashLength;
         //-------------------------------create temporary variables
-        Vector3 movement = new Vector3();
-        float cooldown = dashCooldown;
+        //Vector3 movement = new Vector3();
+        //float cooldown = dashCooldown;
         //---------------------------------start the dash ability
-        while(dashlengthLeft > 0)
+       // while(dashlengthLeft > 0)
+        //{           
+            while(dashTimeLeft > 0)
         {           
             switch(directions)
             {
@@ -291,7 +274,7 @@ public class JetPack : Fuel
                 break;
 
                 case DashDirections.Forward:
-                movement = Vector3.forward * forwardDashSpeed;
+                movement = Vector3.forward * dashSpeed;
                 movement.z += body.velocity.z;
                 body.velocity = movement;
                 invulnerable = true;
@@ -300,7 +283,7 @@ public class JetPack : Fuel
                 default:
                 break;
             }
-            dashlengthLeft -= Time.deltaTime;
+            dashTimeLeft -= Time.deltaTime;
             cooldown -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
             invulnerable = false;

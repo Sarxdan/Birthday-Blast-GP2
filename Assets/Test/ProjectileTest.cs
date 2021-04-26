@@ -24,8 +24,8 @@ public class ProjectileTest : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.tag == "Player")
         {
-            print(other.GetComponent<ProjectileTest>().timer);
-            print(other.GetComponent<ProjectileTest>().transform.position);
+            print(timer);
+            print(transform.position);
         }        
         Destroy(gameObject);
     }

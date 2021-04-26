@@ -24,6 +24,17 @@ public class InGameUI : MonoBehaviour
         health.text = string.Empty;
     }
 
+    private void Update() { // change to event later
+        if(Gamemanager.instance.UnlockedItems.jetpack)
+        {
+            fuelBar.gameObject.SetActive(true);
+        }
+        else
+        {
+            fuelBar.gameObject.SetActive(false);
+        }
+    }
+
     void PrintNPCText(string dialogue, string name)
     {
         StopAllCoroutines();

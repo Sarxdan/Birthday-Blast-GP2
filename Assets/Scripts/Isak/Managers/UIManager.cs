@@ -103,8 +103,8 @@ public class UIManager : Singleton<UIManager>
         PlayerHealth.onPlayerHealthChange += OnPlayerHealthChange;
         JetPack.onFuelUse += OnFuelUse;
         JetPack.onJetpackAwake += OnJetpackAwake;
-        Fuel.onFuelUse += OnFuelUse;
-        Fuel.onJetpackAwake += OnJetpackAwake;
+        JetpackBase.onFuelUse += OnFuelUse;
+        JetpackBase.onJetpackAwake += OnJetpackAwake;
     }
 
     private void OnDisable() {
@@ -116,7 +116,7 @@ public class UIManager : Singleton<UIManager>
         PlayerHealth.onPlayerHealthChange -= OnPlayerHealthChange;
         JetPack.onFuelUse -= OnFuelUse;
         JetPack.onJetpackAwake -= OnJetpackAwake;
-        Fuel.onFuelUse -= OnFuelUse;
-        Fuel.onJetpackAwake -= OnJetpackAwake;
+        JetpackBase.onFuelUse -= OnFuelUse;
+        JetpackBase.onJetpackAwake -= OnJetpackAwake;
     }  
 }
