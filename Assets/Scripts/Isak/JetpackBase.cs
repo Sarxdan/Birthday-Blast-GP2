@@ -29,6 +29,7 @@ public class JetpackBase : MonoBehaviour
     protected float lastKeyPressTime = 0; //last time player pushed a direction key, counted in time.time  
     protected float cooldown = 0; //cooldown of dash ability, resets when dashing
     protected float dashTimeLeft = 0; //remaining dash length
+    protected IEnumerator dashEnumerator;
 
     [Header("Fuel settings")]
     [SerializeField][Tooltip("time until fuel recharges")] protected float fuelRechargeTime = 1;
@@ -92,7 +93,8 @@ public class JetpackBase : MonoBehaviour
                 {
                     dashDirections = DashDirections.Forward;    
                     ResetAxisBools();
-                    StartCoroutine(DashInDirection(dashDirections));
+                    dashEnumerator = DashInDirection(dashDirections);
+                    StartCoroutine(dashEnumerator);
                 } 
             }
         }
@@ -101,13 +103,24 @@ public class JetpackBase : MonoBehaviour
     protected virtual IEnumerator DashInDirection(DashDirections directions)
     {
         UseFuel(fuelUsage);
-        dashOnCooldown = true;
-        useFuel = true;
         dashTimeLeft = dashTime;
         //-------------------------------create temporary variables
-        cooldown = dashCooldown;
+        StartCoroutine(DashCooldown());
         //---------------------------------start the dash ability
         yield return new WaitForEndOfFrame();
+    }
+
+    IEnumerator DashCooldown()
+    {
+        dashOnCooldown = true;
+        cooldown = dashCooldown;
+        while(cooldown > 0)
+        {
+            print(cooldown);
+            yield return new WaitForEndOfFrame();
+            cooldown -= Time.deltaTime;
+        }
+        dashOnCooldown = false;
     }
 
     IEnumerator FuelRecharger() 

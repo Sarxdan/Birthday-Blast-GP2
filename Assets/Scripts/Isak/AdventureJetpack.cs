@@ -10,6 +10,7 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
     public int currentJumpCount;
     bool jetpackUnlocked = false;
     ThirdPersonController player;
+    bool isDashing = false;
 
     [Header("Jetpack boost settings")]
     [SerializeField] float jumpHeight = 1;
@@ -19,6 +20,7 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
     [Header("Particle effects")]
     [SerializeField] ParticleSystem[] fireStreams;
     [SerializeField] ParticleSystem dashEffect;
+    
 
     // Start is called before the first frame update
     protected override void Awake() {
@@ -58,62 +60,94 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
 
     protected override IEnumerator DashInDirection(DashDirections directions)
     {
+        isDashing = true;
         bool groundedStart = playerMovement.isGrounded;
         player.disablePlayerMovement = true;
         
         yield return base.DashInDirection(directions);
+        ToggleDashAnimation(true);
         while(dashTimeLeft > 0)
         {   
-            dashEffect.Play();        
+            StopDashingOnJump();       
             switch(directions)
             {
                 case DashDirections.Forward:
-                movement = gameObject.transform.parent.transform.forward * dashSpeed;
-                controller.Move(movement * Time.deltaTime);
+                if(isDashing)
+                {
+                    movement = gameObject.transform.parent.transform.forward * dashSpeed;
+                    controller.Move(movement * Time.deltaTime);
+                }
+                
                 invulnerable = true;
                 break;
 
                 default:
                 break;
             }
-            dashTimeLeft -= Time.deltaTime;
-            cooldown -= Time.deltaTime;
+            dashTimeLeft -= Time.deltaTime;     
             yield return new WaitForEndOfFrame();           
         }
-        dashEffect.Stop();
+        
+        ToggleDashAnimation(false);
         invulnerable = false;
         if(!playerMovement.isGrounded && groundedStart)
         {
-            foreach(ParticleSystem fireStream in fireStreams)
-                {
-                    fireStream.Play();
-                }
+            ToggleHoverAnimation(true);
             float coyoteTimeLeft = coyoteTime;
             while(coyoteTimeLeft > 0)
             {
                 
                 coyoteTimeLeft -= Time.deltaTime;
-                cooldown -= Time.deltaTime;
                 yield return new WaitForEndOfFrame();
-                if(Input.anyKey)
-                {
-                    coyoteTimeLeft = 0;
-                }
             }
-            foreach(ParticleSystem fireStream in fireStreams)
-                {
-                    fireStream.Stop();
-                }
+            ToggleHoverAnimation(false);
         }
         player.disablePlayerMovement = false;
         
         //-------------------------------------------count the remaining cooldown after dashing
-        while(cooldown > 0)
+    }
+
+    
+
+    void ToggleHoverAnimation(bool toggle)
+    {
+        if(toggle)
         {
-            yield return new WaitForEndOfFrame();
-            cooldown -= Time.deltaTime;
+            foreach(ParticleSystem fireStream in fireStreams)
+            {
+                fireStream.Play();
+            }
         }
-        dashOnCooldown = false;
+        else
+        {
+            foreach(ParticleSystem fireStream in fireStreams)
+            {
+                fireStream.Stop();
+            }
+        }               
+    }
+
+    void ToggleDashAnimation(bool toggle)
+    {
+        if(toggle)
+        {
+        dashEffect.Play();
+        }
+        else
+        {
+        dashEffect.Stop();
+        }               
+    }
+
+    void StopDashingOnJump() //function that runs with dash enumerator, checking if player wants to stop dash early
+    {
+        if(Input.GetAxis("Jump") > 0) // checking for input, add to viktors new input system
+        {
+            isDashing = false;
+            player.disablePlayerMovement = false;
+            ToggleDashAnimation(false); //make sure dash effect is stopped with input
+            ToggleHoverAnimation(false); //make sure hover effect is stopped with input
+        }       
     }
 
 

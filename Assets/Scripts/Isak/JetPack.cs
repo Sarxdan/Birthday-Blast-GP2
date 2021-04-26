@@ -63,17 +63,17 @@ public class JetPack : JetpackBase
     [SerializeField] Vector3 cameraRotation = new Vector3(0,0,0);
     [SerializeField] Vector3 cameraOffsetFromPlayer = new Vector3(0,0,0);
 
-    [Header("Ability settings")]
+    //[Header("Ability settings")]
     //[SerializeField]float dashSpeed = 10;
     //[SerializeField]float dashLength = 0.2f;
     //[SerializeField]float dashCooldown = 1;  
     //[SerializeField]float forwardDashSpeed = 10;
     //[SerializeField][Tooltip("timer for using the dash ability")] float doubleTapTimer = 1;
 
-    [Header("bool settings")]
+    //[Header("bool settings")]
     //[SerializeField] bool dashUnlocked = false;
     //[SerializeField] bool forwardDashUnlocked = false;
-    [SerializeField] bool pewpewUnlocked = false; // connect with gamemanager
+    bool pewpewUnlocked = false; // connect with gamemanager
 
     //[Header("Fuel settings")]
     //[SerializeField][Tooltip("time until fuel recharges")] float fuelRechargeTime = 1;
@@ -111,6 +111,7 @@ public class JetPack : JetpackBase
     {
         if(gameOver) return;
         base.Update();  
+        pewpewUnlocked = Gamemanager.instance.UnlockedItems.pewpew;
         if(pewpew != null && pewpewUnlocked)
         {
             pewpew.gameObject.SetActive(pewpewUnlocked);
@@ -284,7 +285,6 @@ public class JetPack : JetpackBase
                 break;
             }
             dashTimeLeft -= Time.deltaTime;
-            cooldown -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
             invulnerable = false;
         }
@@ -292,9 +292,7 @@ public class JetPack : JetpackBase
         while(cooldown > 0)
         {
             yield return new WaitForEndOfFrame();
-            cooldown -= Time.deltaTime;
         }
-        dashOnCooldown = false;
     }
 
        void Move()
