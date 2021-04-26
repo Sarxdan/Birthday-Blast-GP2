@@ -17,11 +17,20 @@ public class LevelSegment : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
-        {
-            Debug.Log("Player crossed segment divider");
-            var jetpackController =
-                other.gameObject.GetComponentInChildren<JetPack>().autoMoveSpeed = speedDuringSegment;
+        { 
+            other.gameObject.GetComponentInChildren<JetPack>().autoMoveSpeed = speedDuringSegment;
         }
+    }
+
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(StartPoint.position, 1f);
+        
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(EndPoint.position, 1f);
     }
 }
 
