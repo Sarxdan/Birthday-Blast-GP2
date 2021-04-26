@@ -78,9 +78,14 @@ public class LevelCreator : EditorWindow
 
     private void AddLevelComponent(GameObject levelObject)
     {
-        var levelComponent= levelObject.AddComponent<Level>();
+        var levelComponent = levelObject.AddComponent<Level>();
         PopulateLevelFields(levelComponent);
         GenerateSpawnPoint(levelComponent);
+
+        if (levelType == LevelType.Jetpack)
+        {
+            levelObject.AddComponent<LevelRandomizer>();
+        }
     }
 
     private void GenerateSpawnPoint(Level level)
