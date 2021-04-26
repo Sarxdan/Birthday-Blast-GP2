@@ -81,21 +81,16 @@ public class JetpackBase : MonoBehaviour
         } 
         if(Input.GetButtonDown("Vertical"))
         {
-
-            //if(!forwardDashUnlocked) return;
-
             if(Input.GetAxis("Vertical") > 0)
             {
                 if(!forwardAxisPushed)
                 {
                     lastKeyPressTime = Time.time;
-                    forwardAxisPushed = true;   
-                    
+                    forwardAxisPushed = true;              
                 }   
                 else
                 {
-                    dashDirections = DashDirections.Forward;   
-                    //forwardDashUnlocked = true; 
+                    dashDirections = DashDirections.Forward;    
                     ResetAxisBools();
                     StartCoroutine(DashInDirection(dashDirections));
                 } 
@@ -106,6 +101,7 @@ public class JetpackBase : MonoBehaviour
     protected virtual IEnumerator DashInDirection(DashDirections directions)
     {
         UseFuel(fuelUsage);
+        dashOnCooldown = true;
         useFuel = true;
         dashTimeLeft = dashTime;
         //-------------------------------create temporary variables

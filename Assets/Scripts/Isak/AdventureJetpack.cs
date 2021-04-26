@@ -60,6 +60,7 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
     {
         bool groundedStart = playerMovement.isGrounded;
         player.disablePlayerMovement = true;
+        
         yield return base.DashInDirection(directions);
         while(dashTimeLeft > 0)
         {   

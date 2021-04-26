@@ -73,7 +73,7 @@ public class JetPack : JetpackBase
     [Header("bool settings")]
     //[SerializeField] bool dashUnlocked = false;
     //[SerializeField] bool forwardDashUnlocked = false;
-    [SerializeField] bool pewpewUnlocked = false;
+    [SerializeField] bool pewpewUnlocked = false; // connect with gamemanager
 
     //[Header("Fuel settings")]
     //[SerializeField][Tooltip("time until fuel recharges")] float fuelRechargeTime = 1;

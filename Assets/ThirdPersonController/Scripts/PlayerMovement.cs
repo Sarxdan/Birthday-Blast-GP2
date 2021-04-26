@@ -66,7 +66,6 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded && velocity.y < 0)
         velocity.y = 0f;
         
-        
         velocity.y += gravity * Time.deltaTime;
         
 
