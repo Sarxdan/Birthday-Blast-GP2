@@ -174,7 +174,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239568734103234806}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.21, z: -129.9}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3878241438985011462}
@@ -269,7 +269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239568734523572143}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.103, z: 0}
+  m_LocalPosition: {x: 0, y: 1.903, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5015735416341854257}
@@ -1049,7 +1049,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 862964480281502981, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.049000144
+      value: 0.8490001
       objectReference: {fileID: 0}
     - target: {fileID: 862964480281502981, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1083,8 +1083,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1030249543011719717, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
+      propertyPath: MobileUIComponents.Array.size
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
@@ -1092,7 +1092,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3878241437249178344}
     - target: {fileID: 1880519896101445968, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
-      propertyPath: pewpewUnlocked
+      propertyPath: maxAutoMoveSpeed
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1880519896101445968, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
+      propertyPath: autoMoveSpeedIncreaseOverTime
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8813712086394248350, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}

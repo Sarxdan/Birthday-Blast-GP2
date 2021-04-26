@@ -142,7 +142,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &22925145
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -265,7 +265,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51b50cef069b20b48983ce3fd52a6248, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  requiredItems:
+    jetpack: 0
+    pewpew: 0
+    shovel: 0
   interactText: Open Door
+  unableToInteracteText: Can't interact!
   interactRadius: 3
   minimumTimeBetweenInteractions: 1
   OnInteractEvent:
@@ -928,6 +933,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 58380478107321875, guid: 2d0890e8cf337c2489c6d2f39cb60136, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d0890e8cf337c2489c6d2f39cb60136, type: 3}
 --- !u!1 &1051031047
@@ -1159,7 +1168,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1265553612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1359,7 +1368,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1536452414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1406,7 +1415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1719953961
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1419,7 +1428,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ae99cea060f23d47a00329a15ceeb2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  latestCheckPoint: {x: 0, y: 0, z: 0}
 --- !u!4 &1719953962
 Transform:
   m_ObjectHideFlags: 0
@@ -1449,7 +1457,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1765834038
 Transform:
   m_ObjectHideFlags: 0
@@ -1521,6 +1529,10 @@ PrefabInstance:
     - target: {fileID: 905948197844021789, guid: a660d41923e447c4a9217e1d53fb3c36, type: 3}
       propertyPath: m_Name
       value: BossTrigger
+      objectReference: {fileID: 0}
+    - target: {fileID: 905948197844021789, guid: a660d41923e447c4a9217e1d53fb3c36, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a660d41923e447c4a9217e1d53fb3c36, type: 3}
@@ -1821,9 +1833,37 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 69697130, guid: dfdac6e7bf72e3446abf2a9b6204843c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 69697130, guid: dfdac6e7bf72e3446abf2a9b6204843c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.22594245
+      objectReference: {fileID: 0}
+    - target: {fileID: 69697130, guid: dfdac6e7bf72e3446abf2a9b6204843c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0051324065
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091049535512482922, guid: dfdac6e7bf72e3446abf2a9b6204843c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 6.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091049535512482922, guid: dfdac6e7bf72e3446abf2a9b6204843c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.22594245
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091049535512482922, guid: dfdac6e7bf72e3446abf2a9b6204843c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.0051324065
+      objectReference: {fileID: 0}
     - target: {fileID: 7091049536324791369, guid: dfdac6e7bf72e3446abf2a9b6204843c, type: 3}
       propertyPath: m_Name
       value: ThirdPersonPlayerController
+      objectReference: {fileID: 0}
+    - target: {fileID: 7091049536324791369, guid: dfdac6e7bf72e3446abf2a9b6204843c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7091049536324791370, guid: dfdac6e7bf72e3446abf2a9b6204843c, type: 3}
       propertyPath: m_RootOrder
@@ -1926,6 +1966,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Scrap
       objectReference: {fileID: 0}
+    - target: {fileID: 3108772118199638363, guid: 273b21afb287d784cb31c57ef2ba8849, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 273b21afb287d784cb31c57ef2ba8849, type: 3}
 --- !u!1001 &4629005511010716281
@@ -1987,6 +2031,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Magic Rock
       objectReference: {fileID: 0}
+    - target: {fileID: 3108772118199638363, guid: 585eb4305dfd9f74c9cd9e381339494a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 585eb4305dfd9f74c9cd9e381339494a, type: 3}
 --- !u!1001 &5238004578963189634
@@ -2044,6 +2092,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Magic Root
       objectReference: {fileID: 0}
+    - target: {fileID: 3108772118199638363, guid: abf289499236aca4794e521501ce1f0b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: abf289499236aca4794e521501ce1f0b, type: 3}
 --- !u!1001 &5780746793074591884
@@ -2100,6 +2152,10 @@ PrefabInstance:
     - target: {fileID: 3108772118199638363, guid: 766e50057373c594a84dbd49caeb660a, type: 3}
       propertyPath: m_Name
       value: Currency
+      objectReference: {fileID: 0}
+    - target: {fileID: 3108772118199638363, guid: 766e50057373c594a84dbd49caeb660a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 766e50057373c594a84dbd49caeb660a, type: 3}
