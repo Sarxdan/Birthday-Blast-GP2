@@ -45,7 +45,7 @@ public class JetPack : Fuel
     bool invulnerable = false;
     float lastKeyPressTime = 0;
     Pewpew pewpew;
-    float autoMoveSpeed;
+    public float autoMoveSpeed;
 
     //bool overCharged = false;
     //bool useFuel = false;

@@ -5,6 +5,9 @@ using UnityEngine;
 
 public class LevelSegment : MonoBehaviour
 {
+
+    public float speedDuringSegment = 5.0f;
+
     public Transform StartPoint;
     public Transform EndPoint;
 
@@ -16,6 +19,8 @@ public class LevelSegment : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Debug.Log("Player crossed segment divider");
+            var jetpackController =
+                other.gameObject.GetComponentInChildren<JetPack>().autoMoveSpeed = speedDuringSegment;
         }
     }
 }
