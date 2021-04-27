@@ -20,6 +20,9 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
     [Header("Particle effects")]
     [SerializeField] ParticleSystem[] fireStreams;
     [SerializeField] ParticleSystem dashEffect;
+    [Header("Audio Settings")]
+    [SerializeField] AudioClip dashSound;
+    [SerializeField] AudioClip jumpSound;
     
 
     // Start is called before the first frame update
@@ -65,6 +68,14 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
         player.disablePlayerMovement = true;
         
         yield return base.DashInDirection(directions);
+        if(dashSound != null)
+        {
+            if(audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+            audioSource.PlayOneShot(dashSound);
+        }
         ToggleDashAnimation(true);
         while(dashTimeLeft > 0)
         {   
@@ -158,6 +169,14 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
             currentJumpCount--;
             playerMovement.velocity.y = Mathf.Sqrt(jumpHeight * -2f * playerMovement.gravity);
             UseFuel(fuelUsage);
+            if(jumpSound != null)
+        {
+            if(audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+            audioSource.PlayOneShot(jumpSound);
+        }
         }
     }
 }

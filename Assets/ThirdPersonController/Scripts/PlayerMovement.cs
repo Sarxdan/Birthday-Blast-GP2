@@ -5,7 +5,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-
+    AudioSource audioSource;
+    [SerializeField] AudioClip jumpSound;
+    [SerializeField] AudioClip walkSound;
     //Components
     private CharacterController controller;
     private CameraController camController;
@@ -41,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         camController = GetComponent<CameraController>();
-        
+        audioSource = GetComponent<AudioSource>();
         
     }
     
@@ -106,6 +108,14 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        if(jumpSound != null)
+        {
+            if(audioSource.isPlaying)
+            {
+                audioSource.Stop();
+            }
+            audioSource.PlayOneShot(jumpSound);
+        }
     }
 
 }
