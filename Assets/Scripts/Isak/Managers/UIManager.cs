@@ -13,6 +13,7 @@ public class UIManager : Singleton<UIManager>
     public static Events.FuelEvent onJetpackAwake;
     InGameUI inGameUI;
     PauseMenu pauseMenu;
+    ShopUI shopUI;
 
 
     private Controls controls;
@@ -27,7 +28,9 @@ public class UIManager : Singleton<UIManager>
         base.Start();
         inGameUI = GetComponentInChildren<InGameUI>();
         pauseMenu = GetComponentInChildren<PauseMenu>();
+        shopUI = GetComponentInChildren<ShopUI>();
         TogglePauseMenu();
+        ToggleShopUI();
     }
 
     void TogglePauseMenu()
@@ -51,6 +54,22 @@ public class UIManager : Singleton<UIManager>
                 onGamePaused(Gamemanager.GameState.Playing);
                 Cursor.visible = false;
             }
+        }
+    }
+
+    void ToggleShopUI()
+    {
+        bool toggle = !shopUI.gameObject.activeSelf;        
+        shopUI.gameObject.SetActive(toggle);
+        if(toggle)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
         }
     }
     
@@ -105,6 +124,7 @@ public class UIManager : Singleton<UIManager>
         JetPack.onJetpackAwake += OnJetpackAwake;
         JetpackBase.onFuelUse += OnFuelUse;
         JetpackBase.onJetpackAwake += OnJetpackAwake;
+        ShopKeeper.onShopKeeperInteraction += ToggleShopUI;
     }
 
     private void OnDisable() {
@@ -118,5 +138,6 @@ public class UIManager : Singleton<UIManager>
         JetPack.onJetpackAwake -= OnJetpackAwake;
         JetpackBase.onFuelUse -= OnFuelUse;
         JetpackBase.onJetpackAwake -= OnJetpackAwake;
+        ShopKeeper.onShopKeeperInteraction -= ToggleShopUI;
     }  
 }
