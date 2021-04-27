@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement),typeof(CameraController))]
 public class ThirdPersonController : MonoBehaviour
 {
-
+    
     public Pewpew pewpew; //added
 
     #region MovementControls

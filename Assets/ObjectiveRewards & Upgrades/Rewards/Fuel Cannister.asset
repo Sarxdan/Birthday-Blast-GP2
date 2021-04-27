@@ -12,10 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0898eb6af9883149ab2786a2e14743b, type: 3}
   m_Name: Fuel Cannister
   m_EditorClassIdentifier: 
-  name: Reward Name
+  name: Fuel Cannister
   description: Reward Description
-  icon: {fileID: 0}
-  ID: 0
+  icon: {fileID: 21300000, guid: 0a23c4536c13ef645b6dd23fa51f7b41, type: 3}
+  ID: 1
   skillTree:
     skillTreeName: SkillTree
-    paths: []
+    paths:
+    - pathName: Main Path
+      upgrades:
+      - unlocked: 0
+        upgradeStats: {fileID: 11400000, guid: 968d7be4e6a4c3244bea617325ecfa37, type: 2}
+      - unlocked: 0
+        upgradeStats: {fileID: 11400000, guid: 092bb0c66c8c31a4593846459491b5b4, type: 2}

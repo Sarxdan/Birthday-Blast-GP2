@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] AudioClip jumpSound;
     [SerializeField] AudioClip walkSound;
     //Components
+    public Animator animator;
     private CharacterController controller;
     private CameraController camController;
 
@@ -52,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
         
         horizontal = _horizontal;
         vertical = _vertical;
+        
+        animator.SetFloat("Speed",Mathf.Abs(vertical) + Mathf.Abs(horizontal));
     }
 
     public void CheckIfGrounded() //added
@@ -97,6 +100,9 @@ public class PlayerMovement : MonoBehaviour
             }
             
         }
+        
+        
+        animator.SetFloat("Velocity", velocity.y);
     }
 
     private void RotatePlayerTowardsDirection(Vector3 direction)
@@ -125,6 +131,7 @@ public class PlayerMovement : MonoBehaviour
             }
             audioSource.PlayOneShot(jumpSound);
         }
+        animator.SetTrigger("Jump");
     }
 
 }
