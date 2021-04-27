@@ -63,6 +63,7 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
 
     protected override IEnumerator DashInDirection(DashDirections directions)
     {
+        Transform baseParent = GetComponentInParent<ThirdPersonController>().transform;
         isDashing = true;
         bool groundedStart = playerMovement.isGrounded;
         player.disablePlayerMovement = true;
@@ -85,7 +86,7 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
                 case DashDirections.Forward:
                 if(isDashing)
                 {
-                    movement = gameObject.transform.parent.transform.forward * dashSpeed;
+                    movement = baseParent.forward * dashSpeed;
                     controller.Move(movement * Time.deltaTime);
                 }
                 
