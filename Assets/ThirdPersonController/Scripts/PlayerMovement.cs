@@ -49,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
     
     public void FetchMovementInput(float _horizontal, float _vertical)
     {
+        
         horizontal = _horizontal;
         vertical = _vertical;
     }
@@ -88,6 +89,14 @@ public class PlayerMovement : MonoBehaviour
         
         //Rotate player towards movement
         RotatePlayerTowardsDirection(movementDirection);
+        if(walkSound != null && audioSource != null && !audioSource.isPlaying && isGrounded)
+        {
+            if(vertical != 0 || horizontal != 0)
+            {
+                audioSource.PlayOneShot(walkSound);
+            }
+            
+        }
     }
 
     private void RotatePlayerTowardsDirection(Vector3 direction)
