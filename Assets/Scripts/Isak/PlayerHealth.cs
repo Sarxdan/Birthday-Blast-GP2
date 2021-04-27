@@ -35,12 +35,14 @@ public class PlayerHealth : Health
         animator.SetBool("IsDamaged", false);
         invulnerable = false;
     }
-    protected override void Death()
+    protected override IEnumerator Death()
     {
+        yield return base.Death();
         if(onPlayerDeath != null)
         {
             onPlayerDeath();
         }
+        yield return new WaitForEndOfFrame();
     }
 
     private void Start() {

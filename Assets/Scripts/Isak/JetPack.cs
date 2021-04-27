@@ -6,16 +6,6 @@ using UnityEngine.InputSystem;
 public class JetPack : JetpackBase
 {   
 
-    //public static Events.FuelEvent onFuelUse;
-    //public static Events.FuelEvent onJetpackAwake;
-
-    //enum DashDirections
-    //    None,  
-        //Left,
-        //Right,
-        //Forward
-    //}
-
     #region variables
 
     public bool Invulnerable
@@ -28,30 +18,15 @@ public class JetPack : JetpackBase
     }
     public float AutoMoveSpeed
     {
-        get{return autoMoveSpeed;} //added
+        get{return autoMoveSpeed;} 
     }
-
-    //Rigidbody body; 
     Camera camera;
     bool isAutoBoosting = false;
      bool gameOver = false;
-    //DashDirections dashDirections = DashDirections.None;
-    //bool dashOnCooldown = false;
-    //bool forwardDashOnCooldown = false;
-    //bool rightAxisPushed = false;
-    //bool leftAxisPushed = false;
-    //bool forwardAxisPushed = false;
-    //protected bool invulnerable = false;
-    //float lastKeyPressTime = 0;
     Pewpew pewpew;
     public float autoMoveSpeed;
-
-    //bool overCharged = false;
-    //bool useFuel = false;
-    //float fuel;
-
+    bool pewpewUnlocked = false;
     
-
     [Header("movement settings")]
     [SerializeField] float moveSpeed = 1;   
     [SerializeField]float flightBoost = 1;
@@ -62,25 +37,8 @@ public class JetPack : JetpackBase
     [Header("Camera settings")]
     [SerializeField] Vector3 cameraRotation = new Vector3(0,0,0);
     [SerializeField] Vector3 cameraOffsetFromPlayer = new Vector3(0,0,0);
-
-    //[Header("Ability settings")]
-    //[SerializeField]float dashSpeed = 10;
-    //[SerializeField]float dashLength = 0.2f;
-    //[SerializeField]float dashCooldown = 1;  
-    //[SerializeField]float forwardDashSpeed = 10;
-    //[SerializeField][Tooltip("timer for using the dash ability")] float doubleTapTimer = 1;
-
-    //[Header("bool settings")]
-    //[SerializeField] bool dashUnlocked = false;
-    //[SerializeField] bool forwardDashUnlocked = false;
-    bool pewpewUnlocked = false; // connect with gamemanager
-
-    //[Header("Fuel settings")]
-    //[SerializeField][Tooltip("time until fuel recharges")] float fuelRechargeTime = 1;
-    //[SerializeField] float fuelUsageWhenDashing = 1; 
-    //[SerializeField][Tooltip("How fast fuel recharges")] float fuelRechargePerTick = 1;
-    //[SerializeField] float maxFuel = 100;
-       
+    [Header("Audio settings")]
+    [SerializeField] AudioClip jetpackRideAudio;
     //Input values
 
     private float horizontalSteerInput;
@@ -91,20 +49,10 @@ public class JetPack : JetpackBase
     protected override void Awake()
     {       
         base.Awake();
-        //fuel = maxFuel;
         autoMoveSpeed = startingAutoMoveSpeed;
         camera = Camera.main;
-        //body = GetComponentInParent<Rigidbody>();
-        pewpew = GetComponentInChildren<Pewpew>();  
-        //StartCoroutine(FuelRecharger());       
-    }
-    protected override void Start() {
-        base.Start();
-        
-        //if(onJetpackAwake != null)
-        {
-            //onJetpackAwake(maxFuel);
-        }
+        pewpew = GetComponentInChildren<Pewpew>();   
+             
     }
 
     protected override void Update() //vad ska hände när man får game over? falla ner en bit? UI uppdateras? 
@@ -119,51 +67,9 @@ public class JetPack : JetpackBase
         }
         Move();   
         SetCameraPosition();
-        //GetDashInput();
         float moveSpeedIncreasePerFrame = Time.deltaTime * autoMoveSpeedIncreaseOverTime;
         IncreaseAutoMoveSpeed(moveSpeedIncreasePerFrame);      
     }
-
-    //IEnumerator FuelRecharger() 
-    //{
-        //bool recharging = false;
-        //float rechargeTimeLeft = 0;
-        //while(true)
-       // {
-           // if(useFuel) //if player just dashed, then reset recharge timer
-            //{
-               // rechargeTimeLeft = fuelRechargeTime;
-                //yield return new WaitForEndOfFrame();
-               // useFuel = false;
-              //  recharging = false;              
-           // }
-            //else if(rechargeTimeLeft > 0) //if player did not dash again, then start counting down the recharge time
-           // {
-           //     yield return new WaitForEndOfFrame();
-           //     rechargeTimeLeft -= Time.deltaTime;          
-          //  }
-            //else if(rechargeTimeLeft <= 0)
-           // {
-            //    recharging = true;
-           // }
-           // if(recharging)
-           // {
-               // yield return new WaitForEndOfFrame();
-               // fuel += fuelRechargePerTick * Time.deltaTime;
-               // if(fuel >= maxFuel)
-               // {
-                //    fuel = maxFuel;
-                //    recharging = false;
-                //    overCharged = false;
-               // }
-               // if(onFuelUse != null)
-               // {
-                //    onFuelUse(fuel);
-               // }
-           // }
-           // yield return new WaitForEndOfFrame();
-        //}
-    //}
 
     void IncreaseAutoMoveSpeed(float amount)
     {
@@ -302,6 +208,18 @@ public class JetPack : JetpackBase
         movement.x = horizontalSteerInput * moveSpeed; 
      
         body.velocity = movement;
+        if(jetpackRideAudio != null)
+        {
+            if(!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(jetpackRideAudio);
+            }    
+            if(Gamemanager.instance.CurrentGameState == Gamemanager.GameState.Paused)
+            {
+                audioSource.Stop();
+            } 
+        }
+        
     }
 
     void SetCameraPosition()

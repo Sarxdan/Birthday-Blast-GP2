@@ -14,6 +14,7 @@ public class JetpackBase : MonoBehaviour
         Right,
         Forward
     }
+    protected AudioSource audioSource;
     protected DashDirections dashDirections = DashDirections.None;
     protected Rigidbody body;
     protected CharacterController controller;
@@ -51,6 +52,7 @@ public class JetpackBase : MonoBehaviour
         fuel = maxFuel;
         body = GetComponentInParent<Rigidbody>();
         controller = GetComponentInParent<CharacterController>();
+        audioSource = GetComponent<AudioSource>();
         StartCoroutine(FuelRecharger());       
     }
     protected virtual void Start() {

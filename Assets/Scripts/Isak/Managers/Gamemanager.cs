@@ -17,6 +17,10 @@ public class Gamemanager : Singleton<Gamemanager>
     {
         get{return unlockedItems;}
     }
+    public GameState CurrentGameState
+    {
+        get{return currentGameState;}
+    }
     [SerializeField] KeyItems.Items unlockedItems;
     GameState currentGameState = GameState.Pregame;
 

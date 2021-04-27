@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.2257134, b: 0.30692226, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2618,6 +2618,22 @@ PrefabInstance:
     - target: {fileID: 2813504274599785017, guid: 7b2474cff9d229e47939bdc9e6f6e9ea, type: 3}
       propertyPath: m_Name
       value: Inventory
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444610208571468344, guid: 7b2474cff9d229e47939bdc9e6f6e9ea, type: 3}
+      propertyPath: baseGunCooldown
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444610208571468344, guid: 7b2474cff9d229e47939bdc9e6f6e9ea, type: 3}
+      propertyPath: baseFuelCapacity
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444610208571468344, guid: 7b2474cff9d229e47939bdc9e6f6e9ea, type: 3}
+      propertyPath: baseGunBlastRadius
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6444610208571468344, guid: 7b2474cff9d229e47939bdc9e6f6e9ea, type: 3}
+      propertyPath: baseFuelConsumption
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8564763509383370726, guid: 7b2474cff9d229e47939bdc9e6f6e9ea, type: 3}
       propertyPath: m_RootOrder

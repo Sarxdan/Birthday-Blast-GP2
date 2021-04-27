@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76c45db0e7cd2244187622689ab1bbf5, type: 3}
   m_Name: Fuel Upgrade 2
   m_EditorClassIdentifier: 
-  changes: []
-  upgradeName: 
-  upgradeDesc: 
+  changes:
+  - name: -Fuel Consumption
+    change: 1
+    inPercentage: -15
+  upgradeName: Decrease Fuel Consumption
+  upgradeDesc: Decreases Fuel Consumption by 15 %

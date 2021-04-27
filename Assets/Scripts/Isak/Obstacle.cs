@@ -11,12 +11,12 @@ public class Obstacle : DamagePlayer
     float timeUntilReturn;
 
     private void Awake() {
-        body = GetComponent<Rigidbody>();
+        body = GetComponent<Rigidbody>();   
         body.useGravity = false;
         timeUntilReturn = returnTime;
     }
     protected virtual void Update() {
-        MoveObject();       
+        MoveObject();     
     }
 
     void MoveObject()
