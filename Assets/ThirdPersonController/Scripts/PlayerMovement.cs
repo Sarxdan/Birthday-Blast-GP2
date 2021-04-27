@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
 
     //Components
+    public Animator animator;
     private CharacterController controller;
     private CameraController camController;
 
@@ -49,6 +50,8 @@ public class PlayerMovement : MonoBehaviour
     {
         horizontal = _horizontal;
         vertical = _vertical;
+        
+        animator.SetFloat("Speed",Mathf.Abs(vertical) + Mathf.Abs(horizontal));
     }
 
     public void CheckIfGrounded() //added
@@ -86,6 +89,9 @@ public class PlayerMovement : MonoBehaviour
         
         //Rotate player towards movement
         RotatePlayerTowardsDirection(movementDirection);
+        
+        
+        animator.SetFloat("Velocity", velocity.y);
     }
 
     private void RotatePlayerTowardsDirection(Vector3 direction)
@@ -106,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
+        animator.SetTrigger("Jump");
     }
 
 }
