@@ -13,6 +13,8 @@ public class Inventory : MonoBehaviour
     public int currency;
     public int magicRootCount;
 
+    public int gems; //used as store value, bought with real money
+
     public static Inventory instance;
 
     private void Awake()

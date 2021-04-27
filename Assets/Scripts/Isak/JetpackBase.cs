@@ -116,7 +116,6 @@ public class JetpackBase : MonoBehaviour
         cooldown = dashCooldown;
         while(cooldown > 0)
         {
-            print(cooldown);
             yield return new WaitForEndOfFrame();
             cooldown -= Time.deltaTime;
         }

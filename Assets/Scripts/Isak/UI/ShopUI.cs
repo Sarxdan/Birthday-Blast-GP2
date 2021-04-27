@@ -22,6 +22,7 @@ public class ShopUI : MonoBehaviour
 
     void OnPurchase(bool check)
     {
+        StopAllCoroutines();
         if(check)
         {
             purchaseText.text = "Purchase Successful";
@@ -41,10 +42,11 @@ public class ShopUI : MonoBehaviour
 
     private void OnEnable() {
         ShopItem.onPurchase += OnPurchase;
+        Gem.onGemBought += OnPurchase;
     }
 
     private void OnDisable() {
         ShopItem.onPurchase -= OnPurchase;
-        
+        Gem.onGemBought -= OnPurchase;
     }
 }
