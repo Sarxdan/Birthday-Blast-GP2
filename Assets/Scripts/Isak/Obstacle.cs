@@ -4,9 +4,11 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Obstacle : DamagePlayer
 {
+    bool isPlayingAudio;
     [SerializeField] bool canBeDestroyedByPlayer = true;
     [SerializeField] Vector3 movementDirection = new Vector3(0, 0, 0);
     [SerializeField][Range(1, 10)] float returnTime = 1;
+    [SerializeField] LayerMask playerLayer;
     protected Rigidbody body;
     float timeUntilReturn;
 
@@ -15,10 +17,25 @@ public class Obstacle : DamagePlayer
         body.useGravity = false;
         timeUntilReturn = returnTime;
     }
-    protected virtual void Update() {
-        MoveObject();     
+    protected virtual void Update() {       
+        MoveObject();   
+        CheckForPlayer();
     }
 
+    void CheckForPlayer()
+    {
+        var colliders = Physics.OverlapSphere(transform.position, 10, playerLayer);
+        if(colliders.Length > 0 && !isPlayingAudio)
+        {
+            isPlayingAudio = true; // needs a better fix
+            AudioManager.instance.PlayClipAtPoint("Obstacle", transform.position);
+        }
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.DrawWireSphere(transform.position, 10);
+    }
+    
     void MoveObject()
     {
         body.velocity = movementDirection;

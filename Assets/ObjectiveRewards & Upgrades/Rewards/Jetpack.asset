@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0898eb6af9883149ab2786a2e14743b, type: 3}
+  m_Name: Jetpack
+  m_EditorClassIdentifier: 
+  name: Jetpack
+  description: Reward Description
+  icon: {fileID: 21300000, guid: f7318fb3e40d5ff408025a689c673410, type: 3}
+  ID: 0
+  skillTree:
+    skillTreeName: SkillTree
+    paths:
+    - pathName: Fuel Recharge Time %
+      upgrades:
+      - unlocked: 0
+        upgradeStats: {fileID: 11400000, guid: 6b513e625ade17e4ab9295e787fa7b71, type: 2}
+      - unlocked: 0
+        upgradeStats: {fileID: 11400000, guid: 3c51e1c9f6220c04189e08b1cb54c134, type: 2}
+      - unlocked: 0
+        upgradeStats: {fileID: 11400000, guid: 8272aeaf3d52448408991201549761a3, type: 2}
+      - unlocked: 0
+        upgradeStats: {fileID: 11400000, guid: f2361e74bc259f043af66486de9f867b, type: 2}
+    - pathName: Base Fuel Recharge Time %
+      upgrades:
+      - unlocked: 0
+        upgradeStats: {fileID: 11400000, guid: 6b513e625ade17e4ab9295e787fa7b71, type: 2}

@@ -14,6 +14,10 @@ public class PlayerHealth : Health
     {       
         if(invulnerable) return;
         base.TakeDamage(damage);
+        if(health > 0)
+        {
+            AudioManager.instance.Play("PlayerDamaged");
+        }        
         if(onPlayerHealthChange != null)
         {
             onPlayerHealthChange(health);
@@ -38,6 +42,8 @@ public class PlayerHealth : Health
     protected override IEnumerator Death()
     {
         yield return base.Death();
+        AudioManager.instance.Play("PlayerDeath");
+        yield return new WaitForSeconds(1);
         if(onPlayerDeath != null)
         {
             onPlayerDeath();

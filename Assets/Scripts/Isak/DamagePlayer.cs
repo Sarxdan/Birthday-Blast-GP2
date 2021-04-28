@@ -11,7 +11,7 @@ public class DamagePlayer : MonoBehaviour
     protected virtual void OnCollisionEnter(Collision other) {
         JetPack jetPack = other.gameObject.GetComponentInChildren<JetPack>();
         PlayerHealth playerHealth = other.gameObject.GetComponent<PlayerHealth>();
-        if( jetPack != null || playerHealth != null)
+        if(playerHealth != null)
         {
             if(jetPack != null && jetPack.Invulnerable || jetPack != null && jetPack.GameOver) return;
             if(onPlayerCollision != null)
@@ -24,7 +24,7 @@ public class DamagePlayer : MonoBehaviour
     protected virtual void OnTriggerEnter(Collider other) {
         JetPack jetPack = other.gameObject.GetComponentInChildren<JetPack>();
         PlayerHealth playerHealth = other.gameObject.GetComponent<PlayerHealth>();
-        if( jetPack != null || playerHealth != null)
+        if(playerHealth != null)
         {
             if(jetPack != null && jetPack.Invulnerable || jetPack != null && jetPack.GameOver) return;
             if(onPlayerCollision != null)

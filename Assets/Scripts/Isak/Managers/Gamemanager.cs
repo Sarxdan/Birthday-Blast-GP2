@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Gamemanager : Singleton<Gamemanager>
 {
+    public static Events.GameStateEvent onGameStateChange;
     public static Events.EmptyEvent onSceneLoaded;
     public enum GameState
     {
@@ -43,6 +44,10 @@ public class Gamemanager : Singleton<Gamemanager>
             case GameState.Paused:
             Time.timeScale = 0;
             break;
+        }
+        if(onGameStateChange != null)
+        {
+            onGameStateChange(currentGameState);
         }
     }
 
