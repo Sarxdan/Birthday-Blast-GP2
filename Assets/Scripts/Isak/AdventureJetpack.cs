@@ -52,6 +52,7 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
 
     protected override void GetDashInput()
     {
+        if(!jetpackUnlocked) return;
         if(overCharged) return;
         if(dashOnCooldown) return;
         if(!dashUnlocked) return;
