@@ -11,11 +11,17 @@ public class Upgrade
 
     public void Unlock()
     {
+        if(unlocked) return;
+        
         unlocked = true;
+        
+        Inventory.instance.ApplySkillTreeUpgrades();
     }
 
     public void Lock()
     {
         unlocked = false;
+        Inventory.instance.ApplyBaseStats();
+        Inventory.instance.ApplySkillTreeUpgrades();
     }
 }

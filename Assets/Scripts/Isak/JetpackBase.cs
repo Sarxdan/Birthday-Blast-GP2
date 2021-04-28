@@ -14,7 +14,6 @@ public class JetpackBase : MonoBehaviour
         Right,
         Forward
     }
-    protected AudioSource audioSource;
     protected DashDirections dashDirections = DashDirections.None;
     protected Rigidbody body;
     protected CharacterController controller;
@@ -52,18 +51,26 @@ public class JetpackBase : MonoBehaviour
         fuel = maxFuel;
         body = GetComponentInParent<Rigidbody>();
         controller = GetComponentInParent<CharacterController>();
-        audioSource = GetComponent<AudioSource>();
-        StartCoroutine(FuelRecharger());       
+        StartCoroutine(FuelRecharger());
+
+        Inventory.instance.onUpgradeApplied += ApplyUpgradeStats;
     }
     protected virtual void Start() {
         if(onJetpackAwake != null)
         {
             onJetpackAwake(fuel);
         }
+        
+        ApplyUpgradeStats();
     }
 
     protected virtual void Update() {
         GetDashInput();
+    }
+
+    protected void ApplyUpgradeStats()
+    {
+        fuelRechargeTime = Inventory.instance.fuelRechargeTime;
     }
 
     protected virtual void ResetAxisBools()
@@ -106,6 +113,7 @@ public class JetpackBase : MonoBehaviour
     {
         UseFuel(fuelUsage);
         dashTimeLeft = dashTime;
+        AudioManager.instance.Play("JetpackDash");
         //-------------------------------create temporary variables
         StartCoroutine(DashCooldown());
         //---------------------------------start the dash ability
