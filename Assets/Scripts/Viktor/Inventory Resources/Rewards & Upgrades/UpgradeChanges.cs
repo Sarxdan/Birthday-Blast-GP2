@@ -8,13 +8,12 @@ public class UpgradeChanges
     public string name;
     public UpgradeVariables change;
         
-    [Header("ex: increase FuelCapacity by 25 %")]
+    [Header("Value changed in %")]
     public int inPercentage;
 }
 public enum UpgradeVariables
 {
-    FuelCapacity,
-    FuelConsumption,
-    GunCooldown,
-    GunBlastRadius
+    FuelRechargeTime,
+    BaseFuelRechargeTime,
+    GardenSpadeLuck
 }

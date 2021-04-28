@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 1547601314288988463}
   - component: {fileID: 1547601314288988462}
   - component: {fileID: 6883880670727568361}
+  - component: {fileID: -2287925619427605950}
   m_Layer: 8
   m_Name: JetpackUnlock
   m_TagString: Untagged
@@ -100,6 +101,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: -2287925619427605950}
+        m_TargetAssemblyTypeName: Reward, Assembly-CSharp
+        m_MethodName: GetReward
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1547601314288988462
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129,6 +142,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-2287925619427605950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8010416373021954335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80811847923b51f4182a595a219d0f6e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rewardStats: {fileID: 11400000, guid: b347e3e91d3ce214f91783f38e8cc3d4, type: 2}
 --- !u!1001 &8645993902864727174
 PrefabInstance:
   m_ObjectHideFlags: 0
