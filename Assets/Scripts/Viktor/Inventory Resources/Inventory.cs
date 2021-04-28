@@ -20,6 +20,7 @@ public class Inventory : MonoBehaviour
     public float baseGardenSpadeLuck = 25.0f;
 
     [Header("Effective Stat")] 
+    public float changedBaseFuelRechargeTime;
     public float fuelRechargeTime = 0.0f;
     public float gardenSpadeLuck = 0.0f;
     
@@ -45,8 +46,9 @@ public class Inventory : MonoBehaviour
     
     public void ApplyBaseStats()
     {
+        changedBaseFuelRechargeTime = baseFuelRechargeTime;
         gardenSpadeLuck = baseGardenSpadeLuck;
-        fuelRechargeTime = baseFuelRechargeTime;
+        fuelRechargeTime = changedBaseFuelRechargeTime;
         
         onUpgradeApplied?.Invoke();
     }
@@ -120,6 +122,11 @@ public class Inventory : MonoBehaviour
 
                                     gardenSpadeLuck = ApplyChange(baseGardenSpadeLuck, change.inPercentage);
 
+                                    break;
+                                
+                                case UpgradeVariables.BaseFuelRechargeTime:
+                                    changedBaseFuelRechargeTime =
+                                        ApplyChange(baseFuelRechargeTime, change.inPercentage);
                                     break;
                             }
                         }
