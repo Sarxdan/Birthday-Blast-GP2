@@ -7,6 +7,7 @@ public class Obstacle : DamagePlayer
     [SerializeField] bool canBeDestroyedByPlayer = true;
     [SerializeField] Vector3 movementDirection = new Vector3(0, 0, 0);
     [SerializeField][Range(1, 10)] float returnTime = 1;
+    [SerializeField] LayerMask playerLayer;
     protected Rigidbody body;
     float timeUntilReturn;
 
@@ -15,10 +16,25 @@ public class Obstacle : DamagePlayer
         body.useGravity = false;
         timeUntilReturn = returnTime;
     }
-    protected virtual void Update() {
-        MoveObject();     
+    protected virtual void Update() {       
+        MoveObject();   
+        CheckForPlayer();
     }
 
+    void CheckForPlayer()
+    {
+        var interactablesNearby = Physics.OverlapSphere(transform.position, 10, playerLayer);
+        if(interactablesNearby != null)
+        {
+            //print("test");
+            AudioManager.instance.PlayClipAtPoint("Obstacle", transform.position);
+        }
+    }
+
+    private void OnDrawGizmos() {
+        Gizmos.DrawWireSphere(transform.position, 10);
+    }
+    
     void MoveObject()
     {
         body.velocity = movementDirection;

@@ -37,8 +37,7 @@ public class JetPack : JetpackBase
     [Header("Camera settings")]
     [SerializeField] Vector3 cameraRotation = new Vector3(0,0,0);
     [SerializeField] Vector3 cameraOffsetFromPlayer = new Vector3(0,0,0);
-    [Header("Audio settings")]
-    [SerializeField] AudioClip jetpackRideAudio;
+
     //Input values
 
     private float horizontalSteerInput;
@@ -52,7 +51,13 @@ public class JetPack : JetpackBase
         autoMoveSpeed = startingAutoMoveSpeed;
         camera = Camera.main;
         pewpew = GetComponentInChildren<Pewpew>();   
+        
              
+    }
+    protected override void Start()
+    {
+        base.Start();
+        AudioManager.instance.Play("JetpackSound");
     }
 
     protected override void Update() //vad ska hände när man får game over? falla ner en bit? UI uppdateras? 
@@ -208,17 +213,6 @@ public class JetPack : JetpackBase
         movement.x = horizontalSteerInput * moveSpeed; 
      
         body.velocity = movement;
-        if(jetpackRideAudio != null)
-        {
-            if(!audioSource.isPlaying)
-            {
-                audioSource.PlayOneShot(jetpackRideAudio);
-            }    
-            if(Gamemanager.instance.CurrentGameState == Gamemanager.GameState.Paused)
-            {
-                audioSource.Stop();
-            } 
-        }
         
     }
 

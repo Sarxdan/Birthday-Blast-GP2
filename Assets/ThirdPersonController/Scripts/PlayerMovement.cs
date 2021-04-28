@@ -5,9 +5,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    AudioSource audioSource;
-    [SerializeField] AudioClip jumpSound;
-    [SerializeField] AudioClip walkSound;
     //Components
     public Animator animator;
     private CharacterController controller;
@@ -44,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         camController = GetComponent<CameraController>();
-        audioSource = GetComponent<AudioSource>();
         
     }
     
@@ -92,13 +88,12 @@ public class PlayerMovement : MonoBehaviour
         
         //Rotate player towards movement
         RotatePlayerTowardsDirection(movementDirection);
-        if(walkSound != null && audioSource != null && !audioSource.isPlaying && isGrounded)
+        if(isGrounded && !AudioManager.instance.IsPlaying("PlayerWalk"))
         {
             if(vertical != 0 || horizontal != 0)
             {
-                audioSource.PlayOneShot(walkSound);
-            }
-            
+                AudioManager.instance.Play("PlayerWalk"); 
+            }            
         }
         
         
@@ -123,14 +118,9 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         velocity.y = Mathf.Sqrt(jumpHeight * -2f * gravity);
-        if(jumpSound != null)
-        {
-            if(audioSource.isPlaying)
-            {
-                audioSource.Stop();
-            }
-            audioSource.PlayOneShot(jumpSound);
-        }
+
+        AudioManager.instance.Play("PlayerJump");
+
         animator.SetTrigger("Jump");
     }
 
