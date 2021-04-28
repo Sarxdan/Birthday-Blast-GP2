@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
@@ -9,18 +10,27 @@ public class SpawnPoint : MonoBehaviour
     public GameObject JetpackController;
 
     private GameObject controllerToSpawn;
+    public bool manualSpawn;
 
     private void Awake()
     {
         //Spawn ThirdPersonController on island, Jetpack otherwise
         controllerToSpawn = transform.parent.GetComponent<Level>().levelType == LevelType.Island ? thirdPersonController : JetpackController;
         
-        SpawnPlayer(controllerToSpawn);
+        if (manualSpawn == false)
+        {
+            SpawnPlayer(controllerToSpawn);
+        }
     }
 
     private void SpawnPlayer(GameObject player)
     {
-        //Spawn player and apply the rotation of the SpawnPoint onto the player
-        Instantiate(player, transform.position, transform.rotation);
+        Instantiate(player, transform.position, quaternion.identity);
+    }
+
+
+    public void ManualSpawnPlayer()
+    {
+        SpawnPlayer(controllerToSpawn);
     }
 }
