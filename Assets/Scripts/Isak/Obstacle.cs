@@ -4,6 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Obstacle : DamagePlayer
 {
+    bool isPlayingAudio;
     [SerializeField] bool canBeDestroyedByPlayer = true;
     [SerializeField] Vector3 movementDirection = new Vector3(0, 0, 0);
     [SerializeField][Range(1, 10)] float returnTime = 1;
@@ -23,10 +24,10 @@ public class Obstacle : DamagePlayer
 
     void CheckForPlayer()
     {
-        var interactablesNearby = Physics.OverlapSphere(transform.position, 10, playerLayer);
-        if(interactablesNearby != null)
+        var colliders = Physics.OverlapSphere(transform.position, 10, playerLayer);
+        if(colliders.Length > 0 && !isPlayingAudio)
         {
-            //print("test");
+            isPlayingAudio = true; // needs a better fix
             AudioManager.instance.PlayClipAtPoint("Obstacle", transform.position);
         }
     }

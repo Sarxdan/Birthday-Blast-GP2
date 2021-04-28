@@ -12,6 +12,7 @@ public class Sound
     [Range(0,3)] public float pitch;
     public bool playOnAwake;
     public bool loop;
+    [Range(1, 50)]public int amountofObjects;
 
     [HideInInspector]
     public AudioSource source;
