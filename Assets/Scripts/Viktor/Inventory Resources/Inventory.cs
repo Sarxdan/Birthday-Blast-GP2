@@ -112,10 +112,15 @@ public class Inventory : MonoBehaviour
                             switch (upgradeType)
                             {
                                 //Apply change to correct variable
-
+                                case UpgradeVariables.BaseFuelRechargeTime:
+                                    
+                                    changedBaseFuelRechargeTime =
+                                        ApplyChange(baseFuelRechargeTime, change.inPercentage);
+                                    break;
+                                
                                 case UpgradeVariables.FuelRechargeTime:
 
-                                    fuelRechargeTime = ApplyChange(baseFuelRechargeTime, change.inPercentage);
+                                    fuelRechargeTime = ApplyChange(changedBaseFuelRechargeTime, change.inPercentage);
 
                                     break;
                                 case UpgradeVariables.GardenSpadeLuck:
@@ -124,10 +129,6 @@ public class Inventory : MonoBehaviour
 
                                     break;
                                 
-                                case UpgradeVariables.BaseFuelRechargeTime:
-                                    changedBaseFuelRechargeTime =
-                                        ApplyChange(baseFuelRechargeTime, change.inPercentage);
-                                    break;
                             }
                         }
                     }
