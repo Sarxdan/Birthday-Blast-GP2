@@ -13,8 +13,6 @@ public class UpgradeChanges
 }
 public enum UpgradeVariables
 {
-    FuelCapacity,
-    FuelConsumption,
-    GunCooldown,
-    GunBlastRadius
+    FuelRechargeTime,
+    GardenSpadeLuck
 }

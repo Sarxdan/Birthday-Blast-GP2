@@ -51,17 +51,26 @@ public class JetpackBase : MonoBehaviour
         fuel = maxFuel;
         body = GetComponentInParent<Rigidbody>();
         controller = GetComponentInParent<CharacterController>();
-        StartCoroutine(FuelRecharger());       
+        StartCoroutine(FuelRecharger());
+
+        Inventory.instance.onUpgradeApplied += ApplyUpgradeStats;
     }
     protected virtual void Start() {
         if(onJetpackAwake != null)
         {
             onJetpackAwake(fuel);
         }
+        
+        ApplyUpgradeStats();
     }
 
     protected virtual void Update() {
         GetDashInput();
+    }
+
+    protected void ApplyUpgradeStats()
+    {
+        fuelRechargeTime = Inventory.instance.fuelRechargeTime;
     }
 
     protected virtual void ResetAxisBools()

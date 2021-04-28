@@ -14,20 +14,18 @@ public class Inventory : MonoBehaviour
 
     public int gems;
 
-    [Header("Player Stats")]
-    public float baseFuelCapacity;
-    public float baseFuelConsumption;
+    [Header("Upgradeable stats")] 
+    [Header("Base Stats")]
+    public float baseFuelRechargeTime = 3.0f;
+    public float baseGardenSpadeLuck = 25.0f;
 
-    public float baseGunCooldown;
-    public float baseGunBlastRadius;
-    [Space]
-    public float fuelCapacity;
-    public float fuelConsumption;
-    public float gunCooldown;
-    public float gunBlastRadius;
-
+    [Header("Effective Stat")] 
+    public float fuelRechargeTime = 0.0f;
+    public float gardenSpadeLuck = 0.0f;
+    
     public List<ObjectiveReward> objRewardsUnlocked = new List<ObjectiveReward>();
 
+    public Action onUpgradeApplied;
     public static Inventory instance;
 
     private void Awake()
@@ -44,19 +42,13 @@ public class Inventory : MonoBehaviour
         ApplyBaseStats();
         
     }
-
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.P))
-            ApplySkillTreeUpgrades();
-    }
-
+    
     public void ApplyBaseStats()
     {
-        fuelCapacity = baseFuelCapacity;
-        fuelConsumption = baseFuelConsumption;
-        gunCooldown = baseGunCooldown;
-        gunBlastRadius = baseGunBlastRadius;
+        gardenSpadeLuck = baseGardenSpadeLuck;
+        fuelRechargeTime = baseFuelRechargeTime;
+        
+        onUpgradeApplied?.Invoke();
     }
 
     public void PickUpResource(Resource resource)
@@ -119,24 +111,14 @@ public class Inventory : MonoBehaviour
                             {
                                 //Apply change to correct variable
 
-                                case UpgradeVariables.FuelCapacity:
+                                case UpgradeVariables.FuelRechargeTime:
 
-                                    fuelCapacity = ApplyChange(baseFuelCapacity, change.inPercentage);
-
-                                    break;
-                                case UpgradeVariables.FuelConsumption:
-
-                                    fuelConsumption = ApplyChange(baseFuelConsumption, change.inPercentage);
+                                    fuelRechargeTime = ApplyChange(baseFuelRechargeTime, change.inPercentage);
 
                                     break;
-                                case UpgradeVariables.GunCooldown:
-                                    
-                                    gunCooldown = ApplyChange(baseGunCooldown, change.inPercentage);
+                                case UpgradeVariables.GardenSpadeLuck:
 
-                                    break;
-                                case UpgradeVariables.GunBlastRadius:
-                                    
-                                    gunBlastRadius = ApplyChange(baseGunBlastRadius, change.inPercentage);
+                                    gardenSpadeLuck = ApplyChange(baseGardenSpadeLuck, change.inPercentage);
 
                                     break;
                             }
@@ -145,6 +127,9 @@ public class Inventory : MonoBehaviour
                 }
             }
         }
+        
+        
+        onUpgradeApplied?.Invoke();
     }
 
     private float ApplyChange(float baseValue, float percentage)

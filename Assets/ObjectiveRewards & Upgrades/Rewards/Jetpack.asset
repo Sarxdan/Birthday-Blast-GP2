@@ -10,18 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f0898eb6af9883149ab2786a2e14743b, type: 3}
-  m_Name: Fuel Cannister
+  m_Name: Jetpack
   m_EditorClassIdentifier: 
-  name: Fuel Cannister
+  name: Jetpack
   description: Reward Description
-  icon: {fileID: 21300000, guid: 0a23c4536c13ef645b6dd23fa51f7b41, type: 3}
-  ID: 1
+  icon: {fileID: 21300000, guid: f7318fb3e40d5ff408025a689c673410, type: 3}
+  ID: 0
   skillTree:
     skillTreeName: SkillTree
     paths:
     - pathName: Main Path
       upgrades:
       - unlocked: 0
-        upgradeStats: {fileID: 11400000, guid: 968d7be4e6a4c3244bea617325ecfa37, type: 2}
+        upgradeStats: {fileID: 11400000, guid: 8ab18f34f92a552438e12f752e14daae, type: 2}
       - unlocked: 0
-        upgradeStats: {fileID: 11400000, guid: 092bb0c66c8c31a4593846459491b5b4, type: 2}
+        upgradeStats: {fileID: 11400000, guid: 3c51e1c9f6220c04189e08b1cb54c134, type: 2}
+      - unlocked: 0
+        upgradeStats: {fileID: 11400000, guid: 8272aeaf3d52448408991201549761a3, type: 2}
+      - unlocked: 0
+        upgradeStats: {fileID: 11400000, guid: f2361e74bc259f043af66486de9f867b, type: 2}
