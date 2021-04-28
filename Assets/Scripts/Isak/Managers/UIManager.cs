@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Timeline;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -14,6 +15,7 @@ public class UIManager : Singleton<UIManager>
     InGameUI inGameUI;
     PauseMenu pauseMenu;
     ShopUI shopUI;
+    public GameObject journalPanel;
 
 
     private Controls controls;
@@ -29,6 +31,7 @@ public class UIManager : Singleton<UIManager>
         inGameUI = GetComponentInChildren<InGameUI>();
         pauseMenu = GetComponentInChildren<PauseMenu>();
         shopUI = GetComponentInChildren<ShopUI>();
+        ToggleInventoryUI();
         TogglePauseMenu();
         ToggleShopUI();
     }
@@ -62,6 +65,25 @@ public class UIManager : Singleton<UIManager>
         bool toggle = !shopUI.gameObject.activeSelf;        
         shopUI.gameObject.SetActive(toggle);
         if(toggle)
+        {
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        else
+        {
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
+        Time.timeScale = toggle ? 0 : 1;
+    }
+
+    public void ToggleInventoryUI()
+    {
+        var toggle = !journalPanel.gameObject.activeSelf;
+        
+        journalPanel.gameObject.SetActive(toggle);
+        if (toggle)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;

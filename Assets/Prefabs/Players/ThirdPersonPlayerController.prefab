@@ -29242,8 +29242,6 @@ MonoBehaviour:
   - {fileID: 8389711911448183811}
   - {fileID: 8389711911303687453}
   dashEffect: {fileID: 8389711910416837472}
-  dashSound: {fileID: 0}
-  jumpSound: {fileID: 0}
 --- !u!1 &8389711911360844030
 GameObject:
   m_ObjectHideFlags: 0
@@ -36431,7 +36429,7 @@ CharacterController:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8389711911653019396}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 2fa76b78d4357ca4eaefbaf36efd3698, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -36455,8 +36453,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 2
-  damageAudio: {fileID: 0}
-  deathAudio: {fileID: 0}
   invulnerableTime: 1
 --- !u!114 &8389711911653019394
 MonoBehaviour:
@@ -36470,8 +36466,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d9277d2d5a633e41948a8ccf86c7fd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpSound: {fileID: 0}
-  walkSound: {fileID: 0}
   animator: {fileID: 8389711910467352071}
   movementSpeed: 0
   jumpHeight: 0

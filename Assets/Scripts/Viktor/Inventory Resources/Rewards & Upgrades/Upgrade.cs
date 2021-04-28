@@ -14,7 +14,6 @@ public class Upgrade
         if(unlocked) return;
         
         unlocked = true;
-        
         Inventory.instance.ApplySkillTreeUpgrades();
     }
 
