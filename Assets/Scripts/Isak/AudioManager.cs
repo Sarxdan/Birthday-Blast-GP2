@@ -9,32 +9,70 @@ public class AudioManager : Singleton<AudioManager>
     [SerializeField] Sound[] sounds;
     // Start is called before the first frame update
     private void Awake() {
+
         foreach(Sound s in sounds)
         {
-            GameObject obj = new GameObject();
-            obj.transform.parent = gameObject.transform;
-            s.source = obj.AddComponent<AudioSource>();
 
-            s.gameObject = obj;
-            s.source.clip = s.clip;
-            s.source.volume = s.volume;
-            s.source.pitch = s.pitch;
-            s.source.playOnAwake = s.playOnAwake;
-            s.source.loop = s.loop;
+            GameObject obj = new GameObject();
+            obj.name = s.name + " track(s)";
+            obj.transform.parent = gameObject.transform;
+
+            for(int i = 0; i < s.amountofObjects; i++)
+            {
+
+                GameObject child = new GameObject();
+                child.transform.parent = obj.gameObject.transform;
+                s.source = child.AddComponent<AudioSource>();
+
+                s.gameObject = child;
+                s.source.clip = s.clip;
+                s.source.volume = s.volume;
+                s.source.pitch = s.pitch;
+                s.source.playOnAwake = s.playOnAwake;
+                s.source.loop = s.loop;
+
+            }
         }
     }
 
     public void PlayClipAtPoint(string name, Vector3 position) //will play in 3D
     {
-        Sound s = Array.Find(sounds, sound => sound.name == name);
-        if(s == null)
+        AudioSource source;
+        Transform parent = FindTrackParent(name);
+        //Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (parent == null)
         {
             Debug.LogError("Sound: " + name + "not found!");
             return;
-        } 
-        s.gameObject.transform.position = position;
-        s.source.spatialBlend = 1;
-        s.source.Play();
+        }
+        foreach (Transform child in parent)
+        {
+            source = child.GetComponent<AudioSource>();
+            if(!source.isPlaying)
+            {
+                source.spatialBlend = 1;
+                child.gameObject.transform.position = position;
+                source.Play();
+                return;
+            }
+        }
+        Transform firstChild = parent.GetChild(0).transform;
+        source = firstChild.GetComponent<AudioSource>();
+        firstChild.gameObject.transform.position = position; 
+        
+        GetComponent<AudioSource>();
+    }
+
+    private Transform FindTrackParent(string name)
+    {
+        foreach (Transform child in transform)
+        {
+            if (child.name == name + " track(s)")
+            {
+                return child;
+            }
+        }
+        return null;
     }
 
     public bool IsPlaying(string name) //if checking while paused, the audio will still play
@@ -57,6 +95,7 @@ public class AudioManager : Singleton<AudioManager>
             Debug.LogError("Sound: " + name + " not found!");
             return;
         } 
+        s.source.spatialBlend = 0;
         s.source.Play();
     }
 
