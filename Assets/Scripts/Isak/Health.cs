@@ -5,10 +5,10 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     protected int health;
-    [SerializeField] int startingHealth = 1;
+    protected int maxHealth = 1;
     // Start is called before the first frame update
     protected virtual void Awake() {
-        health = startingHealth;
+        health = maxHealth;
     }
 
     public virtual void TakeDamage(int damage)
@@ -17,6 +17,15 @@ public class Health : MonoBehaviour
         if(health <= 0)
         {
             StartCoroutine(Death());
+        }
+    }
+
+    public void Heal(int amount)
+    {
+        health += amount;
+        if(health > maxHealth)
+        {
+            health = maxHealth;
         }
     }
 

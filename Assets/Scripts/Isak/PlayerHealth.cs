@@ -13,6 +13,7 @@ public class PlayerHealth : Health
     public override void TakeDamage(int damage)
     {       
         if(invulnerable) return;
+        PlayerManager.instance.playerHealth -= damage;
         base.TakeDamage(damage);
         if(health > 0)
         {
@@ -52,6 +53,9 @@ public class PlayerHealth : Health
     }
 
     private void Start() {
+        maxHealth = PlayerManager.instance.playerMaxHealth;
+
+        health = PlayerManager.instance.playerHealth;
         if(onPlayerHealthChange != null)
         {
             onPlayerHealthChange(health);

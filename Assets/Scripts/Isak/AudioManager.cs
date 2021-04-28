@@ -28,7 +28,6 @@ public class AudioManager : Singleton<AudioManager>
                 s.source.clip = s.clip;
                 s.source.volume = s.volume;
                 s.source.pitch = s.pitch;
-                s.source.playOnAwake = s.playOnAwake;
                 s.source.loop = s.loop;
 
             }
@@ -39,7 +38,6 @@ public class AudioManager : Singleton<AudioManager>
     {
         AudioSource source;
         Transform parent = FindTrackParent(name);
-        //Sound s = Array.Find(sounds, sound => sound.name == name);
         if (parent == null)
         {
             Debug.LogError("Sound: " + name + "not found!");
@@ -59,7 +57,7 @@ public class AudioManager : Singleton<AudioManager>
         Transform firstChild = parent.GetChild(0).transform;
         source = firstChild.GetComponent<AudioSource>();
         firstChild.gameObject.transform.position = position; 
-        
+
         GetComponent<AudioSource>();
     }
 
