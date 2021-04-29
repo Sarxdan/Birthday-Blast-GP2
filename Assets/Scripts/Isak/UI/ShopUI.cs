@@ -15,9 +15,7 @@ public class ShopUI : MonoBehaviour
     }
     public void ExitShop()
     {
-        gameObject.SetActive(false);
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        UIManager.instance.ToggleShopUI();
     }
 
     void OnPurchase(bool check)

@@ -90,22 +90,28 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    void ToggleShopUI()
+    public void ToggleShopUI() //change to event later?
     {
         bool toggle = !shopUI.gameObject.activeSelf;        
         shopUI.gameObject.SetActive(toggle);
         if(toggle)
         {
+            if(onGamePaused != null)
+            {
+                onGamePaused(Gamemanager.GameState.Paused);
+            }
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
         else
         {
+            if(onGamePaused != null)
+            {
+                onGamePaused(Gamemanager.GameState.Playing);
+            }
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-
-        Time.timeScale = toggle ? 0 : 1;
     }
 
     public void ToggleInventoryUI()
