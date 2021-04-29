@@ -17,7 +17,7 @@ public class Interactable : MonoBehaviour
 
     public float minimumTimeBetweenInteractions = 2f;
     private float timeSinceLastInteraction = 0f;
-    
+
     [Header("Call function when player interacts with object")]
     public InteractEvent OnInteractEvent;
 

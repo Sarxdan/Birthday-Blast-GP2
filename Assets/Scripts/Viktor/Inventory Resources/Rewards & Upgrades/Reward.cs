@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Reward : MonoBehaviour
+public class Reward : PickUp
 {
     public RewardSO rewardStats;
 
@@ -12,6 +12,8 @@ public class Reward : MonoBehaviour
         {
             var objectiveReward = new ObjectiveReward(rewardStats.name, rewardStats.icon, rewardStats.ID, rewardStats.skillTree);
             Inventory.instance.objRewardsUnlocked.Add(objectiveReward);
+            
+            DestroyObject();
         }
     }
 }

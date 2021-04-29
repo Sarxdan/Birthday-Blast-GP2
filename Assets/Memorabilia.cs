@@ -8,6 +8,8 @@ public class Memorabilia : PickUp
     
     public void PickUpMemorabilia()
     {
+        UIManager.instance.EnablePopUp(memorabiliaStats.popupCard);
+        
         Inventory.instance.memorabiliasUnlocked.Add(memorabiliaStats);
         if (DestroyOnPickUp)
         {
