@@ -46,7 +46,6 @@ public class PlayerInteraction : MonoBehaviour
 
         if (interactableObject.CheckRequiredItems())
         {
-            Debug.Log("Tried to interact");
             interactableObject.TryToInteract(this);
         }
     }
