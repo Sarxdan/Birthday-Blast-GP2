@@ -121,6 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80811847923b51f4182a595a219d0f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyOnPickUp: 1
   rewardStats: {fileID: 0}
 --- !u!1001 &6444228016124596779
 PrefabInstance:
@@ -177,6 +178,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Chr_Kid_Cowboy_02
       objectReference: {fileID: 0}
+    - target: {fileID: 6835230095457017977, guid: 984f689ad802d104fade55267cd94c3b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 790d8384cfe92574d936bbf2b802b651, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 984f689ad802d104fade55267cd94c3b, type: 3}
 --- !u!4 &555599385294708154 stripped

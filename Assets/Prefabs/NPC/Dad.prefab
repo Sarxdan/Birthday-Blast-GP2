@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80811847923b51f4182a595a219d0f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyOnPickUp: 1
   rewardStats: {fileID: 11400000, guid: b347e3e91d3ce214f91783f38e8cc3d4, type: 2}
 --- !u!135 &5430340165816709322
 SphereCollider:
@@ -129,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 9010014105142166011}
     m_Modifications:
+    - target: {fileID: 5199107390272821902, guid: 223509b7b48ed2a46970e0eca2b8c5f8, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 790d8384cfe92574d936bbf2b802b651, type: 2}
     - target: {fileID: 5199107390280083782, guid: 223509b7b48ed2a46970e0eca2b8c5f8, type: 3}
       propertyPath: m_Name
       value: SM_Chr_Kid_Tracksuit_01
