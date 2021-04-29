@@ -74,24 +74,7 @@ public class JetpackBase : MonoBehaviour
 
     protected virtual void Update() {
         GetDashInput();
-        
-        // Jetpack overheating FX
-        fuelPercentage = 1 - (fuel / maxFuel);
-        material.SetFloat("_overheating", fuelPercentage);
-        if (fuelPercentage >= .65f && !smokeFX[0].isPlaying)
-        {
-            foreach (ParticleSystem smoke in smokeFX)
-            {
-                smoke.Play();
-            }
-        }
-        else if (fuelPercentage < .65f && smokeFX[0].isPlaying)
-        {
-            foreach (ParticleSystem smoke in smokeFX)
-            {
-                smoke.Stop();
-            }
-        }
+
     }
 
     protected void ApplyUpgradeStats()
@@ -184,6 +167,18 @@ public class JetpackBase : MonoBehaviour
             {
                 yield return new WaitForEndOfFrame();
                 fuel += fuelRechargePerTick * Time.deltaTime;
+                
+                // Fuel overheating
+                fuelPercentage = 1 - (fuel / maxFuel);
+                material.SetFloat("_overheating", fuelPercentage);
+                if (fuelPercentage < .65f && smokeFX[0].isPlaying)
+                {
+                    foreach (ParticleSystem smoke in smokeFX)
+                    {
+                        smoke.Stop();
+                    }
+                }
+                
                 if(fuel >= maxFuel)
                 {
                     fuel = maxFuel;
@@ -194,6 +189,8 @@ public class JetpackBase : MonoBehaviour
                 {
                     onFuelUse(fuel);
                 }
+                
+                
             }
             yield return new WaitForEndOfFrame();
         }
@@ -203,6 +200,18 @@ public class JetpackBase : MonoBehaviour
     {
         useFuel = true;
         fuel -= amount;
+        
+        // Fuel overheating
+        fuelPercentage = 1 - (fuel / maxFuel);
+        material.SetFloat("_overheating", fuelPercentage);
+        if (fuelPercentage >= .65f && !smokeFX[0].isPlaying)
+        {
+            foreach (ParticleSystem smoke in smokeFX)
+            {
+                smoke.Play();
+            }
+        }
+        
         if(fuel <= 0)
         {
             fuel = 0;
