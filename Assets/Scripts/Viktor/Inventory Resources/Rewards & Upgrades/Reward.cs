@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class Reward : PickUp
 {
     public RewardSO rewardStats;
+
+    
 
     public void GetReward()
     {
@@ -16,4 +19,5 @@ public class Reward : PickUp
             DestroyObject();
         }
     }
+    
 }

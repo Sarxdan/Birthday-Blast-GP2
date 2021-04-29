@@ -65,7 +65,7 @@ public class Inventory : MonoBehaviour
                 scrapCount += resource.value;
                 break;
             case ResourceTypes.MagicRock:
-                magicRootCount += resource.value;
+                magicRocks += resource.value;
                 break;
             case ResourceTypes.Currency:
                 currency += resource.value;
