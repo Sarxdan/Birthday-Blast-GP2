@@ -18,7 +18,8 @@ public class DialogueTrigger : MonoBehaviour //add errorhandling if default dial
     OptionalDialogues dialogueToCheck;
     Dialogue dialogueToUse;
     int timesSpokenWith = 0;
-    string GetNextDialogue()
+    public DialogueImproveTest dialogueImprove;
+    string GetNextDialogue() //change to using the improved dialogue scriptableobject
     {
         string nextDialogue = dialogueToUse.Sentences[timesSpokenWith];
         if(timesSpokenWith != dialogueToUse.Sentences.Length - 1)
