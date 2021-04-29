@@ -183,6 +183,7 @@ public class UIManager : Singleton<UIManager>
         JetpackBase.onFuelUse += OnFuelUse;
         JetpackBase.onJetpackAwake += OnJetpackAwake;
         ShopKeeper.onShopKeeperInteraction += ToggleShopUI;
+        DialogueTriggerImproveTest.onNPCDialogue += OnNPCDialogue;
     }
 
     private void OnDisable() {
@@ -197,5 +198,6 @@ public class UIManager : Singleton<UIManager>
         JetpackBase.onFuelUse -= OnFuelUse;
         JetpackBase.onJetpackAwake -= OnJetpackAwake;
         ShopKeeper.onShopKeeperInteraction -= ToggleShopUI;
+        DialogueTriggerImproveTest.onNPCDialogue -= OnNPCDialogue;
     }  
 }

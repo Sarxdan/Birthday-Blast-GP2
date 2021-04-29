@@ -84,7 +84,6 @@ public class Gamemanager : Singleton<Gamemanager>
         {       
             unlockedItems.shovel = true;
         }
-        
     }
 
     private void OnEnable() {

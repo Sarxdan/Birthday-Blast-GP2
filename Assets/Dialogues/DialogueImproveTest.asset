@@ -12,32 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0adcc2df4cce64ea0d16eee5eba2d8, type: 3}
   m_Name: DialogueImproveTest
   m_EditorClassIdentifier: 
-  name: 
+  name: Testing
   dialogues:
-  - repeatDialogue: 0
+  - repeatDialogue: 1
     reward: {fileID: 0}
     dialogueRequirements:
       jetpack: 0
       pewpew: 0
       shovel: 0
     sentences:
-    - 
-    - 
+    - no requirement 1
+    - no requirement 2
+  - repeatDialogue: 0
+    reward: {fileID: 0}
+    dialogueRequirements:
+      jetpack: 1
+      pewpew: 0
+      shovel: 0
+    sentences:
+    - Require jetpack
+  - repeatDialogue: 0
+    reward: {fileID: 0}
+    dialogueRequirements:
+      jetpack: 0
+      pewpew: 1
+      shovel: 0
+    sentences:
+    - Require pewpew
   - repeatDialogue: 0
     reward: {fileID: 0}
     dialogueRequirements:
       jetpack: 0
       pewpew: 0
-      shovel: 0
+      shovel: 1
     sentences:
-    - 
-  - repeatDialogue: 0
-    reward: {fileID: 0}
-    dialogueRequirements:
-      jetpack: 0
-      pewpew: 0
-      shovel: 0
-    sentences:
-    - 
-    - 
-    - 
+    - Require shovel
