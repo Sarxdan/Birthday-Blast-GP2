@@ -34,14 +34,15 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-    public void PlayClipAtPoint(string name, Vector3 position) //will play in 3D
+    public AudioSource PlayClipAtPoint(string name, Vector3 position) //will play in 3D
     {
+        print("test");
         AudioSource source;
         Transform parent = FindTrackParent(name);
         if (parent == null)
         {
             Debug.LogError("Sound: " + name + "not found!");
-            return;
+            return null;
         }
         foreach (Transform child in parent)
         {
@@ -51,14 +52,14 @@ public class AudioManager : Singleton<AudioManager>
                 source.spatialBlend = 1;
                 child.gameObject.transform.position = position;
                 source.Play();
-                return;
+                return source;
             }
         }
         Transform firstChild = parent.GetChild(0).transform;
         source = firstChild.GetComponent<AudioSource>();
         firstChild.gameObject.transform.position = position; 
-
-        GetComponent<AudioSource>();
+        source.Play();
+        return source;
     }
 
     private Transform FindTrackParent(string name)

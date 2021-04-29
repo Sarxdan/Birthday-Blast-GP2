@@ -57,7 +57,7 @@ public class JetPack : JetpackBase
     protected override void Start()
     {
         base.Start();
-        //AudioManager.instance.Play("JetpackSound");
+        AudioManager.instance.Play("JetpackSound");
     }
 
     protected override void Update() //vad ska hände när man får game over? falla ner en bit? UI uppdateras? 
