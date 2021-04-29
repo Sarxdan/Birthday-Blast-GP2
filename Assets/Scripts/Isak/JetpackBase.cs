@@ -116,7 +116,7 @@ public class JetpackBase : MonoBehaviour
     {
         UseFuel(fuelUsage);
         dashTimeLeft = dashTime;
-        //AudioManager.instance.Play("JetpackDash");
+        AudioManager.instance.Play("JetpackDash");
         //-------------------------------create temporary variables
         StartCoroutine(DashCooldown());
         //---------------------------------start the dash ability
