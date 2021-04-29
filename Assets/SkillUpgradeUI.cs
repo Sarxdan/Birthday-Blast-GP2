@@ -43,8 +43,6 @@ public class SkillUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
         }
         else
         {
-
-            Debug.Log("Unlockable upgrade!");
             upgradeCostText.text = upgradeCost.ToString();
             var imgColor = unlockedImage.GetComponent<Image>().color;
             
