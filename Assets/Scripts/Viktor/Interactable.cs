@@ -23,7 +23,6 @@ public class Interactable : MonoBehaviour
 
     public void TryToInteract(PlayerInteraction player)
     {
-        Debug.Log("Tried to interact");
         Interact();
     }
 
@@ -34,7 +33,6 @@ public class Interactable : MonoBehaviour
 
     private void Interact()
     {
-        Debug.Log("Interact");
         timeSinceLastInteraction = 0;
         OnInteractEvent?.Invoke();
     }

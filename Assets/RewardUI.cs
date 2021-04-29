@@ -16,7 +16,6 @@ public class RewardUI : MonoBehaviour
     {
         if (RewardUnlocked() && upgradesUnlockedInPath < 0)
         {
-            Debug.Log("Unlocked reward : " + reward.name);
             upgradesUnlockedInPath = 0;
         }
     }
