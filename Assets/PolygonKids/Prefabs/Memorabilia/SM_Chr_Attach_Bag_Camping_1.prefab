@@ -1,5 +1,18 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &1580197879
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6601143137078921392}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.37881142, y: 0.41936594, z: 0.19320951}
+  m_Center: {x: -0.0000022128224, y: -0.068249494, z: -0.14004351}
 --- !u!95 &667783034379055150
 Animator:
   serializedVersion: 3
@@ -19,6 +32,55 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3307177711446084636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6601143137078921392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b50cef069b20b48983ce3fd52a6248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredItems:
+    jetpack: 0
+    pewpew: 0
+    shovel: 0
+  interactText: '*interact*'
+  unableToInteracteText: Can't interact!
+  interactRadius: 5
+  minimumTimeBetweenInteractions: 2
+  OnInteractEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4025806955605848428}
+        m_TargetAssemblyTypeName: Memorabilia, Assembly-CSharp
+        m_MethodName: PickUpMemorabilia
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &4025806955605848428
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6601143137078921392}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4f77e3118d3b344a3559ce10132b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyOnPickUp: 1
+  memorabiliaStats: {fileID: 11400000, guid: 49e714ec31777904981481194a9afb9b, type: 2}
 --- !u!1001 &6601143137078955536
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -30,21 +92,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Chr_Attach_Bag_Camping_1
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 17ff3bfa59c01a442bede60ac0ea0a5c, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 17ff3bfa59c01a442bede60ac0ea0a5c, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 17ff3bfa59c01a442bede60ac0ea0a5c, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.47067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 17ff3bfa59c01a442bede60ac0ea0a5c, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.47067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 17ff3bfa59c01a442bede60ac0ea0a5c, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.47067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 17ff3bfa59c01a442bede60ac0ea0a5c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -64,7 +130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 17ff3bfa59c01a442bede60ac0ea0a5c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 17ff3bfa59c01a442bede60ac0ea0a5c, type: 3}
       propertyPath: m_LocalRotation.y

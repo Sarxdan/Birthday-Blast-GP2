@@ -11,7 +11,10 @@ GameObject:
   - component: {fileID: 2820785718614688877}
   - component: {fileID: 2820785718617588813}
   - component: {fileID: 2820785718616589965}
-  m_Layer: 0
+  - component: {fileID: 3896393651702185250}
+  - component: {fileID: 1644594223}
+  - component: {fileID: 7574366467466029842}
+  m_Layer: 8
   m_Name: SM_Chr_Attach_BoxingGlove_L_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25,9 +28,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2820785718614399053}
-  m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 89.006, y: 73.88699, z: -30.698}
-  m_LocalScale: {x: 0.47067, y: 0.47067, z: 0.47067}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -82,3 +85,65 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &3896393651702185250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2820785718614399053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4f77e3118d3b344a3559ce10132b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyOnPickUp: 1
+  memorabiliaStats: {fileID: 11400000, guid: 49e714ec31777904981481194a9afb9b, type: 2}
+--- !u!65 &1644594223
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2820785718614399053}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.24787915, y: 0.19594163, z: 0.24609163}
+  m_Center: {x: -0.08557272, y: -0.021191787, z: 0.004075419}
+--- !u!114 &7574366467466029842
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2820785718614399053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b50cef069b20b48983ce3fd52a6248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredItems:
+    jetpack: 0
+    pewpew: 0
+    shovel: 0
+  interactText: '*interact*'
+  unableToInteracteText: Can't interact!
+  interactRadius: 5
+  minimumTimeBetweenInteractions: 2
+  OnInteractEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3896393651702185250}
+        m_TargetAssemblyTypeName: Memorabilia, Assembly-CSharp
+        m_MethodName: PickUpMemorabilia
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

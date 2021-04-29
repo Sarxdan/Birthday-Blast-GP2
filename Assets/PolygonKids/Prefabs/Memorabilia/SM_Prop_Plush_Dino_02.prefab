@@ -1,7 +1,7 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!64 &536037913024133839
-MeshCollider:
+--- !u!65 &1677081960
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10,10 +10,58 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43031221343020072, guid: 90f868b78364e2d44931b46c10493665, type: 2}
+  serializedVersion: 2
+  m_Size: {x: 0.19038574, y: 0.35033834, z: 0.52582824}
+  m_Center: {x: 0, y: 0.16576451, z: 0}
+--- !u!114 &-7863300935890722994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299698243015585186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4f77e3118d3b344a3559ce10132b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyOnPickUp: 1
+  memorabiliaStats: {fileID: 11400000, guid: 49e714ec31777904981481194a9afb9b, type: 2}
+--- !u!114 &3897884848868115350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 299698243015585186}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b50cef069b20b48983ce3fd52a6248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredItems:
+    jetpack: 0
+    pewpew: 0
+    shovel: 0
+  interactText: '*interact*'
+  unableToInteracteText: Can't interact!
+  interactRadius: 5
+  minimumTimeBetweenInteractions: 2
+  OnInteractEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -7863300935890722994}
+        m_TargetAssemblyTypeName: Memorabilia, Assembly-CSharp
+        m_MethodName: PickUpMemorabilia
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &299698243015617282
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26,6 +74,10 @@ PrefabInstance:
       value: SM_Prop_Plush_Dino_02
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 0b68989dca2aafc43a152e2dd4e7ba6d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 0b68989dca2aafc43a152e2dd4e7ba6d, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -35,31 +87,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0b68989dca2aafc43a152e2dd4e7ba6d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.47067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0b68989dca2aafc43a152e2dd4e7ba6d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.47067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0b68989dca2aafc43a152e2dd4e7ba6d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.47067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0b68989dca2aafc43a152e2dd4e7ba6d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 89.266
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0b68989dca2aafc43a152e2dd4e7ba6d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 73.800995
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0b68989dca2aafc43a152e2dd4e7ba6d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -30.821
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0b68989dca2aafc43a152e2dd4e7ba6d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8455813
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0b68989dca2aafc43a152e2dd4e7ba6d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -67,7 +119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0b68989dca2aafc43a152e2dd4e7ba6d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.5338466
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0b68989dca2aafc43a152e2dd4e7ba6d, type: 3}
       propertyPath: m_LocalRotation.z
@@ -79,7 +131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0b68989dca2aafc43a152e2dd4e7ba6d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -64.531
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0b68989dca2aafc43a152e2dd4e7ba6d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

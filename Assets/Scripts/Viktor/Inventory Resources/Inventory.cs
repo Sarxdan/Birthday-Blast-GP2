@@ -27,6 +27,7 @@ public class Inventory : MonoBehaviour
     public float gardenSpadeLuck = 0.0f;
     
     public List<ObjectiveReward> objRewardsUnlocked = new List<ObjectiveReward>();
+    public List<MemorabiliaSO> memorabiliasUnlocked = new List<MemorabiliaSO>();
 
     public Action onUpgradeApplied;
     public static Inventory instance;

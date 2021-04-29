@@ -1,32 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!64 &654630148605394090
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1687801561947951652}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43158830784307130, guid: 01b25104497cb8c4f991dbf86444af75, type: 2}
---- !u!135 &4290392595196646502
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1687801561947951654}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.041084375
-  m_Center: {x: -0.025849264, y: -0.0000009563074, z: -0.00000002421439}
 --- !u!135 &8910182868680816563
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -53,6 +26,81 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.0507877
   m_Center: {x: 0.006227851, y: 0.0000000020481354, z: -0.000000018626453}
+--- !u!65 &822392505
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687801561947951652}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.20201176, y: 0.23570882, z: 0.394402}
+  m_Center: {x: 0, y: 0.14134468, z: 0.006179929}
+--- !u!114 &-4697048301399392003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687801561947951652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4f77e3118d3b344a3559ce10132b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyOnPickUp: 1
+  memorabiliaStats: {fileID: 11400000, guid: 49e714ec31777904981481194a9afb9b, type: 2}
+--- !u!114 &1265445841291454534
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687801561947951652}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b50cef069b20b48983ce3fd52a6248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredItems:
+    jetpack: 0
+    pewpew: 0
+    shovel: 0
+  interactText: '*interact*'
+  unableToInteracteText: Can't interact!
+  interactRadius: 5
+  minimumTimeBetweenInteractions: 2
+  OnInteractEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -4697048301399392003}
+        m_TargetAssemblyTypeName: Memorabilia, Assembly-CSharp
+        m_MethodName: PickUpMemorabilia
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!135 &4290392595196646502
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687801561947951654}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.041084375
+  m_Center: {x: -0.025849264, y: -0.0000009563074, z: -0.00000002421439}
 --- !u!135 &2429513723345084908
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -78,6 +126,10 @@ PrefabInstance:
       value: SM_Prop_RC_Car_01
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 51d11305c3b607a4d9d4e1afe76594d2, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 51d11305c3b607a4d9d4e1afe76594d2, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -87,31 +139,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 51d11305c3b607a4d9d4e1afe76594d2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.47067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 51d11305c3b607a4d9d4e1afe76594d2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.47067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 51d11305c3b607a4d9d4e1afe76594d2, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.47067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 51d11305c3b607a4d9d4e1afe76594d2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 89.201004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 51d11305c3b607a4d9d4e1afe76594d2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 74.09599
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 51d11305c3b607a4d9d4e1afe76594d2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -30.838
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 51d11305c3b607a4d9d4e1afe76594d2, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.86063296
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 51d11305c3b607a4d9d4e1afe76594d2, type: 3}
       propertyPath: m_LocalRotation.x
@@ -119,7 +171,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 51d11305c3b607a4d9d4e1afe76594d2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.50922585
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 51d11305c3b607a4d9d4e1afe76594d2, type: 3}
       propertyPath: m_LocalRotation.z
@@ -131,7 +183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 51d11305c3b607a4d9d4e1afe76594d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -61.225
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 51d11305c3b607a4d9d4e1afe76594d2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

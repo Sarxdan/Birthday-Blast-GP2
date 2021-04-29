@@ -1,7 +1,7 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!64 &560192449518332165
-MeshCollider:
+--- !u!65 &822099778
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10,10 +10,58 @@ MeshCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43485651637970380, guid: 68b1b1d5ad4d0a94f8a5513ee7b6b792, type: 2}
+  serializedVersion: 2
+  m_Size: {x: 0.112358406, y: 0.03564169, z: 0.11607055}
+  m_Center: {x: -0.00000035576522, y: 0.010177869, z: 0.01135212}
+--- !u!114 &-2878738938051704106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3981579550129787798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4f77e3118d3b344a3559ce10132b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyOnPickUp: 1
+  memorabiliaStats: {fileID: 11400000, guid: 49e714ec31777904981481194a9afb9b, type: 2}
+--- !u!114 &8637287297167489853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3981579550129787798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b50cef069b20b48983ce3fd52a6248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredItems:
+    jetpack: 0
+    pewpew: 0
+    shovel: 0
+  interactText: '*interact*'
+  unableToInteracteText: Can't interact!
+  interactRadius: 5
+  minimumTimeBetweenInteractions: 2
+  OnInteractEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -2878738938051704106}
+        m_TargetAssemblyTypeName: Memorabilia, Assembly-CSharp
+        m_MethodName: PickUpMemorabilia
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &3981579550129886518
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26,6 +74,10 @@ PrefabInstance:
       value: SM_Prop_Compass_01
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 2d6d15b5004c7974f9d93c34e2469371, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 2d6d15b5004c7974f9d93c34e2469371, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -35,27 +87,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2d6d15b5004c7974f9d93c34e2469371, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.94134
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2d6d15b5004c7974f9d93c34e2469371, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.94134
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2d6d15b5004c7974f9d93c34e2469371, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.94134
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2d6d15b5004c7974f9d93c34e2469371, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 88.712
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2d6d15b5004c7974f9d93c34e2469371, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 74.08299
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2d6d15b5004c7974f9d93c34e2469371, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -30.567
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2d6d15b5004c7974f9d93c34e2469371, type: 3}
       propertyPath: m_LocalRotation.w
@@ -63,15 +115,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2d6d15b5004c7974f9d93c34e2469371, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2d6d15b5004c7974f9d93c34e2469371, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2d6d15b5004c7974f9d93c34e2469371, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 2d6d15b5004c7974f9d93c34e2469371, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

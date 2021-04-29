@@ -11,14 +11,12 @@ public class Resource : PickUp
     public int value = 1;
     
     private float doubleResourceChance;
-
-    private void Start()
-    {
-        doubleResourceChance = Inventory.instance.gardenSpadeLuck;
-    }
+    
 
     public void PickUpResource()
     {
+        doubleResourceChance = Inventory.instance.gardenSpadeLuck;
+        
         Inventory.instance.PickUpResource(this);
         if (DoubleResource())
         {
