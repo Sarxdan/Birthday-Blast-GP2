@@ -108,6 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80811847923b51f4182a595a219d0f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyOnPickUp: 1
   rewardStats: {fileID: 11400000, guid: de3f4b4a1f855214eadb9739c57e0fd5, type: 2}
 --- !u!135 &4112208444782892939
 SphereCollider:
@@ -129,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1485967305522729088}
     m_Modifications:
+    - target: {fileID: 6515523008129143650, guid: c1fc8aa47d834434ea0cfa0607ccc63b, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 790d8384cfe92574d936bbf2b802b651, type: 2}
     - target: {fileID: 6515523008138509450, guid: c1fc8aa47d834434ea0cfa0607ccc63b, type: 3}
       propertyPath: m_RootOrder
       value: 0
