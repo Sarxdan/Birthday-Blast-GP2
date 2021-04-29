@@ -17,6 +17,8 @@ public class UIManager : Singleton<UIManager>
     ShopUI shopUI;
     public GameObject journalPanel;
 
+    public GameObject[] popupTabs;
+
 
     private Controls controls;
 
@@ -25,6 +27,34 @@ public class UIManager : Singleton<UIManager>
         controls = new Controls();
     }
 
+    public void EnablePopUp(GameObject popup)
+    {
+        var goPopup = popup;
+        
+        foreach (var popupTab in popupTabs)
+        {
+            if (popup.name == popupTab.name)
+            {
+                goPopup = popupTab;
+            }
+        }
+        goPopup.SetActive(true);
+        FindObjectOfType<ThirdPersonController>().disableCameraController = true;
+        FindObjectOfType<ThirdPersonController>().disablePlayerMovement = true;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    public void ClosePopUp(GameObject popup)
+    {
+        FindObjectOfType<ThirdPersonController>().disableCameraController = false;
+        FindObjectOfType<ThirdPersonController>().disablePlayerMovement = false;
+        popup.SetActive(false);
+
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
+    
     protected override void Start()
     {
         base.Start();

@@ -17,11 +17,6 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
     [SerializeField] int maxJumpsInAir;
     [SerializeField] float coyoteTime = 1;
 
-    [Header("Particle effects")]
-    [SerializeField] ParticleSystem[] fireStreams;
-    [SerializeField] ParticleSystem dashEffect;
-    
-
     // Start is called before the first frame update
     protected override void Awake() {
         base.Awake();

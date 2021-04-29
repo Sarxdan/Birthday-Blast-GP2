@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MiscUtil.Collections.Extensions;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
@@ -9,7 +10,10 @@ using UnityEngine.UI;
 public class SkillUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public Upgrade upgrade;
+    public RewardUI rewardUI;
+    public int upgradeableOrderInPath = 1;
     public int upgradeCost = 0;
+    public bool unlockable;
 
     public GameObject descriptionWindow;
     public GameObject unlockedImage;
@@ -28,21 +32,45 @@ public class SkillUpgradeUI : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     private void Update()
     {
-        lockedImage.SetActive(!upgrade.unlocked);
+        lockedImage.SetActive(!unlockable);
         unlockedImage.SetActive(upgrade.unlocked);
+
+        unlockable = rewardUI.upgradesUnlockedInPath >= upgradeableOrderInPath - 1;
+
+        if (unlockable == false)
+        {
+            upgradeCostText.text = "";
+        }
+        else
+        {
+            upgradeCostText.text = upgradeCost.ToString();
+            var imgColor = unlockedImage.GetComponent<Image>().color;
+            
+            if (upgrade.unlocked == false)
+            {
+                imgColor.a = 120;
+            }
+            else
+            {
+                imgColor.a = 255;
+            }
+        }
     }
 
 
     public void TryUnlock()
     {
-        if (upgrade.unlocked || upgradeCost > Inventory.instance.skillTreePoints) return;
+        if (upgrade.unlocked || upgradeCost > Inventory.instance.skillTreePoints || unlockable == false) return;
 
         Inventory.instance.skillTreePoints -= upgradeCost;
         upgrade.Unlock();
+        rewardUI.upgradesUnlockedInPath = upgradeableOrderInPath;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        if (unlockable == false) return;
+        
         descriptionWindow.SetActive(true);
         upgradeNameText.text = UpgradeName();
         upgradeDescText.text = UpgradeDesc();

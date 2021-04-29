@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &1089017979
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570312854080719489}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.22462906, y: 0.064557195, z: 0.16570267}
+  m_Center: {x: -0.0000042542815, y: 0.059217528, z: 0.03593883}
+--- !u!114 &1651493270750724712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570312854080719489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b50cef069b20b48983ce3fd52a6248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredItems:
+    jetpack: 0
+    pewpew: 0
+    shovel: 0
+  interactText: '*interact*'
+  unableToInteracteText: Can't interact!
+  interactRadius: 1
+  minimumTimeBetweenInteractions: 2
+  OnInteractEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7453743846524379929}
+        m_TargetAssemblyTypeName: Memorabilia, Assembly-CSharp
+        m_MethodName: PickUpMemorabilia
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &7453743846524379929
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570312854080719489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4f77e3118d3b344a3559ce10132b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyOnPickUp: 1
+  memorabiliaStats: {fileID: 11400000, guid: da6554636ffe2f843bee3da3d5024030, type: 2}
 --- !u!1001 &1570312854080818209
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11,37 +73,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Chr_Attach_Glasses_3D_01
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 836048cd88408244fa96e87cdb57d0c9, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 836048cd88408244fa96e87cdb57d0c9, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 836048cd88408244fa96e87cdb57d0c9, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.62792087
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 836048cd88408244fa96e87cdb57d0c9, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.62792087
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 836048cd88408244fa96e87cdb57d0c9, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.62792087
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 836048cd88408244fa96e87cdb57d0c9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 89.229004
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 836048cd88408244fa96e87cdb57d0c9, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 73.58
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 836048cd88408244fa96e87cdb57d0c9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -30.821
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 836048cd88408244fa96e87cdb57d0c9, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.042801924
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 836048cd88408244fa96e87cdb57d0c9, type: 3}
       propertyPath: m_LocalRotation.x
@@ -49,7 +115,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 836048cd88408244fa96e87cdb57d0c9, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.9990836
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 836048cd88408244fa96e87cdb57d0c9, type: 3}
       propertyPath: m_LocalRotation.z
@@ -61,7 +127,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 836048cd88408244fa96e87cdb57d0c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: -184.906
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 836048cd88408244fa96e87cdb57d0c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -73,3 +139,8 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 823ac0e34852f1946b70b81aa0a7763c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 836048cd88408244fa96e87cdb57d0c9, type: 3}
+--- !u!1 &1570312854080719489 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 836048cd88408244fa96e87cdb57d0c9, type: 3}
+  m_PrefabInstance: {fileID: 1570312854080818209}
+  m_PrefabAsset: {fileID: 0}

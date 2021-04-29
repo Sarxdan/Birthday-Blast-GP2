@@ -117,7 +117,6 @@ public class PlayerInputManager : MonoBehaviour
 
     private void OnJump(InputAction.CallbackContext context)
     {
-        Debug.Log("Jump");
         if (context.started)
         {
             jumpInputEvent?.Invoke();
@@ -154,8 +153,7 @@ public class PlayerInputManager : MonoBehaviour
     
     private void OnInteract(InputAction.CallbackContext context)
     {
-        Debug.Log("Interact");
-        
+
         if (context.performed)
         {
             interactEvent?.Invoke();

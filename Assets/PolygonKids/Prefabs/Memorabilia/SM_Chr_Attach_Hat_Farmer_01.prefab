@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!65 &1109746136
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781809215745418857}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.49089873, y: 0.15561828, z: 0.4855736}
+  m_Center: {x: -0.0000045746565, y: 0.15358154, z: 0.0152280405}
+--- !u!114 &-7414816607733603286
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781809215745418857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b50cef069b20b48983ce3fd52a6248, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredItems:
+    jetpack: 0
+    pewpew: 0
+    shovel: 0
+  interactText: '*interact*'
+  unableToInteracteText: Can't interact!
+  interactRadius: 1
+  minimumTimeBetweenInteractions: 2
+  OnInteractEvent:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: -5213725996596869586}
+        m_TargetAssemblyTypeName: Memorabilia, Assembly-CSharp
+        m_MethodName: PickUpMemorabilia
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+--- !u!114 &-5213725996596869586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781809215745418857}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c4f77e3118d3b344a3559ce10132b08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyOnPickUp: 1
+  memorabiliaStats: {fileID: 11400000, guid: e8916be3a45c0844aa727317dea199e1, type: 2}
 --- !u!1001 &781809215745319113
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11,33 +73,37 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Chr_Attach_Hat_Farmer_01
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 4db2dcc78d8239345aa601e6b4a6f950, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4db2dcc78d8239345aa601e6b4a6f950, type: 3}
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4db2dcc78d8239345aa601e6b4a6f950, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.47067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4db2dcc78d8239345aa601e6b4a6f950, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.47067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4db2dcc78d8239345aa601e6b4a6f950, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.47067
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4db2dcc78d8239345aa601e6b4a6f950, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 88.687
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4db2dcc78d8239345aa601e6b4a6f950, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 73.552
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4db2dcc78d8239345aa601e6b4a6f950, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -30.65
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4db2dcc78d8239345aa601e6b4a6f950, type: 3}
       propertyPath: m_LocalRotation.w
@@ -45,7 +111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4db2dcc78d8239345aa601e6b4a6f950, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4db2dcc78d8239345aa601e6b4a6f950, type: 3}
       propertyPath: m_LocalRotation.y
@@ -73,3 +139,8 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 823ac0e34852f1946b70b81aa0a7763c, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4db2dcc78d8239345aa601e6b4a6f950, type: 3}
+--- !u!1 &781809215745418857 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100000, guid: 4db2dcc78d8239345aa601e6b4a6f950, type: 3}
+  m_PrefabInstance: {fileID: 781809215745319113}
+  m_PrefabAsset: {fileID: 0}
