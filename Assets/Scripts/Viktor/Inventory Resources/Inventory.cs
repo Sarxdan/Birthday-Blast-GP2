@@ -14,6 +14,8 @@ public class Inventory : MonoBehaviour
 
     public int gems;
 
+    public int skillTreePoints = 999;
+
     [Header("Upgradeable stats")] 
     [Header("Base Stats")]
     public float baseFuelRechargeTime = 3.0f;

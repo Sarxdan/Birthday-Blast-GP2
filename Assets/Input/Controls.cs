@@ -586,6 +586,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""ToggleJournal"",
+                    ""type"": ""Button"",
+                    ""id"": ""5e680ccb-8c58-41f8-a4fc-8a6e94d7a864"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -610,6 +618,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""TogglePause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c414679-64b8-4d5f-885c-7f69542f66fe"",
+                    ""path"": ""<Keyboard>/i"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleJournal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""60599dc7-dcc2-4596-8db4-8a5cc623c4be"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ToggleJournal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -632,6 +662,7 @@ public class @Controls : IInputActionCollection, IDisposable
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_TogglePause = m_Menu.FindAction("TogglePause", throwIfNotFound: true);
+        m_Menu_ToggleJournal = m_Menu.FindAction("ToggleJournal", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -804,11 +835,13 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Menu;
     private IMenuActions m_MenuActionsCallbackInterface;
     private readonly InputAction m_Menu_TogglePause;
+    private readonly InputAction m_Menu_ToggleJournal;
     public struct MenuActions
     {
         private @Controls m_Wrapper;
         public MenuActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @TogglePause => m_Wrapper.m_Menu_TogglePause;
+        public InputAction @ToggleJournal => m_Wrapper.m_Menu_ToggleJournal;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -821,6 +854,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @TogglePause.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnTogglePause;
                 @TogglePause.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnTogglePause;
                 @TogglePause.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnTogglePause;
+                @ToggleJournal.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnToggleJournal;
+                @ToggleJournal.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnToggleJournal;
+                @ToggleJournal.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnToggleJournal;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -828,6 +864,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @TogglePause.started += instance.OnTogglePause;
                 @TogglePause.performed += instance.OnTogglePause;
                 @TogglePause.canceled += instance.OnTogglePause;
+                @ToggleJournal.started += instance.OnToggleJournal;
+                @ToggleJournal.performed += instance.OnToggleJournal;
+                @ToggleJournal.canceled += instance.OnToggleJournal;
             }
         }
     }
@@ -850,5 +889,6 @@ public class @Controls : IInputActionCollection, IDisposable
     public interface IMenuActions
     {
         void OnTogglePause(InputAction.CallbackContext context);
+        void OnToggleJournal(InputAction.CallbackContext context);
     }
 }

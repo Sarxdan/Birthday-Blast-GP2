@@ -9695,7 +9695,12 @@ MonoBehaviour:
   fuelUsage: 1
   fuelRechargePerTick: 2
   maxFuel: 5
-  movement: {x: 0, y: 0, z: 0}
+  dashSpeed: 13
+  dashTime: 0.2
+  dashCooldown: 1
+  doubleTapTimer: 0.2
+  dashUnlocked: 1
+  autoMoveSpeed: 0
   moveSpeed: 6
   flightBoost: 0.6
   startingAutoMoveSpeed: 5
@@ -9703,14 +9708,6 @@ MonoBehaviour:
   maxAutoMoveSpeed: 25
   cameraRotation: {x: 0, y: 0, z: 0}
   cameraOffsetFromPlayer: {x: 0, y: 1.76, z: -5.76}
-  dashSpeed: 13
-  dashLength: 0.4
-  dashCooldown: 1
-  forwardDashSpeed: 10
-  doubleTapTimer: 0.2
-  dashUnlocked: 1
-  forwardDashUnlocked: 1
-  pewpewUnlocked: 1
 --- !u!114 &1315663827854122777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9776,6 +9773,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2991111347253544757}
     m_Modifications:
+    - target: {fileID: 2071170281686429620, guid: 6e011ec493d6b834a9b99b0d51ddd234, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 39f67877bf7f6a24ca8f5c95fa122f57, type: 2}
     - target: {fileID: 2071170281688363380, guid: 6e011ec493d6b834a9b99b0d51ddd234, type: 3}
       propertyPath: m_Name
       value: SM_Chr_Attach_Backpack_Cardboard_Jetpack_01

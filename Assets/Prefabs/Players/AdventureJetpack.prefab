@@ -10108,7 +10108,17 @@ MonoBehaviour:
   fuelUsage: 3
   fuelRechargePerTick: 3.08
   maxFuel: 10
+  dashSpeed: 10
+  dashTime: 0.2
+  dashCooldown: 1
+  doubleTapTimer: 1
+  dashUnlocked: 0
+  currentJumpCount: 0
   jumpHeight: 3.08
+  maxJumpsInAir: 0
+  coyoteTime: 1
+  fireStreams: []
+  dashEffect: {fileID: 0}
 --- !u!1001 &8441817829898581472
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10120,6 +10130,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2071170281686429620, guid: 6e011ec493d6b834a9b99b0d51ddd234, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 39f67877bf7f6a24ca8f5c95fa122f57, type: 2}
     - target: {fileID: 2071170281688363380, guid: 6e011ec493d6b834a9b99b0d51ddd234, type: 3}
       propertyPath: m_Name
       value: SM_Chr_Attach_Backpack_Cardboard_Jetpack_01
