@@ -10,7 +10,6 @@ public class Sound
     public AudioClip clip;
     [Range(0,1)] public float volume;
     [Range(0,3)] public float pitch;
-    public bool playOnAwake;
     public bool loop;
     [Range(1, 50)]public int amountofObjects;
 

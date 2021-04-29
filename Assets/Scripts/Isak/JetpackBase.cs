@@ -17,6 +17,7 @@ public class JetpackBase : MonoBehaviour
     protected DashDirections dashDirections = DashDirections.None;
     protected Rigidbody body;
     protected CharacterController controller;
+    protected Material material;
     protected bool useFuel = false; //is the player currently using fuel?
     protected float fuel = 0;
     protected bool invulnerable = false;
@@ -51,6 +52,7 @@ public class JetpackBase : MonoBehaviour
         fuel = maxFuel;
         body = GetComponentInParent<Rigidbody>();
         controller = GetComponentInParent<CharacterController>();
+        material = GetComponentInChildren<Renderer>().material;
         StartCoroutine(FuelRecharger());
 
         Inventory.instance.onUpgradeApplied += ApplyUpgradeStats;
@@ -66,6 +68,7 @@ public class JetpackBase : MonoBehaviour
 
     protected virtual void Update() {
         GetDashInput();
+        material.SetFloat("_overheating", (1-(fuel/maxFuel)));
     }
 
     protected void ApplyUpgradeStats()
@@ -113,7 +116,7 @@ public class JetpackBase : MonoBehaviour
     {
         UseFuel(fuelUsage);
         dashTimeLeft = dashTime;
-        //AudioManager.instance.Play("JetpackDash");
+        AudioManager.instance.Play("JetpackDash");
         //-------------------------------create temporary variables
         StartCoroutine(DashCooldown());
         //---------------------------------start the dash ability
