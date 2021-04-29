@@ -20,6 +20,7 @@ public class JetpackBase : MonoBehaviour
     protected Material material;
     protected bool useFuel = false; //is the player currently using fuel?
     protected float fuel = 0;
+    protected float fuelPercentage; //how much fuel is left in %
     protected bool invulnerable = false;
     protected Vector3 movement; //added
     protected bool overCharged = false; //did the jetpack overheat?
@@ -47,6 +48,11 @@ public class JetpackBase : MonoBehaviour
     [Header("bool settings")]
     [SerializeField] protected bool dashUnlocked = false;
 
+    [Header("Particle effects")]
+    [SerializeField]protected ParticleSystem[] smokeFX;
+    [SerializeField]protected ParticleSystem[] fireStreams;
+    [SerializeField]protected ParticleSystem dashEffect;
+
     // Start is called before the first frame update
     protected virtual void Awake() {
         fuel = maxFuel;
@@ -68,7 +74,24 @@ public class JetpackBase : MonoBehaviour
 
     protected virtual void Update() {
         GetDashInput();
-        material.SetFloat("_overheating", (1-(fuel/maxFuel)));
+        
+        // Jetpack overheating FX
+        fuelPercentage = 1 - (fuel / maxFuel);
+        material.SetFloat("_overheating", fuelPercentage);
+        if (fuelPercentage >= .65f && !smokeFX[0].isPlaying)
+        {
+            foreach (ParticleSystem smoke in smokeFX)
+            {
+                smoke.Play();
+            }
+        }
+        else if (fuelPercentage < .65f && smokeFX[0].isPlaying)
+        {
+            foreach (ParticleSystem smoke in smokeFX)
+            {
+                smoke.Stop();
+            }
+        }
     }
 
     protected void ApplyUpgradeStats()
