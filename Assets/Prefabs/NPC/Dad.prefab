@@ -1,19 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!136 &6721634182286941639
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 140943688347572341}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.12165642
-  m_Height: 1.1957537
-  m_Direction: 1
-  m_Center: {x: -0.004306793, y: 0.5620268, z: 0}
 --- !u!1 &9010014105142166014
 GameObject:
   m_ObjectHideFlags: 0
@@ -26,6 +12,7 @@ GameObject:
   - component: {fileID: 9010014105142166008}
   - component: {fileID: 7256362580324218191}
   - component: {fileID: 961160602501922665}
+  - component: {fileID: 2613944604083588106}
   m_Layer: 8
   m_Name: Dad
   m_TagString: Player
@@ -122,6 +109,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogues: {fileID: 11400000, guid: 8e1aa471e8ea7b74c9bc226a5ef3b7d7, type: 2}
+--- !u!65 &2613944604083588106
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9010014105142166014}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &5319396752423055667
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -183,11 +183,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 223509b7b48ed2a46970e0eca2b8c5f8, type: 3}
---- !u!1 &140943688347572341 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5199107390280083782, guid: 223509b7b48ed2a46970e0eca2b8c5f8, type: 3}
-  m_PrefabInstance: {fileID: 5319396752423055667}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &140943688347796565 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5199107390280512870, guid: 223509b7b48ed2a46970e0eca2b8c5f8, type: 3}

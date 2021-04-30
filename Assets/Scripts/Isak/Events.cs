@@ -7,7 +7,7 @@ public class Events
     public delegate void EmptyEvent();
     public delegate void BoolEvent(bool check);
     public delegate void LoadSceneEvent(string levelName);
-    public delegate void DialogueEvent(string dialogue, string name);
+    public delegate void DialogueEvent(string dialogue, string name, Sprite NPCSprite);
     public delegate void DamagePlayerEvent(int amount);
     public delegate void FuelEvent(float amount);
     public delegate void GameStateEvent(Gamemanager.GameState state);
