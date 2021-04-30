@@ -45,6 +45,7 @@ public class NPCDialogue : ScriptableObject
     }
 
     [SerializeField] string name;  
+    [SerializeField] Sprite npcSprite;
     [SerializeField][Tooltip("the dialogue to use if requirements are not met")] Dialogue defaultDialogue;   
     [SerializeField][Tooltip("alternative dialogues with requirements")] AlternativeDialogue[] alternativeDialogues;
     
@@ -52,6 +53,10 @@ public class NPCDialogue : ScriptableObject
     public string Name
     {
         get{return name;}
+    }
+    public Sprite NPCSprite
+    {
+        get{return npcSprite;}
     }
 
     public AlternativeDialogue[] Alternativedialogues

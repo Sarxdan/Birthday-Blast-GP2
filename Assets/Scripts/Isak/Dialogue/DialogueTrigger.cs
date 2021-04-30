@@ -5,7 +5,6 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour // improve to use reward system
 {
     [SerializeField] NPCDialogue dialogues; // variable for all the dialogues (scriptable object)
-
     public static Events.DialogueEvent onNPCDialogue; // event used for printing out the dialogues sentence and name to screen
     NPCDialogue.AlternativeDialogue dialogueToCheck; 
     NPCDialogue.Dialogue dialogueToUse; 
@@ -53,7 +52,7 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
         }
         if(onNPCDialogue != null)
         {
-            onNPCDialogue(GetNextDialogue(), dialogues.Name);
+            onNPCDialogue(GetNextDialogue(), dialogues.Name, dialogues.NPCSprite);
         }
     }
     NPCDialogue.Dialogue ChooseDialogue()

@@ -9,6 +9,8 @@ public class InGameUI : MonoBehaviour
     [SerializeField] Text health;
     [SerializeField] Text npcText;
     [SerializeField] Text npcName;
+    [SerializeField] Image npcTextBackground;
+    [SerializeField] Image npcImage;
     [SerializeField] Slider fuelBar;
     [SerializeField] float textExistTimer = 1;
     // Start is called before the first frame update
@@ -19,6 +21,8 @@ public class InGameUI : MonoBehaviour
 
     private void ClearScreen()
     {
+        npcImage.gameObject.SetActive(false);
+        npcTextBackground.gameObject.SetActive(false);
         npcName.text = string.Empty;
         npcText.text = string.Empty;
         health.text = string.Empty;
@@ -35,9 +39,12 @@ public class InGameUI : MonoBehaviour
         }
     }
 
-    void PrintNPCText(string dialogue, string name)
+    void PrintNPCText(string dialogue, string name, Sprite npcSprite)
     {
         StopAllCoroutines();
+        npcTextBackground.gameObject.SetActive(true);
+        npcImage.gameObject.SetActive(true);
+        npcImage.sprite = npcSprite;
         npcText.text = dialogue;
         npcName.text = name;
         StartCoroutine(RemoveText());
@@ -53,6 +60,8 @@ public class InGameUI : MonoBehaviour
         yield return new WaitForSeconds(textExistTimer);
         npcText.text = string.Empty;
         npcName.text = string.Empty;
+        npcTextBackground.gameObject.SetActive(false);
+        npcImage.gameObject.SetActive(false);
     }
     // Update is called once per frame
     void UpdateFuelText(float amount)

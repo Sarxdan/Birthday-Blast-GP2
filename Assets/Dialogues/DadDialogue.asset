@@ -13,18 +13,20 @@ MonoBehaviour:
   m_Name: DadDialogue
   m_EditorClassIdentifier: 
   name: Dad
+  npcSprite: {fileID: 21300000, guid: 383e20a4ff4b8064f8706c0f34464111, type: 3}
   defaultDialogue:
+    reward: {fileID: 0}
     repeatDialogue: 0
     sentences:
     - default dialogue
   alternativeDialogues:
   - name: 
-    reward: {fileID: 0}
     dialogueRequirements:
-      jetpack: 0
+      jetpack: 1
       pewpew: 0
       shovel: 0
     dialogue:
+      reward: {fileID: 0}
       repeatDialogue: 0
       sentences:
       - alternative dialogue
