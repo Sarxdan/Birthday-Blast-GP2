@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-[CreateAssetMenu(fileName = "DialogueImproveTest")]
-public class DialogueImproveTest : ScriptableObject
+[CreateAssetMenu(fileName = "NPCDialogue")]
+public class NPCDialogue : ScriptableObject
 {
     [System.Serializable]
-    public class DialogueTest
+    public class Dialogue
     {
+        [SerializeField][Tooltip("Used for sorting and to more easily find dialogues")] string name;
         [SerializeField] bool repeatDialogue = false;  
         [SerializeField][Tooltip("rewarded at end of dialogue if not empty")] Reward reward;
         [SerializeField] KeyItems.Items dialogueRequirements;
@@ -33,7 +34,7 @@ public class DialogueImproveTest : ScriptableObject
          
     }
     [SerializeField] string name;     
-    [SerializeField] DialogueTest[] dialogues;
+    [SerializeField] Dialogue[] dialogues;
     
 
     public string Name
@@ -41,7 +42,7 @@ public class DialogueImproveTest : ScriptableObject
         get{return name;}
     }
 
-    public DialogueTest[] Dialogues
+    public Dialogue[] Dialogues
     {
         get{return dialogues;}
     }

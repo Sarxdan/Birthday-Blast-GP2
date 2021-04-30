@@ -175,7 +175,6 @@ public class UIManager : Singleton<UIManager>
         
         controls.Enable();
         
-        DialogueTrigger.onNPCDialogue += OnNPCDialogue;
         PauseMenu.onResumeClicked += TogglePauseMenu;
         PlayerHealth.onPlayerHealthChange += OnPlayerHealthChange;
         JetPack.onFuelUse += OnFuelUse;
@@ -183,14 +182,13 @@ public class UIManager : Singleton<UIManager>
         JetpackBase.onFuelUse += OnFuelUse;
         JetpackBase.onJetpackAwake += OnJetpackAwake;
         ShopKeeper.onShopKeeperInteraction += ToggleShopUI;
-        DialogueTriggerImproveTest.onNPCDialogue += OnNPCDialogue;
+        DialogueTrigger.onNPCDialogue += OnNPCDialogue;
     }
 
     private void OnDisable() {
         
         controls.Disable();
         
-        DialogueTrigger.onNPCDialogue -= OnNPCDialogue; 
         PauseMenu.onResumeClicked -= TogglePauseMenu;
         PlayerHealth.onPlayerHealthChange -= OnPlayerHealthChange;
         JetPack.onFuelUse -= OnFuelUse;
@@ -198,6 +196,6 @@ public class UIManager : Singleton<UIManager>
         JetpackBase.onFuelUse -= OnFuelUse;
         JetpackBase.onJetpackAwake -= OnJetpackAwake;
         ShopKeeper.onShopKeeperInteraction -= ToggleShopUI;
-        DialogueTriggerImproveTest.onNPCDialogue -= OnNPCDialogue;
+        DialogueTrigger.onNPCDialogue -= OnNPCDialogue;
     }  
 }

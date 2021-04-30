@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Testing
   dialogues:
-  - repeatDialogue: 1
+  - name: no requirements dialogue
+    repeatDialogue: 1
     reward: {fileID: 0}
     dialogueRequirements:
       jetpack: 0
@@ -23,7 +24,8 @@ MonoBehaviour:
     sentences:
     - no requirement 1
     - no requirement 2
-  - repeatDialogue: 0
+  - name: 
+    repeatDialogue: 0
     reward: {fileID: 0}
     dialogueRequirements:
       jetpack: 1
@@ -31,7 +33,8 @@ MonoBehaviour:
       shovel: 0
     sentences:
     - Require jetpack
-  - repeatDialogue: 0
+  - name: 
+    repeatDialogue: 0
     reward: {fileID: 0}
     dialogueRequirements:
       jetpack: 0
@@ -39,7 +42,8 @@ MonoBehaviour:
       shovel: 0
     sentences:
     - Require pewpew
-  - repeatDialogue: 0
+  - name: 
+    repeatDialogue: 0
     reward: {fileID: 0}
     dialogueRequirements:
       jetpack: 0
