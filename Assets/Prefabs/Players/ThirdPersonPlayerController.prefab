@@ -9673,8 +9673,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8389711910241337648}
-  m_LocalRotation: {x: 0.22594245, y: -0.022122124, z: 0.0051324065, w: 0.97387594}
-  m_LocalPosition: {x: 0.5, y: 6.4, z: -11}
+  m_LocalRotation: {x: 0.2919589, y: -0.02984344, z: 0.009114823, w: 0.9559217}
+  m_LocalPosition: {x: 0.5, y: 7.2520003, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8389711911653019407}
@@ -10208,7 +10208,7 @@ MonoBehaviour:
   ShoulderOffset: {x: 0.5, y: 6, z: 0}
   VerticalArmLength: 0.4
   CameraSide: 1
-  CameraDistance: 11
+  CameraDistance: 8
   CameraCollisionFilter:
     serializedVersion: 2
     m_Bits: 1
@@ -18632,8 +18632,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8389711910726577971}
-  m_LocalRotation: {x: 0.22594245, y: -0.022122124, z: 0.0051324065, w: 0.97387594}
-  m_LocalPosition: {x: 0.5, y: 6.4, z: -11}
+  m_LocalRotation: {x: 0.2919589, y: -0.02984344, z: 0.009114823, w: 0.9559217}
+  m_LocalPosition: {x: 0.5, y: 7.2520003, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8389711910309069664}
@@ -18705,8 +18705,8 @@ MonoBehaviour:
   m_Strategy: 0
   m_MaximumEffort: 4
   m_SmoothingTime: 0
-  m_Damping: 1.5
-  m_DampingWhenOccluded: 1.5
+  m_Damping: 0
+  m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
 --- !u!1 &8389711910729833091
 GameObject:
@@ -36046,7 +36046,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8389711911610264203}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.852, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8389711911346992272}
@@ -36330,8 +36330,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontalSensitivity: 100
   verticalSensitivity: 50
-  minXRotation: -50
-  maxXRotation: 50
+  minXRotation: -75
+  maxXRotation: 75
   cameraLookAtTarget: {fileID: 8389711911610264202}
   cameraLookDirectionTransform: {fileID: 8389711910944685763}
   forwardLookDir: {x: 0, y: 0, z: 0}
@@ -36476,10 +36476,10 @@ MonoBehaviour:
   movementSpeed: 5
   jumpHeight: 2
   playerRotationSpeed: 10
-  cameraSensitivityX: 40
-  cameraSensitivityY: 30
-  minVerticalRotation: -32.5
-  maxVerticalRotation: 45
+  cameraSensitivityX: 20
+  cameraSensitivityY: 10
+  minVerticalRotation: -80
+  maxVerticalRotation: 80
   cameraLookOffset: {x: 0, y: 0, z: 0}
   gravity: -19.62
   isGrounded: 0

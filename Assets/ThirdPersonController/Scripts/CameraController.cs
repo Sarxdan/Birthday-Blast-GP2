@@ -148,11 +148,11 @@ public class CameraController : MonoBehaviour
         
         xRotation = Mathf.Clamp(xRotation, minXRotation, maxXRotation);
         
-        cameraLookAtTarget.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
+        cameraLookAtTarget.rotation = Quaternion.Euler(-xRotation, yRotation, 0f);
         
 
         //LookAtTarget follows player
-        cameraLookAtTarget.position = transform.position + cameraOffset;
+        cameraLookAtTarget.position = (transform.position + new Vector3(0,0.5f,0)) + cameraOffset;
 
     }
 
