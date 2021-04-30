@@ -8,8 +8,8 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
 
     public static Events.DialogueEvent onNPCDialogue; // event used for printing out the dialogues sentence and name to screen
     NPCDialogue.Dialogue dialogueToCheck; 
-    NPCDialogue.Dialogue dialogueToUse; 
-    NPCDialogue.Dialogue lastDialogueUsed; 
+    NPCDialogue.DefaultDialogue dialogueToUse; 
+    NPCDialogue.DefaultDialogue lastDialogueUsed; 
     int timesSpokenWith = 0;
     string GetNextDialogue() 
     {
@@ -47,17 +47,17 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
             onNPCDialogue(GetNextDialogue(), dialogues.Name);
         }
     }
-    NPCDialogue.Dialogue ChooseDialogue()
+    NPCDialogue.DefaultDialogue ChooseDialogue()
     {
-            foreach(NPCDialogue.Dialogue dialogue in dialogues.Dialogues) //loop through all dialogues
+            foreach(NPCDialogue.Dialogue dialogue in dialogues.Alternativedialogues) //loop through all dialogues
             {
                 dialogueToCheck = dialogue;
                 if(CheckCurrentDialogue())
                 {
-                    return dialogue; // found a dialogue that fulfills requirement
+                    return dialogue.Dialogues; // found a dialogue that fulfills requirement
                 }
             }  
-            return null;    // found no dialogues that fulfills requirement
+            return dialogues.DefaultDialogues;    // found no dialogues that fulfills requirement
     }
 
     bool CheckCurrentDialogue() // this will look like shit, improve over iterations

@@ -11,6 +11,7 @@ public class Reward : PickUp
 
     public void GetReward()
     {
+        if(rewardStats != null) return;
         if (Inventory.instance.UniqueReward(rewardStats.ID))
         {
             var objectiveReward = new ObjectiveReward(rewardStats.name, rewardStats.icon, rewardStats.ID, rewardStats.skillTree);

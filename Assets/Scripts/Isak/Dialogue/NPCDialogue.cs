@@ -7,18 +7,26 @@ using UnityEngine;
 public class NPCDialogue : ScriptableObject
 {
     [System.Serializable]
-    public class Dialogue
+    public class DefaultDialogue //turn into part of Dialogue class?
     {
-        [SerializeField][Tooltip("Used for sorting and to more easily find dialogues")] string name;
-        [SerializeField] bool repeatDialogue = false;  
-        [SerializeField][Tooltip("rewarded at end of dialogue if not empty")] Reward reward;
-        [SerializeField] KeyItems.Items dialogueRequirements;
-        [SerializeField][TextArea(3, 10)] string[] sentences;    
-
+        [SerializeField] bool repeatDialogue = false;
+        [SerializeField][TextArea(3, 10)] string[] sentences;
         public bool RepeatDialogue
         {
             get{return repeatDialogue;}
         }
+        public string[] Sentences
+        {
+            get{return sentences;}
+        }
+    }
+    [System.Serializable]
+    public class Dialogue 
+    {
+        [SerializeField][Tooltip("Used for sorting and to more easily find dialogues")] string name; 
+        [SerializeField][Tooltip("rewarded at end of dialogue if not empty")] Reward reward;
+        [SerializeField] KeyItems.Items dialogueRequirements;  
+        [SerializeField] DefaultDialogue dialogue;
         public Reward Reward
         {
             get{return reward;}
@@ -27,14 +35,16 @@ public class NPCDialogue : ScriptableObject
         {
             get{return dialogueRequirements;}
         }
-        public string[] Sentences
+        public DefaultDialogue Dialogues
         {
-            get{return sentences;}
+            get{return dialogue;}
         }
          
     }
-    [SerializeField] string name;     
-    [SerializeField] Dialogue[] dialogues;
+
+    [SerializeField] string name;  
+    [SerializeField][Tooltip("the dialogue to use if requirements are not met")] DefaultDialogue defaultDialogue;   
+    [SerializeField][Tooltip("alternative dialogues with requirements")] Dialogue[] alternativeDialogues;
     
 
     public string Name
@@ -42,8 +52,12 @@ public class NPCDialogue : ScriptableObject
         get{return name;}
     }
 
-    public Dialogue[] Dialogues
+    public Dialogue[] Alternativedialogues
     {
-        get{return dialogues;}
+        get{return alternativeDialogues;}
+    }
+    public DefaultDialogue DefaultDialogues
+    {
+        get{return defaultDialogue;}
     }
 }
