@@ -9,8 +9,13 @@ public class NPCDialogue : ScriptableObject
     [System.Serializable]
     public class Dialogue 
     {
+        [SerializeField][Tooltip("rewarded at end of dialogue if not empty")] Reward reward;
         [SerializeField] bool repeatDialogue = false;
         [SerializeField][TextArea(3, 10)] string[] sentences;
+        public Reward Reward
+        {
+            get{return reward;}
+        }
         public bool RepeatDialogue
         {
             get{return repeatDialogue;}
@@ -24,13 +29,10 @@ public class NPCDialogue : ScriptableObject
     public class AlternativeDialogue 
     {
         [SerializeField][Tooltip("Used for sorting and to more easily find dialogues")] string name; 
-        [SerializeField][Tooltip("rewarded at end of dialogue if not empty")] Reward reward;
+        
         [SerializeField] KeyItems.Items dialogueRequirements;  
         [SerializeField] Dialogue dialogue;
-        public Reward Reward
-        {
-            get{return reward;}
-        }
+        
         public KeyItems.Items DialogueRequirements
         {
             get{return dialogueRequirements;}

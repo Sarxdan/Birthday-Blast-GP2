@@ -33,10 +33,19 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
         }
         lastDialogueUsed = dialogueToUse; // change which dialogue was last used
     }
+
+    void RewardPlayer() //checks if dialogue is complete and a reward exists
+    {
+        if(dialogueToUse.Reward == null) return;
+        if(timesSpokenWith != dialogueToUse.Sentences.Length - 1) return;
+        print("rewarded with " + dialogueToUse.Reward.rewardStats.name);
+        dialogueToUse.Reward.GetReward();
+    }
     public void TriggerDialogue()
     {   
         dialogueToUse = ChooseDialogue();
         CheckIfNewDialogue();
+        RewardPlayer();
         if(dialogueToUse == null)
         {
             Debug.LogError("requirements for dialogue is not met");
