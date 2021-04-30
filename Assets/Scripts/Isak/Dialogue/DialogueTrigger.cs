@@ -7,9 +7,9 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
     [SerializeField] NPCDialogue dialogues; // variable for all the dialogues (scriptable object)
 
     public static Events.DialogueEvent onNPCDialogue; // event used for printing out the dialogues sentence and name to screen
-    NPCDialogue.Dialogue dialogueToCheck; 
-    NPCDialogue.DefaultDialogue dialogueToUse; 
-    NPCDialogue.DefaultDialogue lastDialogueUsed; 
+    NPCDialogue.AlternativeDialogue dialogueToCheck; 
+    NPCDialogue.Dialogue dialogueToUse; 
+    NPCDialogue.Dialogue lastDialogueUsed; 
     int timesSpokenWith = 0;
     string GetNextDialogue() 
     {
@@ -47,14 +47,14 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
             onNPCDialogue(GetNextDialogue(), dialogues.Name);
         }
     }
-    NPCDialogue.DefaultDialogue ChooseDialogue()
+    NPCDialogue.Dialogue ChooseDialogue()
     {
-            foreach(NPCDialogue.Dialogue dialogue in dialogues.Alternativedialogues) //loop through all dialogues
+            foreach(NPCDialogue.AlternativeDialogue dialogue in dialogues.Alternativedialogues) //loop through all dialogues
             {
                 dialogueToCheck = dialogue;
                 if(CheckCurrentDialogue())
                 {
-                    return dialogue.Dialogues; // found a dialogue that fulfills requirement
+                    return dialogue.Dialogue; // found a dialogue that fulfills requirement
                 }
             }  
             return dialogues.DefaultDialogues;    // found no dialogues that fulfills requirement

@@ -1,5 +1,19 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!136 &4371420485222412239
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 404543262736084609}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.12165642
+  m_Height: 1.1957537
+  m_Direction: 1
+  m_Center: {x: -0.004306793, y: 0.5620268, z: 0}
 --- !u!1 &1485967305522729093
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,7 +25,6 @@ GameObject:
   - component: {fileID: 1485967305522729088}
   - component: {fileID: 1485967305522729091}
   - component: {fileID: 947708798119552052}
-  - component: {fileID: 4112208444782892939}
   - component: {fileID: 740771312040670965}
   m_Layer: 8
   m_Name: Auntie
@@ -96,19 +109,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DestroyOnPickUp: 1
   rewardStats: {fileID: 11400000, guid: de3f4b4a1f855214eadb9739c57e0fd5, type: 2}
---- !u!135 &4112208444782892939
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1485967305522729093}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &740771312040670965
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,6 +183,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c1fc8aa47d834434ea0cfa0607ccc63b, type: 3}
+--- !u!1 &404543262736084609 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6515523008138666154, guid: c1fc8aa47d834434ea0cfa0607ccc63b, type: 3}
+  m_PrefabInstance: {fileID: 6914978519400582699}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &404543262736446113 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6515523008138509450, guid: c1fc8aa47d834434ea0cfa0607ccc63b, type: 3}

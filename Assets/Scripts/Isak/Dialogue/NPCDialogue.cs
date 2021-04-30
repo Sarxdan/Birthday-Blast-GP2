@@ -7,7 +7,7 @@ using UnityEngine;
 public class NPCDialogue : ScriptableObject
 {
     [System.Serializable]
-    public class DefaultDialogue //turn into part of Dialogue class?
+    public class Dialogue 
     {
         [SerializeField] bool repeatDialogue = false;
         [SerializeField][TextArea(3, 10)] string[] sentences;
@@ -21,12 +21,12 @@ public class NPCDialogue : ScriptableObject
         }
     }
     [System.Serializable]
-    public class Dialogue 
+    public class AlternativeDialogue 
     {
         [SerializeField][Tooltip("Used for sorting and to more easily find dialogues")] string name; 
         [SerializeField][Tooltip("rewarded at end of dialogue if not empty")] Reward reward;
         [SerializeField] KeyItems.Items dialogueRequirements;  
-        [SerializeField] DefaultDialogue dialogue;
+        [SerializeField] Dialogue dialogue;
         public Reward Reward
         {
             get{return reward;}
@@ -35,7 +35,7 @@ public class NPCDialogue : ScriptableObject
         {
             get{return dialogueRequirements;}
         }
-        public DefaultDialogue Dialogues
+        public Dialogue Dialogue
         {
             get{return dialogue;}
         }
@@ -43,8 +43,8 @@ public class NPCDialogue : ScriptableObject
     }
 
     [SerializeField] string name;  
-    [SerializeField][Tooltip("the dialogue to use if requirements are not met")] DefaultDialogue defaultDialogue;   
-    [SerializeField][Tooltip("alternative dialogues with requirements")] Dialogue[] alternativeDialogues;
+    [SerializeField][Tooltip("the dialogue to use if requirements are not met")] Dialogue defaultDialogue;   
+    [SerializeField][Tooltip("alternative dialogues with requirements")] AlternativeDialogue[] alternativeDialogues;
     
 
     public string Name
@@ -52,11 +52,11 @@ public class NPCDialogue : ScriptableObject
         get{return name;}
     }
 
-    public Dialogue[] Alternativedialogues
+    public AlternativeDialogue[] Alternativedialogues
     {
         get{return alternativeDialogues;}
     }
-    public DefaultDialogue DefaultDialogues
+    public Dialogue DefaultDialogues
     {
         get{return defaultDialogue;}
     }

@@ -13,4 +13,18 @@ MonoBehaviour:
   m_Name: AuntieDialogue
   m_EditorClassIdentifier: 
   name: Aunt Betty
-  dialogues: []
+  defaultDialogue:
+    repeatDialogue: 0
+    sentences:
+    - default dialogue
+  alternativeDialogues:
+  - name: 
+    reward: {fileID: 0}
+    dialogueRequirements:
+      jetpack: 0
+      pewpew: 0
+      shovel: 0
+    dialogue:
+      repeatDialogue: 0
+      sentences:
+      - alternative dialogue
