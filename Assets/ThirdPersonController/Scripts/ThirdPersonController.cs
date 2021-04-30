@@ -30,7 +30,7 @@ public class ThirdPersonController : MonoBehaviour
     [Range(1,100)]
     public float cameraSensitivityY;
 
-    [Range(-50,50)]
+    [Range(-80,80)]
     public float minVerticalRotation, maxVerticalRotation;
 
 
