@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Timeline;
+using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -139,11 +140,11 @@ public class UIManager : Singleton<UIManager>
         }
     }
     
-    void OnNPCDialogue(string dialogue, string name)
+    void OnNPCDialogue(string dialogue, string name, Sprite npcSprite)
     {
         if(onNPCDialogue != null)
         {
-            onNPCDialogue(dialogue, name);
+            onNPCDialogue(dialogue, name, npcSprite);
         }
     }
 

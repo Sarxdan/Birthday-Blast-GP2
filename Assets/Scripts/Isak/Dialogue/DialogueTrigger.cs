@@ -5,9 +5,8 @@ using UnityEngine;
 public class DialogueTrigger : MonoBehaviour // improve to use reward system
 {
     [SerializeField] NPCDialogue dialogues; // variable for all the dialogues (scriptable object)
-
     public static Events.DialogueEvent onNPCDialogue; // event used for printing out the dialogues sentence and name to screen
-    NPCDialogue.Dialogue dialogueToCheck; 
+    NPCDialogue.AlternativeDialogue dialogueToCheck; 
     NPCDialogue.Dialogue dialogueToUse; 
     NPCDialogue.Dialogue lastDialogueUsed; 
     int timesSpokenWith = 0;
@@ -33,10 +32,19 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
         }
         lastDialogueUsed = dialogueToUse; // change which dialogue was last used
     }
+
+    void RewardPlayer() //checks if dialogue is complete and a reward exists
+    {
+        if(dialogueToUse.Reward == null) return;
+        if(timesSpokenWith != dialogueToUse.Sentences.Length - 1) return;
+        print("rewarded with " + dialogueToUse.Reward.rewardStats.name);
+        dialogueToUse.Reward.GetReward();
+    }
     public void TriggerDialogue()
     {   
         dialogueToUse = ChooseDialogue();
         CheckIfNewDialogue();
+        RewardPlayer();
         if(dialogueToUse == null)
         {
             Debug.LogError("requirements for dialogue is not met");
@@ -44,20 +52,20 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
         }
         if(onNPCDialogue != null)
         {
-            onNPCDialogue(GetNextDialogue(), dialogues.Name);
+            onNPCDialogue(GetNextDialogue(), dialogues.Name, dialogues.NPCSprite);
         }
     }
     NPCDialogue.Dialogue ChooseDialogue()
     {
-            foreach(NPCDialogue.Dialogue dialogue in dialogues.Dialogues) //loop through all dialogues
+            foreach(NPCDialogue.AlternativeDialogue dialogue in dialogues.Alternativedialogues) //loop through all dialogues
             {
                 dialogueToCheck = dialogue;
                 if(CheckCurrentDialogue())
                 {
-                    return dialogue; // found a dialogue that fulfills requirement
+                    return dialogue.Dialogue; // found a dialogue that fulfills requirement
                 }
             }  
-            return null;    // found no dialogues that fulfills requirement
+            return dialogues.DefaultDialogues;    // found no dialogues that fulfills requirement
     }
 
     bool CheckCurrentDialogue() // this will look like shit, improve over iterations
