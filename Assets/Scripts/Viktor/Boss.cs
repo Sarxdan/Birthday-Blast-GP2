@@ -116,13 +116,16 @@ public class Boss : MonoBehaviour
         var projSpeed = bossPhases[currentSphase].projectileSpeed;
         var isHoming = bossPhases[currentSphase].homingProjectiles;
         var homingAcc = bossPhases[currentSphase].homingAccuracy;
-        projectileScript.InitializeProjectile(projSpeed, playerTarget, isHoming, homingAcc);
+        var projDirection = (playerTarget.position + playerTarget.forward * playerTarget.GetComponentInChildren<JetPack>().AutoMoveSpeed) - projectileSpawnPoint.position;
+        Debug.DrawRay(projectileSpawnPoint.position, projDirection.normalized, Color.yellow, 5f);
+        projectileScript.InitializeProjectile(projSpeed, playerTarget,projDirection.normalized, isHoming, homingAcc);
         
         #endregion
     }
 
     private void OnDrawGizmos()
     {
+        Gizmos.color = Color.red;
         Gizmos.DrawLine(projectileSpawnPoint.position, playerTarget.position);
     }
 
