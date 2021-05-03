@@ -9673,8 +9673,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8389711910241337648}
-  m_LocalRotation: {x: 0.2919589, y: -0.02984344, z: 0.009114823, w: 0.9559217}
-  m_LocalPosition: {x: 0.5, y: 7.2520003, z: -8}
+  m_LocalRotation: {x: 0.29195887, y: -0.02984344, z: 0.009114822, w: 0.9559217}
+  m_LocalPosition: {x: 0.5, y: 7.252, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8389711911653019407}
@@ -18632,8 +18632,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8389711910726577971}
-  m_LocalRotation: {x: 0.2919589, y: -0.02984344, z: 0.009114823, w: 0.9559217}
-  m_LocalPosition: {x: 0.5, y: 7.2520003, z: -8}
+  m_LocalRotation: {x: 0.29195887, y: -0.02984344, z: 0.009114822, w: 0.9559217}
+  m_LocalPosition: {x: 0.5, y: 7.252, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8389711910309069664}
@@ -18669,7 +18669,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7788461, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -19474,10 +19474,6 @@ MonoBehaviour:
   fireRate: 1
   maxAmmo: 1
   projectileRadius: 3.23
-  enemyLayer:
-    serializedVersion: 2
-    m_Bits: 1024
-  pewpewshot: {fileID: 8300000, guid: dc012453a5454a54aa7c518d31c7e493, type: 3}
 --- !u!82 &8389711910785130948
 AudioSource:
   m_ObjectHideFlags: 0
@@ -36274,9 +36270,9 @@ CharacterController:
   serializedVersion: 2
   m_Height: 1.2
   m_Radius: 0.11
-  m_SlopeLimit: 45
+  m_SlopeLimit: 25
   m_StepOffset: 0.15
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.12
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.61, z: 0}
 --- !u!114 &8389711911653019405
