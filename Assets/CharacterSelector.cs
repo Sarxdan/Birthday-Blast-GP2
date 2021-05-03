@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CharacterSelector : Singleton<CharacterSelector>
+public class CharacterSelector : MonoBehaviour
 {
     [System.Serializable]
     public class CharacterParts
@@ -29,7 +29,7 @@ public class CharacterSelector : Singleton<CharacterSelector>
     public GameObject chosenCharacter;
     bool charactersSpawned = false;
     
-    public void ChangeGender(CharacterGenders newGender)
+    public void StartSelection(CharacterGenders newGender)
     {
         gender = newGender;
         PopulateScene();
@@ -59,7 +59,21 @@ public class CharacterSelector : Singleton<CharacterSelector>
         }     
         if(Input.GetButtonDown("Select"))
         {
-            print("chose character " + chosenCharacter.name);
+            foreach(Transform child in chosenCharacter.transform)
+            {
+                if(child.name == "MeshBase")
+                {
+                    foreach(Transform grandChild in child)
+                    {
+                        if(grandChild.name == "Root") continue;
+                        if(grandChild.gameObject.activeSelf)
+                        {
+                            PlayerManager.instance.chosenCharacterMeshesNames.Add(grandChild.GetComponent<SkinnedMeshRenderer>().name);
+                        }
+                    }
+                }
+            }
+            Gamemanager.instance.LoadLevel(3);       
         }  
     }
 

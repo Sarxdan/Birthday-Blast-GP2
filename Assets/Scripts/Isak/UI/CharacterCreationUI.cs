@@ -4,22 +4,26 @@ using UnityEngine;
 
 public class CharacterCreationUI : MonoBehaviour
 {
+    CharacterSelector selector;
+    private void Awake() {
+        selector = FindObjectOfType<CharacterSelector>();
+    }
     // Start is called before the first frame update
     public void Male()
     {
-        CharacterSelector.instance.ChangeGender(CharacterSelector.CharacterGenders.Male);
+        selector.StartSelection(CharacterSelector.CharacterGenders.Male);
         gameObject.SetActive(false);
     }
 
     public void Female()
     {
-        CharacterSelector.instance.ChangeGender(CharacterSelector.CharacterGenders.Female);
+        selector.StartSelection(CharacterSelector.CharacterGenders.Female);
         gameObject.SetActive(false);
     }
 
     public void Neither()
     {
-        CharacterSelector.instance.ChangeGender(CharacterSelector.CharacterGenders.Neither);
+        selector.StartSelection(CharacterSelector.CharacterGenders.Neither);
         gameObject.SetActive(false);
     }
 }
