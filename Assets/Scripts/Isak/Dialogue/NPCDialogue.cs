@@ -24,9 +24,9 @@ public class Dialogue
 
     public string[] Sentences()
     {
-        int locale = LocalizationSettings.AvailableLocales.Locales.IndexOf(LocalizationSettings.Instance
-            .GetSelectedLocale());
-        switch(locale)
+        // Send sentence according to current locale
+        switch(LocalizationSettings.AvailableLocales.Locales.IndexOf(LocalizationSettings.Instance
+            .GetSelectedLocale()))
         {
             case 0:
                 return english;
