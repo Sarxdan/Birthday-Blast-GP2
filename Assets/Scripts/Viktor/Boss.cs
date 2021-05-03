@@ -94,7 +94,7 @@ public class Boss : MonoBehaviour
 
     public void ShootProjectile()
     {
-        #region Select Projectile
+        #region Select Projectile Prefab
         
         var prefab = projectilePrefab;
         if (bossPhases[currentSphase].tripleProjectile)
@@ -104,52 +104,29 @@ public class Boss : MonoBehaviour
         
         #endregion
 
-        #region Spawn Projectile(s)
+        #region Spawn Projectil
 
         var newProjectile = Instantiate(prefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
         var projectileScript = newProjectile.GetComponent<Projectile>();
-
+        
         #endregion
-
-        #region Populate Projectile Variables/Fields
-
-        projectileScript.speed = bossPhases[currentSphase].projectileSpeed;
-        projectileScript.moveDirection = (playerTarget.position - projectileSpawnPoint.position).normalized;
         
-        projectileScript.isHoming = bossPhases[currentSphase].homingProjectiles;
-        projectileScript.homingAccuracy = bossPhases[currentSphase].homingAccuracy;
-
-        projectileScript.target = playerTarget;
-        /*
-        Old code
-        foreach (var projectileScript in projectileScripts)
-        {
-            //Set speed of projectile
-            projectileScript.speed = bossPhases[currentSphase].projectileSpeed;
-
-            //Projectile target
-            var jetpackVelocityVector = playerTarget.GetComponent<Rigidbody>().velocity;
-            var rawDirToPlayer = (playerTarget.position - projectileSpawnPoint.position) *
-                                     Vector3.Distance(playerTarget.position, projectileSpawnPoint.position);
-            
-            var predictedPlayerDirection = rawDirToPlayer + jetpackVelocityVector;
-            
-            projectileScript.target = playerTarget;
-            projectileScript.moveDir = predictedPlayerDirection;
-            
-            //Set homing variables
-            projectileScript.isHoming = bossPhases[currentSphase].homingProjectiles;
-            projectileScript.homingAccuracy = bossPhases[currentSphase].homingAccuracy;
-        }
+        #region Initialize Projectile
         
-        */
-
+        var projSpeed = bossPhases[currentSphase].projectileSpeed;
+        var isHoming = bossPhases[currentSphase].homingProjectiles;
+        var homingAcc = bossPhases[currentSphase].homingAccuracy;
+        projectileScript.InitializeProjectile(projSpeed, playerTarget, isHoming, homingAcc);
+        
         #endregion
     }
-    
-    
-    
-    
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawLine(projectileSpawnPoint.position, playerTarget.position);
+    }
+
+
     public void MoveHorizontally(float speed)
     {
         newBossPosition = bossCenterPos;

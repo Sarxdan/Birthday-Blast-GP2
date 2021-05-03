@@ -83,10 +83,10 @@ MonoBehaviour:
     phaseDowntime: 3
     fireProjectiles: 1
     fireRate: 1
-    projectileSpeed: 5
+    projectileSpeed: 10
     tripleProjectile: 0
-    homingProjectiles: 0
-    homingAccuracy: 0
+    homingProjectiles: 1
+    homingAccuracy: 1.48
     bossMovement: 0
     bossMovementSpeed: 0
     moveAmount: 0
@@ -95,7 +95,7 @@ MonoBehaviour:
     phaseDowntime: 2
     fireProjectiles: 1
     fireRate: 5
-    projectileSpeed: 10
+    projectileSpeed: 20
     tripleProjectile: 0
     homingProjectiles: 0
     homingAccuracy: 0
@@ -107,7 +107,7 @@ MonoBehaviour:
     phaseDowntime: 2
     fireProjectiles: 1
     fireRate: 10
-    projectileSpeed: 20
+    projectileSpeed: 25
     tripleProjectile: 1
     homingProjectiles: 0
     homingAccuracy: 0
@@ -116,8 +116,8 @@ MonoBehaviour:
     moveAmount: 0
   playerTarget: {fileID: 0}
   projectileSpawnPoint: {fileID: 783143935798147867}
-  projectilePrefab: {fileID: 3505596204604672477, guid: d03c76bd71c45014ca84ecdaf39da9b9, type: 3}
-  tripleProjectilePrefab: {fileID: 3505596204604672477, guid: 81c642fd2179c6b41b849100cd7e4f68, type: 3}
+  projectilePrefab: {fileID: 648455435217029907, guid: d03c76bd71c45014ca84ecdaf39da9b9, type: 3}
+  tripleProjectilePrefab: {fileID: 648455435217029907, guid: d03c76bd71c45014ca84ecdaf39da9b9, type: 3}
   bossCenterPos: {x: 0, y: 0, z: 0}
   newBossPosition: {x: 0, y: 0, z: 0}
   distanceFromPlayer: 90
