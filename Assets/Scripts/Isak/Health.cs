@@ -20,7 +20,12 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void Heal(int amount)
+    public virtual bool canHeal() // is health full or not?
+    {
+        if(health >= maxHealth) return false; //dont heal
+        return true; // heal
+    }
+    public virtual void Heal(int amount)
     {
         health += amount;
         if(health > maxHealth)

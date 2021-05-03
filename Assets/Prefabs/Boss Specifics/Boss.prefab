@@ -78,82 +78,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bossPhases:
-  - name: Phase 1.1
+  - name: Regular bullets!
     phaseDuration: 5
     phaseDowntime: 3
     fireProjectiles: 1
-    fireRate: 2
-    projectileSpeed: 35
+    fireRate: 1
+    projectileSpeed: 10
     tripleProjectile: 0
-    homingProjectiles: 0
-    homingAccuracy: 0
+    homingProjectiles: 1
+    homingAccuracy: 1.48
     bossMovement: 0
     bossMovementSpeed: 0
     moveAmount: 0
-  - name: Phase 1.2
+  - name: More bullets!
     phaseDuration: 5
-    phaseDowntime: 3
-    fireProjectiles: 1
-    fireRate: 2.5
-    projectileSpeed: 40
-    tripleProjectile: 0
-    homingProjectiles: 0
-    homingAccuracy: 0
-    bossMovement: 1
-    bossMovementSpeed: 2
-    moveAmount: 3
-  - name: Phase 2
-    phaseDuration: 7.5
-    phaseDowntime: 5
-    fireProjectiles: 1
-    fireRate: 4
-    projectileSpeed: 45
-    tripleProjectile: 0
-    homingProjectiles: 0
-    homingAccuracy: 1
-    bossMovement: 0
-    bossMovementSpeed: 0
-    moveAmount: 0
-  - name: Phase 3
-    phaseDuration: 7.5
-    phaseDowntime: 5
-    fireProjectiles: 1
-    fireRate: 4
-    projectileSpeed: 50
-    tripleProjectile: 1
-    homingProjectiles: 0
-    homingAccuracy: 1.5
-    bossMovement: 0
-    bossMovementSpeed: 0
-    moveAmount: 0
-  - name: Phase 4
-    phaseDuration: 10
-    phaseDowntime: 5
+    phaseDowntime: 2
     fireProjectiles: 1
     fireRate: 5
-    projectileSpeed: 50
-    tripleProjectile: 1
+    projectileSpeed: 20
+    tripleProjectile: 0
     homingProjectiles: 0
-    homingAccuracy: 1.5
-    bossMovement: 1
-    bossMovementSpeed: 5
-    moveAmount: 5
-  - name: Phase 5
+    homingAccuracy: 0
+    bossMovement: 0
+    bossMovementSpeed: 0
+    moveAmount: 0
+  - name: BULLET HELL!!!
     phaseDuration: 7.5
     phaseDowntime: 2
     fireProjectiles: 1
-    fireRate: 5.5
-    projectileSpeed: 55
+    fireRate: 10
+    projectileSpeed: 25
     tripleProjectile: 1
     homingProjectiles: 0
-    homingAccuracy: 2
-    bossMovement: 1
-    bossMovementSpeed: 7.5
-    moveAmount: 5
+    homingAccuracy: 0
+    bossMovement: 0
+    bossMovementSpeed: 0
+    moveAmount: 0
   playerTarget: {fileID: 0}
   projectileSpawnPoint: {fileID: 783143935798147867}
-  projectilePrefab: {fileID: 3505596204604672477, guid: d03c76bd71c45014ca84ecdaf39da9b9, type: 3}
-  tripleProjectilePrefab: {fileID: 3505596204604672477, guid: 81c642fd2179c6b41b849100cd7e4f68, type: 3}
+  projectilePrefab: {fileID: 648455435217029907, guid: d03c76bd71c45014ca84ecdaf39da9b9, type: 3}
+  tripleProjectilePrefab: {fileID: 648455435217029907, guid: d03c76bd71c45014ca84ecdaf39da9b9, type: 3}
   bossCenterPos: {x: 0, y: 0, z: 0}
   newBossPosition: {x: 0, y: 0, z: 0}
   distanceFromPlayer: 90

@@ -10,6 +10,14 @@ public class PlayerHealth : Health
     [SerializeField][Tooltip("How long the player is invulnerable after taking damage")] float invulnerableTime = 1;
     bool invulnerable = false;
 
+    public override void Heal(int amount)
+    {
+        base.Heal(amount);
+        if(onPlayerHealthChange != null)
+        {
+            onPlayerHealthChange(health);
+        }
+    }
     public override void TakeDamage(int damage)
     {       
         if(invulnerable) return;
@@ -54,7 +62,7 @@ public class PlayerHealth : Health
 
     private void Start() {
         maxHealth = PlayerManager.instance.playerMaxHealth;
-
+        print(health);
         health = PlayerManager.instance.playerHealth;
         if(onPlayerHealthChange != null)
         {
