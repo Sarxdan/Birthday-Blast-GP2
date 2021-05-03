@@ -19,14 +19,10 @@ public class Pewpew : MonoBehaviour
     [SerializeField][Range(10, 100)] int maxAmmo = 1;
     [SerializeField] float projectileRadius = 1;
     ParticleSystem effect;
-    [SerializeField] LayerMask enemyLayer;
-    [SerializeField] AudioClip pewpewshot;
-    AudioSource audioSource;
 
     private void Awake() {
         ammo = maxAmmo;
         effect = GetComponentInChildren<ParticleSystem>();
-        audioSource = GetComponent<AudioSource>();
     }
 
     public void OnShootInput()
@@ -54,9 +50,9 @@ public class Pewpew : MonoBehaviour
         ammo --;
         canShoot = false;
         effect.Play();
-        audioSource.PlayOneShot(pewpewshot);
+        AudioManager.instance.Play("Pewpew");
         Collider[] colliders;
-        colliders = Physics.OverlapSphere(transform.position, projectileRadius, enemyLayer);
+        colliders = Physics.OverlapSphere(transform.position, projectileRadius, LayerMask.GetMask("Enemy"));
         foreach(Collider collider in colliders)
         {
             Enemy enemy = collider.gameObject.GetComponent<Enemy>();

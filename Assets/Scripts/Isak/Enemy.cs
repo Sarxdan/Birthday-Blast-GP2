@@ -2,18 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : Obstacle
+public abstract class Enemy : Obstacle
 {
-    AudioSource audio;
-    enum EnemyTypes
-    {
-        Bee,
-        Bird
-    }
+    protected AudioSource audio;
     [SerializeField] float despawnTimer = 1;
-    [SerializeField] EnemyTypes enemyType;
-    bool isRunningAway = false;
-    bool isPlayingAudio;
+    protected bool isRunningAway = false;
+    protected Collider[] checkedColliders;
+    [SerializeField] protected float checkRange;
 
     protected override void Update()
     {
@@ -28,39 +23,13 @@ public class Enemy : Obstacle
         StartCoroutine(RunAway());
         
     }
-    void CheckForPlayer()
+    protected virtual void CheckForPlayer()
     {
-        var colliders = Physics.OverlapSphere(transform.position, 10, LayerMask.GetMask("Player"));
-        if(colliders.Length > 0 && !isPlayingAudio)
-        {
-            isPlayingAudio = true; // needs a better fix
-            switch(enemyType)
-            {
-                case EnemyTypes.Bee:
-                audio = AudioManager.instance.PlayClipAtPoint("Bee", transform.position);
-                break;
-
-                case EnemyTypes.Bird:
-                audio = AudioManager.instance.PlayClipAtPoint("Bird", transform.position);
-                break;
-
-                default:
-                break;
-            }
-            
-        }
-        else if(colliders.Length == 0 && isPlayingAudio)
-        {
-            isPlayingAudio = false;
-            if(audio != null)
-            {
-                audio.Stop();
-            }            
-        }
+        checkedColliders = Physics.OverlapSphere(transform.position, checkRange, LayerMask.GetMask("Player"));        
     }
 
     private void OnDrawGizmos() {
-        Gizmos.DrawWireSphere(transform.position, 10);
+        Gizmos.DrawWireSphere(transform.position, checkRange);
     }
     IEnumerator RunAway()
     {
