@@ -16,6 +16,7 @@ public class OutOfBounds : MonoBehaviour
 
     private void Awake() {
         thirdPersonController = FindObjectOfType<ThirdPersonController>();
+        
         playerMovement = FindObjectOfType<PlayerMovement>();
         collider = GetComponent<Collider>();
         collider.isTrigger = true;

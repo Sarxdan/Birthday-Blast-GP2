@@ -36,7 +36,6 @@ public class AudioManager : Singleton<AudioManager>
 
     public AudioSource PlayClipAtPoint(string name, Vector3 position) //will play in 3D
     {
-        print("test");
         AudioSource source;
         Transform parent = FindTrackParent(name);
         if (parent == null)
@@ -110,6 +109,14 @@ public class AudioManager : Singleton<AudioManager>
         
     }
 
+    void StopAllAudio()
+    {
+        foreach(Sound s in sounds)
+        {
+            s.source.Stop();
+        }
+    }
+
     void OnGameStateChange(Gamemanager.GameState state)
     {
         switch(state)
@@ -137,12 +144,18 @@ public class AudioManager : Singleton<AudioManager>
 
         }
     }
+    void OnSceneLoaded()
+    {
+        StopAllAudio();
+    }
 
     private void OnEnable() {
         Gamemanager.onGameStateChange += OnGameStateChange;
+        Gamemanager.onSceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable() {
         Gamemanager.onGameStateChange -= OnGameStateChange;
+        Gamemanager.onSceneLoaded -= OnSceneLoaded;
     }
 }
