@@ -10,7 +10,7 @@ public class Obstacle : DamagePlayer
     protected Rigidbody body;
     float timeUntilReturn;
 
-    private void Awake() {
+    protected virtual void Awake() {
         body = GetComponent<Rigidbody>();   
         body.useGravity = false;
         timeUntilReturn = returnTime;

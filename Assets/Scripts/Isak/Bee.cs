@@ -5,10 +5,15 @@ using UnityEngine;
 public class Bee : Enemy //hunt player when found one
 {
     Transform player;
+    Animator animator;
     bool isAttackingPlayer = false;
     [SerializeField] float chaseSpeed;
 
     // Start is called before the first frame update
+    override protected void Awake() {
+        base.Awake();
+        animator = GetComponentInChildren<Animator>();
+    }
     protected override void CheckForPlayer()
     {
         base.CheckForPlayer();
@@ -17,6 +22,7 @@ public class Bee : Enemy //hunt player when found one
             player = checkedColliders[0].GetComponent<Transform>();
             audio = AudioManager.instance.PlayClipAtPoint("Bee", transform.position);
             isAttackingPlayer = true;
+            animator.SetBool("Fly Forward", true);
         }
         else if(checkedColliders.Length == 0)
         {

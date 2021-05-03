@@ -73,7 +73,6 @@ public class PlayerMovement : MonoBehaviour
 
         //Get the forward direction from the camera
         forwardLookDir = camController.forwardLookDir;
-
         //Direction of movement, (normalized)/unit vector
         var movementDirection =
             (forwardLookDir * vertical + camController.cameraLookDirectionTransform.right * horizontal)

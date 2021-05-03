@@ -31,6 +31,10 @@ public class Projectile : MonoBehaviour
 
     private void Update()
     {
+        Debug.DrawRay(transform.position, moveDirection);
+        
+        
+        
         if (isHoming)
         {
             moveDirection = Vector3.Lerp(transform.position, projectileTarget.position, homingAccuracy * Time.deltaTime);
@@ -66,16 +70,14 @@ public class Projectile : MonoBehaviour
     }
 
 
-    public void InitializeProjectile(float speed, Transform target, bool _isHoming, float homingAcc)
+    public void InitializeProjectile(float speed, Transform target,Vector3 direction, bool _isHoming, float homingAcc)
     {
         projectileSpeed = speed;
         projectileTarget = target;
         isHoming = _isHoming;
         homingAccuracy = homingAcc;
-    }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawLine(transform.position, projectileTarget.position);
+        moveDirection = direction;
     }
+    
 }

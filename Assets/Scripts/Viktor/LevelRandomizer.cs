@@ -7,6 +7,9 @@ using Random = UnityEngine.Random;
 
 public class LevelRandomizer : MonoBehaviour
 {
+    [Header("The ID to transition to at the end of THIS level")]
+    public int nextLevelToLoad;
+    
     public LevelSegment StartSegmentPrefab;
     public LevelSegment EndSegmentPrefab;
 
@@ -43,6 +46,8 @@ public class LevelRandomizer : MonoBehaviour
     private void Start()
     {
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
+        FindObjectOfType<LevelTransition>().nextLevel = nextLevelToLoad;
     }
 
     private void Update()
