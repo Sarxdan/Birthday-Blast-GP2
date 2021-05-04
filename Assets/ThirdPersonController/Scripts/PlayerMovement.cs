@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -62,7 +63,8 @@ public class PlayerMovement : MonoBehaviour
     {
         //Check if player is currently in contact with objects from certain layers
         isGrounded = Physics.CheckSphere(groundCheckPosition.position, groundDistanceCheck, groundMask);
-        
+        animator.SetBool("isGrounded", isGrounded);
+
         //Reset velocity if grounded
 
         if (isGrounded && velocity.y < 0)
@@ -95,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
             }            
         }
         
-        
+        animator.SetBool("startedFalling", velocity.y < -2);
         animator.SetFloat("Velocity", velocity.y);
     }
 
