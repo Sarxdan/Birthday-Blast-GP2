@@ -15,7 +15,7 @@ public class Resource : PickUp
     private float doubleResourceChance;
     
 
-    public void PickUpResource()
+    public virtual void PickUpResource()
     {
         if (NewResource() && popupWindow != null)
         {
