@@ -28,6 +28,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2654703591844536953}
+  - component: {fileID: 366800317926489316}
   m_Layer: 0
   m_Name: Candy Yellow
   m_TagString: Untagged
@@ -50,6 +51,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &366800317926489316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7657809659749793328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dfca8714eea1d454ba661d3f4c3162fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DestroyOnPickUp: 1
+  resourceType: 2
+  value: 1
+  popupWindow: {fileID: 0}
 --- !u!1001 &7637855628982732071
 PrefabInstance:
   m_ObjectHideFlags: 0
