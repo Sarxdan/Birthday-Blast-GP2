@@ -12,8 +12,6 @@ public class InGameUI : MonoBehaviour
     [SerializeField] Image npcTextBackground;
     [SerializeField] Image npcImage;
     [SerializeField] Slider fuelBar;
-    [SerializeField] float textExistTimer = 1;
-    // Start is called before the first frame update
     private void Awake()
     {
         ClearScreen();
@@ -41,13 +39,11 @@ public class InGameUI : MonoBehaviour
 
     void PrintNPCText(string dialogue, string name, Sprite npcSprite)
     {
-        StopAllCoroutines();
         npcTextBackground.gameObject.SetActive(true);
         npcImage.gameObject.SetActive(true);
         npcImage.sprite = npcSprite;
         npcText.text = dialogue;
         npcName.text = name;
-        StartCoroutine(RemoveText());
     }
 
     void UpdateHealthText(int amount)
@@ -55,9 +51,8 @@ public class InGameUI : MonoBehaviour
         health.text = amount.ToString();
     }
 
-    IEnumerator RemoveText()
+    void ClearConversation()
     {
-        yield return new WaitForSeconds(textExistTimer);
         npcText.text = string.Empty;
         npcName.text = string.Empty;
         npcTextBackground.gameObject.SetActive(false);
@@ -79,6 +74,7 @@ public class InGameUI : MonoBehaviour
         UIManager.onPlayerHealthChange += UpdateHealthText;
         UIManager.onFuelUse += UpdateFuelText;
         UIManager.onJetpackAwake += SetupFuelSlider;
+        UIManager.onPlayerLeavingConversation += ClearConversation;
     }
 
     private void OnDisable() {
@@ -86,5 +82,6 @@ public class InGameUI : MonoBehaviour
         UIManager.onPlayerHealthChange -= UpdateHealthText;
         UIManager.onFuelUse -= UpdateFuelText;
         UIManager.onJetpackAwake -= SetupFuelSlider;
+        UIManager.onPlayerLeavingConversation -= ClearConversation;
     }
 }

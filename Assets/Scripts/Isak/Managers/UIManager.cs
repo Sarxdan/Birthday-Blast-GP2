@@ -12,6 +12,7 @@ public class UIManager : Singleton<UIManager>
     public static Events.DamagePlayerEvent onPlayerHealthChange;
     public static Events.FuelEvent onFuelUse;
     public static Events.FuelEvent onJetpackAwake;
+    public static Events.EmptyEvent onPlayerLeavingConversation;
     InGameUI inGameUI;
     PauseMenu pauseMenu;
     ShopUI shopUI;
@@ -158,6 +159,14 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    void OnPlayerLeavingConversation()
+    {
+        if(onPlayerLeavingConversation != null)
+        {
+            onPlayerLeavingConversation();
+        }
+    }
+
     private void OnEnable() {
         
         controls.Enable();
@@ -170,6 +179,7 @@ public class UIManager : Singleton<UIManager>
         JetpackBase.onJetpackAwake += OnJetpackAwake;
         ShopKeeper.onShopKeeperInteraction += ToggleShopUI;
         DialogueTrigger.onNPCDialogue += OnNPCDialogue;
+        DialogueTrigger.onPlayerLeavingConversation += OnPlayerLeavingConversation;
     }
 
     private void OnDisable() {
@@ -184,5 +194,6 @@ public class UIManager : Singleton<UIManager>
         JetpackBase.onJetpackAwake -= OnJetpackAwake;
         ShopKeeper.onShopKeeperInteraction -= ToggleShopUI;
         DialogueTrigger.onNPCDialogue -= OnNPCDialogue;
+        DialogueTrigger.onPlayerLeavingConversation -= OnPlayerLeavingConversation;
     }  
 }
