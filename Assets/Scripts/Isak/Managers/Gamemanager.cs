@@ -27,11 +27,12 @@ public class Gamemanager : Singleton<Gamemanager>
 
     public void LoadLevel(int levelIndex)
     {       
-        SceneManager.LoadScene(levelIndex);
+        SceneManager.LoadScene(levelIndex);       
     }
 
-    void UpdateGameState(GameState newState)
+    public void UpdateGameState(GameState newState)
     {
+        GameState lastState = currentGameState;
         currentGameState = newState;
         switch(currentGameState)
         {
@@ -47,7 +48,7 @@ public class Gamemanager : Singleton<Gamemanager>
         }
         if(onGameStateChange != null)
         {
-            onGameStateChange(currentGameState);
+            onGameStateChange(currentGameState, lastState);
         }
     }
 
@@ -64,6 +65,7 @@ public class Gamemanager : Singleton<Gamemanager>
 
     private void SceneLoaded(Scene scene, LoadSceneMode mode)
     {      
+        UpdateGameState(GameState.Playing);
         if(onSceneLoaded != null)
         {
             onSceneLoaded();
@@ -87,7 +89,6 @@ public class Gamemanager : Singleton<Gamemanager>
     }
 
     private void OnEnable() {
-        UIManager.onGamePaused += UpdateGameState;
         PlayerHealth.onPlayerDeath += OnPlayerDeath;
         SceneManager.sceneLoaded += SceneLoaded;
         KeyItemPickup.onKeyItemPickup += OnKeyItemPickUp;
@@ -95,7 +96,6 @@ public class Gamemanager : Singleton<Gamemanager>
    
     protected override void OnDestroy() {
         base.OnDestroy();
-        UIManager.onGamePaused -= UpdateGameState;
         PlayerHealth.onPlayerDeath -= OnPlayerDeath;
         SceneManager.sceneLoaded -= SceneLoaded;
         KeyItemPickup.onKeyItemPickup -= OnKeyItemPickUp;

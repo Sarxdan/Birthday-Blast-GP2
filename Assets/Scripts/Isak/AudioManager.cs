@@ -117,9 +117,9 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-    void OnGameStateChange(Gamemanager.GameState state)
+    void OnGameStateChange(Gamemanager.GameState newState, Gamemanager.GameState lastState)
     {
-        switch(state)
+        switch(newState)
         {
             case Gamemanager.GameState.Paused:
             foreach(Sound s in sounds)

@@ -73,7 +73,7 @@ public class CharacterSelector : MonoBehaviour
                     }
                 }
             }
-            Gamemanager.instance.LoadLevel(3);       
+            Gamemanager.instance.LoadLevel(4);       
         }  
     }
 

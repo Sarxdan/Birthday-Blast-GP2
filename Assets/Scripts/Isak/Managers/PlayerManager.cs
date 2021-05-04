@@ -15,4 +15,27 @@ public class PlayerManager : Singleton<PlayerManager>
         playerHealth = playerMaxHealth;
         chosenCharacterMeshesNames = new List<string>();
     }
+
+    void OnSceneLoaded()
+    {
+        Transform player = FindObjectOfType<PlayerHealth>().transform;
+        if(chosenCharacterMeshesNames != null && player != null)
+        {
+            foreach(Transform child in player)
+            {
+                if(child.name == "MeshBase")
+                {
+
+                }
+            }
+        }
+    }
+
+    private void OnEnable() {
+        Gamemanager.onSceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable() {
+        Gamemanager.onSceneLoaded -= OnSceneLoaded;
+    }
 }
