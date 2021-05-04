@@ -16,26 +16,28 @@ public class PlayerManager : Singleton<PlayerManager>
         chosenCharacterMeshesNames = new List<string>();
     }
 
-    void OnSceneLoaded()
+    public void PlayerAwake()
     {
         Transform player = FindObjectOfType<PlayerHealth>().transform;
-        if(chosenCharacterMeshesNames != null && player != null)
+        if(chosenCharacterMeshesNames.Count != 0 && player != null)
         {
             foreach(Transform child in player)
             {
                 if(child.name == "MeshBase")
                 {
-
+                    foreach(Transform grandchild in child)
+                    {
+                        
+                        if(grandchild.name == "Root") continue;
+                        grandchild.gameObject.SetActive(false);
+                        foreach(string name in chosenCharacterMeshesNames)
+                        {
+                            
+                            if(grandchild.name == name) grandchild.gameObject.SetActive(true);
+                        }
+                    }
                 }
             }
         }
-    }
-
-    private void OnEnable() {
-        Gamemanager.onSceneLoaded += OnSceneLoaded;
-    }
-
-    private void OnDisable() {
-        Gamemanager.onSceneLoaded -= OnSceneLoaded;
     }
 }

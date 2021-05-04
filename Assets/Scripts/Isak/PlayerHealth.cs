@@ -61,6 +61,7 @@ public class PlayerHealth : Health
     }
 
     private void Start() {
+        PlayerManager.instance.PlayerAwake();
         maxHealth = PlayerManager.instance.playerMaxHealth;
         print(health);
         health = PlayerManager.instance.playerHealth;

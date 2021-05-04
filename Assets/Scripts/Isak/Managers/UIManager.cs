@@ -24,7 +24,7 @@ public class UIManager : Singleton<UIManager>
 
     private void Awake()
     {
-        controls = new Controls();
+        
     }
 
     public void EnablePopUp(GameObject popup)
@@ -55,9 +55,10 @@ public class UIManager : Singleton<UIManager>
         Cursor.lockState = CursorLockMode.Locked;
     }
     
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
+        controls = new Controls();
         inGameUI = GetComponentInChildren<InGameUI>();
         pauseMenu = GetComponentInChildren<PauseMenu>();
         shopUI = GetComponentInChildren<ShopUI>();

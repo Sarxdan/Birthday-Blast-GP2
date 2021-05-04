@@ -8,7 +8,7 @@ public class Singleton<T> : MonoBehaviour where T: Singleton<T>
     public static T instance;
 
     // Start is called before the first frame update
-    protected virtual void Start()
+    protected virtual void Awake()
     {
         if(instance != null)
         {
