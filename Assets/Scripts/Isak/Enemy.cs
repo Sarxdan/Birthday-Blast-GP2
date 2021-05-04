@@ -4,7 +4,7 @@ using UnityEngine;
 
 public abstract class Enemy : Obstacle
 {
-    protected AudioSource audio;
+    new protected AudioSource audio;
     [SerializeField] float despawnTimer = 1;
     protected bool isRunningAway = false;
     protected Collider[] checkedColliders;

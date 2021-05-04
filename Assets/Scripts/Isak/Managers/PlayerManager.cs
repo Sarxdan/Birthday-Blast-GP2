@@ -11,7 +11,8 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public GameObject player;
 
-    private void Awake() {
+    protected override void Awake() {
+        base.Awake();
         playerHealth = playerMaxHealth;
         chosenCharacterMeshesNames = new List<string>();
     }

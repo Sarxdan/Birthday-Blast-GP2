@@ -22,11 +22,6 @@ public class UIManager : Singleton<UIManager>
 
     private Controls controls;
 
-    private void Awake()
-    {
-        
-    }
-
     public void EnablePopUp(GameObject popup)
     {
         var goPopup = popup;
@@ -62,6 +57,9 @@ public class UIManager : Singleton<UIManager>
         inGameUI = GetComponentInChildren<InGameUI>();
         pauseMenu = GetComponentInChildren<PauseMenu>();
         shopUI = GetComponentInChildren<ShopUI>();
+        
+    }
+    private void Start() {
         ToggleInventoryUI();
         TogglePauseMenu();
         ToggleShopUI();

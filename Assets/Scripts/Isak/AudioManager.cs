@@ -8,8 +8,8 @@ public class AudioManager : Singleton<AudioManager>
 {
     [SerializeField] Sound[] sounds;
     // Start is called before the first frame update
-    private void Awake() {
-
+    protected override void Awake() {
+        base.Awake();
         foreach(Sound s in sounds)
         {
 

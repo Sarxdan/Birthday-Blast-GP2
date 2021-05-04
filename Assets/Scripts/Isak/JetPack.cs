@@ -20,7 +20,7 @@ public class JetPack : JetpackBase
     {
         get{return autoMoveSpeed;} 
     }
-    Camera camera;
+    new Camera camera;
     bool isAutoBoosting = false;
      bool gameOver = false;
     Pewpew pewpew;
