@@ -17,7 +17,7 @@ public class Resource : PickUp
 
     public void PickUpResource()
     {
-        if (NewResource())
+        if (NewResource() && popupWindow != null)
         {
             UIManager.instance.EnablePopUp(popupWindow);
         }
