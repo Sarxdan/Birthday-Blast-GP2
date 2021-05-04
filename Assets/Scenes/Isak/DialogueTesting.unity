@@ -825,6 +825,14 @@ PrefabInstance:
       propertyPath: OnInteractEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4240392758346505069, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
+      propertyPath: popupWindow
+      value: 
+      objectReference: {fileID: 1637102975}
+    - target: {fileID: 4240392758346505069, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
+      propertyPath: resourceType
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aab41ea710b1c6a4c867c7c03fd9586e, type: 3}
 --- !u!1 &1361035328
@@ -893,6 +901,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1637102975 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9107799841780785807, guid: f815c2f2842967345928dd004146400e, type: 3}
+  m_PrefabInstance: {fileID: 2483040922931832075}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1726659677
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1393,6 +1406,10 @@ PrefabInstance:
     - target: {fileID: 4975994706251705380, guid: f815c2f2842967345928dd004146400e, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7214989706980462262, guid: f815c2f2842967345928dd004146400e, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.011352539
       objectReference: {fileID: 0}
     - target: {fileID: 8859981961509987082, guid: f815c2f2842967345928dd004146400e, type: 3}
       propertyPath: m_AnchorMax.x

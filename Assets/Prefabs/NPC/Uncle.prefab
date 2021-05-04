@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1870753774303615406}
   - component: {fileID: 1870753774303615405}
-  - component: {fileID: 22385919914798362}
   - component: {fileID: 9187877434882398547}
   - component: {fileID: 228287051094119791}
   m_Layer: 8
@@ -70,32 +69,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 22385919914798362}
-        m_TargetAssemblyTypeName: Reward, Assembly-CSharp
-        m_MethodName: GetReward
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &22385919914798362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1870753774303615403}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80811847923b51f4182a595a219d0f6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DestroyOnPickUp: 1
-  rewardStats: {fileID: 0}
 --- !u!114 &9187877434882398547
 MonoBehaviour:
   m_ObjectHideFlags: 0

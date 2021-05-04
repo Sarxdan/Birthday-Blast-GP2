@@ -8,12 +8,12 @@ using UnityEngine.Localization.Settings;
 [System.Serializable]
 public class Dialogue 
 {
-    [SerializeField][Tooltip("rewarded at end of dialogue if not empty")] Reward reward;
+    [SerializeField][Tooltip("rewarded at end of dialogue if not empty")] GameObject reward;
     [SerializeField] bool repeatDialogue = false;
     [SerializeField] int locale;
     [SerializeField][TextArea(3, 10)] string[] english;
     [SerializeField][TextArea(3, 10)] string[] swedish;
-    public Reward Reward
+    public GameObject Reward
     {
         get{return reward;}
     }

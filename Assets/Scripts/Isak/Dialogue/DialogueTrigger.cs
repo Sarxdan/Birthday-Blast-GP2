@@ -10,6 +10,7 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
     Dialogue dialogueToUse; 
     Dialogue lastDialogueUsed; 
     int timesSpokenWith = 0;
+    bool rewarded = false;
     string GetNextDialogue() 
     {
         string nextDialogue = dialogueToUse.Sentences()[timesSpokenWith];
@@ -33,12 +34,14 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
         lastDialogueUsed = dialogueToUse; // change which dialogue was last used
     }
 
-    void RewardPlayer() //checks if dialogue is complete and a reward exists
+    void RewardPlayer() //currently only rewards player once
     {
+        if(rewarded) return;
         if(dialogueToUse.Reward == null) return;
         if(timesSpokenWith != dialogueToUse.Sentences().Length - 1) return;
-        print("rewarded with " + dialogueToUse.Reward.rewardStats.name);
-        dialogueToUse.Reward.GetReward();
+        print("rewarded with " + dialogueToUse.Reward.name);
+        GameObject reward = Instantiate(dialogueToUse.Reward, new Vector3(transform.position.x + 1, transform.position.y, transform.position.z), Quaternion.identity);
+        rewarded = true;
     }
 
     void SetPlayerMovement()
