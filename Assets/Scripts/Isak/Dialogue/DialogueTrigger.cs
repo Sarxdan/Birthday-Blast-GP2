@@ -22,7 +22,17 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
         {
             timesSpokenWith = 0;
         }   
+        else if(timesSpokenWith == dialogueToUse.Sentences().Length - 1) // end of dialogue if not set to repeating
+        {
+            EndOfDialogue();
+        }
         return nextDialogue;
+    }
+
+    void EndOfDialogue()
+    {
+        ShopKeeper shopKeeper = GetComponent<ShopKeeper>();
+        if(shopKeeper != null) shopKeeper.OpenShop();
     }
 
     void CheckIfNewDialogue() 
