@@ -6,11 +6,35 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
 {
     [SerializeField] NPCDialogue dialogues; // variable for all the dialogues (scriptable object)
     public static Events.DialogueEvent onNPCDialogue; // event used for printing out the dialogues sentence and name to screen
+    public static Events.EmptyEvent onPlayerLeavingConversation;
     NPCDialogue.AlternativeDialogue dialogueToCheck; 
     Dialogue dialogueToUse; 
     Dialogue lastDialogueUsed; 
     int timesSpokenWith = 0;
     bool rewarded = false;
+    bool playerIsInteracting = false;
+    Transform player;
+    Interactable interactable;
+
+    private void Awake() {
+        player = FindObjectOfType<PlayerHealth>().transform;
+        interactable = GetComponent<Interactable>();
+    }
+
+    private void Update() {
+        if(!playerIsInteracting) return;
+        print(transform.position);
+        print(player.position);
+        print(Vector3.Distance(player.position, transform.position));
+        if(Vector3.Distance(player.position, transform.position) > interactable.interactRadius)
+        {
+            playerIsInteracting = false;
+            if(onPlayerLeavingConversation != null)
+            {
+                onPlayerLeavingConversation();
+            }
+        }
+    }
     string GetNextDialogue() 
     {
         string nextDialogue = dialogueToUse.Sentences()[timesSpokenWith];
@@ -70,7 +94,7 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
     public void TriggerDialogue()
     {   
         if(dialogues.DefaultDialogues.Sentences().Length == 0 && dialogues.Alternativedialogues.Length == 0) return;
-
+        playerIsInteracting = true;
         dialogueToUse = ChooseDialogue();
         CheckIfNewDialogue();
         RewardPlayer();
