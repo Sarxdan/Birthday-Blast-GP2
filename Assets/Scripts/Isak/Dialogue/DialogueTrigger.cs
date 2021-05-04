@@ -40,11 +40,28 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
         print("rewarded with " + dialogueToUse.Reward.rewardStats.name);
         dialogueToUse.Reward.GetReward();
     }
+
+    void SetPlayerMovement()
+    {
+        ThirdPersonController thirdPersonController = FindObjectOfType<ThirdPersonController>();
+        if(timesSpokenWith != dialogueToUse.Sentences().Length - 1)
+        {            
+            thirdPersonController.disablePlayerMovement = true;
+        }
+        else
+        {
+            thirdPersonController.disablePlayerMovement = false;
+        }
+        
+    }
     public void TriggerDialogue()
     {   
+        if(dialogues.DefaultDialogues.Sentences().Length == 0 && dialogues.Alternativedialogues.Length == 0) return;
+
         dialogueToUse = ChooseDialogue();
         CheckIfNewDialogue();
         RewardPlayer();
+        SetPlayerMovement();
         if(dialogueToUse == null)
         {
             Debug.LogError("requirements for dialogue is not met");
