@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 3108772118199638340}
   - component: {fileID: 3108772118199638343}
   - component: {fileID: 3108772118199638361}
-  - component: {fileID: 3108772118199638360}
   - component: {fileID: 4685910106979503287}
+  - component: {fileID: 1212988506957605505}
+  - component: {fileID: 853051821695224631}
   m_Layer: 8
-  m_Name: Scrap
+  m_Name: Scraps
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +30,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3108772118199638363}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.470607, y: 0.652874, z: -12.807402}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 513468688596195707}
@@ -102,41 +103,6 @@ MonoBehaviour:
   resourceType: 0
   value: 1
   popupWindow: {fileID: 3797161458764924239, guid: 5836fac78b9d92248a40988f4ee76209, type: 3}
---- !u!114 &3108772118199638360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3108772118199638363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51b50cef069b20b48983ce3fd52a6248, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  requiredItems:
-    jetpack: 0
-    pewpew: 0
-    shovel: 0
-  interactText: Scrap
-  unableToInteracteText: Can't interact!
-  interactRadius: 2
-  minimumTimeBetweenInteractions: 0
-  OnInteractEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 3108772118199638361}
-        m_TargetAssemblyTypeName: Resource, Assembly-CSharp
-        m_MethodName: PickUpResource
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!65 &4685910106979503287
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -150,6 +116,38 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5403404, y: 0.38045865, z: 0.8134718}
   m_Center: {x: 0.016654491, y: -0.039970428, z: -0.03996992}
+--- !u!114 &1212988506957605505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3108772118199638363}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c701c8d9cbca9458824b20c936d738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resource: {fileID: 3108772118199638361}
+--- !u!95 &853051821695224631
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3108772118199638363}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 5f3ed370d9fdb834a9f03676391c5727, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &5615891260273504708
 PrefabInstance:
   m_ObjectHideFlags: 0

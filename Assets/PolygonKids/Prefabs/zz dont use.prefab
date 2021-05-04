@@ -12,10 +12,8 @@ GameObject:
   - component: {fileID: 33139209218109526}
   - component: {fileID: 23343073852493782}
   - component: {fileID: -5584570336342333085}
-  - component: {fileID: -3298596945356147704}
-  - component: {fileID: 7592612248430416061}
   m_Layer: 8
-  m_Name: SM_Prop_Chest_Wood_01
+  m_Name: zz dont use
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -100,55 +98,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 51144326d8d668848b7cb552ddb441a0, type: 3}
---- !u!114 &-3298596945356147704
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087713860155376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d7a6d8d1b69b4147831f7672872f585, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items: []
-  opened: 0
---- !u!114 &7592612248430416061
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1087713860155376}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51b50cef069b20b48983ce3fd52a6248, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  requiredItems:
-    jetpack: 0
-    pewpew: 0
-    shovel: 0
-  interactText: Open chest
-  unableToInteracteText: Can't interact!
-  interactRadius: 1.5
-  minimumTimeBetweenInteractions: 9999
-  OnInteractEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11500000, guid: 8d7a6d8d1b69b4147831f7672872f585, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!1 &1296329986752708
 GameObject:
   m_ObjectHideFlags: 0

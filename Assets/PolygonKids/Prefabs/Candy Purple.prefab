@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3843500775253247032}
   - component: {fileID: -7344665589018622853}
+  - component: {fileID: -7327745256926115054}
+  - component: {fileID: 2432321081323123145}
   m_Layer: 0
   m_Name: Candy Purple
   m_TagString: Untagged
@@ -48,6 +50,32 @@ MonoBehaviour:
   resourceType: 2
   value: 1
   popupWindow: {fileID: 0}
+--- !u!114 &-7327745256926115054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266952645513155600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c701c8d9cbca9458824b20c936d738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resource: {fileID: -7344665589018622853}
+--- !u!65 &2432321081323123145
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1266952645513155600}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.2, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &1956394498137168901
 Animator:
   serializedVersion: 3
