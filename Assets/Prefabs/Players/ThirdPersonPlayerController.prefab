@@ -9848,6 +9848,7 @@ GameObject:
   - component: {fileID: 8389711910241337660}
   - component: {fileID: 8389711910241337661}
   - component: {fileID: 8389711910241337650}
+  - component: {fileID: 687197725811382612}
   m_Layer: 6
   m_Name: PlayerCamera
   m_TagString: PlayerCam
@@ -9978,6 +9979,14 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!81 &687197725811382612
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8389711910241337648}
+  m_Enabled: 1
 --- !u!1 &8389711910256230530
 GameObject:
   m_ObjectHideFlags: 0
@@ -19095,7 +19104,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7769607, y: 1}
+    m_SensorSize: {x: 1.7761557, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -39349,13 +39358,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f86f35757f27d8419977f66de60cb59, type: 3}
---- !u!4 &4707648104086771084 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1156826434986822262, guid: 1f86f35757f27d8419977f66de60cb59, type: 3}
-  m_PrefabInstance: {fileID: 5861771921234452474}
-  m_PrefabAsset: {fileID: 0}
 --- !u!198 &893730297038690394 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 6718834602329704352, guid: 1f86f35757f27d8419977f66de60cb59, type: 3}
+  m_PrefabInstance: {fileID: 5861771921234452474}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &4707648104086771084 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1156826434986822262, guid: 1f86f35757f27d8419977f66de60cb59, type: 3}
   m_PrefabInstance: {fileID: 5861771921234452474}
   m_PrefabAsset: {fileID: 0}
