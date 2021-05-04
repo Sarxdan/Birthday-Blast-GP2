@@ -11,7 +11,7 @@ public class AutoPickUp : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Inventory.instance.PickUpResource(resource);
+            resource.PickUpResource();
         }
     }
 }

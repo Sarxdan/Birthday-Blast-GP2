@@ -51,7 +51,7 @@ public class PlayerMovement : MonoBehaviour
         horizontal = _horizontal;
         vertical = _vertical;
         
-        animator.SetFloat("Speed",Mathf.Abs(vertical) + Mathf.Abs(horizontal));
+        
     }
 
     public void CheckIfGrounded() //added
@@ -97,6 +97,7 @@ public class PlayerMovement : MonoBehaviour
             }            
         }
         
+        animator.SetFloat("Speed",Mathf.Abs(vertical) + Mathf.Abs(horizontal));
         animator.SetBool("startedFalling", velocity.y < -2);
         animator.SetFloat("Velocity", velocity.y);
     }
