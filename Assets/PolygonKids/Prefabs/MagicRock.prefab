@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1761409472719236965}
   - component: {fileID: -3259753472229778226}
+  - component: {fileID: 7904406456262266378}
+  - component: {fileID: 90338427264489763}
   m_Layer: 0
   m_Name: MagicRock
   m_TagString: Untagged
@@ -47,7 +49,33 @@ MonoBehaviour:
   DestroyOnPickUp: 1
   resourceType: 1
   value: 1
-  popupWindow: {fileID: 0}
+  popupWindow: {fileID: 1043888650937865275, guid: 9332a3a3d75b7cb4f890193dcdfdcaf3, type: 3}
+--- !u!114 &7904406456262266378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857007781284547564}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93c701c8d9cbca9458824b20c936d738, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resource: {fileID: -3259753472229778226}
+--- !u!65 &90338427264489763
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1857007781284547564}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 0.2, z: 0.2}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!95 &44124046604001091
 Animator:
   serializedVersion: 3
