@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Cinemachine;
 
 public class CharacterSelector : MonoBehaviour
 {
@@ -29,6 +30,10 @@ public class CharacterSelector : MonoBehaviour
     public GameObject chosenCharacter;
     bool charactersSpawned = false;
     
+    CinemachineVirtualCamera CinemachineVirtualCamera;
+    private void Awake() {
+        CinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+    }
     public void StartSelection(CharacterGenders newGender)
     {
         gender = newGender;
@@ -46,6 +51,7 @@ public class CharacterSelector : MonoBehaviour
                 charactersIndex = 0;
             }
             chosenCharacter = characters[charactersIndex];
+            CinemachineVirtualCamera.LookAt = chosenCharacter.transform;
         }
         if(Input.GetAxis("Horizontal") < 0)
         {
@@ -55,6 +61,7 @@ public class CharacterSelector : MonoBehaviour
                 charactersIndex = characters.Length - 1;
             }
             chosenCharacter = characters[charactersIndex];
+            CinemachineVirtualCamera.LookAt = chosenCharacter.transform;
         }
         }     
         if(Input.GetButtonDown("Select"))
@@ -180,6 +187,7 @@ public class CharacterSelector : MonoBehaviour
         }
         charactersSpawned = true;
         chosenCharacter = characters[0];
+        CinemachineVirtualCamera.LookAt = chosenCharacter.transform;
         charactersIndex = 0;
     }
 }
