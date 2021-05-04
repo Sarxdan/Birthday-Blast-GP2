@@ -12,72 +12,41 @@ public class Projectile : MonoBehaviour
 
     public int projectileDamage = 1;
     public float projectileSpeed;
-    public Transform projectileTarget;
-    private Vector3 moveDirection;
+    public Vector3 moveDirection;
+    private Rigidbody rb;
 
-    public bool isHoming;
-    public float homingAccuracy;
-
-    private void OnEnable()
+    private void Start()
     {
-        Destroy(gameObject, 10.0f);
+        Destroy(gameObject, 25.0f);
+        rb = GetComponent<Rigidbody>();
     }
 
-    private void ProjectileHit()
+    private void PlayerHit()
     {
         onPlayerHit?.Invoke(projectileDamage);
     }
 
-
-    private void Update()
+    private void FixedUpdate()
     {
-        Debug.DrawRay(transform.position, moveDirection);
-        
-        
-        
-        if (isHoming)
-        {
-            moveDirection = Vector3.Lerp(transform.position, projectileTarget.position, homingAccuracy * Time.deltaTime);
-        }
-        
-        MoveInDirection(moveDirection);
-    }
-
-    private void MoveInDirection(Vector3 direction)
-    {
-        
-        transform.Translate(direction * (Time.deltaTime * projectileSpeed));
+        rb.MovePosition(rb.position + moveDirection.normalized * (Time.fixedDeltaTime * projectileSpeed));
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        GetComponent<MeshRenderer>().enabled = false;
-        
+        if (other.CompareTag(tag)) return;
+
         if (other.CompareTag("Player"))
         {
-            ProjectileHit();
+            PlayerHit();
         }
 
-        var destroyAfterTime = 0.0f;
         if (onHitEffect != null)
         {
-            destroyAfterTime = onHitEffect.time;
-            var newEffect =Instantiate(onHitEffect, transform.position, quaternion.identity);
-            Destroy(newEffect,destroyAfterTime);
+            var newEffect = Instantiate(onHitEffect, transform.position, Quaternion.identity);
+            Destroy(newEffect.gameObject, newEffect.time);
         }
-        Destroy(gameObject, destroyAfterTime);
+        
+        Destroy(gameObject);
     }
-
-
-    public void InitializeProjectile(float speed, Transform target,Vector3 direction, bool _isHoming, float homingAcc)
-    {
-        projectileSpeed = speed;
-        projectileTarget = target;
-        isHoming = _isHoming;
-        homingAccuracy = homingAcc;
-
-        moveDirection = direction;
-    }
-    
 }
