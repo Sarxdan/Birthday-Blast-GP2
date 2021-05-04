@@ -17,15 +17,12 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
     Interactable interactable;
 
     private void Awake() {
-        player = FindObjectOfType<PlayerHealth>().transform;
         interactable = GetComponent<Interactable>();
     }
 
     private void Update() {
         if(!playerIsInteracting) return;
-        print(transform.position);
-        print(player.position);
-        print(Vector3.Distance(player.position, transform.position));
+        player = FindObjectOfType<PlayerHealth>().transform;
         if(Vector3.Distance(player.position, transform.position) > interactable.interactRadius)
         {
             playerIsInteracting = false;
