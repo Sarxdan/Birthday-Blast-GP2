@@ -20,9 +20,12 @@ public class LevelTransition : MonoBehaviour
 
     public void LoadScene()
     {
+        PlayerPrefs.SetInt("TransitionLevelID",nextLevel);
+        var scene = SceneManager.GetActiveScene();
+        
         if (FindObjectOfType<Level>().levelType == LevelType.Island)
         {
-            
+            StartCoroutine(WaitBeforeLoading(scene));
             //Island => Jetpack/Island
             
             var player = FindObjectOfType<ThirdPersonController>().gameObject;
@@ -30,34 +33,43 @@ public class LevelTransition : MonoBehaviour
             var cineCam = FindObjectOfType<CinemachineVirtualCamera>();
             cineCam.LookAt = player.GetComponentInChildren<Rigidbody>().transform;
 
-            foreach (var scripts in player.GetComponentsInChildren<MonoBehaviour>())
-            {
-                scripts.enabled = false;
-            }
-
-            foreach (var animators in player.GetComponentsInChildren<Animator>())
-            {
-                animators.enabled = false;
-            }
-
-            foreach (var rigidbodies in player.GetComponentsInChildren<Rigidbody>())
-            {
-                rigidbodies.AddForce(launchDir * launchForce);
-            }
-
-            foreach (var colliders in player.GetComponentsInChildren<Collider>())
-            {
-                colliders.enabled = false;
-            }
+            
+            player.GetComponent<PlayerMovement>().TryJump();
+            Invoke(nameof(LaunchPlayer),0.25f);
+            
         }
         else
         {
             //Jetpack => jetpack/Island
+            SceneManager.LoadScene(scene.buildIndex);
         }
 
-        PlayerPrefs.SetInt("TransitionLevelID",nextLevel);
-        var scene = SceneManager.GetActiveScene();
-        StartCoroutine(WaitBeforeLoading(scene));
+        
+    }
+
+    private void LaunchPlayer()
+    {
+        var player = FindObjectOfType<ThirdPersonController>().gameObject;
+
+        foreach (var scripts in player.GetComponentsInChildren<MonoBehaviour>())
+        {
+            scripts.enabled = false;
+        }
+
+        foreach (var animators in player.GetComponentsInChildren<Animator>())
+        {
+            animators.enabled = false;
+        }
+
+        foreach (var rigidbodies in player.GetComponentsInChildren<Rigidbody>())
+        {
+            rigidbodies.AddForce(directionOfLaunch.forward * launchForce);
+        }
+
+        foreach (var colliders in player.GetComponentsInChildren<Collider>())
+        {
+            colliders.enabled = false;
+        }
     }
 
     private IEnumerator WaitBeforeLoading(Scene sceneToLoad)
