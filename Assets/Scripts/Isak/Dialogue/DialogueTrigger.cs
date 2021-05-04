@@ -7,13 +7,13 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
     [SerializeField] NPCDialogue dialogues; // variable for all the dialogues (scriptable object)
     public static Events.DialogueEvent onNPCDialogue; // event used for printing out the dialogues sentence and name to screen
     NPCDialogue.AlternativeDialogue dialogueToCheck; 
-    NPCDialogue.Dialogue dialogueToUse; 
-    NPCDialogue.Dialogue lastDialogueUsed; 
+    Dialogue dialogueToUse; 
+    Dialogue lastDialogueUsed; 
     int timesSpokenWith = 0;
     string GetNextDialogue() 
     {
-        string nextDialogue = dialogueToUse.Sentences[timesSpokenWith]; 
-        if(timesSpokenWith < dialogueToUse.Sentences.Length - 1) // if not at final dialogue sentence, increase times spoken with
+        string nextDialogue = dialogueToUse.Sentences()[timesSpokenWith];
+        if(timesSpokenWith < dialogueToUse.Sentences().Length - 1) // if not at final dialogue sentence, increase times spoken with
         {
             timesSpokenWith++;
         }
@@ -36,7 +36,7 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
     void RewardPlayer() //checks if dialogue is complete and a reward exists
     {
         if(dialogueToUse.Reward == null) return;
-        if(timesSpokenWith != dialogueToUse.Sentences.Length - 1) return;
+        if(timesSpokenWith != dialogueToUse.Sentences().Length - 1) return;
         print("rewarded with " + dialogueToUse.Reward.rewardStats.name);
         dialogueToUse.Reward.GetReward();
     }
@@ -55,7 +55,7 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
             onNPCDialogue(GetNextDialogue(), dialogues.Name, dialogues.NPCSprite);
         }
     }
-    NPCDialogue.Dialogue ChooseDialogue()
+    Dialogue ChooseDialogue()
     {
             foreach(NPCDialogue.AlternativeDialogue dialogue in dialogues.Alternativedialogues) //loop through all dialogues
             {

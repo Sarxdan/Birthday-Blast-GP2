@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Reward", menuName = "Inventory/Reward")]
 public class RewardSO : ScriptableObject
 {
-    public string name = "Reward Name";
+    new public string name = "Reward Name";
     [TextArea(5, 15)] 
     public string description = "Reward Description";
     public Sprite icon;

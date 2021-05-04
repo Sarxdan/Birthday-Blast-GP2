@@ -16363,7 +16363,7 @@ GameObject:
   - component: {fileID: 8389711910467352068}
   - component: {fileID: 8389711910467352071}
   m_Layer: 0
-  m_Name: SM_Chr_Kid_Android_01
+  m_Name: MeshBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16376,7 +16376,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8389711910467352069}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -16484,7 +16484,7 @@ Transform:
   - {fileID: 8389711910431081060}
   - {fileID: 8389711911681439904}
   - {fileID: 8389711909711367219}
-  m_Father: {fileID: 8389711910951519549}
+  m_Father: {fileID: 8389711911653019407}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &8389711910467352071
@@ -21647,37 +21647,6 @@ Transform:
   m_Father: {fileID: 8389711911346992272}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 117.645, z: 0}
---- !u!1 &8389711910951519538
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8389711910951519549}
-  m_Layer: 0
-  m_Name: PlayerGraphics
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &8389711910951519549
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8389711910951519538}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 8389711910467352068}
-  m_Father: {fileID: 8389711911653019407}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8389711910968852169
 GameObject:
   m_ObjectHideFlags: 0
@@ -36249,7 +36218,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8389711910951519549}
+  - {fileID: 8389711910467352068}
   - {fileID: 8389711910553008252}
   - {fileID: 8389711911346992272}
   - {fileID: 8389711911314514346}

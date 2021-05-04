@@ -6,7 +6,7 @@ public class OutOfBounds : MonoBehaviour
 {       
 
     float enableMovementTimer = 0.1f;
-    Collider collider;
+    new Collider collider;
     Vector3[] lastPlayerPositionsOnLand = new Vector3[3];
     ThirdPersonController thirdPersonController;
     PlayerMovement playerMovement;
@@ -16,6 +16,7 @@ public class OutOfBounds : MonoBehaviour
 
     private void Awake() {
         thirdPersonController = FindObjectOfType<ThirdPersonController>();
+        
         playerMovement = FindObjectOfType<PlayerMovement>();
         collider = GetComponent<Collider>();
         collider.isTrigger = true;

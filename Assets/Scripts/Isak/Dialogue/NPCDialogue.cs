@@ -1,30 +1,50 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
+
+[System.Serializable]
+public class Dialogue 
+{
+    [SerializeField][Tooltip("rewarded at end of dialogue if not empty")] Reward reward;
+    [SerializeField] bool repeatDialogue = false;
+    [SerializeField] int locale;
+    [SerializeField][TextArea(3, 10)] string[] english;
+    [SerializeField][TextArea(3, 10)] string[] swedish;
+    public Reward Reward
+    {
+        get{return reward;}
+    }
+    public bool RepeatDialogue
+    {
+        get{return repeatDialogue;}
+    }
+
+    public string[] Sentences()
+    {
+        // Send sentence according to current locale
+        switch(LocalizationSettings.AvailableLocales.Locales.IndexOf(LocalizationSettings.Instance
+            .GetSelectedLocale()))
+        {
+            case 0:
+                return english;
+            case 1:
+                return swedish;
+        }
+
+        return english;
+    }
+
+}
+
 
 [System.Serializable]
 [CreateAssetMenu(fileName = "NPCDialogue")]
 public class NPCDialogue : ScriptableObject
 {
-    [System.Serializable]
-    public class Dialogue 
-    {
-        [SerializeField][Tooltip("rewarded at end of dialogue if not empty")] Reward reward;
-        [SerializeField] bool repeatDialogue = false;
-        [SerializeField][TextArea(3, 10)] string[] sentences;
-        public Reward Reward
-        {
-            get{return reward;}
-        }
-        public bool RepeatDialogue
-        {
-            get{return repeatDialogue;}
-        }
-        public string[] Sentences
-        {
-            get{return sentences;}
-        }
-    }
+    
     [System.Serializable]
     public class AlternativeDialogue 
     {
@@ -44,7 +64,7 @@ public class NPCDialogue : ScriptableObject
          
     }
 
-    [SerializeField] string name;  
+    [SerializeField] new string name;  
     [SerializeField] Sprite npcSprite;
     [SerializeField][Tooltip("the dialogue to use if requirements are not met")] Dialogue defaultDialogue;   
     [SerializeField][Tooltip("alternative dialogues with requirements")] AlternativeDialogue[] alternativeDialogues;

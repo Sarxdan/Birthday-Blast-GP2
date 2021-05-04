@@ -8,7 +8,6 @@ using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
-    public static Events.GameStateEvent onGamePaused;
     public static Events.DialogueEvent onNPCDialogue;
     public static Events.DamagePlayerEvent onPlayerHealthChange;
     public static Events.FuelEvent onFuelUse;
@@ -22,11 +21,6 @@ public class UIManager : Singleton<UIManager>
 
 
     private Controls controls;
-
-    private void Awake()
-    {
-        controls = new Controls();
-    }
 
     public void EnablePopUp(GameObject popup)
     {
@@ -56,12 +50,16 @@ public class UIManager : Singleton<UIManager>
         Cursor.lockState = CursorLockMode.Locked;
     }
     
-    protected override void Start()
+    protected override void Awake()
     {
-        base.Start();
+        base.Awake();
+        controls = new Controls();
         inGameUI = GetComponentInChildren<InGameUI>();
         pauseMenu = GetComponentInChildren<PauseMenu>();
         shopUI = GetComponentInChildren<ShopUI>();
+        
+    }
+    private void Start() {
         ToggleInventoryUI();
         TogglePauseMenu();
         ToggleShopUI();
@@ -74,20 +72,14 @@ public class UIManager : Singleton<UIManager>
         if(toggle)
         {
             Cursor.lockState = CursorLockMode.None;
-            if(onGamePaused != null)
-            {
-                onGamePaused(Gamemanager.GameState.Paused);
-                Cursor.visible = true;
-            }
+            Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Paused);
+            Cursor.visible = true;
         }
         else
         {
             Cursor.lockState = CursorLockMode.Locked;
-            if(onGamePaused != null)
-            {
-                onGamePaused(Gamemanager.GameState.Playing);
-                Cursor.visible = false;
-            }
+            Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Playing);
+            Cursor.visible = false;
         }
     }
 
@@ -97,19 +89,13 @@ public class UIManager : Singleton<UIManager>
         shopUI.gameObject.SetActive(toggle);
         if(toggle)
         {
-            if(onGamePaused != null)
-            {
-                onGamePaused(Gamemanager.GameState.Paused);
-            }
+            Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Paused);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
         }
         else
         {
-            if(onGamePaused != null)
-            {
-                onGamePaused(Gamemanager.GameState.Playing);
-            }
+            Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Playing);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }

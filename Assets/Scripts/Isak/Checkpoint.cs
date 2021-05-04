@@ -8,7 +8,7 @@ public class Checkpoint : MonoBehaviour
 
     public static Events.PositionEvent onCheckPointTriggered;
     Vector3 position;
-    Collider collider;
+    new Collider collider;
     [SerializeField] GameObject playerSpawn;
     // Start is called before the first frame update
     private void Awake() {       

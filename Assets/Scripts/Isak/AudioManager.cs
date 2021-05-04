@@ -8,8 +8,8 @@ public class AudioManager : Singleton<AudioManager>
 {
     [SerializeField] Sound[] sounds;
     // Start is called before the first frame update
-    private void Awake() {
-
+    protected override void Awake() {
+        base.Awake();
         foreach(Sound s in sounds)
         {
 
@@ -36,7 +36,6 @@ public class AudioManager : Singleton<AudioManager>
 
     public AudioSource PlayClipAtPoint(string name, Vector3 position) //will play in 3D
     {
-        print("test");
         AudioSource source;
         Transform parent = FindTrackParent(name);
         if (parent == null)
@@ -110,9 +109,17 @@ public class AudioManager : Singleton<AudioManager>
         
     }
 
-    void OnGameStateChange(Gamemanager.GameState state)
+    void StopAllAudio()
     {
-        switch(state)
+        foreach(Sound s in sounds)
+        {
+            s.source.Stop();
+        }
+    }
+
+    void OnGameStateChange(Gamemanager.GameState newState, Gamemanager.GameState lastState)
+    {
+        switch(newState)
         {
             case Gamemanager.GameState.Paused:
             foreach(Sound s in sounds)
@@ -137,12 +144,18 @@ public class AudioManager : Singleton<AudioManager>
 
         }
     }
+    void OnSceneLoaded()
+    {
+        StopAllAudio();
+    }
 
     private void OnEnable() {
         Gamemanager.onGameStateChange += OnGameStateChange;
+        Gamemanager.onSceneLoaded += OnSceneLoaded;
     }
 
     private void OnDisable() {
         Gamemanager.onGameStateChange -= OnGameStateChange;
+        Gamemanager.onSceneLoaded -= OnSceneLoaded;
     }
 }

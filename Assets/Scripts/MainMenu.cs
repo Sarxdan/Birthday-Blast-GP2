@@ -2,19 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Localization;
+using UnityEngine.Localization.Settings;
 
 public class MainMenu : MonoBehaviour
 {
     public string FirstGameScene = "S_GameScene";
     public string MenuScene = "Menu";
     public string CreditsScene = "Credits";
-    
-   public void PlayGame () 
+
+    public void PlayGame () 
     {
         PlayerPrefs.DeleteAll();
         SceneManager.LoadScene(FirstGameScene);
     }
 
+    public void SetLocale(int i)
+    {
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[i];
+    }
 
     //osäker på vad som är mest optimalt ang buildindex och hur den borde användas :)  /Mikael
     public void Credits ()
