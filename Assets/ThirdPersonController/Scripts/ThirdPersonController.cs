@@ -1,11 +1,15 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement),typeof(CameraController))]
 public class ThirdPersonController : MonoBehaviour
 {
+    [HideInInspector] public Rigidbody[] ragdollBodies;
+    private Collider[] ragdollColliders;
+    
     
     public Pewpew pewpew; //added
 
@@ -73,7 +77,34 @@ public class ThirdPersonController : MonoBehaviour
         pewpew = GetComponentInChildren<Pewpew>(); //added
         UpdateControllerVariables();
     }
+
+    private void Start()
+    {
+        ragdollBodies = GetComponentsInChildren<Rigidbody>();
+        ragdollColliders = GetComponentsInChildren<Collider>();
+        
+        
+        ToggleRagdoll(false);
+
+
+        var landJetpack = PlayerPrefs.GetInt("LandJetpack") == 1;
+        if (landJetpack)
+        {
+            StartCoroutine(LandJetpack());
+        }
+    }
+
+    private IEnumerator LandJetpack()
+    {
+        ToggleControls(false);
+        GetComponentInChildren<Animator>().SetTrigger("LandJetpack");
+        FindObjectOfType<CinemachineVirtualCamera>().m_LookAt = GetComponentInChildren<Rigidbody>().transform;
+        yield return new WaitForSeconds(2.5f);
+        FindObjectOfType<CinemachineVirtualCamera>().m_LookAt = GameObject.FindGameObjectWithTag("CamLookAt").transform;
+        ToggleControls(true);
+    }
     
+
     private void OnValidate()
     {
         UpdateControllerVariables();
@@ -136,5 +167,31 @@ public class ThirdPersonController : MonoBehaviour
     private void DoCameraMovement()
     {
         camController.HandleCamera();
+    }
+
+
+    public void ToggleControls(bool state)
+    {
+        disableCameraController = !state;
+        disablePlayerMovement = !state;
+    }
+
+    public void ToggleRagdoll(bool state)
+    {
+        GetComponentInChildren<Animator>().enabled = !state;
+
+        foreach (var rb in ragdollBodies)
+        {
+            rb.isKinematic = !state;
+        }
+
+        foreach (var col in ragdollColliders)
+        {
+            col.enabled = state;
+        }
+        GetComponent<CharacterController>().enabled = !state;
+
+
+        ToggleControls(!state);
     }
 }
