@@ -5,16 +5,34 @@ using UnityEngine.UI;
 
 public class InGameUI : MonoBehaviour
 {
-
-    [SerializeField] Text health;
     [SerializeField] Text npcText;
     [SerializeField] Text npcName;
     [SerializeField] Image npcTextBackground;
     [SerializeField] Image npcImage;
     [SerializeField] Slider fuelBar;
+    GameObject[] healthbar;
     private void Awake()
-    {
+    {       
+        GetHealthBar();
         ClearScreen();
+    }
+
+    void GetHealthBar()
+    {
+        foreach(Transform child in transform)
+        {
+            if(child.name == "HealthBar")
+            {
+                healthbar = new GameObject[child.childCount];
+                int index = 0;
+                foreach(Transform grandchild in child)
+                {
+                    
+                    healthbar[index] = grandchild.gameObject;
+                    index++;
+                }
+            }
+        }
     }
 
     private void ClearScreen()
@@ -23,7 +41,6 @@ public class InGameUI : MonoBehaviour
         npcTextBackground.gameObject.SetActive(false);
         npcName.text = string.Empty;
         npcText.text = string.Empty;
-        health.text = string.Empty;
     }
 
     private void Update() { // change to event later
@@ -48,7 +65,11 @@ public class InGameUI : MonoBehaviour
 
     void UpdateHealthText(int amount)
     {
-        health.text = amount.ToString();
+        for(int i = 0; i < healthbar.Length; i++)
+        {
+            if(i < amount) healthbar[i].gameObject.SetActive(true);
+            else healthbar[i].gameObject.SetActive(false);
+        }
     }
 
     void ClearConversation()
