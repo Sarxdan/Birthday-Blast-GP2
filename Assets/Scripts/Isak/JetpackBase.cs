@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class JetpackBase : MonoBehaviour
 {
@@ -87,6 +88,7 @@ public class JetpackBase : MonoBehaviour
         rightAxisPushed = false;
         leftAxisPushed = false;
         forwardAxisPushed = false;
+        dashInputAmount = 0;
     }
 
     protected virtual void GetDashInput()
@@ -98,24 +100,28 @@ public class JetpackBase : MonoBehaviour
         {
             ResetAxisBools();
         } 
-        if(Input.GetButtonDown("Vertical"))
+        if(dashInputAmount >= 2)
         {
-            if(Input.GetAxis("Vertical") > 0)
+            if(!forwardAxisPushed) 
             {
-                if(!forwardAxisPushed)
-                {
-                    lastKeyPressTime = Time.time;
-                    forwardAxisPushed = true;              
-                }   
-                else
-                {
-                    dashDirections = DashDirections.Forward;    
-                    ResetAxisBools();
-                    dashEnumerator = DashInDirection(dashDirections);
-                    StartCoroutine(dashEnumerator);
-                } 
+                lastKeyPressTime = Time.time;
+                forwardAxisPushed = true;              
+            }   
+            else
+            {
+                dashDirections = DashDirections.Forward;    
+                ResetAxisBools();
+                dashEnumerator = DashInDirection(dashDirections);
+                StartCoroutine(dashEnumerator);
             }
         }
+    }
+
+    private int dashInputAmount = 0;
+    public void OnDashInput()
+    {
+        dashInputAmount++;
+        Debug.Log("forward dash input! : " + dashInputAmount);
     }
 
     protected virtual IEnumerator DashInDirection(DashDirections directions)

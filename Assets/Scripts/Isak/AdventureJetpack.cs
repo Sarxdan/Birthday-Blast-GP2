@@ -158,5 +158,10 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
             UseFuel(fuelUsage);
             AudioManager.instance.Play("JetpackJump");
         }
+        
+        isDashing = false;
+        player.disablePlayerMovement = false;
+        ToggleDashAnimation(false); //make sure dash effect is stopped with input
+        ToggleHoverAnimation(false); //make sure hover effect is stopped with input
     }
 }

@@ -9,6 +9,8 @@ using UnityEngine.InputSystem;
 
 [Serializable] public class OnSteerEvent : UnityEvent<float,float>{}
 [Serializable] public class OnDashEvent : UnityEvent{}
+
+[Serializable] public class OnForwardDashEvent : UnityEvent{}
 [Serializable] public class  OnShootEvent : UnityEvent{}
 
 public class JetpackInputManager : MonoBehaviour
@@ -20,6 +22,7 @@ public class JetpackInputManager : MonoBehaviour
 
     public OnSteerEvent onSteerEvent;
     public OnDashEvent onDashEvent;
+    public OnForwardDashEvent onForwardDashEvent;
     public OnShootEvent onShootEvent;
     
     #endregion
@@ -76,6 +79,7 @@ public class JetpackInputManager : MonoBehaviour
         controls.Jetpack.Steering.performed += OnSteer;
         controls.Jetpack.Steering.canceled += OnSteer;
 
+        controls.Jetpack.ForwardDash.started += OnForwardDash;
         controls.Jetpack.Dash.started += OnDash;
         controls.Jetpack.Shoot.started += OnShoot;
     }
@@ -85,6 +89,7 @@ public class JetpackInputManager : MonoBehaviour
         controls.Jetpack.Steering.performed -= OnSteer;
         controls.Jetpack.Steering.canceled -= OnSteer;
 
+        controls.Jetpack.ForwardDash.started += OnForwardDash;
         controls.Jetpack.Dash.started -= OnDash;
         controls.Jetpack.Shoot.started -= OnShoot;
     }
@@ -96,6 +101,14 @@ public class JetpackInputManager : MonoBehaviour
         if (context.started)
         {
             onDashEvent?.Invoke();
+        }
+    }
+    
+    private void OnForwardDash(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            onForwardDashEvent?.Invoke();
         }
     }
 
