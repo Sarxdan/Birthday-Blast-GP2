@@ -9,19 +9,15 @@ public class CheckpointManager : Singleton<CheckpointManager>
     float enableMovementTimer = 0.1f;
     ThirdPersonController thirdPersonController;
     Transform player;
+    int playerhealth;
     // Start is called before the first frame update
 
-    void Setup()
+    public void Setup()
     {
+        playerhealth = PlayerManager.instance.playerHealth;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         thirdPersonController = FindObjectOfType<ThirdPersonController>();
         latestCheckPoint = player.localPosition;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     void MovePlayerToCheckpoint()
@@ -46,7 +42,9 @@ public class CheckpointManager : Singleton<CheckpointManager>
 
     void OnPlayerHealthChange(int amount)
     {
+        if(playerhealth <= amount) return; //player got healed, dont move them
         MovePlayerToCheckpoint();
+        playerhealth = amount;
     }
 
     private void OnEnable() {
