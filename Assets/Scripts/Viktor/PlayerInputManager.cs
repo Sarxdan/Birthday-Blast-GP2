@@ -143,6 +143,7 @@ public class PlayerInputManager : MonoBehaviour
     {
         if (context.started)
         {
+            Debug.Log("OnDash playerinputmanager");
             dashEvent?.Invoke();
         }
     }

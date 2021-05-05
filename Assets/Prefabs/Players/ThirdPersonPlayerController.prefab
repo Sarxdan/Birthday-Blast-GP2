@@ -21963,7 +21963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ControlPath: <Keyboard>/q
+  m_ControlPath: <Mouse>/leftButton
 --- !u!1 &8389711910940537335
 GameObject:
   m_ObjectHideFlags: 0
@@ -29779,8 +29779,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fuelRechargeTime: 2
-  fuelUsage: 3
-  fuelRechargePerTick: 3.08
+  fuelUsage: 1
+  fuelRechargePerTick: 1
   maxFuel: 10
   dashSpeed: 10
   dashTime: 4.86
@@ -37232,7 +37232,19 @@ MonoBehaviour:
         m_CallState: 2
   dashEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 8389711911356235690}
+        m_TargetAssemblyTypeName: JetpackBase, Assembly-CSharp
+        m_MethodName: OnDashInput
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   MobileUIComponents:
   - {fileID: 8389711910709178663}
 --- !u!114 &8389711911653019393

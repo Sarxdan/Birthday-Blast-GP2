@@ -335,7 +335,7 @@ public class @Controls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""92d2c71b-d2f0-431b-82b2-813a92ad8344"",
-                    ""path"": ""<Keyboard>/leftShift"",
+                    ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -380,6 +380,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": ""Shoot"",
                     ""type"": ""Button"",
                     ""id"": ""0e78e9e4-c5dd-444a-a8df-f0343b3944ef"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""ForwardDash"",
+                    ""type"": ""Button"",
+                    ""id"": ""f502abcf-9a32-4a4a-840c-f2b1d265ea04"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -572,6 +580,17 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""action"": ""Shoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c8c7c0a6-778d-473a-97d9-6e8d282448d6"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ForwardDash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -659,6 +678,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Jetpack_Dash = m_Jetpack.FindAction("Dash", throwIfNotFound: true);
         m_Jetpack_Steering = m_Jetpack.FindAction("Steering", throwIfNotFound: true);
         m_Jetpack_Shoot = m_Jetpack.FindAction("Shoot", throwIfNotFound: true);
+        m_Jetpack_ForwardDash = m_Jetpack.FindAction("ForwardDash", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_TogglePause = m_Menu.FindAction("TogglePause", throwIfNotFound: true);
@@ -788,6 +808,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Jetpack_Dash;
     private readonly InputAction m_Jetpack_Steering;
     private readonly InputAction m_Jetpack_Shoot;
+    private readonly InputAction m_Jetpack_ForwardDash;
     public struct JetpackActions
     {
         private @Controls m_Wrapper;
@@ -795,6 +816,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Dash => m_Wrapper.m_Jetpack_Dash;
         public InputAction @Steering => m_Wrapper.m_Jetpack_Steering;
         public InputAction @Shoot => m_Wrapper.m_Jetpack_Shoot;
+        public InputAction @ForwardDash => m_Wrapper.m_Jetpack_ForwardDash;
         public InputActionMap Get() { return m_Wrapper.m_Jetpack; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -813,6 +835,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Shoot.started -= m_Wrapper.m_JetpackActionsCallbackInterface.OnShoot;
                 @Shoot.performed -= m_Wrapper.m_JetpackActionsCallbackInterface.OnShoot;
                 @Shoot.canceled -= m_Wrapper.m_JetpackActionsCallbackInterface.OnShoot;
+                @ForwardDash.started -= m_Wrapper.m_JetpackActionsCallbackInterface.OnForwardDash;
+                @ForwardDash.performed -= m_Wrapper.m_JetpackActionsCallbackInterface.OnForwardDash;
+                @ForwardDash.canceled -= m_Wrapper.m_JetpackActionsCallbackInterface.OnForwardDash;
             }
             m_Wrapper.m_JetpackActionsCallbackInterface = instance;
             if (instance != null)
@@ -826,6 +851,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Shoot.started += instance.OnShoot;
                 @Shoot.performed += instance.OnShoot;
                 @Shoot.canceled += instance.OnShoot;
+                @ForwardDash.started += instance.OnForwardDash;
+                @ForwardDash.performed += instance.OnForwardDash;
+                @ForwardDash.canceled += instance.OnForwardDash;
             }
         }
     }
@@ -885,6 +913,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnDash(InputAction.CallbackContext context);
         void OnSteering(InputAction.CallbackContext context);
         void OnShoot(InputAction.CallbackContext context);
+        void OnForwardDash(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

@@ -322,7 +322,7 @@
                 {
                     "name": "",
                     "id": "92d2c71b-d2f0-431b-82b2-813a92ad8344",
-                    "path": "<Keyboard>/leftShift",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -367,6 +367,14 @@
                     "name": "Shoot",
                     "type": "Button",
                     "id": "0e78e9e4-c5dd-444a-a8df-f0343b3944ef",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "ForwardDash",
+                    "type": "Button",
+                    "id": "f502abcf-9a32-4a4a-840c-f2b1d265ea04",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -557,6 +565,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Shoot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c8c7c0a6-778d-473a-97d9-6e8d282448d6",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ForwardDash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
