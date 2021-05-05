@@ -33,8 +33,8 @@ public class LevelTransition : MonoBehaviour
             var cineCam = FindObjectOfType<CinemachineVirtualCamera>();
             cineCam.LookAt = player.GetComponentInChildren<Rigidbody>().transform;
 
-            
-            Invoke(nameof(LaunchPlayer),0.25f);
+            PlayerPrefs.SetInt("LandJetpack", 1);
+            Invoke(nameof(LaunchPlayer),0.2f);
             
         }
         else

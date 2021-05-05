@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement),typeof(CameraController))]
@@ -84,7 +85,25 @@ public class ThirdPersonController : MonoBehaviour
         
         
         ToggleRagdoll(false);
+
+
+        var landJetpack = PlayerPrefs.GetInt("LandJetpack") == 1;
+        if (landJetpack)
+        {
+            StartCoroutine(LandJetpack());
+        }
     }
+
+    private IEnumerator LandJetpack()
+    {
+        ToggleControls(false);
+        GetComponentInChildren<Animator>().SetTrigger("LandJetpack");
+        FindObjectOfType<CinemachineVirtualCamera>().m_LookAt = GetComponentInChildren<Rigidbody>().transform;
+        yield return new WaitForSeconds(2.5f);
+        FindObjectOfType<CinemachineVirtualCamera>().m_LookAt = GameObject.FindGameObjectWithTag("CamLookAt").transform;
+        ToggleControls(true);
+    }
+    
 
     private void OnValidate()
     {
@@ -151,6 +170,11 @@ public class ThirdPersonController : MonoBehaviour
     }
 
 
+    public void ToggleControls(bool state)
+    {
+        disableCameraController = !state;
+        disablePlayerMovement = !state;
+    }
 
     public void ToggleRagdoll(bool state)
     {
@@ -168,7 +192,6 @@ public class ThirdPersonController : MonoBehaviour
         GetComponent<CharacterController>().enabled = !state;
 
 
-        disableCameraController = state;
-        disablePlayerMovement = state;
+        ToggleControls(!state);
     }
 }
