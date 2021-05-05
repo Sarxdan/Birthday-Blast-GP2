@@ -13,6 +13,7 @@ public class PlayerHealth : Health
     public override void Heal(int amount)
     {
         base.Heal(amount);
+        PlayerManager.instance.playerHealth = health;
         if(onPlayerHealthChange != null)
         {
             onPlayerHealthChange(health);
@@ -62,6 +63,7 @@ public class PlayerHealth : Health
 
     private void Start() {
         PlayerManager.instance.PlayerAwake();
+        CheckpointManager.instance.Setup();
         maxHealth = PlayerManager.instance.playerMaxHealth;
         print(health);
         health = PlayerManager.instance.playerHealth;
