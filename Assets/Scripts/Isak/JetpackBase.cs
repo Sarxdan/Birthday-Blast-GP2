@@ -35,9 +35,9 @@ public class JetpackBase : MonoBehaviour
 
     [Header("Fuel settings")]
     [SerializeField][Tooltip("time until fuel recharges")] protected float fuelRechargeTime = 1;
-    [SerializeField][Tooltip("fuel used when doing stuff that uses fuel")] protected float fuelUsage = 1; 
-    [SerializeField][Tooltip("How fast fuel recharges")] protected float fuelRechargePerTick = 1;
-    [SerializeField] protected float maxFuel = 100;
+    [SerializeField][Tooltip("fuel used when doing stuff that uses fuel")] protected int fuelUsage = 1; 
+    [SerializeField][Tooltip("How fast fuel recharges")] protected int fuelRechargePerTick = 1;
+    [SerializeField][Range(1, 10)] protected int maxFuel = 10;
 
     [Header("Ability settings")]
     [SerializeField]protected float dashSpeed = 10;
@@ -196,7 +196,7 @@ public class JetpackBase : MonoBehaviour
         }
     }
 
-    protected void UseFuel(float amount)
+    protected void UseFuel(int amount)
     {
         useFuel = true;
         fuel -= amount;

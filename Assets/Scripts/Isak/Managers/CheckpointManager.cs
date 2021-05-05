@@ -42,7 +42,8 @@ public class CheckpointManager : Singleton<CheckpointManager>
 
     void OnPlayerHealthChange(int amount)
     {
-        if(playerhealth <= amount) return; //player got healed, dont move them
+        if(playerhealth < amount) return; //player got healed, dont move them
+        if(amount == 0) return; //player death animation?
         MovePlayerToCheckpoint();
         playerhealth = amount;
     }

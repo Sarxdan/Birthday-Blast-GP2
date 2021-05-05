@@ -53,7 +53,8 @@ public class PlayerHealth : Health
     {
         yield return base.Death();
         AudioManager.instance.Play("PlayerDeath");
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1); //death animation?
+        PlayerManager.instance.ResetPlayerHealth();
         if(onPlayerDeath != null)
         {
             onPlayerDeath();
@@ -64,9 +65,10 @@ public class PlayerHealth : Health
     private void Start() {
         PlayerManager.instance.PlayerAwake();
         CheckpointManager.instance.Setup();
-        maxHealth = PlayerManager.instance.playerMaxHealth;
-        print(health);
+        maxHealth = PlayerManager.instance.playerMaxHealth;        
         health = PlayerManager.instance.playerHealth;
+        print(health);
+        print(maxHealth);
         if(onPlayerHealthChange != null)
         {
             onPlayerHealthChange(health);

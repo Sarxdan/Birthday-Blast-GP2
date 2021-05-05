@@ -4,17 +4,23 @@ using UnityEngine;
 
 public class PlayerManager : Singleton<PlayerManager>
 {   
-    public int playerMaxHealth;
+    [Range(1, 10)]public int playerMaxHealth;
+    [HideInInspector]
     public int playerHealth;
-
+    [HideInInspector]
     public List<string> chosenCharacterMeshesNames;
 
-    public GameObject player;
+    GameObject player;
 
     protected override void Awake() {
         base.Awake();
         playerHealth = playerMaxHealth;
         chosenCharacterMeshesNames = new List<string>();
+    }
+
+    public void ResetPlayerHealth()
+    {
+        playerHealth = playerMaxHealth;
     }
 
     public void PlayerAwake()
