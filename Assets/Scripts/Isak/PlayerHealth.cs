@@ -67,8 +67,6 @@ public class PlayerHealth : Health
         CheckpointManager.instance.Setup();
         maxHealth = PlayerManager.instance.playerMaxHealth;        
         health = PlayerManager.instance.playerHealth;
-        print(health);
-        print(maxHealth);
         if(onPlayerHealthChange != null)
         {
             onPlayerHealthChange(health);

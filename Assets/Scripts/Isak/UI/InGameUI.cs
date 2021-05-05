@@ -25,7 +25,6 @@ public class InGameUI : MonoBehaviour
             if(child.name == "Fuel")
             {
                 fuelBars = new Slider[child.childCount];
-                print(fuelBars.Length);
                 int index = 0;
                 foreach(Transform grandchild in child)
                 {                   
@@ -64,11 +63,11 @@ public class InGameUI : MonoBehaviour
     private void Update() { 
         if(Gamemanager.instance.UnlockedItems.jetpack)
         {
-            //fuelBar.gameObject.SetActive(true);
+            fuelBars[0].transform.parent.gameObject.SetActive(true);
         }
         else
         {
-            //fuelBar.gameObject.SetActive(false);
+            fuelBars[0].transform.parent.gameObject.SetActive(false);
         }
     }
 
@@ -112,11 +111,23 @@ public class InGameUI : MonoBehaviour
             }
         }
     }
+
+    void SetupFuel(float amount)
+    {
+        foreach(Slider fuelbar in fuelBars)
+        {
+            if(amount <= 0)
+            {
+                fuelbar.gameObject.SetActive(false);
+            }
+            amount--;
+        }
+    }
     private void OnEnable() {
         UIManager.onNPCDialogue += PrintNPCText;
         UIManager.onPlayerHealthChange += UpdateHealthText;
         UIManager.onFuelUse += UpdateFuelText;
-        //UIManager.onJetpackAwake += SetupFuelSlider;
+        UIManager.onJetpackAwake += SetupFuel;
         UIManager.onPlayerLeavingConversation += ClearConversation;
     }
 
@@ -124,7 +135,7 @@ public class InGameUI : MonoBehaviour
         UIManager.onNPCDialogue -= PrintNPCText;
         UIManager.onPlayerHealthChange -= UpdateHealthText;
         UIManager.onFuelUse -= UpdateFuelText;
-        //UIManager.onJetpackAwake -= SetupFuelSlider;
+        UIManager.onJetpackAwake -= SetupFuel;
         UIManager.onPlayerLeavingConversation -= ClearConversation;
     }
 }
