@@ -34,7 +34,6 @@ public class LevelTransition : MonoBehaviour
             cineCam.LookAt = player.GetComponentInChildren<Rigidbody>().transform;
 
             
-            player.GetComponent<PlayerMovement>().TryJump();
             Invoke(nameof(LaunchPlayer),0.25f);
             
         }
@@ -49,26 +48,12 @@ public class LevelTransition : MonoBehaviour
 
     private void LaunchPlayer()
     {
-        var player = FindObjectOfType<ThirdPersonController>().gameObject;
-
-        foreach (var scripts in player.GetComponentsInChildren<MonoBehaviour>())
+        var player = FindObjectOfType<ThirdPersonController>();
+        player.ToggleRagdoll(true);
+        
+        foreach (var playerRagdollBody in player.ragdollBodies)
         {
-            scripts.enabled = false;
-        }
-
-        foreach (var animators in player.GetComponentsInChildren<Animator>())
-        {
-            animators.enabled = false;
-        }
-
-        foreach (var rigidbodies in player.GetComponentsInChildren<Rigidbody>())
-        {
-            rigidbodies.AddForce(directionOfLaunch.forward * launchForce);
-        }
-
-        foreach (var colliders in player.GetComponentsInChildren<Collider>())
-        {
-            colliders.enabled = false;
+            playerRagdollBody.AddForce(directionOfLaunch.forward * launchForce);
         }
     }
 

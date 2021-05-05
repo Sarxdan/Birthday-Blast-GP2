@@ -6,6 +6,9 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement),typeof(CameraController))]
 public class ThirdPersonController : MonoBehaviour
 {
+    [HideInInspector] public Rigidbody[] ragdollBodies;
+    private Collider[] ragdollColliders;
+    
     
     public Pewpew pewpew; //added
 
@@ -73,7 +76,16 @@ public class ThirdPersonController : MonoBehaviour
         pewpew = GetComponentInChildren<Pewpew>(); //added
         UpdateControllerVariables();
     }
-    
+
+    private void Start()
+    {
+        ragdollBodies = GetComponentsInChildren<Rigidbody>();
+        ragdollColliders = GetComponentsInChildren<Collider>();
+        
+        
+        ToggleRagdoll(false);
+    }
+
     private void OnValidate()
     {
         UpdateControllerVariables();
@@ -136,5 +148,27 @@ public class ThirdPersonController : MonoBehaviour
     private void DoCameraMovement()
     {
         camController.HandleCamera();
+    }
+
+
+
+    public void ToggleRagdoll(bool state)
+    {
+        GetComponentInChildren<Animator>().enabled = !state;
+
+        foreach (var rb in ragdollBodies)
+        {
+            rb.isKinematic = !state;
+        }
+
+        foreach (var col in ragdollColliders)
+        {
+            col.enabled = state;
+        }
+        GetComponent<CharacterController>().enabled = !state;
+
+
+        disableCameraController = state;
+        disablePlayerMovement = state;
     }
 }
