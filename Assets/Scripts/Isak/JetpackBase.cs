@@ -53,7 +53,7 @@ public class JetpackBase : MonoBehaviour
     [SerializeField]protected ParticleSystem[] fireStreams;
     [SerializeField]protected ParticleSystem dashEffect;
 
-    // Start is called before the first frame update
+    
     protected virtual void Awake() {
         fuel = maxFuel;
         body = GetComponentInParent<Rigidbody>();

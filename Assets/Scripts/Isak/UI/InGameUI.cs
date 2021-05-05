@@ -9,25 +9,43 @@ public class InGameUI : MonoBehaviour
     [SerializeField] Text npcName;
     [SerializeField] Image npcTextBackground;
     [SerializeField] Image npcImage;
-    [SerializeField] Slider fuelBar;
     GameObject[] healthbar;
+    Slider[] fuelBars;
     private void Awake()
     {       
         GetHealthBar();
+        GetFuelBar();
         ClearScreen();
+    }
+
+    void GetFuelBar()
+    {
+        foreach(Transform child in transform)
+        {
+            if(child.name == "Fuel")
+            {
+                fuelBars = new Slider[child.childCount];
+                print(fuelBars.Length);
+                int index = 0;
+                foreach(Transform grandchild in child)
+                {                   
+                    fuelBars[index] = grandchild.GetComponent<Slider>();
+                    index++;
+                }
+            }
+        }
     }
 
     void GetHealthBar()
     {
         foreach(Transform child in transform)
         {
-            if(child.name == "HealthBar")
+            if(child.name == "Health")
             {
                 healthbar = new GameObject[child.childCount];
                 int index = 0;
                 foreach(Transform grandchild in child)
-                {
-                    
+                {                   
                     healthbar[index] = grandchild.gameObject;
                     index++;
                 }
@@ -43,14 +61,14 @@ public class InGameUI : MonoBehaviour
         npcText.text = string.Empty;
     }
 
-    private void Update() { // change to event later
+    private void Update() { 
         if(Gamemanager.instance.UnlockedItems.jetpack)
         {
-            fuelBar.gameObject.SetActive(true);
+            //fuelBar.gameObject.SetActive(true);
         }
         else
         {
-            fuelBar.gameObject.SetActive(false);
+            //fuelBar.gameObject.SetActive(false);
         }
     }
 
@@ -79,22 +97,26 @@ public class InGameUI : MonoBehaviour
         npcTextBackground.gameObject.SetActive(false);
         npcImage.gameObject.SetActive(false);
     }
-    // Update is called once per frame
+    
     void UpdateFuelText(float amount)
     {
-        fuelBar.value = amount;
-    }
-
-    void SetupFuelSlider(float maxValue)
-    {
-        fuelBar.maxValue = maxValue;
-        fuelBar.value = maxValue;
+        for(int i = 0; i < fuelBars.Length; i++)
+        {
+            if(i < amount)
+            {
+                fuelBars[i].value = fuelBars[i].maxValue;
+            }
+            else
+            {
+                fuelBars[i].value = fuelBars[i].minValue;
+            }
+        }
     }
     private void OnEnable() {
         UIManager.onNPCDialogue += PrintNPCText;
         UIManager.onPlayerHealthChange += UpdateHealthText;
         UIManager.onFuelUse += UpdateFuelText;
-        UIManager.onJetpackAwake += SetupFuelSlider;
+        //UIManager.onJetpackAwake += SetupFuelSlider;
         UIManager.onPlayerLeavingConversation += ClearConversation;
     }
 
@@ -102,7 +124,7 @@ public class InGameUI : MonoBehaviour
         UIManager.onNPCDialogue -= PrintNPCText;
         UIManager.onPlayerHealthChange -= UpdateHealthText;
         UIManager.onFuelUse -= UpdateFuelText;
-        UIManager.onJetpackAwake -= SetupFuelSlider;
+        //UIManager.onJetpackAwake -= SetupFuelSlider;
         UIManager.onPlayerLeavingConversation -= ClearConversation;
     }
 }
