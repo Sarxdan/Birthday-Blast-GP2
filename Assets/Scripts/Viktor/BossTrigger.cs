@@ -11,6 +11,7 @@ public class BossTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            if (FindObjectOfType<BossBehaviour>().gameObject.activeInHierarchy) return;
             boss.SetActive(true);
         }
     }

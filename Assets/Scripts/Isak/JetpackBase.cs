@@ -88,7 +88,7 @@ public class JetpackBase : MonoBehaviour
         rightAxisPushed = false;
         leftAxisPushed = false;
         forwardAxisPushed = false;
-        dashInputAmount = 0;
+        forwDashInputAmount = 0;
     }
 
     protected virtual void GetDashInput()
@@ -100,28 +100,21 @@ public class JetpackBase : MonoBehaviour
         {
             ResetAxisBools();
         } 
-        if(dashInputAmount >= 2)
+        if(forwDashInputAmount >= 2)
         {
-            if(!forwardAxisPushed) 
-            {
-                lastKeyPressTime = Time.time;
-                forwardAxisPushed = true;              
-            }   
-            else
-            {
-                dashDirections = DashDirections.Forward;    
-                ResetAxisBools();
-                dashEnumerator = DashInDirection(dashDirections);
-                StartCoroutine(dashEnumerator);
-            }
+            dashDirections = DashDirections.Forward;    
+            ResetAxisBools();
+            dashEnumerator = DashInDirection(dashDirections);
+            StartCoroutine(dashEnumerator);
         }
     }
 
-    private int dashInputAmount = 0;
-    public void OnDashInput()
+    public int forwDashInputAmount = 0;
+    public void OnForwardDashInput()
     {
-        dashInputAmount++;
-        Debug.Log("forward dash input! : " + dashInputAmount);
+        forwDashInputAmount++;
+        Debug.Log("Forward Dash Input!!");
+        lastKeyPressTime = Time.time;
     }
 
     protected virtual IEnumerator DashInDirection(DashDirections directions)

@@ -94,7 +94,7 @@ public class PlayerInputManager : MonoBehaviour
         //Actions
         controls.GroundMovement.Interact.performed += OnInteract;
         controls.GroundMovement.Shoot.started += OnShoot;
-        controls.GroundMovement.Dash.performed += OnDash;
+        controls.GroundMovement.Dash.started += OnDash;
     }
 
     private void UnSubscribeFromEvents()
@@ -109,7 +109,7 @@ public class PlayerInputManager : MonoBehaviour
 
         controls.GroundMovement.Interact.performed -= OnInteract;
         controls.GroundMovement.Shoot.started -= OnShoot;
-        controls.GroundMovement.Dash.performed -= OnDash;
+        controls.GroundMovement.Dash.started -= OnDash;
 
     }
 
@@ -143,7 +143,6 @@ public class PlayerInputManager : MonoBehaviour
     {
         if (context.started)
         {
-            Debug.Log("OnDash playerinputmanager");
             dashEvent?.Invoke();
         }
     }

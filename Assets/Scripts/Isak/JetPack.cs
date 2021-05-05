@@ -253,12 +253,7 @@ public class JetPack : JetpackBase
 
         StartCoroutine(DashInDirection(direction));
     }
-
-    public void OnForwardDash()
-    {
-        StartCoroutine(DashInDirection(DashDirections.Forward));
-    }
-
+    
     public void OnActionInput()
     {
         Debug.Log("Jetpack ACTION");
