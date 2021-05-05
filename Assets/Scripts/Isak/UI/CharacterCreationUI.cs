@@ -12,18 +12,30 @@ public class CharacterCreationUI : MonoBehaviour
     public void Male()
     {
         selector.StartSelection(CharacterSelector.CharacterGenders.Male);
-        gameObject.SetActive(false);
     }
 
     public void Female()
     {
         selector.StartSelection(CharacterSelector.CharacterGenders.Female);
-        gameObject.SetActive(false);
     }
 
     public void Neither()
     {
         selector.StartSelection(CharacterSelector.CharacterGenders.Neither);
-        gameObject.SetActive(false);
+    }
+
+    public void RightArrow()
+    {
+        selector.SwitchCharacter(CharacterSelector.Direction.Right);
+    }
+
+    public void LeftArrow()
+    {
+        selector.SwitchCharacter(CharacterSelector.Direction.Left);
+    }
+
+    public void SelectionDone()
+    {
+        selector.SelectionDone();
     }
 }

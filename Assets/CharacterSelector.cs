@@ -20,6 +20,12 @@ public class CharacterSelector : MonoBehaviour
         Female,
         Neither
     }
+
+    public enum Direction
+    {
+        Right,
+        Left
+    }
     [SerializeField] GameObject characterPrefab;
     [SerializeField] CharacterParts[] femaleCharacters;
     [SerializeField] CharacterParts[] maleCharacters;
@@ -33,18 +39,14 @@ public class CharacterSelector : MonoBehaviour
     CinemachineVirtualCamera CinemachineVirtualCamera;
     private void Awake() {
         CinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+        StartSelection(CharacterGenders.Neither);
     }
-    public void StartSelection(CharacterGenders newGender)
+
+    public void SwitchCharacter(Direction direction)
     {
-        gender = newGender;
-        PopulateScene();
-    }
-    private void Update() {
-        if(!charactersSpawned) return;
-        if(Input.GetButtonDown("Horizontal"))
+        switch(direction)
         {
-            if(Input.GetAxis("Horizontal") > 0)
-        {
+            case Direction.Right:
             charactersIndex++;
             if(charactersIndex >= characters.Length)
             {
@@ -52,9 +54,9 @@ public class CharacterSelector : MonoBehaviour
             }
             chosenCharacter = characters[charactersIndex];
             CinemachineVirtualCamera.LookAt = chosenCharacter.transform;
-        }
-        if(Input.GetAxis("Horizontal") < 0)
-        {
+            break;
+
+            case Direction.Left:
             charactersIndex--;
             if(charactersIndex < 0)
             {
@@ -62,10 +64,14 @@ public class CharacterSelector : MonoBehaviour
             }
             chosenCharacter = characters[charactersIndex];
             CinemachineVirtualCamera.LookAt = chosenCharacter.transform;
+            break;
         }
-        }     
-        if(Input.GetButtonDown("Select"))
-        {
+    }
+
+    public void SelectionDone()
+    {
+        if(!charactersSpawned) return;
+
             foreach(Transform child in chosenCharacter.transform)
             {
                 if(child.name == "MeshBase")
@@ -80,8 +86,20 @@ public class CharacterSelector : MonoBehaviour
                     }
                 }
             }
-            Gamemanager.instance.LoadLevel(3);       
-        }  
+        Gamemanager.instance.LoadLevel(3);   
+    }
+
+    public void StartSelection(CharacterGenders newGender)
+    {
+        if(characters != null)
+        {
+            foreach(GameObject character in characters)
+        {
+            Destroy(character);
+        }
+        }       
+        gender = newGender;
+        PopulateScene();
     }
 
     void PopulateScene()
