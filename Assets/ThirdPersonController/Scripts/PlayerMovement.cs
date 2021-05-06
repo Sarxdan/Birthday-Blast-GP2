@@ -38,6 +38,10 @@ public class PlayerMovement : MonoBehaviour
     private float horizontal;
     private float vertical;
 
+
+    bool isSliding = false;
+    Vector3 hitNormal;
+
     private void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -79,7 +83,12 @@ public class PlayerMovement : MonoBehaviour
         var movementDirection =
             (forwardLookDir * vertical + camController.cameraLookDirectionTransform.right * horizontal)
             .normalized;
-
+        if(isSliding)
+        {
+            float slideFriction = 0.5f;
+            movementDirection.x += (1f - hitNormal.y) * hitNormal.x * (1f - slideFriction);
+            movementDirection.z += (1f - hitNormal.y) * hitNormal.z * (1f - slideFriction);
+        }
         //Move in direction * movementSpeed
         controller.Move(movementDirection * (Time.deltaTime * movementSpeed));
         
@@ -124,6 +133,18 @@ public class PlayerMovement : MonoBehaviour
         AudioManager.instance.Play("PlayerJump");
 
         animator.SetTrigger("Jump");
+    }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit) {
+        if(Vector3.Angle(Vector3.up, hit.normal) >= controller.slopeLimit)
+        {            
+            isSliding = true;
+            hitNormal = hit.normal;
+        }
+        else
+        {
+            isSliding = false;
+        }
     }
 
 }
