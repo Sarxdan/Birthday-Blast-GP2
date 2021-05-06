@@ -66,7 +66,7 @@ public class PlayerHealth : Health
 
     private void Start() {
         PlayerManager.instance.PlayerAwake();
-        CheckpointManager.instance.Setup();
+        if(FindObjectOfType<CheckpointManager>() != null) CheckpointManager.instance.Setup();        
         maxHealth = PlayerManager.instance.playerMaxHealth;        
         health = PlayerManager.instance.playerHealth;
         if(onPlayerHealthChange != null)

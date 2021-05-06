@@ -26,6 +26,10 @@ public class JetPack : JetpackBase
     Pewpew pewpew;
     public float autoMoveSpeed;
     bool pewpewUnlocked = false;
+    float countedTime = 0;
+    float lastZPosition = 0;
+    Transform parent;
+    GameObject lastCollidedObject;
     
     [Header("movement settings")]
     [SerializeField] float moveSpeed = 1;   
@@ -48,6 +52,8 @@ public class JetPack : JetpackBase
     protected override void Awake()
     {       
         base.Awake();
+        parent = transform.root;
+        lastZPosition = parent.position.z;
         autoMoveSpeed = startingAutoMoveSpeed;
         camera = Camera.main;
         pewpew = GetComponentInChildren<Pewpew>();   
@@ -57,6 +63,10 @@ public class JetPack : JetpackBase
     protected override void Start()
     {
         base.Start();
+        foreach(ParticleSystem stream in fireStreams)
+        {
+            stream.Play();
+        }
         AudioManager.instance.Play("JetpackSound");
     }
 
@@ -64,6 +74,26 @@ public class JetPack : JetpackBase
     {
         if(gameOver) return;
         base.Update();  
+
+        countedTime += Time.deltaTime;
+        if(countedTime > 2 && parent != null)
+        {
+            countedTime = 0;
+            if(parent.position.z >= lastZPosition - 1 && parent.position.z <= lastZPosition + 1)
+            {
+                print("test");
+                Collider[] colliders = Physics.OverlapSphere(parent.position, 2);
+                foreach(Collider collider in colliders)
+                {
+                    if(collider.gameObject == parent.gameObject) continue;
+                    collider.enabled = false;
+                }
+
+                if(lastCollidedObject != null) lastCollidedObject.SetActive(false);
+            }
+            lastZPosition = parent.position.z;
+        }
+
         pewpewUnlocked = Gamemanager.instance.UnlockedItems.pewpew;
         if(pewpew != null && pewpewUnlocked)
         {
@@ -171,6 +201,7 @@ public class JetPack : JetpackBase
         //{           
             while(dashTimeLeft > 0)
         {           
+            dashEffect.Play();
             switch(directions)
             {
                 case DashDirections.Left:
@@ -186,6 +217,7 @@ public class JetPack : JetpackBase
                 break;
 
                 case DashDirections.Forward:
+                
                 movement = Vector3.forward * dashSpeed;
                 movement.z += body.velocity.z;
                 body.velocity = movement;
@@ -198,6 +230,7 @@ public class JetPack : JetpackBase
             dashTimeLeft -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
             invulnerable = false;
+            dashEffect.Stop();
         }
         //-------------------------------------------count the remaining cooldown after dashing
         while(cooldown > 0)
@@ -258,6 +291,5 @@ public class JetPack : JetpackBase
     {
         Debug.Log("Jetpack ACTION");
     }
-
     #endregion
 }
