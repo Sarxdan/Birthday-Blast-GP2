@@ -42,6 +42,7 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
         if (playerMovement.isGrounded)
         {
             currentJumpCount = maxJumpsInAir;
+            ToggleBoosterAnimation(false);
         }
     }
 
@@ -62,7 +63,7 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
         player.disablePlayerMovement = true;
         
         yield return base.DashInDirection(directions);
-
+        ToggleBoosterAnimation(true);
         ToggleDashAnimation(true);
         while(dashTimeLeft > 0)
         {   
@@ -90,7 +91,7 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
         invulnerable = false;
         if(!playerMovement.isGrounded && groundedStart)
         {
-            ToggleHoverAnimation(true);
+            
             float coyoteTimeLeft = coyoteTime;
             while(coyoteTimeLeft > 0)
             {
@@ -98,8 +99,9 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
                 coyoteTimeLeft -= Time.deltaTime;
                 yield return new WaitForEndOfFrame();
             }
-            ToggleHoverAnimation(false);
+            
         }
+        ToggleBoosterAnimation(false);
         player.disablePlayerMovement = false;
         
         //-------------------------------------------count the remaining cooldown after dashing
@@ -107,7 +109,7 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
 
     
 
-    void ToggleHoverAnimation(bool toggle)
+    void ToggleBoosterAnimation(bool toggle)
     {
         if(toggle)
         {
@@ -144,7 +146,7 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
             isDashing = false;
             player.disablePlayerMovement = false;
             ToggleDashAnimation(false); //make sure dash effect is stopped with input
-            ToggleHoverAnimation(false); //make sure hover effect is stopped with input
+            ToggleBoosterAnimation(false); //make sure hover effect is stopped with input
         }       
     }
 
@@ -157,11 +159,11 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
             playerMovement.velocity.y = Mathf.Sqrt(jumpHeight * -2f * playerMovement.gravity);
             UseFuel(fuelUsage);
             AudioManager.instance.Play("JetpackJump");
+            ToggleBoosterAnimation(true);
         }
-        
         isDashing = false;
         player.disablePlayerMovement = false;
         ToggleDashAnimation(false); //make sure dash effect is stopped with input
-        ToggleHoverAnimation(false); //make sure hover effect is stopped with input
+        
     }
 }
