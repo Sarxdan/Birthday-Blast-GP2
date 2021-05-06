@@ -37,7 +37,7 @@ public class PlayerHealth : Health
     
     IEnumerator Invulnerable()
     {       
-        Animator animator = GetComponent<Animator>();
+        Animator animator = GetComponentInChildren<Animator>();
         float timer = invulnerableTime;   
         invulnerable = true;
         animator.SetBool("IsDamaged", true);

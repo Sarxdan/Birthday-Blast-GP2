@@ -10,6 +10,8 @@ public class Interactable : MonoBehaviour
 {
 
     [SerializeField] KeyItems.Items requiredItems;
+    public bool oneTimeInteraction = false;
+    private bool interactedWith;
     public string interactText = "*interact*";
     public string interactTextSE = "*interagera*";
     public string unableToInteracteText = "Can't interact!";
@@ -35,6 +37,7 @@ public class Interactable : MonoBehaviour
 
     private void Interact()
     {
+        interactedWith = true;
         timeSinceLastInteraction = 0;
         OnInteractEvent?.Invoke();
     }
@@ -77,5 +80,17 @@ public class Interactable : MonoBehaviour
         }
 
         return meetsReqiurements;
+    }
+
+
+    public bool CanInteract()
+    {
+        if (oneTimeInteraction && interactedWith)
+        {
+            return false;
+        }
+
+        return timeSinceLastInteraction >= minimumTimeBetweenInteractions;
+
     }
 }

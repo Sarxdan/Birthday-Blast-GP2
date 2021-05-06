@@ -18,15 +18,22 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (ClosestInteractable() && InInteractDistance(ClosestInteractable()))
         {
-            if (ClosestInteractable().CheckRequiredItems() == false)
+            if (ClosestInteractable().CanInteract())
             {
-                //Cant interact because of unlocked items/Abilites
-                interactTextUI.text = ClosestInteractable().unableToInteracteText;
+                if (ClosestInteractable().CheckRequiredItems() == false)
+                {
+                    //Cant interact because of unlocked items/Abilites
+                    interactTextUI.text = ClosestInteractable().unableToInteracteText;
+                }
+                else
+                {
+                    //Can interact
+                    interactTextUI.text = ClosestInteractable().interactText;
+                }
             }
             else
             {
-                //Can interact
-                interactTextUI.text = ClosestInteractable().interactText;
+                interactTextUI.text = "";
             }
         }
         else
