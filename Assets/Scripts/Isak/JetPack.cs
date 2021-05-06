@@ -26,6 +26,10 @@ public class JetPack : JetpackBase
     Pewpew pewpew;
     public float autoMoveSpeed;
     bool pewpewUnlocked = false;
+    float countedTime = 0;
+    float lastZPosition = 0;
+    Transform parent;
+    GameObject lastCollidedObject;
     
     [Header("movement settings")]
     [SerializeField] float moveSpeed = 1;   
@@ -48,6 +52,8 @@ public class JetPack : JetpackBase
     protected override void Awake()
     {       
         base.Awake();
+        parent = transform.root;
+        lastZPosition = parent.position.z;
         autoMoveSpeed = startingAutoMoveSpeed;
         camera = Camera.main;
         pewpew = GetComponentInChildren<Pewpew>();   
@@ -64,6 +70,19 @@ public class JetPack : JetpackBase
     {
         if(gameOver) return;
         base.Update();  
+
+        countedTime += Time.deltaTime;
+        if(countedTime > 2 && parent != null)
+        {
+            countedTime = 0;
+            if(parent.position.z >= lastZPosition - 1 && parent.position.z <= lastZPosition + 1)
+            {
+                print("test");
+                if(lastCollidedObject != null) lastCollidedObject.SetActive(false);
+            }
+            lastZPosition = parent.position.z;
+        }
+
         pewpewUnlocked = Gamemanager.instance.UnlockedItems.pewpew;
         if(pewpew != null && pewpewUnlocked)
         {
@@ -258,6 +277,8 @@ public class JetPack : JetpackBase
     {
         Debug.Log("Jetpack ACTION");
     }
-
+    private void OnCollisionEnter(Collision other) {
+        print("test");
+    }
     #endregion
 }
