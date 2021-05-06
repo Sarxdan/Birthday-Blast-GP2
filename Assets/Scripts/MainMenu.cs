@@ -10,6 +10,7 @@ public class MainMenu : MonoBehaviour
     public string FirstGameScene = "S_GameScene";
     public string MenuScene = "Menu";
     public string CreditsScene = "Credits";
+    public string charSelectScene = "S_CharacterSelection";
 
     public void PlayGame () 
     {
@@ -26,6 +27,11 @@ public class MainMenu : MonoBehaviour
     public void Credits ()
     {
         SceneManager.LoadScene(CreditsScene);
+    }
+
+    public void CharSelectButton()
+    {
+        SceneManager.LoadScene(charSelectScene);
     }
 
     public void Back()

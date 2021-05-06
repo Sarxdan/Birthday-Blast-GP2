@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterCreationUI : MonoBehaviour
 {
@@ -32,6 +33,11 @@ public class CharacterCreationUI : MonoBehaviour
     public void LeftArrow()
     {
         selector.SwitchCharacter(CharacterSelector.Direction.Left);
+    }
+
+    public void BackArrow()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void SelectionDone()
