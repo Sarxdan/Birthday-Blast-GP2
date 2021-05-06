@@ -5372,6 +5372,7 @@ MonoBehaviour:
   - {fileID: 9221113452791262798}
   fireStreams: []
   dashEffect: {fileID: 0}
+  forwDashInputAmount: 0
   autoMoveSpeed: 0
   moveSpeed: 6
   flightBoost: 0.6
@@ -5426,8 +5427,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 8627028070919910616}
-        m_TargetAssemblyTypeName: JetPack, Assembly-CSharp
-        m_MethodName: OnForwardDash
+        m_TargetAssemblyTypeName: JetpackBase, Assembly-CSharp
+        m_MethodName: OnForwardDashInput
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6186,7 +6187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ControlPath: <Keyboard>/w
+  m_ControlPath: <Gamepad>/buttonNorth
 --- !u!1 &5066916116481482770
 GameObject:
   m_ObjectHideFlags: 0
@@ -6692,7 +6693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ControlPath: <Keyboard>/leftShift
+  m_ControlPath: <Gamepad>/buttonSouth
 --- !u!1 &6287380117015765178
 GameObject:
   m_ObjectHideFlags: 0
@@ -6839,7 +6840,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_ControlPath: <Mouse>/leftButton
+  m_ControlPath: <Gamepad>/rightTrigger
 --- !u!1 &6544362696012657232
 GameObject:
   m_ObjectHideFlags: 0

@@ -89,7 +89,7 @@ public class JetpackInputManager : MonoBehaviour
         controls.Jetpack.Steering.performed -= OnSteer;
         controls.Jetpack.Steering.canceled -= OnSteer;
 
-        controls.Jetpack.ForwardDash.started += OnForwardDash;
+        controls.Jetpack.ForwardDash.started -= OnForwardDash;
         controls.Jetpack.Dash.started -= OnDash;
         controls.Jetpack.Shoot.started -= OnShoot;
     }
