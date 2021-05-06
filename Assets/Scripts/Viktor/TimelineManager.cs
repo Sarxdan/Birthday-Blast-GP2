@@ -15,7 +15,22 @@ public class TimelineManager : MonoBehaviour
    [Header("Pop-up message")] 
    public GameObject popUpMessage;
 
-  
+
+   private void Start()
+   {
+      var playCutscene = !PlayerPrefs.HasKey("TutCutscene");
+      if (playCutscene)
+      {
+         director.Play();
+         PlayerPrefs.SetInt("TutCutscene", 1);
+      }
+      else
+      {
+         FindObjectOfType<SpawnPoint>().transform.position = FindObjectOfType<LevelTransition>().transform.position;
+         FindObjectOfType<SpawnPoint>().ManualSpawnPlayer();
+      }
+   }
+
 
    public void PauseCutScene()
    {

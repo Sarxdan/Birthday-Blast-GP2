@@ -176,6 +176,12 @@ public class ThirdPersonController : MonoBehaviour
     {
         disableCameraController = !state;
         disablePlayerMovement = !state;
+
+        if (state == false)
+        {
+            //If disabled
+            GetComponentInChildren<Animator>().SetFloat("Speed", 0);
+        }
     }
 
     public void ToggleRagdoll(bool state)
