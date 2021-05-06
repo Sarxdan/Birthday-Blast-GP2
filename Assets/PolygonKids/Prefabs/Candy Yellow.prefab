@@ -93,7 +93,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.2, y: 0.2, z: 0.2}
+  m_Size: {x: 0.2, y: 0.2, z: 0.36}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7637855628982732071
 PrefabInstance:
@@ -102,6 +102,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2654703591844536953}
     m_Modifications:
+    - target: {fileID: 5316556448917115386, guid: a1eae45431e1f804c9c60c0715437d00, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8945079679908398057, guid: a1eae45431e1f804c9c60c0715437d00, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Candy_02

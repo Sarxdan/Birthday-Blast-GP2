@@ -1834,7 +1834,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7797834, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -2176,7 +2176,7 @@ PlayableDirector:
   m_Enabled: 1
   serializedVersion: 3
   m_PlayableAsset: {fileID: 11400000, guid: c76afbd02c718a949a656812902bc0e0, type: 2}
-  m_InitialState: 1
+  m_InitialState: 0
   m_WrapMode: 2
   m_DirectorUpdateMode: 1
   m_InitialTime: 0
@@ -3200,7 +3200,9 @@ MonoBehaviour:
     pewpew: 0
     shovel: 0
   interactText: '*interact*'
+  interactTextSE: '*interagera*'
   unableToInteracteText: Can't interact!
+  unableToInteracteTextSE: Kan inte interagera!
   interactRadius: 1
   minimumTimeBetweenInteractions: 2
   OnInteractEvent:
@@ -3834,7 +3836,9 @@ MonoBehaviour:
     pewpew: 0
     shovel: 0
   interactText: '*Read note*'
+  interactTextSE: '*interagera*'
   unableToInteracteText: Can't interact!
+  unableToInteracteTextSE: Kan inte interagera!
   interactRadius: 1.5
   minimumTimeBetweenInteractions: 2
   OnInteractEvent:
@@ -3914,7 +3918,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7797834, y: 1}
+    m_SensorSize: {x: 1.7777778, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6140255977373236055}
   - component: {fileID: 8443684768401191075}
   - component: {fileID: 1201358571984106950}
+  - component: {fileID: 1801858783347050521}
   m_Layer: 0
   m_Name: Magic Root 1
   m_TagString: Untagged
@@ -61,7 +62,20 @@ MonoBehaviour:
   DestroyOnPickUp: 1
   resourceType: 3
   value: 1
-  popupWindow: {fileID: 6817901423123921695}
+  popupWindow: {fileID: 3730526507855391936, guid: 5d112a167b82d4f428472d896810dd0a, type: 3}
+--- !u!65 &1801858783347050521
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6817901423123921695}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.25, y: 0.25, z: 0.25}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &2637223064622800349
 PrefabInstance:
   m_ObjectHideFlags: 0
