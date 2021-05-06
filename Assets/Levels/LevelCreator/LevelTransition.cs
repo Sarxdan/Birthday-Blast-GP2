@@ -30,6 +30,7 @@ public class LevelTransition : MonoBehaviour
             
             var player = FindObjectOfType<ThirdPersonController>().gameObject;
             var launchDir = directionOfLaunch.forward;
+
             var cineCam = FindObjectOfType<CinemachineVirtualCamera>();
             cineCam.LookAt = player.GetComponentInChildren<Rigidbody>().transform;
 
@@ -71,8 +72,4 @@ public class LevelTransition : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawRay(directionOfLaunch.position, directionOfLaunch.forward);
-    }
 }
