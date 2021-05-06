@@ -202,6 +202,7 @@ public class JetPack : JetpackBase
             while(dashTimeLeft > 0)
         {           
             dashEffect.Play();
+            
             switch(directions)
             {
                 case DashDirections.Left:
@@ -222,6 +223,11 @@ public class JetPack : JetpackBase
                 movement.z += body.velocity.z;
                 body.velocity = movement;
                 invulnerable = true;
+                foreach(ParticleSystem stream in fireStreams)
+                {
+                    stream.startLifetime = 2;
+                    stream.startSize = 5;
+                }
                 break;
 
                 default:
@@ -230,6 +236,11 @@ public class JetPack : JetpackBase
             dashTimeLeft -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
             invulnerable = false;
+            foreach(ParticleSystem stream in fireStreams)
+            {
+                stream.startLifetime = 1;
+                stream.startSize = 2.5f;
+            }
             dashEffect.Stop();
         }
         //-------------------------------------------count the remaining cooldown after dashing
