@@ -63,6 +63,10 @@ public class JetPack : JetpackBase
     protected override void Start()
     {
         base.Start();
+        foreach(ParticleSystem stream in fireStreams)
+        {
+            stream.Play();
+        }
         AudioManager.instance.Play("JetpackSound");
     }
 
@@ -78,6 +82,13 @@ public class JetPack : JetpackBase
             if(parent.position.z >= lastZPosition - 1 && parent.position.z <= lastZPosition + 1)
             {
                 print("test");
+                Collider[] colliders = Physics.OverlapSphere(parent.position, 2);
+                foreach(Collider collider in colliders)
+                {
+                    if(collider.gameObject == parent.gameObject) continue;
+                    collider.enabled = false;
+                }
+
                 if(lastCollidedObject != null) lastCollidedObject.SetActive(false);
             }
             lastZPosition = parent.position.z;
@@ -190,6 +201,7 @@ public class JetPack : JetpackBase
         //{           
             while(dashTimeLeft > 0)
         {           
+            dashEffect.Play();
             switch(directions)
             {
                 case DashDirections.Left:
@@ -205,6 +217,7 @@ public class JetPack : JetpackBase
                 break;
 
                 case DashDirections.Forward:
+                
                 movement = Vector3.forward * dashSpeed;
                 movement.z += body.velocity.z;
                 body.velocity = movement;
@@ -217,6 +230,7 @@ public class JetPack : JetpackBase
             dashTimeLeft -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
             invulnerable = false;
+            dashEffect.Stop();
         }
         //-------------------------------------------count the remaining cooldown after dashing
         while(cooldown > 0)
@@ -276,9 +290,6 @@ public class JetPack : JetpackBase
     public void OnActionInput()
     {
         Debug.Log("Jetpack ACTION");
-    }
-    private void OnCollisionEnter(Collision other) {
-        print("test");
     }
     #endregion
 }
