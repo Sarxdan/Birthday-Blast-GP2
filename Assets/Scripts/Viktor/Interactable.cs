@@ -11,7 +11,9 @@ public class Interactable : MonoBehaviour
 
     [SerializeField] KeyItems.Items requiredItems;
     public string interactText = "*interact*";
+    public string interactTextSE = "*interagera*";
     public string unableToInteracteText = "Can't interact!";
+    public string unableToInteracteTextSE = "Kan inte interagera!";
     
     public float interactRadius = 5f;
 

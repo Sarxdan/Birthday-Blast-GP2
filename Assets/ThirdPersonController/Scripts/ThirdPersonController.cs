@@ -176,6 +176,12 @@ public class ThirdPersonController : MonoBehaviour
     {
         disableCameraController = !state;
         disablePlayerMovement = !state;
+
+        if (state == false)
+        {
+            //If disabled
+            GetComponentInChildren<Animator>().SetFloat("Speed", 0);
+        }
     }
 
     public void ToggleRagdoll(bool state)
@@ -196,25 +202,8 @@ public class ThirdPersonController : MonoBehaviour
 
         ToggleControls(!state);
     }
+    
 
-    private void OnControllerColliderHit(ControllerColliderHit hit) {
-        if(hit.gameObject.tag == "Boulder")
-        {
-            float slideSpeed = 1;
-            hitNormal = hit.normal;
-            disablePlayerMovement = true;
-            Vector3 slideDirection = new Vector3();
-            slideDirection.x = ((1f - hit.normal.y) * hit.normal.x) * slideSpeed;
-            slideDirection.y = -9.81f;
-            slideDirection.z = ((1f - hit.normal.y) * hit.normal.z) * slideSpeed;
-            CharacterController controller = GetComponent<CharacterController>();
-            controller.Move(slideDirection * Time.deltaTime);
-        }
-        else
-        {
-            disablePlayerMovement = false;
-        }
-        
-        
-    }
+
+
 }

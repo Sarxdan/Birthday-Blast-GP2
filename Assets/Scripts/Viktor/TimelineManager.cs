@@ -15,15 +15,29 @@ public class TimelineManager : MonoBehaviour
    [Header("Pop-up message")] 
    public GameObject popUpMessage;
 
-  
+
+   private void Start()
+   {
+      var playCutscene = !PlayerPrefs.HasKey("TutCutscene");
+      if (playCutscene)
+      {
+         director.Play();
+         PlayerPrefs.SetInt("TutCutscene", 1);
+      }
+      else
+      {
+         FindObjectOfType<SpawnPoint>().transform.position = FindObjectOfType<LevelTransition>().transform.position;
+         FindObjectOfType<SpawnPoint>().ManualSpawnPlayer();
+      }
+   }
+
 
    public void PauseCutScene()
    {
       director.Pause();
       cutsceneBlink.GetComponent<Animator>().enabled = false;
       cutsceneFade.GetComponent<Animator>().enabled = false;
-      Cursor.visible = true;
-      Cursor.lockState = CursorLockMode.None;
+      UIManager.instance.ToggleMouse(true);
 
    }
 
@@ -32,9 +46,7 @@ public class TimelineManager : MonoBehaviour
       director.Resume();
       cutsceneBlink.GetComponent<Animator>().enabled = true;
       cutsceneFade.GetComponent<Animator>().enabled = true;
-      Cursor.visible = false;
-      Cursor.lockState = CursorLockMode.Locked;
-
+      UIManager.instance.ToggleMouse(false);
    }
 
    public void StopCutScene()
