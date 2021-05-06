@@ -162,11 +162,8 @@ public class BossBehaviour : MonoBehaviour
         var newProjectile = Instantiate(projectilePrefab, projectileShootPosition.position, projectileShootPosition.localRotation);
 
         var projectileScript = newProjectile.GetComponent<Projectile>();
-        
-        projectileScript.projectileSpeed = projectileSpeed;
-        projectileScript.moveDirection =
-            (predictedPlayerPos - projectileShootPosition.position).normalized;
-        projectileScript.projectileDamage = CurrentPhase().projectileDamage;
+
+        projectileScript.SetupProjectile(projectileSpeed, CurrentPhase().projectileDamage, playerTarget);
     }
 
 
