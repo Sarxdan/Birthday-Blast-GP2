@@ -25,7 +25,33 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void PlayerAwake()
     {
-        Transform player = FindObjectOfType<PlayerHealth>().transform;
+        if (chosenCharacterMeshesNames.Count != 0)
+        {
+
+            var players = FindObjectsOfType<PlayerHealth>();
+            foreach (var _player in players)
+            {
+                foreach (Transform child in _player.transform)
+                {
+                    if (child.name == "MeshBase")
+                    {
+                        foreach (Transform grandchild in child)
+                        {
+
+                            if (grandchild.name == "Root") continue;
+                            grandchild.gameObject.SetActive(false);
+                            foreach (string name in chosenCharacterMeshesNames)
+                            {
+
+                                if (grandchild.name == name) grandchild.gameObject.SetActive(true);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /*
         if(chosenCharacterMeshesNames.Count != 0 && player != null)
         {
             foreach(Transform child in player)
@@ -46,5 +72,6 @@ public class PlayerManager : Singleton<PlayerManager>
                 }
             }
         }
+        */
     }
 }
