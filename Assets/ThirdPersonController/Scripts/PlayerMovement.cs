@@ -66,12 +66,12 @@ public class PlayerMovement : MonoBehaviour
     public void Move()
     {
         //Check if player is currently in contact with objects from certain layers
-        isGrounded = Physics.CheckSphere(groundCheckPosition.position, groundDistanceCheck, groundMask);
+        isGrounded = Physics.CheckSphere(groundCheckPosition.position, groundDistanceCheck, groundMask) && !isSliding;
         animator.SetBool("isGrounded", isGrounded);
 
         //Reset velocity if grounded
 
-        if (isGrounded && velocity.y < 0)
+        if (isGrounded && velocity.y < 0 && !isSliding)
         velocity.y = 0f;
         
         velocity.y += gravity * Time.deltaTime;
@@ -88,7 +88,6 @@ public class PlayerMovement : MonoBehaviour
             float slideFriction = 0.5f;
             movementDirection.x = (1f - hitNormal.y) * hitNormal.x * (1f - slideFriction);
             movementDirection.z = (1f - hitNormal.y) * hitNormal.z * (1f - slideFriction);
-            isSliding = false;
         }
         //Move in direction * movementSpeed
         controller.Move(movementDirection * (Time.deltaTime * movementSpeed));
@@ -139,20 +138,13 @@ public class PlayerMovement : MonoBehaviour
     private void OnControllerColliderHit(ControllerColliderHit hit) {
         if(Vector3.Angle(Vector3.up, hit.normal) >= controller.slopeLimit)
         {        
-            print("sliding"); 
             isSliding = true;
             hitNormal = hit.normal;
         }
         else
         {
-            print("not sliding");
             hitNormal = new Vector3(0,0,0);
             isSliding = false;
         }
     }
-
-    private void OnCollisionEnter(Collision other) {
-        print("test");
-    }
-
 }
