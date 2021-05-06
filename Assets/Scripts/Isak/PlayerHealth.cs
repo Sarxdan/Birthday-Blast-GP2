@@ -10,6 +10,8 @@ public class PlayerHealth : Health
     [SerializeField][Tooltip("How long the player is invulnerable after taking damage")] float invulnerableTime = 1;
     bool invulnerable = false;
 
+    public Animator damageAnimator;
+
     public override void Heal(int amount)
     {
         base.Heal(amount);
@@ -37,16 +39,16 @@ public class PlayerHealth : Health
     
     IEnumerator Invulnerable()
     {       
-        Animator animator = GetComponentInChildren<Animator>();
+        
         float timer = invulnerableTime;   
         invulnerable = true;
-        animator.SetBool("IsDamaged", true);
+        damageAnimator.SetBool("IsDamaged", true);
         while(timer > 0)
         {
             yield return new WaitForEndOfFrame();
             timer -= Time.deltaTime;
         }   
-        animator.SetBool("IsDamaged", false);
+        damageAnimator.SetBool("IsDamaged", false);
         invulnerable = false;
     }
     protected override IEnumerator Death()

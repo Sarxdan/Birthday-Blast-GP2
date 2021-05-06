@@ -4930,7 +4930,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.3233493, y: 1.2065487, z: 0.25}
-  m_Center: {x: 0.00023180991, y: -0.22827435, z: -0.02286005}
+  m_Center: {x: 0.00023180991, y: 0.55, z: -0.02286005}
 --- !u!114 &1235566279
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4944,6 +4944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   invulnerableTime: 3
+  damageAnimator: {fileID: 5015735416350840793}
 --- !u!95 &1626824355
 Animator:
   serializedVersion: 3
@@ -4953,7 +4954,7 @@ Animator:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239568734103234806}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
+  m_Avatar: {fileID: 9000000, guid: a890656eebef5d94ab6c86843cebd735, type: 3}
   m_Controller: {fileID: 9100000, guid: 3eef80f8c731e364e87c5350ce80eb82, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
@@ -21665,6 +21666,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1239568734103234802}
     m_Modifications:
     - target: {fileID: 8767869539821936247, guid: 2bf137eb5196c244f9adc50f8ae3f8ad, type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8767869539821936247, guid: 2bf137eb5196c244f9adc50f8ae3f8ad, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 72eced71dae1cda4c81729caa43ca975, type: 2}
@@ -21734,9 +21739,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2bf137eb5196c244f9adc50f8ae3f8ad, type: 3}
---- !u!4 &5015735416341854257 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8767869539831198111, guid: 2bf137eb5196c244f9adc50f8ae3f8ad, type: 3}
+--- !u!95 &5015735416350840793 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 8767869539821936247, guid: 2bf137eb5196c244f9adc50f8ae3f8ad, type: 3}
   m_PrefabInstance: {fileID: 4338868789765327278}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &5015735416341854227 stripped
@@ -21747,5 +21752,10 @@ Transform:
 --- !u!4 &5015735416341854501 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8767869539831197835, guid: 2bf137eb5196c244f9adc50f8ae3f8ad, type: 3}
+  m_PrefabInstance: {fileID: 4338868789765327278}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5015735416341854257 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8767869539831198111, guid: 2bf137eb5196c244f9adc50f8ae3f8ad, type: 3}
   m_PrefabInstance: {fileID: 4338868789765327278}
   m_PrefabAsset: {fileID: 0}

@@ -14,13 +14,10 @@ public class Projectile : MonoBehaviour
     public float projectileSpeed;
     public Vector3 moveDirection;
     private Rigidbody rb;
-    public Transform target;
     private void Start()
     {
-        Destroy(gameObject, 25.0f);
+        Destroy(gameObject, 15.0f);
         rb = GetComponent<Rigidbody>();
-        // Predict the position for the player and calculate direction
-        moveDirection = (PredictPosition(GameObject.FindWithTag("Player").transform.GetComponent<Rigidbody>()) - transform.position).normalized;
     }
 
     private void PlayerHit()
@@ -59,5 +56,15 @@ public class Projectile : MonoBehaviour
         }
         
         Destroy(gameObject);
+    }
+
+    public void SetupProjectile(float speed, int damage, Transform target)
+    {
+        projectileSpeed = speed;
+        projectileDamage = damage;
+        // Predict the position for the player and calculate direction
+        //moveDirection = (PredictPosition(GameObject.FindWithTag("Player").transform.GetComponent<Rigidbody>()) - transform.position).normalized;
+
+        moveDirection = (target.position - transform.position).normalized;
     }
 }
