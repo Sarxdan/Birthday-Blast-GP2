@@ -22,8 +22,7 @@ public class TimelineManager : MonoBehaviour
       director.Pause();
       cutsceneBlink.GetComponent<Animator>().enabled = false;
       cutsceneFade.GetComponent<Animator>().enabled = false;
-      Cursor.visible = true;
-      Cursor.lockState = CursorLockMode.None;
+      UIManager.instance.ToggleMouse(true);
 
    }
 
@@ -32,9 +31,7 @@ public class TimelineManager : MonoBehaviour
       director.Resume();
       cutsceneBlink.GetComponent<Animator>().enabled = true;
       cutsceneFade.GetComponent<Animator>().enabled = true;
-      Cursor.visible = false;
-      Cursor.lockState = CursorLockMode.Locked;
-
+      UIManager.instance.ToggleMouse(false);
    }
 
    public void StopCutScene()

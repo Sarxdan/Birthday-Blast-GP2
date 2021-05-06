@@ -35,20 +35,16 @@ public class UIManager : Singleton<UIManager>
             }
         }
         goPopup.SetActive(true);
-        FindObjectOfType<ThirdPersonController>().disableCameraController = true;
-        FindObjectOfType<ThirdPersonController>().disablePlayerMovement = true;
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        FindObjectOfType<ThirdPersonController>().ToggleControls(false);
+        ToggleMouse(true);
     }
 
     public void ClosePopUp(GameObject popup)
     {
-        FindObjectOfType<ThirdPersonController>().disableCameraController = false;
-        FindObjectOfType<ThirdPersonController>().disablePlayerMovement = false;
+        FindObjectOfType<ThirdPersonController>().ToggleControls(true);
         popup.SetActive(false);
 
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        ToggleMouse(false);
     }
     
     protected override void Awake()
@@ -70,17 +66,14 @@ public class UIManager : Singleton<UIManager>
     {
         bool toggle = !pauseMenu.gameObject.activeSelf;
         pauseMenu.gameObject.SetActive(toggle);
+        ToggleMouse(toggle);
         if(toggle)
         {
-            Cursor.lockState = CursorLockMode.None;
             Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Paused);
-            Cursor.visible = true;
         }
         else
         {
-            Cursor.lockState = CursorLockMode.Locked;
             Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Playing);
-            Cursor.visible = false;
         }
     }
 
@@ -88,17 +81,15 @@ public class UIManager : Singleton<UIManager>
     {
         bool toggle = !shopUI.gameObject.activeSelf;        
         shopUI.gameObject.SetActive(toggle);
+        ToggleMouse(toggle);
+        
         if(toggle)
         {
             Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Paused);
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
         }
         else
         {
             Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Playing);
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
         }
     }
 
@@ -107,16 +98,8 @@ public class UIManager : Singleton<UIManager>
         var toggle = !journalPanel.gameObject.activeSelf;
         
         journalPanel.gameObject.SetActive(toggle);
-        if (toggle)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
-        else
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
+        
+        ToggleMouse(toggle);
     }
     
     public void OnTogglePause(InputAction.CallbackContext context)
@@ -195,5 +178,15 @@ public class UIManager : Singleton<UIManager>
         ShopKeeper.onShopKeeperInteraction -= ToggleShopUI;
         DialogueTrigger.onNPCDialogue -= OnNPCDialogue;
         DialogueTrigger.onPlayerLeavingConversation -= OnPlayerLeavingConversation;
-    }  
+    }
+
+
+    public void ToggleMouse(bool state)
+    {
+#if UNITY_STANDALONE
+        Cursor.visible = state;
+        Cursor.lockState = state ? CursorLockMode.None : CursorLockMode.Locked;
+#endif
+        
+    }
 }
