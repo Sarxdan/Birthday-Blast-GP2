@@ -73,7 +73,6 @@ public class BossBehaviour : MonoBehaviour
     
     private void StartBoss()
     {
-        Debug.Log("Boss Started");
         //Play Animation?
 
         StartCoroutine(BossSpawn());
@@ -89,15 +88,13 @@ public class BossBehaviour : MonoBehaviour
         inPhase = true;
         
         
-        Debug.Log("Started Phase " + bossPhaseIndex);
     }
     
     private void EndPhase()
     {
         inPhase = false;
         ResetPhaseTimers(CurrentPhase());
-        Debug.Log("Ended Phase " + bossPhaseIndex);
-        
+
         if (bossPhaseIndex == phases.Length - 1)
         {
             //Just ended last phase
@@ -112,7 +109,6 @@ public class BossBehaviour : MonoBehaviour
     
     private void EndBoss()
     {
-        Debug.Log("End Of Boss");
         gameObject.SetActive(false);
     }
 

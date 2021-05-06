@@ -113,7 +113,6 @@ public class JetpackBase : MonoBehaviour
     public void OnForwardDashInput()
     {
         forwDashInputAmount++;
-        Debug.Log("Forward Dash Input!!");
         lastKeyPressTime = Time.time;
     }
 
