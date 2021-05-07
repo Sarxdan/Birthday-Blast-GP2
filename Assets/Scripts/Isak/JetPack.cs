@@ -81,7 +81,6 @@ public class JetPack : JetpackBase
             countedTime = 0;
             if(parent.position.z >= lastZPosition - 1 && parent.position.z <= lastZPosition + 1)
             {
-                print("test");
                 Collider[] colliders = Physics.OverlapSphere(parent.position, 2);
                 foreach(Collider collider in colliders)
                 {
@@ -198,10 +197,11 @@ public class JetPack : JetpackBase
         //float cooldown = dashCooldown;
         //---------------------------------start the dash ability
        // while(dashlengthLeft > 0)
-        //{           
+        //{       
+            if(directions != DashDirections.Forward) dashEffect.Play(); 
+               
             while(dashTimeLeft > 0)
         {           
-            dashEffect.Play();
             
             switch(directions)
             {
@@ -209,12 +209,14 @@ public class JetPack : JetpackBase
                 movement = Vector3.left * dashSpeed;
                 movement.z = body.velocity.z;
                 body.velocity = movement;
+                dashEffect.transform.localRotation = Quaternion.Euler(90, -90, 180);                
                 break;
 
                 case DashDirections.Right:
                 movement = Vector3.right * dashSpeed;
                 movement.z = body.velocity.z;
                 body.velocity = movement;
+                dashEffect.transform.localRotation = Quaternion.Euler(90, 90, 180);
                 break;
 
                 case DashDirections.Forward:
@@ -241,8 +243,9 @@ public class JetPack : JetpackBase
                 stream.startLifetime = 1;
                 stream.startSize = 2.5f;
             }
-            dashEffect.Stop();
+            
         }
+        dashEffect.Stop();
         //-------------------------------------------count the remaining cooldown after dashing
         while(cooldown > 0)
         {
