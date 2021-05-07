@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Cinemachine;
+using UnityEngine.SceneManagement;
 
 public class CharacterSelector : MonoBehaviour
 {
@@ -86,7 +87,8 @@ public class CharacterSelector : MonoBehaviour
                     }
                 }
             }
-        Gamemanager.instance.LoadLevel(3);   
+
+            Gamemanager.instance.LoadLevel(3);
     }
 
     public void StartSelection(CharacterGenders newGender)
