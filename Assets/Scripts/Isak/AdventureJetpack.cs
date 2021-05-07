@@ -39,7 +39,7 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
         jetpackUnlocked = Gamemanager.instance.UnlockedItems.jetpack;
         if(!jetpackUnlocked) return;
         
-        if (playerMovement.isGrounded)
+        if (playerMovement.isGrounded && !isDashing)
         {
             currentJumpCount = maxJumpsInAir;
             ToggleBoosterAnimation(false);
@@ -57,7 +57,7 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
 
     protected override IEnumerator DashInDirection(DashDirections directions)
     {
-        Transform baseParent = GetComponentInParent<ThirdPersonController>().transform;
+        Transform baseParent = transform.root;
         isDashing = true;
         bool groundedStart = playerMovement.isGrounded;
         player.disablePlayerMovement = true;
