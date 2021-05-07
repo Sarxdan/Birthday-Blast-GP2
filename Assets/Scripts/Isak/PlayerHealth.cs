@@ -66,7 +66,12 @@ public class PlayerHealth : Health
 
     private void Start() {
         PlayerManager.instance.PlayerAwake();
-        if(FindObjectOfType<CheckpointManager>() != null) CheckpointManager.instance.Setup();        
+        if(FindObjectOfType<CheckpointManager>() != null) CheckpointManager.instance.Setup();    
+        OutOfBounds[] bounds = FindObjectsOfType<OutOfBounds>();   
+        foreach(OutOfBounds bound in bounds)
+        {
+            bound.PlayerAwake();
+        } 
         maxHealth = PlayerManager.instance.playerMaxHealth;        
         health = PlayerManager.instance.playerHealth;
         if(onPlayerHealthChange != null)

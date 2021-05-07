@@ -15,15 +15,20 @@ public class OutOfBounds : MonoBehaviour
     int index = 0;
 
     private void Awake() {
-        thirdPersonController = FindObjectOfType<ThirdPersonController>();
-        
-        playerMovement = FindObjectOfType<PlayerMovement>();
         collider = GetComponent<Collider>();
         collider.isTrigger = true;
         timer = startTimer;
+        
+    }
+
+    public void PlayerAwake()
+    {
+        thirdPersonController = FindObjectOfType<ThirdPersonController>();        
+        playerMovement = FindObjectOfType<PlayerMovement>();        
         lastPlayerPositionsOnLand[0] = thirdPersonController.transform.position; // in case the player INSTANTLY jumps off the island
     }
     private void Update() {
+        if(playerMovement == null) return;
         if(playerMovement.isGrounded)
         {
             timer -= Time.deltaTime;
