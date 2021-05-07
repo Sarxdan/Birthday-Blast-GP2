@@ -153,7 +153,6 @@ public class UIManager : Singleton<UIManager>
     private void OnEnable() {
         
         controls.Enable();
-        
         PauseMenu.onResumeClicked += TogglePauseMenu;
         PlayerHealth.onPlayerHealthChange += OnPlayerHealthChange;
         JetPack.onFuelUse += OnFuelUse;

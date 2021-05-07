@@ -6,18 +6,27 @@ using TMPro;
 public class ShopUI : MonoBehaviour
 {
     TextMeshProUGUI purchaseText;
+    TextMeshProUGUI playerGems;
+    TextMeshProUGUI playerCandy;
     [SerializeField] float purchaseTextDissappearTime = 1;
     // Start is called before the first frame update
 
     private void Awake() {
         purchaseText = GameObject.Find("PurchaseText").GetComponent<TextMeshProUGUI>();
+        playerCandy = GameObject.Find("PlayerCandy").GetComponentInChildren<TextMeshProUGUI>();
+        playerGems = GameObject.Find("PlayerGems").GetComponentInChildren<TextMeshProUGUI>();
         purchaseText.text = string.Empty;
+        playerCandy.text = string.Empty;
+        playerGems.text = string.Empty;
     }
     public void ExitShop()
     {
         UIManager.instance.ToggleShopUI();
     }
-
+    private void Update() {
+        playerGems.text = Inventory.instance.gems.ToString();
+        playerCandy.text = Inventory.instance.currency.ToString();
+    }
     void OnPurchase(bool check)
     {
         StopAllCoroutines();
@@ -39,6 +48,7 @@ public class ShopUI : MonoBehaviour
     }
 
     private void OnEnable() {
+        
         ShopItem.onPurchase += OnPurchase;
         Gem.onGemBought += OnPurchase;
     }

@@ -8,6 +8,9 @@ public class PickUp : MonoBehaviour
 
     protected void DestroyObject()
     {
-        Destroy(gameObject);
+        if (DestroyOnPickUp)
+        {
+            Destroy(gameObject);
+        }
     }
 }
