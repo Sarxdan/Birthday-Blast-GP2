@@ -10,25 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: Main Menu Shared Data
+  m_Name: Character Selection Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: Main Menu
-  m_TableCollectionNameGuidString: 832c23cdbebd18f44a49f9bcc2a86ac1
+  m_TableCollectionName: Character Selection
+  m_TableCollectionNameGuidString: b87116896e6e21943a7d99cba21c98d2
   m_Entries:
-  - m_Id: 46851121152
-    m_Key: START_GAME
+  - m_Id: 561790017536
+    m_Key: Female
     m_Metadata:
       m_Items: []
-  - m_Id: 24766183071744
-    m_Key: QUIT
+  - m_Id: 598708281344
+    m_Key: Male
     m_Metadata:
       m_Items: []
-  - m_Id: 1501543262806016
-    m_Key: Character Selection
-    m_Metadata:
-      m_Items: []
-  - m_Id: 1503313871462400
-    m_Key: Credits
+  - m_Id: 609647026176
+    m_Key: Non-Binary
     m_Metadata:
       m_Items: []
   m_Metadata:
@@ -40,4 +36,4 @@ MonoBehaviour:
     00000000:
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1620027559651
+        m_CustomEpoch: 1620385642933
