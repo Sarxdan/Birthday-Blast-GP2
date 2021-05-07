@@ -33,6 +33,9 @@ public class AudioManager : Singleton<AudioManager>
             }
         }
     }
+    private void Start() {
+        Play("BGM");
+    }
 
     public AudioSource PlayClipAtPoint(string name, Vector3 position) //will play in 3D
     {
@@ -113,7 +116,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         foreach(Sound s in sounds)
         {
-            s.source.Stop();
+            if(!s.dontStopOnLevelLoad) s.source.Stop();
         }
     }
 
@@ -144,18 +147,14 @@ public class AudioManager : Singleton<AudioManager>
 
         }
     }
-    void OnSceneLoaded()
-    {
-        StopAllAudio();
-    }
 
     private void OnEnable() {
         Gamemanager.onGameStateChange += OnGameStateChange;
-        Gamemanager.onSceneLoaded += OnSceneLoaded;
+        Gamemanager.onSceneLoaded += StopAllAudio;
     }
 
     private void OnDisable() {
         Gamemanager.onGameStateChange -= OnGameStateChange;
-        Gamemanager.onSceneLoaded -= OnSceneLoaded;
+        Gamemanager.onSceneLoaded -= StopAllAudio;
     }
 }
