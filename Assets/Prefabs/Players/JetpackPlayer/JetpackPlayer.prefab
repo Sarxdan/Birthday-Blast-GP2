@@ -5325,6 +5325,7 @@ GameObject:
   - component: {fileID: 7374771023278387341}
   - component: {fileID: 8627028070919910616}
   - component: {fileID: 9215354349171772049}
+  - component: {fileID: 541209234}
   m_Layer: 6
   m_Name: Jetpack
   m_TagString: Untagged
@@ -5340,7 +5341,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1725220336103311638}
   m_LocalRotation: {x: 0.48063445, y: -0.518643, z: 0.48063445, w: 0.518643}
-  m_LocalPosition: {x: -0.0011016689, y: 0.20314224, z: 0}
+  m_LocalPosition: {x: 0.001, y: 0.237, z: -0}
   m_LocalScale: {x: 0.72299993, y: 0.72299993, z: 0.72299993}
   m_Children:
   - {fileID: 4909804712718455485}
@@ -5458,6 +5459,19 @@ MonoBehaviour:
         m_CallState: 2
   MobileUIComponents:
   - {fileID: 3878241437249178344}
+--- !u!65 &541209234
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1725220336103311638}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1.8377938, z: 1.7291851}
+  m_Center: {x: 0.000000043462826, y: -0.41889685, z: 0.36459264}
 --- !u!1 &2277015737180970634
 GameObject:
   m_ObjectHideFlags: 0
@@ -6069,13 +6083,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3989691368802244422}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: 0.70710677, w: 0}
-  m_LocalPosition: {x: 0.213, y: -0.518, z: 0.062}
+  m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: -0.5}
+  m_LocalPosition: {x: 0.013, y: -0.212, z: 0.255}
   m_LocalScale: {x: 1.3831258, y: 1.3831255, z: 1.3831255}
   m_Children: []
   m_Father: {fileID: 4909804712718455485}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 270}
 --- !u!198 &4099055933704698266
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -6085,7 +6099,7 @@ ParticleSystem:
   m_GameObject: {fileID: 3989691368802244422}
   serializedVersion: 8
   lengthInSec: 1
-  simulationSpeed: 1
+  simulationSpeed: 10
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
@@ -6159,7 +6173,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 2
+      scalar: 3
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6248,7 +6262,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 1, g: 0.050477777, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -6310,7 +6324,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.2
+      scalar: 0.39
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -6892,7 +6906,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 5
+      scalar: 20
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -11930,7 +11944,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7780637974021360222}
   m_LocalRotation: {x: 0.7459904, y: -0, z: -0, w: 0.66595674}
-  m_LocalPosition: {x: 0.06999999, y: -0.5460001, z: 0.13699998}
+  m_LocalPosition: {x: 0.078, y: -0.397, z: 0.125}
   m_LocalScale: {x: 0.177224, y: 0.16076402, z: 0.100785986}
   m_Children: []
   m_Father: {fileID: 4909804712718455485}
@@ -12188,7 +12202,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.42
+      scalar: 2.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -16784,7 +16798,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9019955432605558860}
   m_LocalRotation: {x: 0.7459904, y: -0, z: -0, w: 0.66595674}
-  m_LocalPosition: {x: -0.0862776, y: -0.5460008, z: 0.1369978}
+  m_LocalPosition: {x: -0.078, y: -0.397, z: 0.125}
   m_LocalScale: {x: 0.177224, y: 0.16076402, z: 0.100785986}
   m_Children: []
   m_Father: {fileID: 4909804712718455485}
@@ -17042,7 +17056,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.42
+      scalar: 2.5
       minScalar: 1
       maxCurve:
         serializedVersion: 2
