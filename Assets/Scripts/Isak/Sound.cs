@@ -11,7 +11,7 @@ public class Sound
     [Range(0,1)] public float volume;
     [Range(0,3)] public float pitch;
     public bool loop;
-    public bool dontStopOnLevelLoad;
+    public bool backgroundMusic;
     [Range(1, 50)]public int amountofObjects;
 
     [HideInInspector]
