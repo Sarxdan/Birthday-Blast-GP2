@@ -4,11 +4,20 @@ using UnityEngine;
 
 public class PlayerManager : Singleton<PlayerManager>
 {   
-    [Range(1, 10)]public int playerMaxHealth;
     [HideInInspector]
     public int playerHealth;
     [HideInInspector]
     public List<string> chosenCharacterMeshesNames;
+
+    [Header("Player health settings")]
+    [Range(1, 10)]public int playerMaxHealth;
+
+    [Header("Player fuel Settings")]
+    [Tooltip("time until fuel recharges")] public float fuelRechargeTime = 1;
+    [Tooltip("fuel used when doing stuff that uses fuel")] public int fuelUsage = 1; 
+    [Tooltip("How fast fuel recharges")] public int fuelRechargePerTick = 1;
+    [Range(1, 10)] public int maxFuel = 10;
+    
 
     GameObject player;
 
