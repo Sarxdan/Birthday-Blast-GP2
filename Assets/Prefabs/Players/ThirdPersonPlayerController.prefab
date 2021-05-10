@@ -10401,7 +10401,7 @@ MonoBehaviour:
   CameraCollisionFilter:
     serializedVersion: 2
     m_Bits: 1
-  IgnoreTag: Player
+  IgnoreTag: CameraIgnore
   CameraRadius: 0.2
 --- !u!1 &8389711910325248466
 GameObject:
@@ -19094,7 +19094,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7797357, y: 1}
+    m_SensorSize: {x: 1.7792208, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -36890,7 +36890,7 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 1.2
+  m_Height: 1
   m_Radius: 0.11
   m_SlopeLimit: 50
   m_StepOffset: 0.15
@@ -36935,6 +36935,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   velocity: {x: 0, y: 0, z: 0}
+  countedTime: 0
+  lastCountedPlayerPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &8389711911653019395
 MonoBehaviour:
   m_ObjectHideFlags: 0
