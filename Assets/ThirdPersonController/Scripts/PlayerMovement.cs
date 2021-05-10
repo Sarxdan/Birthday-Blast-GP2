@@ -135,7 +135,7 @@ public class PlayerMovement : MonoBehaviour
         }
         
         animator.SetFloat("Speed",Mathf.Abs(vertical) + Mathf.Abs(horizontal));
-        animator.SetBool("startedFalling", velocity.y < -2);
+        animator.SetBool("isFalling", velocity.y < -0.5);
         animator.SetFloat("Velocity", velocity.y);
     }
 
