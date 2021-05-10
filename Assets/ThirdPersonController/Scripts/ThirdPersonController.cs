@@ -10,7 +10,7 @@ public class ThirdPersonController : MonoBehaviour
     [HideInInspector] public Rigidbody[] ragdollBodies;
     private Collider[] ragdollColliders;
     
-    
+    public GameObject shadow;
     public Pewpew pewpew; //added
 
     #region MovementControls
@@ -159,6 +159,24 @@ public class ThirdPersonController : MonoBehaviour
 
         if (disableCameraController != true)
             DoCameraMovement();
+        
+        
+        
+        AlignShadowToGround();
+    }
+
+    private void AlignShadowToGround()
+    {
+        RaycastHit hitPoint;
+        var originPoint = playerMovement.groundCheckPosition;
+        if (Physics.Raycast(originPoint.position, -originPoint.up, out hitPoint))
+        {
+            shadow.transform.position = hitPoint.point + Vector3.up * 0.1f;
+        }
+        else
+        {
+            shadow.transform.position = originPoint.position;
+        }
     }
 
     private void DoPlayerMovement()
