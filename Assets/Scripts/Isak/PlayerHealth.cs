@@ -55,7 +55,7 @@ public class PlayerHealth : Health
     {
         yield return base.Death();
         AudioManager.instance.Play("PlayerDeath");
-        yield return new WaitForSeconds(1); //death animation?
+        yield return new WaitForEndOfFrame(); //death animation?
         PlayerManager.instance.ResetPlayerHealth();
         if(onPlayerDeath != null)
         {
