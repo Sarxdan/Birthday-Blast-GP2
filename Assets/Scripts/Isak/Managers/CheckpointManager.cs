@@ -49,12 +49,14 @@ public class CheckpointManager : Singleton<CheckpointManager>
     }
 
     private void OnEnable() {
+        PlayerMovement.playerStuck += MovePlayerToCheckpoint;
         Checkpoint.onCheckPointTriggered += UpdateLatestCheckpoint;
         PlayerHealth.onPlayerHealthChange += OnPlayerHealthChange;
         Gamemanager.onSceneLoaded += Setup;
     }
 
     private void OnDisable() {
+        PlayerMovement.playerStuck -= MovePlayerToCheckpoint;
         Checkpoint.onCheckPointTriggered -= UpdateLatestCheckpoint;
         PlayerHealth.onPlayerHealthChange -= OnPlayerHealthChange;
         Gamemanager.onSceneLoaded -= Setup;

@@ -54,13 +54,14 @@ public class Gamemanager : Singleton<Gamemanager>
 
     void OnPlayerDeath()
     {
-        StartCoroutine(PlayerDeath());       
+        LoadLevel(6);
+        //StartCoroutine(PlayerDeath());       
     }
 
     IEnumerator PlayerDeath()
     {
         yield return new WaitForEndOfFrame();
-        LoadLevel(SceneManager.GetActiveScene().buildIndex);
+        LoadLevel(6);
     }
 
     private void SceneLoaded(Scene scene, LoadSceneMode mode)
