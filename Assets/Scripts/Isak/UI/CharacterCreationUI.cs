@@ -42,6 +42,8 @@ public class CharacterCreationUI : MonoBehaviour
 
     public void SelectionDone()
     {
+        PlayerPrefs.DeleteAll();
         selector.SelectionDone();
+        
     }
 }
