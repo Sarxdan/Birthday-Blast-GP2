@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using MiscUtil.Collections.Extensions;
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Timeline;
@@ -37,6 +39,30 @@ public class UIManager : Singleton<UIManager>
         goPopup.SetActive(true);
         FindObjectOfType<ThirdPersonController>().ToggleControls(false);
         ToggleMouse(true);
+    }
+
+    public void EnablePopUp(GameObject popup, int value, Sprite img)
+    {
+        var goPopup = popup;
+        
+        foreach (var popupTab in popupTabs)
+        {
+            if (popup.name == popupTab.name)
+            {
+                goPopup = popupTab;
+            }
+        }
+        StopCoroutine("DisablePopUpAfterX");
+        goPopup.SetActive(true);
+        goPopup.transform.GetChild(1).GetComponentInChildren<TextMeshProUGUI>().text = "+" + value;
+        goPopup.transform.GetChild(0).GetComponentInChildren<Image>().sprite = img;
+        StartCoroutine(DisablePopUpAfterX(goPopup));
+    }
+
+    private IEnumerator DisablePopUpAfterX(GameObject popUp)
+    {
+        yield return new WaitForSeconds(2);
+        popUp.SetActive(false);
     }
 
     public void ClosePopUp(GameObject popup)
