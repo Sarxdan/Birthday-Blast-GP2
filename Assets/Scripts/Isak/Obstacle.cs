@@ -4,7 +4,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Obstacle : DamagePlayer
 {
-    [SerializeField][Tooltip("Can be destroyed by player dashing/charging forward")] bool canBeDestroyedByPlayer = true;
+    [SerializeField][Tooltip("Can be destroyed by player dashing/charging forward dureing jetpacksegment")] bool canBeDestroyedByPlayer = true;
     [SerializeField] Vector3 movementDirection = new Vector3(0, 0, 0);
     [SerializeField][Range(1, 10)] float returnTime = 1;
     protected Rigidbody body;
