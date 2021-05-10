@@ -27,6 +27,12 @@ public class UIManager : Singleton<UIManager>
 
     public void EnablePopUp(GameObject popup)
     {
+        if (popup == null)
+        {
+            Debug.LogWarning("PopUp window not set as a reference");
+            return;
+        }
+        
         var goPopup = popup;
         
         foreach (var popupTab in popupTabs)
@@ -43,6 +49,12 @@ public class UIManager : Singleton<UIManager>
 
     public void EnablePopUp(GameObject popup, int value, Sprite img)
     {
+        if (popup == null)
+        {
+            Debug.LogWarning("PopUp window not set as a reference");
+            return;
+        }
+
         var goPopup = popup;
         
         foreach (var popupTab in popupTabs)
