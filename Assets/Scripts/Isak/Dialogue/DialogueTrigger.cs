@@ -52,6 +52,8 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
 
     void EndOfDialogue()
     {
+        FindObjectOfType<ThirdPersonController>().ToggleControls(true);
+        
         ShopKeeper shopKeeper = GetComponent<ShopKeeper>();
         if(shopKeeper != null) shopKeeper.OpenShop();
     }
@@ -71,7 +73,7 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
         if(dialogueToUse.Reward == null) return;
         if(timesSpokenWith != dialogueToUse.Sentences().Length - 1) return;
         print("rewarded with " + dialogueToUse.Reward.name);
-        GameObject reward = Instantiate(dialogueToUse.Reward, new Vector3(transform.position.x + 1, transform.position.y, transform.position.z), Quaternion.identity);
+        GameObject reward = Instantiate(dialogueToUse.Reward, new Vector3(transform.position.x, transform.position.y, transform.position.z + 1), Quaternion.identity);
         rewarded = true;
     }
 
@@ -91,6 +93,7 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
     public void TriggerDialogue()
     {   
         if(dialogues.DefaultDialogues.Sentences().Length == 0 && dialogues.Alternativedialogues.Length == 0) return;
+        FindObjectOfType<ThirdPersonController>().ToggleControls(false);
         playerIsInteracting = true;
         dialogueToUse = ChooseDialogue();
         CheckIfNewDialogue();

@@ -296,8 +296,13 @@ public class JetPack : JetpackBase
 
     public void OnDashInput()
     {
+        if(overCharged) return;
+        if(dashOnCooldown) return;
+        if(!dashUnlocked) return;
+        
         var direction = horizontalSteerInput > 0 ? DashDirections.Right : DashDirections.Left;
 
+        dashOnCooldown = true;
         StartCoroutine(DashInDirection(direction));
     }
     
