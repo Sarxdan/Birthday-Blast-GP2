@@ -1,18 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!65 &6330767728566041388
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1387448400577699368}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &987544563505715116
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29,8 +16,11 @@ MonoBehaviour:
     jetpack: 0
     pewpew: 0
     shovel: 0
+  oneTimeInteraction: 0
   interactText: Speak
+  interactTextSE: '*interagera*'
   unableToInteracteText: Can't interact!
+  unableToInteracteTextSE: Kan inte interagera!
   interactRadius: 2
   minimumTimeBetweenInteractions: 2
   OnInteractEvent:
@@ -61,6 +51,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogues: {fileID: 11400000, guid: 5d911e13f2fd3ab428230f24ad0c230e, type: 2}
+--- !u!65 &-7394409691551372763
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1387448400577699368}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1387448400577796224
 PrefabInstance:
   m_ObjectHideFlags: 0

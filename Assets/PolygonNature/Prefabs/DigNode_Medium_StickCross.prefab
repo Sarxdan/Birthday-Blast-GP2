@@ -29,9 +29,11 @@ MonoBehaviour:
     jetpack: 0
     pewpew: 0
     shovel: 1
-  interactText: '"Dig"'
-  unableToInteracteText: '"Looks like something is buried here, i wish i had something
-    to dig with"'
+  oneTimeInteraction: 0
+  interactText: '"Dig?"'
+  interactTextSE: "*Gr\xE4v?*"
+  unableToInteracteText: '"Looks like something is buried here"'
+  unableToInteracteTextSE: Kan inte interagera!
   interactRadius: 1
   minimumTimeBetweenInteractions: 2
   OnInteractEvent:
