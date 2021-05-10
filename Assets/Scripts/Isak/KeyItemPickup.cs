@@ -12,6 +12,6 @@ public class KeyItemPickup : PickUp
         {
             onKeyItemPickup(itemUnlocked);
         }
-        Destroy(gameObject);
+        DestroyObject();
     }
 }
