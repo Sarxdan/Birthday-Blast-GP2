@@ -155,9 +155,15 @@ public class UIManager : Singleton<UIManager>
         inGameUI.gameObject.SetActive(false);
     }
 
+    void OnGameRestart()
+    {
+        inGameUI.gameObject.SetActive(true);
+    }
+
     private void OnEnable() {
         
         controls.Enable();
+        GameOver.onGameRestart += OnGameRestart;
         PauseMenu.onResumeClicked += TogglePauseMenu;
         PlayerHealth.onPlayerHealthChange += OnPlayerHealthChange;
         PlayerHealth.onPlayerDeath += OnPlayerDeath;
@@ -174,6 +180,7 @@ public class UIManager : Singleton<UIManager>
         
         controls.Disable();
         
+        GameOver.onGameRestart -= OnGameRestart;
         PauseMenu.onResumeClicked -= TogglePauseMenu;
         PlayerHealth.onPlayerHealthChange -= OnPlayerHealthChange;
         PlayerHealth.onPlayerDeath -= OnPlayerDeath;
