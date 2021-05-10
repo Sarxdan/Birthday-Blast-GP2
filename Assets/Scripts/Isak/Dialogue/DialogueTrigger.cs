@@ -52,6 +52,8 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
 
     void EndOfDialogue()
     {
+        FindObjectOfType<ThirdPersonController>().ToggleControls(true);
+        
         ShopKeeper shopKeeper = GetComponent<ShopKeeper>();
         if(shopKeeper != null) shopKeeper.OpenShop();
     }
@@ -91,6 +93,7 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
     public void TriggerDialogue()
     {   
         if(dialogues.DefaultDialogues.Sentences().Length == 0 && dialogues.Alternativedialogues.Length == 0) return;
+        FindObjectOfType<ThirdPersonController>().ToggleControls(false);
         playerIsInteracting = true;
         dialogueToUse = ChooseDialogue();
         CheckIfNewDialogue();
