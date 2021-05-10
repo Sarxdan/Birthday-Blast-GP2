@@ -6,6 +6,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public static Events.EmptyEvent playerStuck;
     //Components
     public Animator animator;
     private CharacterController controller;
@@ -32,6 +33,8 @@ public class PlayerMovement : MonoBehaviour
     //Forward direction relative to the camera.
     private Vector3 forwardLookDir;
     
+    public float countedTime = 0; //counter that checks if player gets stuck
+    public Vector3 lastCountedPlayerPosition;
     
     
     //Input values
@@ -44,9 +47,34 @@ public class PlayerMovement : MonoBehaviour
 
     private void Start()
     {
+        lastCountedPlayerPosition = transform.position;
         controller = GetComponent<CharacterController>();
         camController = GetComponent<CameraController>();
         
+    }
+
+    private void Update() {
+        if(!isGrounded)
+        {
+            countedTime += Time.deltaTime;
+            if(countedTime > 5)
+            {
+            
+            if(lastCountedPlayerPosition == transform.position)
+            {
+                if(playerStuck != null)
+                {
+                    playerStuck();
+                }
+            }
+            countedTime = 0;
+            lastCountedPlayerPosition = transform.position;
+            }
+        }
+        else
+        {
+            countedTime = 0;
+        }
     }
     
     public void FetchMovementInput(float _horizontal, float _vertical)
