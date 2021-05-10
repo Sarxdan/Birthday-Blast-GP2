@@ -150,11 +150,23 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
+    void OnPlayerDeath()
+    {
+        inGameUI.gameObject.SetActive(false);
+    }
+
+    void OnGameRestart()
+    {
+        inGameUI.gameObject.SetActive(true);
+    }
+
     private void OnEnable() {
         
         controls.Enable();
+        GameOver.onGameRestart += OnGameRestart;
         PauseMenu.onResumeClicked += TogglePauseMenu;
         PlayerHealth.onPlayerHealthChange += OnPlayerHealthChange;
+        PlayerHealth.onPlayerDeath += OnPlayerDeath;
         JetPack.onFuelUse += OnFuelUse;
         JetPack.onJetpackAwake += OnJetpackAwake;
         JetpackBase.onFuelUse += OnFuelUse;
@@ -168,8 +180,10 @@ public class UIManager : Singleton<UIManager>
         
         controls.Disable();
         
+        GameOver.onGameRestart -= OnGameRestart;
         PauseMenu.onResumeClicked -= TogglePauseMenu;
         PlayerHealth.onPlayerHealthChange -= OnPlayerHealthChange;
+        PlayerHealth.onPlayerDeath -= OnPlayerDeath;
         JetPack.onFuelUse -= OnFuelUse;
         JetPack.onJetpackAwake -= OnJetpackAwake;
         JetpackBase.onFuelUse -= OnFuelUse;
