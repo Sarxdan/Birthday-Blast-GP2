@@ -16,5 +16,6 @@ public class Dignode : Resource
             child.gameObject.SetActive(false);
         }
         emptyDignode.gameObject.SetActive(true);
+        GetComponent<Interactable>().enabled = false;
     }
 }
