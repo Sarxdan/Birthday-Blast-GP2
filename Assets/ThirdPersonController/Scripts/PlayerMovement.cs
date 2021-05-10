@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
     
     
     //Variables used in Physics.CheckSphere()
-    [SerializeField] private Transform groundCheckPosition;
+    public Transform groundCheckPosition;
     public float groundDistanceCheck;
     public LayerMask groundMask;
 
