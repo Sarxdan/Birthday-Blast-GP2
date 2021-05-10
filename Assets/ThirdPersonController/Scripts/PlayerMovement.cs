@@ -164,8 +164,9 @@ public class PlayerMovement : MonoBehaviour
     }
 
     private void OnControllerColliderHit(ControllerColliderHit hit) {
-        if(Vector3.Angle(Vector3.up, hit.normal) >= controller.slopeLimit)
-        {        
+        float slopeAngle = Vector3.Angle(Vector3.up, hit.normal);
+        if(slopeAngle >= controller.slopeLimit && slopeAngle < 80)
+        {      
             isSliding = true;
             hitNormal = hit.normal;
         }
