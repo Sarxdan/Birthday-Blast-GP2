@@ -85,7 +85,7 @@ public class UIManager : Singleton<UIManager>
         
         if(toggle)
         {
-            Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Paused);
+            Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Paused); //toggle player movement instead
         }
         else
         {
@@ -158,6 +158,8 @@ public class UIManager : Singleton<UIManager>
     void OnGameRestart()
     {
         inGameUI.gameObject.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
 
     private void OnEnable() {

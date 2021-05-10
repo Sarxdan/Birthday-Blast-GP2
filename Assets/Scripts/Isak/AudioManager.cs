@@ -116,7 +116,7 @@ public class AudioManager : Singleton<AudioManager>
     {
         foreach(Sound s in sounds)
         {
-            if(!s.dontStopOnLevelLoad) s.source.Stop();
+            if(!s.backgroundMusic) s.source.Stop(); //dont stop BGM
         }
     }
 
@@ -127,7 +127,7 @@ public class AudioManager : Singleton<AudioManager>
             case Gamemanager.GameState.Paused:
             foreach(Sound s in sounds)
         {
-            s.source.Pause();
+            if(!s.backgroundMusic) s.source.Pause(); //dont pause BGM
         }
             break;
 

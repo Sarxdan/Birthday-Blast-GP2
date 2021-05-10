@@ -33,12 +33,10 @@ public class JetpackBase : MonoBehaviour
     protected float cooldown = 0; //cooldown of dash ability, resets when dashing
     protected float dashTimeLeft = 0; //remaining dash length
     protected IEnumerator dashEnumerator;
-
-    [Header("Fuel settings")]
-    [SerializeField][Tooltip("time until fuel recharges")] protected float fuelRechargeTime = 1;
-    [SerializeField][Tooltip("fuel used when doing stuff that uses fuel")] protected int fuelUsage = 1; 
-    [SerializeField][Tooltip("How fast fuel recharges")] protected int fuelRechargePerTick = 1;
-    [SerializeField][Range(1, 10)] protected int maxFuel = 10;
+    protected float fuelRechargeTime = 1;
+    protected int fuelUsage = 1; 
+    protected int fuelRechargePerTick = 1;
+    protected int maxFuel = 10;
 
     [Header("Ability settings")]
     [SerializeField]protected float dashSpeed = 10;
@@ -56,7 +54,7 @@ public class JetpackBase : MonoBehaviour
 
     
     protected virtual void Awake() {
-        fuel = maxFuel;
+        
         body = GetComponentInParent<Rigidbody>();
         controller = GetComponentInParent<CharacterController>();
         material = GetComponentInChildren<Renderer>().material;
@@ -65,6 +63,11 @@ public class JetpackBase : MonoBehaviour
         Inventory.instance.onUpgradeApplied += ApplyUpgradeStats;
     }
     protected virtual void Start() {
+        maxFuel = PlayerManager.instance.maxFuel;
+        fuelRechargePerTick = PlayerManager.instance.fuelRechargePerTick;
+        fuelRechargeTime = PlayerManager.instance.fuelRechargeTime;
+        fuelUsage = PlayerManager.instance.fuelUsage;
+        fuel = maxFuel;
         if(onJetpackAwake != null)
         {
             onJetpackAwake(fuel);
