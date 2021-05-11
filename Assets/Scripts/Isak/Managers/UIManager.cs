@@ -5,6 +5,8 @@ using MiscUtil.Collections.Extensions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Localization.Components;
+using UnityEngine.Localization.Settings;
 using UnityEngine.Timeline;
 using UnityEngine.UI;
 
@@ -24,6 +26,8 @@ public class UIManager : Singleton<UIManager>
 
 
     private Controls controls;
+    
+    
 
     public void EnablePopUp(GameObject popup)
     {
@@ -92,8 +96,9 @@ public class UIManager : Singleton<UIManager>
         inGameUI = GetComponentInChildren<InGameUI>();
         pauseMenu = GetComponentInChildren<PauseMenu>();
         shopUI = GetComponentInChildren<ShopUI>();
-        
     }
+    
+
     private void Start() {
         ToggleInventoryUI();
         TogglePauseMenu();

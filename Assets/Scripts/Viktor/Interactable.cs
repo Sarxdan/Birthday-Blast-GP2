@@ -30,9 +30,16 @@ public class Interactable : MonoBehaviour
 
     public void Awake()
     {
-        // Send sentence according to current locale
-        switch(LocalizationSettings.AvailableLocales.Locales.IndexOf(LocalizationSettings.Instance
-            .GetSelectedLocale()))
+        //Listen for language change event
+        Events.onLanguageChanged += AdaptInteractTextToLanguage;
+        
+        //Start off by changing language to the selected one
+        AdaptInteractTextToLanguage(LocalizationSettings.AvailableLocales.Locales.IndexOf(LocalizationSettings.Instance.GetSelectedLocale()));
+    }
+
+    private void AdaptInteractTextToLanguage(int i)
+    {
+        switch (i)
         {
             case 0:
                 interactText = interactTextEN;
