@@ -28,9 +28,9 @@ public class CharacterSelector : MonoBehaviour
         Left
     }
     [SerializeField] GameObject characterPrefab;
-    [SerializeField] CharacterParts[] femaleCharacters;
-    [SerializeField] CharacterParts[] maleCharacters;
-    [SerializeField] CharacterParts[] otherCharacters;
+    [SerializeField] GameObject[] femaleCharacters;
+    [SerializeField] GameObject[] maleCharacters;
+    [SerializeField] GameObject[] otherCharacters;
     CharacterGenders gender;
     GameObject[] characters;
     public int charactersIndex;
@@ -75,16 +75,10 @@ public class CharacterSelector : MonoBehaviour
 
             foreach(Transform child in chosenCharacter.transform)
             {
-                if(child.name == "MeshBase")
+                if(child.name == "Root") continue;
+                if(child.gameObject.activeSelf)
                 {
-                    foreach(Transform grandChild in child)
-                    {
-                        if(grandChild.name == "Root") continue;
-                        if(grandChild.gameObject.activeSelf)
-                        {
-                            PlayerManager.instance.chosenCharacterMeshesNames.Add(grandChild.GetComponent<SkinnedMeshRenderer>().name);
-                        }
-                    }
+                    PlayerManager.instance.chosenCharacterMeshesNames.Add(child.GetComponent<SkinnedMeshRenderer>().name);
                 }
             }
 
@@ -115,29 +109,9 @@ public class CharacterSelector : MonoBehaviour
             characters = new GameObject[maleCharacters.Length];
             for(int i = 0; i < maleCharacters.Length; i++)
             {
-                GameObject character = Instantiate(characterPrefab, instantiatedPosition, Quaternion.identity);
+                GameObject character = Instantiate(maleCharacters[i], instantiatedPosition, Quaternion.identity);
                 character.name = maleCharacters[i].name;
                 characters[i] = character;
-                Transform[] meshes = character.GetComponentsInChildren<Transform>();
-                foreach(Transform mesh in meshes)
-                {
-                    if(mesh.name == "MeshBase")
-                    {
-                        meshBase = mesh;
-                    }
-                }
-                if(meshBase == null) return;
-                foreach(Transform child in meshBase)
-                {
-                    if(child.name != "Root")
-                    {
-                        child.gameObject.SetActive(false);
-                    }
-                    if(child.name == maleCharacters[i].eyebrows.name || child.name == maleCharacters[i].eyes.name || child.name == maleCharacters[i].body.name)
-                    {
-                        child.gameObject.SetActive(true);
-                    }
-                }
                 instantiatedPosition.x += 2;
                 
             }
@@ -146,29 +120,9 @@ public class CharacterSelector : MonoBehaviour
             characters = new GameObject[femaleCharacters.Length];
             for(int i = 0; i < femaleCharacters.Length; i++)
             {
-                GameObject character = Instantiate(characterPrefab, instantiatedPosition, Quaternion.identity);
+                GameObject character = Instantiate(femaleCharacters[i], instantiatedPosition, Quaternion.identity);
                 character.name = femaleCharacters[i].name;
                 characters[i] = character;
-                Transform[] meshes = character.GetComponentsInChildren<Transform>();
-                foreach(Transform mesh in meshes)
-                {
-                    if(mesh.name == "MeshBase")
-                    {
-                        meshBase = mesh;
-                    }
-                }
-                if(meshBase == null) return;
-                foreach(Transform child in meshBase)
-                {
-                    if(child.name != "Root")
-                    {
-                        child.gameObject.SetActive(false);
-                    }
-                    if(child.name == femaleCharacters[i].eyebrows.name || child.name == femaleCharacters[i].eyes.name || child.name == femaleCharacters[i].body.name)
-                    {
-                        child.gameObject.SetActive(true);
-                    }
-                }
                 instantiatedPosition.x += 2;
                 
             }
@@ -177,29 +131,9 @@ public class CharacterSelector : MonoBehaviour
             characters = new GameObject[otherCharacters.Length];
             for(int i = 0; i < otherCharacters.Length; i++)
             {
-                GameObject character = Instantiate(characterPrefab, instantiatedPosition, Quaternion.identity);
+                GameObject character = Instantiate(otherCharacters[i], instantiatedPosition, Quaternion.identity);
                 character.name = otherCharacters[i].name;
                 characters[i] = character;
-                Transform[] meshes = character.GetComponentsInChildren<Transform>();
-                foreach(Transform mesh in meshes)
-                {
-                    if(mesh.name == "MeshBase")
-                    {
-                        meshBase = mesh;
-                    }
-                }
-                if(meshBase == null) return;
-                foreach(Transform child in meshBase)
-                {
-                    if(child.name != "Root")
-                    {
-                        child.gameObject.SetActive(false);
-                    }
-                    if(child.name == otherCharacters[i].eyebrows.name || child.name == otherCharacters[i].eyes.name || child.name == otherCharacters[i].body.name)
-                    {
-                        child.gameObject.SetActive(true);
-                    }
-                }
                 instantiatedPosition.x += 2;
                 
             }

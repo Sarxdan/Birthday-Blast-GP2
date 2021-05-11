@@ -6,7 +6,7 @@ public class PlayerManager : Singleton<PlayerManager>
 {   
     [HideInInspector]
     public int playerHealth;
-    [HideInInspector]
+    
     public List<string> chosenCharacterMeshesNames;
 
     [Header("Player health settings")]

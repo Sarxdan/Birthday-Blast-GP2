@@ -200,10 +200,7 @@ public class JetPack : JetpackBase
         //{       
             if(directions != DashDirections.Forward)
             {
-                foreach(ParticleSystem system in dashEffect)
-                {
-                    system.Play();
-                }
+                if(dashEffect != null) dashEffect[0].Play();
             } 
                
             while(dashTimeLeft > 0)
@@ -215,14 +212,14 @@ public class JetPack : JetpackBase
                 movement = Vector3.left * dashSpeed;
                 movement.z = body.velocity.z;
                 body.velocity = movement;
-                //dashEffect.transform.localRotation = Quaternion.Euler(90, -90, 180);                
+                dashEffect[0].transform.localRotation = Quaternion.Euler(90, -90, 180);                
                 break;
 
                 case DashDirections.Right:
                 movement = Vector3.right * dashSpeed;
                 movement.z = body.velocity.z;
                 body.velocity = movement;
-                //dashEffect.transform.localRotation = Quaternion.Euler(90, 90, 180);
+                dashEffect[0].transform.localRotation = Quaternion.Euler(90, 90, 180);
                 break;
 
                 case DashDirections.Forward:
