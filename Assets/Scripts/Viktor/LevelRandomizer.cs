@@ -70,8 +70,19 @@ public class LevelRandomizer : MonoBehaviour
         deltaZ = playerTransform.position.z;
 
         #endregion
+
+        float prefWidth = 20f;
+        var leftWall = GameObject.Find("Left Wall");
+        var rightWall = GameObject.Find("Right Wall");
+
+        if (Vector3.Distance(leftWall.transform.position, rightWall.transform.position) > prefWidth)
+        {
+            //var leftPos
+            //var rightPos;
+        }
     }
 
+    
 
     private void GenerateLevel(int easyCount, int mediumCount, int hardCount)
     {
