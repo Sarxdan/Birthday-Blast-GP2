@@ -165,11 +165,10 @@ public class BossBehaviour : MonoBehaviour
 
         projectileScript.SetupProjectile(projectileSpeed, CurrentPhase().projectileDamage, playerTarget);
     }
-
-
+    
     private void MoveHorizontal(float amount, float speed)
     {
-        bossPosition.x += Mathf.Sin(Time.time * speed) * amount;
+        bossPosition.x += (Mathf.Sin(Time.time) * Time.deltaTime * speed) * amount;
     }
 
     #endregion

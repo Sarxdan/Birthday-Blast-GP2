@@ -22,6 +22,12 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
 
     private void Update() {
         if(!playerIsInteracting) return;
+
+        if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
+        {
+            TriggerDialogue();
+        }
+        
         player = FindObjectOfType<PlayerHealth>().transform;
         if(Vector3.Distance(player.position, transform.position) > interactable.interactRadius)
         {

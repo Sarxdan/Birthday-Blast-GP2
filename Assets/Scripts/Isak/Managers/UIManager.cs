@@ -73,7 +73,7 @@ public class UIManager : Singleton<UIManager>
 
     private IEnumerator DisablePopUpAfterX(GameObject popUp)
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(3);
         popUp.SetActive(false);
     }
 
