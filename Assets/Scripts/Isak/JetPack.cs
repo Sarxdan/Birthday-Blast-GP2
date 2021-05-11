@@ -198,7 +198,13 @@ public class JetPack : JetpackBase
         //---------------------------------start the dash ability
        // while(dashlengthLeft > 0)
         //{       
-            if(directions != DashDirections.Forward) dashEffect.Play(); 
+            if(directions != DashDirections.Forward)
+            {
+                foreach(ParticleSystem system in dashEffect)
+                {
+                    system.Play();
+                }
+            } 
                
             while(dashTimeLeft > 0)
         {           
@@ -209,14 +215,14 @@ public class JetPack : JetpackBase
                 movement = Vector3.left * dashSpeed;
                 movement.z = body.velocity.z;
                 body.velocity = movement;
-                dashEffect.transform.localRotation = Quaternion.Euler(90, -90, 180);                
+                //dashEffect.transform.localRotation = Quaternion.Euler(90, -90, 180);                
                 break;
 
                 case DashDirections.Right:
                 movement = Vector3.right * dashSpeed;
                 movement.z = body.velocity.z;
                 body.velocity = movement;
-                dashEffect.transform.localRotation = Quaternion.Euler(90, 90, 180);
+                //dashEffect.transform.localRotation = Quaternion.Euler(90, 90, 180);
                 break;
 
                 case DashDirections.Forward:
@@ -245,7 +251,10 @@ public class JetPack : JetpackBase
             }
             
         }
-        dashEffect.Stop();
+        foreach(ParticleSystem system in dashEffect)
+                {
+                    system.Stop();
+                }
         //-------------------------------------------count the remaining cooldown after dashing
         while(cooldown > 0)
         {
