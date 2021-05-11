@@ -39,6 +39,10 @@ public class LevelRandomizer : MonoBehaviour
     private float deltaZ;
     private float distFromStartToEnd;
 
+    private LevelSegment currentSegment;
+    private Transform leftWall;
+    private Transform rightWall;
+
 
     private void Awake()
     {
@@ -50,6 +54,8 @@ public class LevelRandomizer : MonoBehaviour
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
         FindObjectOfType<LevelTransition>().nextLevel = nextLevelToLoad;
+        leftWall = GameObject.Find("Left Wall").transform;
+        rightWall = GameObject.Find("Right Wall").transform;
     }
 
     private void Update()
@@ -71,19 +77,24 @@ public class LevelRandomizer : MonoBehaviour
 
         #endregion
 
-        float prefWidth = 20f;
-        var leftWall = GameObject.Find("Left Wall");
-        var rightWall = GameObject.Find("Right Wall");
-
-        if (Vector3.Distance(leftWall.transform.position, rightWall.transform.position) > prefWidth)
+        if (currentSegment != null)
         {
-            //var leftPos
-            //var rightPos;
+            var centerPos = leftWall.position +
+                            leftWall.right * (Vector3.Distance(leftWall.position, rightWall.position) * 0.5f);
+
+            var desLeftPos = centerPos + Vector3.left * (currentSegment.segmentWidth * 0.5f);
+            var desRightPos = centerPos + Vector3.right * (currentSegment.segmentWidth * 0.5f);
+
+            leftWall.position = Vector3.Lerp(leftWall.position, desLeftPos, Time.deltaTime * 1);
+            rightWall.position = Vector3.Lerp(rightWall.position, desRightPos, Time.deltaTime * 1);
         }
     }
 
+    public void SetCurrentSegment(LevelSegment seg)
+    {
+        currentSegment = seg;
+    }
     
-
     private void GenerateLevel(int easyCount, int mediumCount, int hardCount)
     {
         //Reset index, first SpawnSegment call will be index 0

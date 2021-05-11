@@ -168,7 +168,7 @@ public class BossBehaviour : MonoBehaviour
     
     private void MoveHorizontal(float amount, float speed)
     {
-        bossPosition.x += Mathf.Sin((Time.time * Time.timeScale) * speed) * amount;
+        bossPosition.x += (Mathf.Sin(Time.time) * Time.deltaTime * speed) * amount;
     }
 
     #endregion
