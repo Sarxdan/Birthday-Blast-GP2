@@ -47,6 +47,11 @@ public class PlayerInputManager : MonoBehaviour
     
     private void EnableMobileComponents(bool enable)
     {
+        if (MobileUIComponents == null)
+        {
+            MobileUIComponents = GameObject.FindGameObjectsWithTag("MobileUI");
+        }
+        
         foreach (var mobileUIComponent in MobileUIComponents)
         {
             if (mobileUIComponent)
