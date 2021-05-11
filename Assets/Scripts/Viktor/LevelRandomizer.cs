@@ -26,8 +26,6 @@ public class LevelRandomizer : MonoBehaviour
     [Range(0, 100)]
     public float levelWidth = 30;
 
-    public GameObject wallFire;
-    
     private int currentSegmentIndex = -1;
     private LevelSegment latestSegmentSpawned;
 
@@ -173,36 +171,30 @@ public class LevelRandomizer : MonoBehaviour
 
         var leftCollider = new GameObject("Left Wall");
         leftCollider.AddComponent<BoxCollider>();
-        SetUpCollider(leftCollider.GetComponent<BoxCollider>(), distFromStartToEnd,15f, leftWallPoint);
+        SetUpCollider(leftCollider.GetComponent<BoxCollider>(), distFromStartToEnd,30f, leftWallPoint);
 
         var rightCollider = new GameObject("Right Wall");
         rightCollider.AddComponent<BoxCollider>();
-        SetUpCollider(rightCollider.GetComponent<BoxCollider>(), distFromStartToEnd,15f, rightWallPoint);
+        SetUpCollider(rightCollider.GetComponent<BoxCollider>(), distFromStartToEnd,30f, rightWallPoint);
         
         SetupSegmentTriggers();
     }
 
     private void SetUpCollider(BoxCollider col,float length,float height, Vector3 colPos)
     {
-        var colSize = new Vector3(0.5f, height, length);
+        var colSize = new Vector3(1, height, length);
         col.size = colSize;
 
         //Add forward * length/2 because of how colliders size scales around center and not around the pivot we want
         col.transform.position = colPos + Vector3.forward * (length * 0.5f) + Vector3.up * (height * 0.5f);
-
         
-        
-        if (wallFire == null) return;
-        
-        var wallOfFire = Instantiate(wallFire, col.transform.position, Quaternion.identity);
-        wallOfFire.transform.localScale = col.transform.localScale;
     }
 
     private void SetupSegmentTriggers()
     {
         var triggers = FindObjectsOfType<LevelSegment>();
 
-        var hitBoxSize = new Vector3(levelWidth, 10f, 1f);
+        var hitBoxSize = new Vector3(levelWidth, 30f, 1f);
         foreach (var levelSegment in triggers)
         {
             var segTrigger = levelSegment.GetComponentInParent<BoxCollider>();
