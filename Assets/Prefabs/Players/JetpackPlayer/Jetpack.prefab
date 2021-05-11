@@ -9706,7 +9706,8 @@ MonoBehaviour:
   fireStreams:
   - {fileID: 4976901465756385814}
   - {fileID: 3039424547596707592}
-  dashEffect: {fileID: 1340980918488925510}
+  dashEffect:
+  - {fileID: 1340980918488925510}
   forwDashInputAmount: 0
   autoMoveSpeed: 0
   moveSpeed: 15
@@ -9776,9 +9777,9 @@ MonoBehaviour:
   onShootEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1880519896101445968}
-        m_TargetAssemblyTypeName: JetPack, Assembly-CSharp
-        m_MethodName: OnDashInput
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: Pewpew, Assembly-CSharp
+        m_MethodName: OnShootInput
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9865,7 +9866,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1259762591101698, guid: d9c1fac1f620ebd4f9e47ef7b9ca6bca, type: 3}
       propertyPath: m_Name
-      value: Dasheffect
+      value: FX_FlameThrower_01
       objectReference: {fileID: 0}
     - target: {fileID: 1259762591101698, guid: d9c1fac1f620ebd4f9e47ef7b9ca6bca, type: 3}
       propertyPath: m_IsActive
@@ -9918,26 +9919,6 @@ PrefabInstance:
     - target: {fileID: 198015459346078236, guid: d9c1fac1f620ebd4f9e47ef7b9ca6bca, type: 3}
       propertyPath: playOnAwake
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198015459346078236, guid: d9c1fac1f620ebd4f9e47ef7b9ca6bca, type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 198015459346078236, guid: d9c1fac1f620ebd4f9e47ef7b9ca6bca, type: 3}
-      propertyPath: InitialModule.startSize.minScalar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 198015459346078236, guid: d9c1fac1f620ebd4f9e47ef7b9ca6bca, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198015459346078236, guid: d9c1fac1f620ebd4f9e47ef7b9ca6bca, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 198015459346078236, guid: d9c1fac1f620ebd4f9e47ef7b9ca6bca, type: 3}
-      propertyPath: InitialModule.startColor.maxColor.r
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 198595019846435092, guid: d9c1fac1f620ebd4f9e47ef7b9ca6bca, type: 3}
       propertyPath: playOnAwake
