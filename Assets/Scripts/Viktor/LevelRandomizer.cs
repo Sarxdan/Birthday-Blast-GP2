@@ -21,9 +21,11 @@ public class LevelRandomizer : MonoBehaviour
     public int easySegmentsCount;
     public int mediumSegmentsCount;
     public int hardSegmentsCount;
-    
-    [Space]
-    
+
+    [Space] [Header("How wide the level is, at both ends there will be colliders")] 
+    [Range(0, 100)]
+    public float levelWidth = 30;
+
     private int currentSegmentIndex = -1;
     private LevelSegment latestSegmentSpawned;
 
@@ -127,6 +129,8 @@ public class LevelRandomizer : MonoBehaviour
         
         
         distFromStartToEnd = Vector3.Distance(spawnedStartSegment.StartPoint.position, spawnedEndSegment.EndPoint.position);
+        
+        GenerateColliders();
     }
 
     private void SpawnSegment(LevelSegment segment)
@@ -156,6 +160,60 @@ public class LevelRandomizer : MonoBehaviour
             spawnedEndSegment = latestSegmentSpawned;
         }
         
+    }
+
+
+    private void GenerateColliders()
+    {
+        var centerPoint = transform.position;
+        var leftWallPoint = centerPoint + Vector3.left * (levelWidth * 0.5f);
+        var rightWallPoint = centerPoint + Vector3.right * (levelWidth * 0.5f);
+
+        var leftCollider = new GameObject("Left Wall");
+        leftCollider.AddComponent<BoxCollider>();
+        SetUpCollider(leftCollider.GetComponent<BoxCollider>(), distFromStartToEnd,30f, leftWallPoint);
+
+        var rightCollider = new GameObject("Right Wall");
+        rightCollider.AddComponent<BoxCollider>();
+        SetUpCollider(rightCollider.GetComponent<BoxCollider>(), distFromStartToEnd,30f, rightWallPoint);
+        
+        SetupSegmentTriggers();
+    }
+
+    private void SetUpCollider(BoxCollider col,float length,float height, Vector3 colPos)
+    {
+        var colSize = new Vector3(1, height, length);
+        col.size = colSize;
+
+        //Add forward * length/2 because of how colliders size scales around center and not around the pivot we want
+        col.transform.position = colPos + Vector3.forward * (length * 0.5f) + Vector3.up * (height * 0.5f);
+        
+    }
+
+    private void SetupSegmentTriggers()
+    {
+        var triggers = FindObjectsOfType<LevelSegment>();
+
+        var hitBoxSize = new Vector3(levelWidth, 30f, 1f);
+        foreach (var levelSegment in triggers)
+        {
+            var segTrigger = levelSegment.GetComponentInParent<BoxCollider>();
+            segTrigger.size = hitBoxSize;
+        }
+        
+        foreach (var levelTransition in FindObjectsOfType<LevelTransition>())
+        {
+            levelTransition.GetComponentInParent<BoxCollider>().size = hitBoxSize;
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        var centerPoint = transform.position;
+        var leftWallPoint = centerPoint + Vector3.left * (levelWidth * 0.5f);
+        var rightWallPoint = centerPoint + Vector3.right * (levelWidth * 0.5f);
+        Gizmos.DrawLine(leftWallPoint, leftWallPoint + Vector3.forward * 50);
+        Gizmos.DrawLine(rightWallPoint, rightWallPoint + Vector3.forward * 50);
     }
 
 

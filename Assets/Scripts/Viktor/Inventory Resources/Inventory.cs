@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour
 {
@@ -13,8 +14,11 @@ public class Inventory : MonoBehaviour
     public int magicRootCount;
 
     public int gems;
+    
 
     public int skillTreePoints = 999;
+
+    public GameObject pickUpPopUp;
 
     [Header("Upgradeable stats")] 
     [Header("Base Stats")]
@@ -74,6 +78,8 @@ public class Inventory : MonoBehaviour
                 magicRootCount += resource.value;
                 break;
         }
+        
+        UIManager.instance.EnablePopUp(pickUpPopUp,resource.value, resource.popupWindow.transform.GetChild(0).GetComponent<Image>().sprite);
     }
 
 
