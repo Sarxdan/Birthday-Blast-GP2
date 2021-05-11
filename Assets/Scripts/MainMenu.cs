@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,11 @@ public class MainMenu : MonoBehaviour
     public string CreditsScene = "Credits";
     public string charSelectScene = "S_CharacterSelection";
 
+    private void Awake()
+    {
+        Events.ChangeLanguage(0);
+    }
+
     public void PlayGame () 
     {
         PlayerPrefs.DeleteAll();
@@ -20,7 +26,7 @@ public class MainMenu : MonoBehaviour
 
     public void SetLocale(int i)
     {
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[i];
+        Events.ChangeLanguage(i);
     }
 
     //osäker på vad som är mest optimalt ang buildindex och hur den borde användas :)  /Mikael
