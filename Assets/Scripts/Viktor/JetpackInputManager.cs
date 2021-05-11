@@ -48,6 +48,8 @@ public class JetpackInputManager : MonoBehaviour
             MobileUIComponents = GameObject.FindGameObjectsWithTag("MobileUI");
         }
         
+        Debug.Log(MobileUIComponents.Length);
+        
         foreach (var mobileUIComponent in MobileUIComponents)
         {
             if (mobileUIComponent)
