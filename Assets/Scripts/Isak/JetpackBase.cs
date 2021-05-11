@@ -50,7 +50,7 @@ public class JetpackBase : MonoBehaviour
     [Header("Particle effects")]
     [SerializeField]protected ParticleSystem[] smokeFX;
     [SerializeField]protected ParticleSystem[] fireStreams;
-    [SerializeField]protected ParticleSystem dashEffect;
+    [SerializeField]protected ParticleSystem[] dashEffect;
 
     
     protected virtual void Awake() {

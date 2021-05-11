@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1946282171382875003}
   - component: {fileID: 605363528796514236}
   - component: {fileID: 3031619929535184949}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -28,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 4527295038716700531}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7000001}
   m_Children:
   - {fileID: 7199196202504492570}
   - {fileID: 8655979528612040221}
@@ -48,7 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   items:
-  - {fileID: 0}
+  - {fileID: 3108772118199638361, guid: 273b21afb287d784cb31c57ef2ba8849, type: 3}
+  - {fileID: -3259753472229778226, guid: c5424d131cd48804aaf9b327e0d36c4c, type: 3}
   opened: 0
 --- !u!65 &605363528796514236
 BoxCollider:
@@ -61,8 +62,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 0.50959903, z: 0.83481246}
+  m_Center: {x: 0, y: 0.24520053, z: -0.00000002128737}
 --- !u!114 &3031619929535184949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,7 +80,7 @@ MonoBehaviour:
     jetpack: 0
     pewpew: 0
     shovel: 0
-  oneTimeInteraction: 0
+  oneTimeInteraction: 1
   interactText: Open Chest
   interactTextSE: '*interagera*'
   unableToInteracteText: Can't interact!
@@ -89,13 +90,13 @@ MonoBehaviour:
   OnInteractEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 11500000, guid: 8d7a6d8d1b69b4147831f7672872f585, type: 3}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1946282171382875003}
+        m_TargetAssemblyTypeName: TreasureChest, Assembly-CSharp
+        m_MethodName: OpenChest
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -130,6 +131,14 @@ PrefabInstance:
     - target: {fileID: 1087713860155376, guid: 9449f30b8830bf34395a4e029ca9e65d, type: 3}
       propertyPath: m_Name
       value: SM_Prop_Chest_Wood_01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1087713860155376, guid: 9449f30b8830bf34395a4e029ca9e65d, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1296329986752708, guid: 9449f30b8830bf34395a4e029ca9e65d, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4873930994829618, guid: 9449f30b8830bf34395a4e029ca9e65d, type: 3}
       propertyPath: m_RootOrder
@@ -175,7 +184,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -5584570336342333085, guid: 9449f30b8830bf34395a4e029ca9e65d, type: 3}
+    - {fileID: 7642378720074370291, guid: 9449f30b8830bf34395a4e029ca9e65d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 9449f30b8830bf34395a4e029ca9e65d, type: 3}
 --- !u!4 &7199196202504492570 stripped
 Transform:
