@@ -131,12 +131,18 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
     {
         if(toggle)
         {
-        dashEffect.Play();
+            foreach(ParticleSystem system in dashEffect)
+            {
+                system.Play();
+            }
         }
         else
         {
-        dashEffect.Stop();
-        }               
+            foreach(ParticleSystem system in dashEffect)
+            {
+                system.Stop();
+            }
+        }           
     }
 
     void StopDashingOnJump() //function that runs with dash enumerator, checking if player wants to stop dash early
