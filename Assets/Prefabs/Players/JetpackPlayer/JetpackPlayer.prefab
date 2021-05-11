@@ -2119,6 +2119,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 38703f1d6dfbd89419f20284d49e30dd, type: 3}
+--- !u!114 &8241429297811865671 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4692660497903707116, guid: 38703f1d6dfbd89419f20284d49e30dd, type: 3}
+  m_PrefabInstance: {fileID: 3693195322782917547}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0addc19d8ae94dc4d8f7c560972ef36f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4338868789765327278
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2279,6 +2290,10 @@ PrefabInstance:
       propertyPath: MobileUIComponents.Array.data[0]
       value: 
       objectReference: {fileID: 3878241437249178344}
+    - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
+      propertyPath: onShootEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 8241429297811865671}
     - target: {fileID: 8813712086394248350, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
       propertyPath: m_Name
       value: Jetpack

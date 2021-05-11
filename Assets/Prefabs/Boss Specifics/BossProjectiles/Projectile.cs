@@ -64,6 +64,7 @@ public class Projectile : MonoBehaviour
         // Predict the position for the player and calculate direction
         //moveDirection = (PredictPosition(GameObject.FindWithTag("Player").transform.GetComponent<Rigidbody>()) - transform.position).normalized;
 
-        moveDirection = (target.position - transform.position).normalized;
+        moveDirection = (target.position + (target.forward * target.GetComponentInChildren<JetPack>().AutoMoveSpeed) -
+                         transform.position).normalized;
     }
 }
