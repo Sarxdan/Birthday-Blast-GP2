@@ -10088,7 +10088,7 @@ Transform:
   m_GameObject: {fileID: 7922208273844557945}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.488, z: -0.138}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 0.19499996, y: 0.19499996, z: 0.19499996}
   m_Children:
   - {fileID: 4477494943811814354}
   m_Father: {fileID: 0}
@@ -10106,20 +10106,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e45ca6a443e5a4dbfdf22f3946127c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fuelRechargeTime: 2
-  fuelUsage: 3
-  fuelRechargePerTick: 3.08
-  maxFuel: 10
   dashSpeed: 10
   dashTime: 0.2
   dashCooldown: 1
   doubleTapTimer: 1
-  dashUnlocked: 0
+  dashUnlocked: 1
   smokeFX:
   - {fileID: 6132619170731050252}
   - {fileID: 639661668797205221}
   fireStreams: []
   dashEffect: {fileID: 0}
+  forwDashInputAmount: 0
   currentJumpCount: 0
   jumpHeight: 3.08
   maxJumpsInAir: 0
