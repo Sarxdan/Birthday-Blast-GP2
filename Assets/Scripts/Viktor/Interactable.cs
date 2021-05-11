@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using System;
 using UnityEngine.Serialization;
+using UnityEngine.Localization.Settings;
 
 
 public class Interactable : MonoBehaviour
@@ -12,9 +13,11 @@ public class Interactable : MonoBehaviour
     [SerializeField] KeyItems.Items requiredItems;
     public bool oneTimeInteraction = false;
     private bool interactedWith;
-    public string interactText = "*interact*";
+    public string interactText;
+    public string interactTextEN = "*interact*";
     public string interactTextSE = "*interagera*";
-    public string unableToInteracteText = "Can't interact!";
+    public string unableToInteracteText;
+    public string unableToInteracteTextEN = "Can't interact!";
     public string unableToInteracteTextSE = "Kan inte interagera!";
     
     public float interactRadius = 5f;
@@ -24,6 +27,30 @@ public class Interactable : MonoBehaviour
 
     [Header("Call function when player interacts with object")]
     public InteractEvent OnInteractEvent;
+
+    public void Awake()
+    {
+        //Listen for language change event
+        Events.onLanguageChanged += AdaptInteractTextToLanguage;
+        
+        //Start off by changing language to the selected one
+        AdaptInteractTextToLanguage(LocalizationSettings.AvailableLocales.Locales.IndexOf(LocalizationSettings.Instance.GetSelectedLocale()));
+    }
+
+    private void AdaptInteractTextToLanguage(int i)
+    {
+        switch (i)
+        {
+            case 0:
+                interactText = interactTextEN;
+                unableToInteracteText = unableToInteracteTextEN;
+                break;
+            case 1:
+                interactText = interactTextSE;
+                unableToInteracteText = unableToInteracteTextSE;
+                break;
+        }
+    }
 
     public void TryToInteract(PlayerInteraction player)
     {

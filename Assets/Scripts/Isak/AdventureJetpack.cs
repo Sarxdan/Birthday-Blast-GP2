@@ -109,41 +109,9 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
 
     
 
-    void ToggleBoosterAnimation(bool toggle)
-    {
-        if(toggle)
-        {
-            foreach(ParticleSystem fireStream in fireStreams)
-            {
-                fireStream.Play();
-            }
-        }
-        else
-        {
-            foreach(ParticleSystem fireStream in fireStreams)
-            {
-                fireStream.Stop();
-            }
-        }               
-    }
+    
 
-    void ToggleDashAnimation(bool toggle)
-    {
-        if(toggle)
-        {
-            foreach(ParticleSystem system in dashEffect)
-            {
-                system.Play();
-            }
-        }
-        else
-        {
-            foreach(ParticleSystem system in dashEffect)
-            {
-                system.Stop();
-            }
-        }           
-    }
+    
 
     void StopDashingOnJump() //function that runs with dash enumerator, checking if player wants to stop dash early
     {

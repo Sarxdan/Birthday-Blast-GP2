@@ -28758,8 +28758,10 @@ MonoBehaviour:
     shovel: 0
   oneTimeInteraction: 0
   interactText: '*interact*'
+  interactTextEN: '*interact*'
   interactTextSE: '*interagera*'
   unableToInteracteText: Can't interact!
+  unableToInteracteTextEN: Can't interact!
   unableToInteracteTextSE: Kan inte interagera!
   interactRadius: 2
   minimumTimeBetweenInteractions: 2
@@ -44388,9 +44390,33 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6648300517870042993}
     m_Modifications:
+    - target: {fileID: 1587210532750016609, guid: 0cc52ce73dfaaff4cb02783fd4db098e, type: 3}
+      propertyPath: m_Size.x
+      value: 1.7977811
+      objectReference: {fileID: 0}
+    - target: {fileID: 1587210532750016609, guid: 0cc52ce73dfaaff4cb02783fd4db098e, type: 3}
+      propertyPath: m_Size.z
+      value: 1.7641426
+      objectReference: {fileID: 0}
+    - target: {fileID: 1587210532750016609, guid: 0cc52ce73dfaaff4cb02783fd4db098e, type: 3}
+      propertyPath: m_Center.x
+      value: -0.00960483
+      objectReference: {fileID: 0}
+    - target: {fileID: 1587210532750016609, guid: 0cc52ce73dfaaff4cb02783fd4db098e, type: 3}
+      propertyPath: m_Center.z
+      value: -0.050853815
+      objectReference: {fileID: 0}
     - target: {fileID: 4951138729008506444, guid: 0cc52ce73dfaaff4cb02783fd4db098e, type: 3}
       propertyPath: m_Name
       value: BeeSwarm
+      objectReference: {fileID: 0}
+    - target: {fileID: 6660058791613371477, guid: 0cc52ce73dfaaff4cb02783fd4db098e, type: 3}
+      propertyPath: chaseSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6660058791613371477, guid: 0cc52ce73dfaaff4cb02783fd4db098e, type: 3}
+      propertyPath: checkRange
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8679794000298166691, guid: 0cc52ce73dfaaff4cb02783fd4db098e, type: 3}
       propertyPath: m_RootOrder
@@ -44410,15 +44436,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8679794000298166691, guid: 0cc52ce73dfaaff4cb02783fd4db098e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 51.598362
+      value: 52.31
       objectReference: {fileID: 0}
     - target: {fileID: 8679794000298166691, guid: 0cc52ce73dfaaff4cb02783fd4db098e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 41.016
+      value: 38.96
       objectReference: {fileID: 0}
     - target: {fileID: 8679794000298166691, guid: 0cc52ce73dfaaff4cb02783fd4db098e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.25812912
+      value: -1.73
       objectReference: {fileID: 0}
     - target: {fileID: 8679794000298166691, guid: 0cc52ce73dfaaff4cb02783fd4db098e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -52266,15 +52292,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8679794000298166691, guid: 0cc52ce73dfaaff4cb02783fd4db098e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 23.677
+      value: 23.185
       objectReference: {fileID: 0}
     - target: {fileID: 8679794000298166691, guid: 0cc52ce73dfaaff4cb02783fd4db098e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 62.549
+      value: 61.83
       objectReference: {fileID: 0}
     - target: {fileID: 8679794000298166691, guid: 0cc52ce73dfaaff4cb02783fd4db098e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 9.683
+      value: 10.23
       objectReference: {fileID: 0}
     - target: {fileID: 8679794000298166691, guid: 0cc52ce73dfaaff4cb02783fd4db098e, type: 3}
       propertyPath: m_LocalRotation.w

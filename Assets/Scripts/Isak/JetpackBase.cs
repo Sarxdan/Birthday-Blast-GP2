@@ -50,7 +50,7 @@ public class JetpackBase : MonoBehaviour
     [Header("Particle effects")]
     [SerializeField]protected ParticleSystem[] smokeFX;
     [SerializeField]protected ParticleSystem[] fireStreams;
-    [SerializeField]protected ParticleSystem[] dashEffect;
+    [SerializeField]protected ParticleSystem dashEffect;
 
     
     protected virtual void Awake() {
@@ -74,6 +74,35 @@ public class JetpackBase : MonoBehaviour
         }
         
         ApplyUpgradeStats();
+    }
+
+    protected void ToggleDashAnimation(bool toggle)
+    {
+        if(dashEffect == null) return;
+        if(toggle) dashEffect.Play();        
+        else
+        {
+                dashEffect.Stop();
+        }           
+    }
+
+    protected void ToggleBoosterAnimation(bool toggle)
+    {
+        if(fireStreams == null) return;
+        if(toggle)
+        {
+            foreach(ParticleSystem fireStream in fireStreams)
+            {
+                fireStream.Play();
+            }
+        }
+        else
+        {
+            foreach(ParticleSystem fireStream in fireStreams)
+            {
+                fireStream.Stop();
+            }
+        }               
     }
 
     protected virtual void Update() {
