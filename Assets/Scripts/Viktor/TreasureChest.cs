@@ -24,12 +24,11 @@ public class TreasureChest : MonoBehaviour
     public void OpenChest()
     {
         if (opened) return;
-        
+        Debug.Log("Opening chest!");
+        GetComponentInChildren<Animator>().SetTrigger("Open");
         
         SpawnItems();
         opened = true;
-
-        GetComponent<Interactable>().enabled = false;
     }
 
 
@@ -39,7 +38,7 @@ public class TreasureChest : MonoBehaviour
         {
             item.gameObject.SetActive(true);
             var newSpawn = new Vector3(Random.Range(-0.5f,0.5f), 0, Random.Range(-0.5f,0.5f));
-            item.transform.position = transform.position + transform.forward + newSpawn;
+            item.transform.position = transform.position + transform.forward + newSpawn + (transform.up * 0.5f);
             item.gameObject.SetActive(true);
         }
     }
