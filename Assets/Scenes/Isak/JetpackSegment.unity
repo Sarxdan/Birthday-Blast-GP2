@@ -7794,6 +7794,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: JetpackPlayer
       objectReference: {fileID: 0}
+    - target: {fileID: 3287691670837047638, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287691670837047638, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287691670837047638, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287691670837047638, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287691670837047638, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287691670837047638, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3287691670837047638, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3293666576206270322, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: m_Name
+      value: DashEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 3390775050071156332, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
 --- !u!1 &272485212
@@ -20031,6 +20067,19 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 624003696}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &628900372 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 413823345, guid: 0ed9b82ac6d22f04d9795eab74c756bb, type: 3}
+  m_PrefabInstance: {fileID: 271852849}
+  m_PrefabAsset: {fileID: 0}
+--- !u!81 &628900376
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628900372}
+  m_Enabled: 1
 --- !u!1 &633479913
 GameObject:
   m_ObjectHideFlags: 0
@@ -76235,6 +76284,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2551711959039461714, guid: 85a956cbc6f70af47b2306d9d835484d, type: 3}
+      propertyPath: sounds.Array.data[1].volume
+      value: 0.239
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551711959039461714, guid: 85a956cbc6f70af47b2306d9d835484d, type: 3}
+      propertyPath: sounds.Array.data[10].volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2551711959039461714, guid: 85a956cbc6f70af47b2306d9d835484d, type: 3}
+      propertyPath: sounds.Array.data[10].backgroundMusic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2551711959039461715, guid: 85a956cbc6f70af47b2306d9d835484d, type: 3}
       propertyPath: m_RootOrder
       value: 8

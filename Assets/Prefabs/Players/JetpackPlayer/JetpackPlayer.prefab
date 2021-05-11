@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 413823349}
   - component: {fileID: 413823348}
   - component: {fileID: 413823346}
+  - component: {fileID: 628900376}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -107,6 +108,14 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!81 &628900376
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 413823345}
+  m_Enabled: 1
 --- !u!1 &856443867113439014
 GameObject:
   m_ObjectHideFlags: 0
@@ -2282,6 +2291,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1163926206965984344, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
+      propertyPath: m_Name
+      value: DashEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167090760074596988, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167090760074596988, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167090760074596988, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1167090760074596988, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
       propertyPath: MobileUIComponents.Array.size
       value: 1
@@ -2301,6 +2330,10 @@ PrefabInstance:
     - target: {fileID: 1315663827854122777, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
       propertyPath: onShootEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Pewpew, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1340980918488925510, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
+      propertyPath: looping
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8813712086394248350, guid: ded98a0f7e5abf0469389056b16180e8, type: 3}
       propertyPath: m_Name

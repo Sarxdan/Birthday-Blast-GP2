@@ -200,7 +200,7 @@ public class JetPack : JetpackBase
         //{       
             if(directions != DashDirections.Forward)
             {
-                if(dashEffect != null) dashEffect[0].Play();
+                ToggleDashAnimation(true);
             } 
                
             while(dashTimeLeft > 0)
@@ -212,14 +212,14 @@ public class JetPack : JetpackBase
                 movement = Vector3.left * dashSpeed;
                 movement.z = body.velocity.z;
                 body.velocity = movement;
-                dashEffect[0].transform.localRotation = Quaternion.Euler(90, -90, 180);                
+                if(dashEffect != null) dashEffect.transform.localRotation = Quaternion.Euler(0, 90, 0);                
                 break;
 
                 case DashDirections.Right:
                 movement = Vector3.right * dashSpeed;
                 movement.z = body.velocity.z;
                 body.velocity = movement;
-                dashEffect[0].transform.localRotation = Quaternion.Euler(90, 90, 180);
+                if(dashEffect != null) dashEffect.transform.localRotation = Quaternion.Euler(0, -90, 0);
                 break;
 
                 case DashDirections.Forward:
@@ -228,11 +228,6 @@ public class JetPack : JetpackBase
                 movement.z += body.velocity.z;
                 body.velocity = movement;
                 invulnerable = true;
-                foreach(ParticleSystem stream in fireStreams)
-                {
-                    stream.startLifetime = 2;
-                    stream.startSize = 5;
-                }
                 break;
 
                 default:
@@ -241,17 +236,9 @@ public class JetPack : JetpackBase
             dashTimeLeft -= Time.deltaTime;
             yield return new WaitForEndOfFrame();
             invulnerable = false;
-            foreach(ParticleSystem stream in fireStreams)
-            {
-                stream.startLifetime = 1;
-                stream.startSize = 2.5f;
-            }
             
         }
-        foreach(ParticleSystem system in dashEffect)
-                {
-                    system.Stop();
-                }
+        ToggleDashAnimation(false);
         //-------------------------------------------count the remaining cooldown after dashing
         while(cooldown > 0)
         {
