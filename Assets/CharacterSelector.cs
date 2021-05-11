@@ -7,14 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class CharacterSelector : MonoBehaviour
 {
-    [System.Serializable]
-    public class CharacterParts
-    {
-        public string name;
-        public Mesh eyebrows;
-        public Mesh eyes;
-        public Mesh body;
-    }
+
     public enum CharacterGenders
     {
         Male,
@@ -27,10 +20,9 @@ public class CharacterSelector : MonoBehaviour
         Right,
         Left
     }
-    [SerializeField] GameObject characterPrefab;
-    [SerializeField] GameObject[] femaleCharacters;
-    [SerializeField] GameObject[] maleCharacters;
-    [SerializeField] GameObject[] otherCharacters;
+    GameObject[] femaleCharacters;
+    GameObject[] maleCharacters;
+    GameObject[] otherCharacters;
     CharacterGenders gender;
     GameObject[] characters;
     public int charactersIndex;
@@ -39,8 +31,25 @@ public class CharacterSelector : MonoBehaviour
     
     CinemachineVirtualCamera CinemachineVirtualCamera;
     private void Awake() {
+        Object[] femalePrefabs = Resources.LoadAll("CharacterPrefabs/Female", typeof(GameObject));
+        Object[] malePrefabs = Resources.LoadAll("CharacterPrefabs/Male", typeof(GameObject));
+        Object[] otherPrefabs = Resources.LoadAll("CharacterPrefabs/Other", typeof(GameObject));
+        femaleCharacters = FillFromObjectArray(femalePrefabs);
+        maleCharacters = FillFromObjectArray(malePrefabs);
+        otherCharacters = FillFromObjectArray(otherPrefabs);
         CinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
         StartSelection(CharacterGenders.Neither);
+    }
+
+    GameObject[] FillFromObjectArray(object[] arrayToFillFrom) //helper function so we wont get spagethi code
+    {
+        GameObject[] arrayToFill;
+        arrayToFill = new GameObject[arrayToFillFrom.Length];
+        for(int i = 0; i < arrayToFillFrom.Length; i++)
+        {
+            arrayToFill[i] = (GameObject)arrayToFillFrom[i];
+        }
+        return arrayToFill;
     }
 
     public void SwitchCharacter(Direction direction)
