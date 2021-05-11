@@ -51,8 +51,11 @@ MonoBehaviour:
     jetpack: 0
     pewpew: 0
     shovel: 0
+  oneTimeInteraction: 0
   interactText: Golden Spade
+  interactTextSE: '*interagera*'
   unableToInteracteText: Can't interact!
+  unableToInteracteTextSE: Kan inte interagera!
   interactRadius: 1.5
   minimumTimeBetweenInteractions: 2
   OnInteractEvent:
@@ -107,10 +110,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6576657f0ac73bf42a7e36edcd2bf546, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyOnPickUp: 1
   itemUnlocked:
     jetpack: 0
     pewpew: 0
     shovel: 1
+  itemPopUp: {fileID: 2683713799966302699, guid: bca20b09d6637ec4281924af7ff70f50, type: 3}
 --- !u!114 &5872245918349630793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,6 +128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80811847923b51f4182a595a219d0f6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyOnPickUp: 1
   rewardStats: {fileID: 11400000, guid: de3f4b4a1f855214eadb9739c57e0fd5, type: 2}
 --- !u!1001 &4406032989913675931
 PrefabInstance:
