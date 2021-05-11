@@ -17,6 +17,8 @@ public class PlayerManager : Singleton<PlayerManager>
     [Tooltip("fuel used when doing stuff that uses fuel")] public int fuelUsage = 1; 
     [Tooltip("How fast fuel recharges")] public int fuelRechargePerTick = 1;
     [Range(1, 10)] public int maxFuel = 10;
+
+    public GameObject chosenCharacterPrefab;
     
 
     GameObject player;
@@ -34,53 +36,27 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public void PlayerAwake()
     {
-        if (chosenCharacterMeshesNames.Count != 0)
+        if (chosenCharacterPrefab == null) return;
+        var players = FindObjectsOfType<PlayerHealth>();
+        foreach (var _player in players)
         {
-
-            var players = FindObjectsOfType<PlayerHealth>();
-            foreach (var _player in players)
+            foreach (Transform child in _player.transform)
             {
-                foreach (Transform child in _player.transform)
+                if (child.name == "MeshBase")
                 {
-                    if (child.name == "MeshBase")
+                    foreach (Transform grandchild in child)
                     {
-                        foreach (Transform grandchild in child)
-                        {
 
-                            if (grandchild.name == "Root") continue;
-                            grandchild.gameObject.SetActive(false);
-                            foreach (string name in chosenCharacterMeshesNames)
-                            {
-
-                                if (grandchild.name == name) grandchild.gameObject.SetActive(true);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-
-        /*
-        if(chosenCharacterMeshesNames.Count != 0 && player != null)
-        {
-            foreach(Transform child in player)
-            {
-                if(child.name == "MeshBase")
-                {
-                    foreach(Transform grandchild in child)
-                    {
-                        
-                        if(grandchild.name == "Root") continue;
+                        if (grandchild.name == "Root") continue;
                         grandchild.gameObject.SetActive(false);
-                        foreach(string name in chosenCharacterMeshesNames)
+                        if(grandchild.name == chosenCharacterPrefab.name)
                         {
-                            
-                            if(grandchild.name == name) grandchild.gameObject.SetActive(true);
+                            grandchild.gameObject.SetActive(true);
                         }
                     }
                 }
             }
         }
-        */
+
     }
 }
