@@ -1,6 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerManager : Singleton<PlayerManager>
 {   
@@ -19,6 +23,8 @@ public class PlayerManager : Singleton<PlayerManager>
     [Range(1, 10)] public int maxFuel = 10;
 
     public GameObject chosenCharacterPrefab;
+    public RuntimeAnimatorController playerAnimator;
+    public RuntimeAnimatorController cutsceneAnimator;
     
 
     GameObject player;
@@ -55,6 +61,59 @@ public class PlayerManager : Singleton<PlayerManager>
                         }
                     }
                 }
+            }
+        }
+
+    }
+
+    public void PutOnModel()
+    {
+        var players = FindObjectsOfType<PlayerHealth>();
+        foreach (var player in players)
+        {
+
+
+            var currPlayerModel = player.transform.Find("MeshBase");
+            var spawnedModel = Instantiate(chosenCharacterPrefab, player.transform.position, Quaternion.identity, player.transform);
+            var isPlayer = player.CompareTag("Player");
+            var animatorToUse = playerAnimator;
+            if (isPlayer)
+            {
+                animatorToUse = playerAnimator;
+            }
+            else
+            {
+                animatorToUse = cutsceneAnimator;
+            }
+
+
+            Destroy(currPlayerModel.gameObject);
+
+            spawnedModel.GetComponent<Animator>().runtimeAnimatorController = animatorToUse;
+
+            if (isPlayer)
+            {
+
+                //Doesn't work for some reason
+                var jetpackParent = GameObject.FindGameObjectWithTag("JetParent").transform;
+                var pewpewParent = GameObject.FindGameObjectWithTag("PewParent").transform;
+
+                var jetpackObject = FindObjectOfType<JetpackBase>().transform;
+                var pewpewObject = FindObjectOfType<Pewpew>().transform;
+
+
+                jetpackObject.parent = jetpackParent;
+                pewpewObject.parent = pewpewParent;
+                
+
+
+                spawnedModel.transform.position = FindObjectOfType<SpawnPoint>().transform.localPosition;
+                spawnedModel.transform.SetParent(player.transform);
+            }
+            else
+            {
+                spawnedModel.transform.SetParent(GameObject.Find("CutscenePlayer").transform);
+                spawnedModel.transform.localPosition = new Vector3(0, 0, 0);
             }
         }
 

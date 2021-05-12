@@ -50,7 +50,8 @@ public class PlayerMovement : MonoBehaviour
         lastCountedPlayerPosition = transform.position;
         controller = GetComponent<CharacterController>();
         camController = GetComponent<CameraController>();
-        
+
+        animator = GameObject.FindGameObjectWithTag("CharModel").GetComponent<Animator>();
     }
 
     private void Update() {
@@ -95,7 +96,10 @@ public class PlayerMovement : MonoBehaviour
     {
         //Check if player is currently in contact with objects from certain layers
         isGrounded = Physics.CheckSphere(groundCheckPosition.position, groundDistanceCheck, groundMask) && !isSliding;
-        animator.SetBool("isGrounded", isGrounded);
+        if (animator != null)
+        {
+            animator.SetBool("isGrounded", isGrounded);
+        }
 
         //Reset velocity if grounded
 
@@ -133,6 +137,8 @@ public class PlayerMovement : MonoBehaviour
                 AudioManager.instance.Play("PlayerWalk"); 
             }            
         }
+
+        if (animator == null) return;
         
         animator.SetFloat("Speed",Mathf.Abs(vertical) + Mathf.Abs(horizontal));
         animator.SetBool("isFalling", velocity.y < -0.5);
