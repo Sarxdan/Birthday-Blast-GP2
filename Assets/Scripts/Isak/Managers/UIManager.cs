@@ -107,6 +107,7 @@ public class UIManager : Singleton<UIManager>
 
     void TogglePauseMenu()
     {
+        if(FindObjectOfType<Gamemanager>() == null) return;
         bool toggle = !pauseMenu.gameObject.activeSelf;
         pauseMenu.gameObject.SetActive(toggle);
         ToggleMouse(toggle);
