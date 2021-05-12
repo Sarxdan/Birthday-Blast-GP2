@@ -28,6 +28,15 @@ public class PlayerManager : Singleton<PlayerManager>
     
 
     GameObject player;
+    //settings
+    [HideInInspector]
+    public float mouseSensitivityMultiplier;
+    [HideInInspector]
+    public float verticalSensitivity;
+    [HideInInspector]
+    public float horizontalSensitivity;
+    [HideInInspector]
+    public bool invertMouse;
 
     protected override void Awake() {
         base.Awake();
