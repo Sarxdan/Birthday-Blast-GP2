@@ -26,29 +26,32 @@ public class Bee : Enemy //hunt player when found one
         }
         else if(checkedColliders.Length == 0)
         {
+            isAttackingPlayer = false;
+            animator.SetBool("Fly Forward", false);
+            print(audio);
             if(audio != null)
             {
                 audio.Stop();
-            }            
+            }          
         }
     }
 
     protected override void Update()
     {
-        if(isRunningAway) return;
-        if(!isAttackingPlayer)
-        {
+        if(isRunningAway) return;        
             base.Update();
-        }
-        else
-        {
             AttackPlayer();
-        }
-        
+                   
+    }
+    protected override void MoveObject()
+    {
+        if(!isAttackingPlayer)
+        base.MoveObject();
     }
 
     void AttackPlayer()
     {
+        if(!isAttackingPlayer) return;
         transform.LookAt(player);
         if (Vector3.Distance(transform.position, player.position) >= 1)
         { 

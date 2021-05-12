@@ -19,7 +19,7 @@ public class Obstacle : DamagePlayer
         MoveObject();   
     }
    
-    void MoveObject()
+    protected virtual void MoveObject()
     {
         body.velocity = movementDirection;
         timeUntilReturn -= Time.deltaTime;
