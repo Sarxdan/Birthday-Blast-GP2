@@ -119,11 +119,9 @@ public class UIManager : Singleton<UIManager>
         {
             Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Playing);
         }
-
+        if (FindObjectOfType<ThirdPersonController>() == null || FindObjectOfType<Level>() == null) return;
         if (FindObjectOfType<Level>().levelType == LevelType.Island)
-        {
-            if (FindObjectOfType<ThirdPersonController>() == false) return;
-            
+        {           
             if (!toggle && FindObjectOfType<ThirdPersonController>().disableCameraController)
             {
                 ToggleMouse(true);
@@ -155,13 +153,9 @@ public class UIManager : Singleton<UIManager>
         
         ToggleMouse(toggle);
         
-        
+        if (FindObjectOfType<ThirdPersonController>() == null || FindObjectOfType<Level>() == null) return;
         if (FindObjectOfType<Level>().levelType == LevelType.Jetpack) return;
-
-        if (FindObjectOfType<ThirdPersonController>())
-        {
-            FindObjectOfType<ThirdPersonController>().ToggleControls(!toggle);
-        }
+        FindObjectOfType<ThirdPersonController>().ToggleControls(!toggle);
     }
     
     public void OnTogglePause(InputAction.CallbackContext context)
