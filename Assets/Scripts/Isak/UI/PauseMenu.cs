@@ -19,4 +19,6 @@ public class PauseMenu : MonoBehaviour
         print("quitting game");
         Application.Quit();
     }
+    
+   
 }

@@ -25,7 +25,10 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
 
         if (Input.GetMouseButtonDown(0) || Input.touchCount > 0)
         {
-            TriggerDialogue();
+            if (UIManager.instance.shopUI.gameObject.activeInHierarchy == false)
+            {
+                TriggerDialogue();
+            }
         }
         
         player = FindObjectOfType<PlayerHealth>().transform;
