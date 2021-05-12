@@ -32,9 +32,19 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume ()
     {
+        ResetPauseMenu();
         if(onResumeClicked != null)
         {
             onResumeClicked();
+        }
+    }
+
+    public void ResetPauseMenu()
+    {
+        foreach(Transform child in transform)
+        {
+            child.gameObject.SetActive(false);
+            if(child.name == "BaseScreen") child.gameObject.SetActive(true);
         }
     }
 
