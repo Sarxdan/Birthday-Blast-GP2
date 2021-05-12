@@ -153,7 +153,7 @@ public class ThirdPersonController : MonoBehaviour
     private void Update()
     {     
         playerMovement.CheckIfGrounded(); //added
-        pewpew.gameObject.SetActive(Gamemanager.instance.UnlockedItems.pewpew);
+        
         if (disablePlayerMovement != true)
             DoPlayerMovement();
 
@@ -163,6 +163,8 @@ public class ThirdPersonController : MonoBehaviour
         
         
         AlignShadowToGround();
+        if(pewpew == null) return;
+        pewpew.gameObject.SetActive(Gamemanager.instance.UnlockedItems.pewpew);
     }
 
     private void AlignShadowToGround()
