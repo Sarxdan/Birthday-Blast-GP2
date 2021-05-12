@@ -10,7 +10,7 @@ public class InventoryUIManager : MonoBehaviour
     public TextMeshProUGUI magicRockCountText;
     public TextMeshProUGUI magicRootCountText;
     public TextMeshProUGUI currencyCountText;
-
+    
 
     private void Update()
     {
@@ -19,4 +19,5 @@ public class InventoryUIManager : MonoBehaviour
         magicRootCountText.text = Inventory.instance.magicRootCount.ToString();
         currencyCountText.text = Inventory.instance.currency.ToString();
     }
+
 }

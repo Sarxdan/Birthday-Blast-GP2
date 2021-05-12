@@ -19,7 +19,7 @@ public class UIManager : Singleton<UIManager>
     public static Events.EmptyEvent onPlayerLeavingConversation;
     InGameUI inGameUI;
     PauseMenu pauseMenu;
-    ShopUI shopUI;
+    public ShopUI shopUI;
     public GameObject journalPanel;
 
     public GameObject[] popupTabs;
@@ -118,6 +118,14 @@ public class UIManager : Singleton<UIManager>
         {
             Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Playing);
         }
+
+        if (FindObjectOfType<Level>().levelType == LevelType.Island)
+        {
+            if (!toggle && FindObjectOfType<ThirdPersonController>().disableCameraController)
+            {
+                ToggleMouse(true);
+            }
+        }
     }
 
     public void ToggleShopUI() //change to event later?
@@ -143,6 +151,9 @@ public class UIManager : Singleton<UIManager>
         journalPanel.gameObject.SetActive(toggle);
         
         ToggleMouse(toggle);
+        
+        if (FindObjectOfType<Level>().levelType == LevelType.Jetpack) return;
+        FindObjectOfType<ThirdPersonController>().ToggleControls(!toggle);
     }
     
     public void OnTogglePause(InputAction.CallbackContext context)
