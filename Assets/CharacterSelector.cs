@@ -82,7 +82,6 @@ public class CharacterSelector : MonoBehaviour
                 if(child.name == "Root") continue;
                 if(child.gameObject.activeSelf)
                 {
-                    PlayerManager.instance.chosenCharacterMeshesNames.Add(child.GetComponent<SkinnedMeshRenderer>().name);
                     PlayerManager.instance.chosenCharacterPrefab = (GameObject)Resources.Load("CharacterPrefabs/" + chosenCharacter.name);
                 }
             }
