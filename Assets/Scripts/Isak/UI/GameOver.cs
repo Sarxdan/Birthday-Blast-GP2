@@ -10,6 +10,7 @@ public class GameOver : MonoBehaviour
     void Start()
     {
         StartCoroutine(RestartGame());
+        Gamemanager.instance.ResetUnlockedItems();
     }
 
     IEnumerator RestartGame()

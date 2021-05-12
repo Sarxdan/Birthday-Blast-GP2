@@ -23,11 +23,18 @@ public class Gamemanager : Singleton<Gamemanager>
         get{return currentGameState;}
     }
     [SerializeField] KeyItems.Items unlockedItems;
-    public GameState currentGameState = GameState.Pregame;
+    GameState currentGameState = GameState.Pregame;
 
     public void LoadLevel(int levelIndex)
     {       
         SceneManager.LoadScene(levelIndex);       
+    }
+
+    public void ResetUnlockedItems()
+    {
+        unlockedItems.jetpack = false;
+        unlockedItems.pewpew = false;
+        unlockedItems.shovel = false;
     }
 
     public void UpdateGameState(GameState newState)
