@@ -16,7 +16,19 @@ public class PlayerManager : Singleton<PlayerManager>
     [Tooltip("How fast fuel recharges")] public int fuelRechargePerTick = 1;
     [Range(1, 10)] public int maxFuel = 10;
 
+    [Header("Mouse input settings")]
+
+    public float horizontalSensitivity = 100f;
+    public float verticalSensitivity = 50f;
+
+    [HideInInspector]
     public GameObject chosenCharacterPrefab;
+
+    // settings
+    [HideInInspector]
+    public float mouseSensitivityMultiplier = 1;
+    [HideInInspector]
+    public bool invertMouse = false;
     
 
     GameObject player;

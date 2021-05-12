@@ -41,6 +41,13 @@ public class CameraController : MonoBehaviour
     private float mouseXInput;
     private float mouseYInput;
 
+    bool invertMouse = false;
+
+    private void Awake() {
+        horizontalSensitivity = PlayerManager.instance.horizontalSensitivity * PlayerManager.instance.mouseSensitivityMultiplier;
+        verticalSensitivity = PlayerManager.instance.verticalSensitivity * PlayerManager.instance.mouseSensitivityMultiplier;
+        invertMouse = PlayerManager.instance.invertMouse;
+    }
 
     private void OnEnable()
     {
@@ -147,8 +154,17 @@ public class CameraController : MonoBehaviour
         yRotation += mouseXInput * Time.deltaTime;
         
         xRotation = Mathf.Clamp(xRotation, minXRotation, maxXRotation);
+
+        if(invertMouse)
+        {
+            cameraLookAtTarget.rotation = Quaternion.Euler(xRotation, yRotation, 0f);
+        }
+        else
+        {
+            cameraLookAtTarget.rotation = Quaternion.Euler(-xRotation, yRotation, 0f);
+        }
         
-        cameraLookAtTarget.rotation = Quaternion.Euler(-xRotation, yRotation, 0f);
+        
         
 
         //LookAtTarget follows player

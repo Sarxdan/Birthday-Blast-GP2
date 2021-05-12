@@ -19,4 +19,5 @@ public class Sound
 
     [HideInInspector]
     public GameObject gameObject;
+    [HideInInspector] public float defaultVolume;
 }
