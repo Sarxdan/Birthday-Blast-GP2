@@ -26,14 +26,16 @@ public class PlayerManager : Singleton<PlayerManager>
     public RuntimeAnimatorController playerAnimator;
     public RuntimeAnimatorController jetpackAnimator;
     public RuntimeAnimatorController cutsceneAnimator;
-
-    public float mouseSensitivityMultiplier;
-    public bool invertMouse;
-    public float horizontalSensitivity;
-    public float verticalSensitivity;
-    
-
     GameObject player;
+    //settings
+    [HideInInspector]
+    public float mouseSensitivityMultiplier;
+    [HideInInspector]
+    public float verticalSensitivity;
+    [HideInInspector]
+    public float horizontalSensitivity;
+    [HideInInspector]
+    public bool invertMouse;
 
     protected override void Awake() {
         base.Awake();
