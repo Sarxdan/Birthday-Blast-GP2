@@ -29,6 +29,7 @@ public class Pewpew : MonoBehaviour
     {
         if (CanShoot())
         {
+            GameObject.FindGameObjectWithTag("CharModel").GetComponent<Animator>().SetTrigger("Shoot");
             Shoot();
         }
     }
