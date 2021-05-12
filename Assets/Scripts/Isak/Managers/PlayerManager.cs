@@ -25,13 +25,6 @@ public class PlayerManager : Singleton<PlayerManager>
     public GameObject chosenCharacterPrefab;
     public RuntimeAnimatorController playerAnimator;
     public RuntimeAnimatorController cutsceneAnimator;
-
-    public float mouseSensitivityMultiplier;
-    public bool invertMouse;
-    public float horizontalSensitivity;
-    public float verticalSensitivity;
-    
-
     GameObject player;
     //settings
     [HideInInspector]
