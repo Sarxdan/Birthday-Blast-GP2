@@ -13,9 +13,9 @@ public class MainMenu : MonoBehaviour
     public string CreditsScene = "Credits";
     public string charSelectScene = "S_CharacterSelection";
 
-    private void Awake()
+    private void Start()
     {
-        Events.ChangeLanguage(0);
+        //Events.ChangeLanguage(0);
     }
 
     public void PlayGame () 
