@@ -24,6 +24,7 @@ public class PlayerManager : Singleton<PlayerManager>
 
     public GameObject chosenCharacterPrefab;
     public RuntimeAnimatorController playerAnimator;
+    public RuntimeAnimatorController jetpackAnimator;
     public RuntimeAnimatorController cutsceneAnimator;
 
     public float mouseSensitivityMultiplier;
@@ -84,7 +85,14 @@ public class PlayerManager : Singleton<PlayerManager>
             var animatorToUse = playerAnimator;
             if (isPlayer)
             {
-                animatorToUse = playerAnimator;
+                if (FindObjectOfType<Level>().levelType == LevelType.Jetpack)
+                {
+                    animatorToUse = jetpackAnimator;
+                }
+                else
+                {
+                    animatorToUse = playerAnimator;
+                }
             }
             else
             {
@@ -109,7 +117,11 @@ public class PlayerManager : Singleton<PlayerManager>
 
                 jetpackObject.parent = jetpackParent;
                 pewpewObject.parent = pewpewParent;
-                
+
+                jetpackObject.position = jetpackParent.position;
+                pewpewObject.position = pewpewParent.position;
+                pewpewObject.localRotation = Quaternion.Euler(0, -270, 255);
+
 
 
                 spawnedModel.transform.position = FindObjectOfType<SpawnPoint>().transform.localPosition;
