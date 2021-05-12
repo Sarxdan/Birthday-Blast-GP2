@@ -29,7 +29,6 @@ public class JetPack : JetpackBase
     float countedTime = 0;
     float lastZPosition = 0;
     Transform parent;
-    GameObject lastCollidedObject;
     
     [Header("movement settings")]
     [SerializeField] float moveSpeed = 1;   
@@ -70,39 +69,46 @@ public class JetPack : JetpackBase
         AudioManager.instance.Play("JetpackSound");
     }
 
-    protected override void Update() //vad ska hände när man får game over? falla ner en bit? UI uppdateras? 
+    protected override void Update() 
     {
-        if(gameOver) return;
-        base.Update();  
+        if (gameOver) return;
+        base.Update();
 
-        countedTime += Time.deltaTime;
-        if(countedTime > 2 && parent != null)
-        {
-            countedTime = 0;
-            if(parent.position.z >= lastZPosition - 1 && parent.position.z <= lastZPosition + 1)
-            {
-                Collider[] colliders = Physics.OverlapSphere(parent.position, 2);
-                foreach(Collider collider in colliders)
-                {
-                    if(collider.gameObject == parent.gameObject) continue;
-                    collider.enabled = false;
-                }
+        CheckIfPlayerIsStuck();
+        TogglePewpew();
+        Move();
+        SetCameraPosition();
+        float moveSpeedIncreasePerFrame = Time.deltaTime * autoMoveSpeedIncreaseOverTime;
+        IncreaseAutoMoveSpeed(moveSpeedIncreasePerFrame);
+    }
 
-                if(lastCollidedObject != null) lastCollidedObject.SetActive(false);
-            }
-            lastZPosition = parent.position.z;
-        }
-
+    private void TogglePewpew()
+    {
         pewpewUnlocked = Gamemanager.instance.UnlockedItems.pewpew;
-        if(pewpew != null && pewpewUnlocked)
+        if (pewpew != null && pewpewUnlocked)
         {
             pewpew.gameObject.SetActive(pewpewUnlocked);
             pewpew.JetpackSpeed = autoMoveSpeed;
         }
-        Move();   
-        SetCameraPosition();
-        float moveSpeedIncreasePerFrame = Time.deltaTime * autoMoveSpeedIncreaseOverTime;
-        IncreaseAutoMoveSpeed(moveSpeedIncreasePerFrame);      
+    }
+
+    private void CheckIfPlayerIsStuck()
+    {
+        countedTime += Time.deltaTime;
+        if (countedTime > 2 && parent != null)
+        {
+            countedTime = 0;
+            if (parent.position.z >= lastZPosition - 1 && parent.position.z <= lastZPosition + 1)
+            {
+                Collider[] colliders = Physics.OverlapSphere(parent.position, 2);
+                foreach (Collider collider in colliders)
+                {
+                    if (collider.gameObject == parent.gameObject) continue;
+                    collider.enabled = false;
+                }
+            }
+            lastZPosition = parent.position.z;
+        }
     }
 
     void IncreaseAutoMoveSpeed(float amount)
@@ -155,98 +161,53 @@ public class JetPack : JetpackBase
                     StartCoroutine(DashInDirection(dashDirections));
                 }            
             }       
-        }
-        
-                     
-        //if(Time.time - lastKeyPressTime > doubleTapTimer)
-        //{
-            //ResetAxisBools();
-        //}             
+        }                    
     }
-
-    //void ResetAxisBools()
-    //{
-        //rightAxisPushed = false;
-        //leftAxisPushed = false;
-        //forwardAxisPushed = false;
-    //}
-
-    //void UseFuel(float amount)
-    //{
-        //fuel -= amount;
-        //if(fuel <= 0)
-        //{
-            //fuel = 0;
-            //overCharged = true;
-        //}
-        //if(onFuelUse != null)
-        //{
-            //onFuelUse(fuel);
-        //}
-    //}
-
-
     protected override IEnumerator DashInDirection(DashDirections directions)
     {
-        yield return base.DashInDirection(directions);
-       // UseFuel(fuelUsage);
-        //useFuel = true;
-        //float dashlengthLeft = dashLength;
-        //-------------------------------create temporary variables
-        //Vector3 movement = new Vector3();
-        //float cooldown = dashCooldown;
-        //---------------------------------start the dash ability
-       // while(dashlengthLeft > 0)
-        //{       
-            if(directions != DashDirections.Forward)
-            {
-                ToggleDashAnimation(true);
-            } 
-               
-            while(dashTimeLeft > 0)
-        {           
-            
-            switch(directions)
-            {
-                case DashDirections.Left:
-                movement = Vector3.left * dashSpeed;
-                movement.z = body.velocity.z;
-                body.velocity = movement;
-                if(dashEffect != null) dashEffect.transform.localRotation = Quaternion.Euler(0, 90, 0);                
-                break;
-
-                case DashDirections.Right:
-                movement = Vector3.right * dashSpeed;
-                movement.z = body.velocity.z;
-                body.velocity = movement;
-                if(dashEffect != null) dashEffect.transform.localRotation = Quaternion.Euler(0, -90, 0);
-                break;
-
-                case DashDirections.Forward:
-                
-                movement = Vector3.forward * dashSpeed;
-                movement.z += body.velocity.z;
-                body.velocity = movement;
-                invulnerable = true;
-                break;
-
-                default:
-                break;
-            }
-            dashTimeLeft -= Time.deltaTime;
-            yield return new WaitForEndOfFrame();
-            invulnerable = false;
-            
-        }
-        ToggleDashAnimation(false);
-        //-------------------------------------------count the remaining cooldown after dashing
-        while(cooldown > 0)
+        yield return base.DashInDirection(directions);   
+        if(directions != DashDirections.Forward)
         {
-            yield return new WaitForEndOfFrame();
-        }
-    }
+            ToggleDashAnimation(true);
+        } 
+        while(dashTimeLeft > 0)
+        {           
+        switch(directions)
+        {
+            case DashDirections.Left:
+            movement = Vector3.left * dashSpeed;
+            movement.z = body.velocity.z;
+            body.velocity = movement;
+            if(dashEffect != null) dashEffect.transform.localRotation = Quaternion.Euler(0, 90, 0);                
+            break;
 
-       void Move()
+            case DashDirections.Right:
+            movement = Vector3.right * dashSpeed;
+            movement.z = body.velocity.z;
+            body.velocity = movement;
+            if(dashEffect != null) dashEffect.transform.localRotation = Quaternion.Euler(0, -90, 0);
+            break;
+
+            case DashDirections.Forward:
+                
+            movement = Vector3.forward * dashSpeed;
+            movement.z += body.velocity.z;
+            body.velocity = movement;
+            invulnerable = true;
+            break;
+
+            default:
+            break;
+        }
+        dashTimeLeft -= Time.deltaTime;
+        yield return new WaitForEndOfFrame();
+        invulnerable = false;
+            
+    }
+    ToggleDashAnimation(false);
+}
+
+    void Move()
     {
 
         movement.z = autoMoveSpeed;

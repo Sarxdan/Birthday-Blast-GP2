@@ -103,8 +103,6 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
         }
         ToggleBoosterAnimation(false);
         player.disablePlayerMovement = false;
-        
-        //-------------------------------------------count the remaining cooldown after dashing
     }
 
     
@@ -113,9 +111,9 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
 
     
 
-    void StopDashingOnJump() //function that runs with dash enumerator, checking if player wants to stop dash early
+    void StopDashingOnJump() //function checks if player wants to stop dash early
     {
-        if(Input.GetAxis("Jump") > 0) // checking for input, add to viktors new input system
+        if(Input.GetAxis("Jump") > 0) 
         {
             isDashing = false;
             player.disablePlayerMovement = false;
