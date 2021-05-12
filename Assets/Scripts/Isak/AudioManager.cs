@@ -7,7 +7,23 @@ using System;
 public class AudioManager : Singleton<AudioManager>
 {
     [SerializeField] Sound[] sounds;
-    // Start is called before the first frame update
+
+    public void ChangeBGMAudio(float value) 
+    {
+        foreach(Sound s in sounds)
+        {
+            if(s.backgroundMusic) s.source.volume = s.defaultVolume * value;
+        }
+    }
+
+    public void ChangeFXAudio(float value) 
+    {
+        foreach(Sound s in sounds)
+        {
+            if(!s.backgroundMusic) s.source.volume = s.defaultVolume * value;
+        }
+        Play("SettingsFX");
+    }
     protected override void Awake() {
         base.Awake();
         foreach(Sound s in sounds)
@@ -29,6 +45,7 @@ public class AudioManager : Singleton<AudioManager>
                 s.source.volume = s.volume;
                 s.source.pitch = s.pitch;
                 s.source.loop = s.loop;
+                s.defaultVolume = s.source.volume;
 
             }
         }
@@ -54,14 +71,14 @@ public class AudioManager : Singleton<AudioManager>
                 source.spatialBlend = 1;
                 child.gameObject.transform.position = position;
                 source.Play();
-                return source;
+                return source; // if a source which is nopt playing is found, play and return it
             }
         }
         Transform firstChild = parent.GetChild(0).transform;
         source = firstChild.GetComponent<AudioSource>();
         firstChild.gameObject.transform.position = position; 
         source.Play();
-        return source;
+        return source; // if all sources are currently active, reuse the first child
     }
 
     private Transform FindTrackParent(string name)
