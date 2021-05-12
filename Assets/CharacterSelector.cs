@@ -82,7 +82,6 @@ public class CharacterSelector : MonoBehaviour
                 if(child.name == "Root") continue;
                 if(child.gameObject.activeSelf)
                 {
-                    PlayerManager.instance.chosenCharacterMeshesNames.Add(child.GetComponent<SkinnedMeshRenderer>().name);
                     PlayerManager.instance.chosenCharacterPrefab = (GameObject)Resources.Load("CharacterPrefabs/" + chosenCharacter.name);
                 }
             }
@@ -104,8 +103,7 @@ public class CharacterSelector : MonoBehaviour
                 GameObject character = Instantiate(characters[i], position, rotation);
                 character.transform.parent = parent.transform;
                 character.name = characters[i].name;
-                characters[i] = character;
-                
+                characters[i] = character;                
             }
         charactersSpawned = true;
         chosenCharacter = characters[0]; // set a default chosen character to look at

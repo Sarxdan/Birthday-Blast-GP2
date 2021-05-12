@@ -13,10 +13,14 @@ public class CheckpointManager : Singleton<CheckpointManager>
     // Start is called before the first frame update
 
     public void Setup()
-    {
-        playerhealth = PlayerManager.instance.playerHealth;
+    {   
+        if(GameObject.FindGameObjectWithTag("Player") == null) return;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         thirdPersonController = FindObjectOfType<ThirdPersonController>();
+        if(thirdPersonController == null) return;
+        
+        playerhealth = PlayerManager.instance.playerHealth;
+        
         latestCheckPoint = player.localPosition;
     }
 

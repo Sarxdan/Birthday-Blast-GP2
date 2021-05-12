@@ -24,7 +24,8 @@ public class OutOfBounds : MonoBehaviour
     public void PlayerAwake()
     {
         thirdPersonController = FindObjectOfType<ThirdPersonController>();        
-        playerMovement = FindObjectOfType<PlayerMovement>();        
+        playerMovement = FindObjectOfType<PlayerMovement>();    
+        if(thirdPersonController == null || playerMovement == null) return;    
         lastPlayerPositionsOnLand[0] = thirdPersonController.transform.position; // in case the player INSTANTLY jumps off the island
     }
     private void Update() {
