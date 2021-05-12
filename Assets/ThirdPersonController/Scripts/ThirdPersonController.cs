@@ -71,6 +71,7 @@ public class ThirdPersonController : MonoBehaviour
     #endregion
 
     Vector3 hitNormal;
+    private Animator animator;
 
     private void Awake()
     {
@@ -84,7 +85,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         ragdollBodies = GetComponentsInChildren<Rigidbody>();
         ragdollColliders = GetComponentsInChildren<Collider>();
-        
+        animator = GameObject.FindGameObjectWithTag("CharModel").GetComponent<Animator>();
         
         ToggleRagdoll(false);
 
@@ -99,7 +100,7 @@ public class ThirdPersonController : MonoBehaviour
     private IEnumerator LandJetpack()
     {
         ToggleControls(false);
-        GetComponentInChildren<Animator>().SetTrigger("LandJetpack");
+        animator.SetTrigger("LandJetpack");
         FindObjectOfType<CinemachineVirtualCamera>().m_LookAt = GetComponentInChildren<Rigidbody>().transform;
         yield return new WaitForSeconds(2.5f);
         FindObjectOfType<CinemachineVirtualCamera>().m_LookAt = GameObject.FindGameObjectWithTag("CamLookAt").transform;
