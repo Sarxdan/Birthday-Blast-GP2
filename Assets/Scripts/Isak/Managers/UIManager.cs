@@ -27,7 +27,16 @@ public class UIManager : Singleton<UIManager>
 
     private Controls controls;
     
-    
+    private void Update() {
+        if(Gamemanager.instance.CurrentGameState == Gamemanager.GameState.Pregame)
+        {
+            inGameUI.gameObject.SetActive(false);
+        }
+        else
+        {
+            inGameUI.gameObject.SetActive(true);
+        }
+    }
 
     public void EnablePopUp(GameObject popup)
     {
@@ -214,7 +223,7 @@ public class UIManager : Singleton<UIManager>
 
     void OnGameRestart()
     {
-        inGameUI.gameObject.SetActive(true);
+        //inGameUI.gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }

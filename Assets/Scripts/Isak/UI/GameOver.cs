@@ -14,11 +14,13 @@ public class GameOver : MonoBehaviour
 
     IEnumerator RestartGame()
     {
+        Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Pregame);
         yield return new WaitForSeconds(loadTime);
         if(onGameRestart != null)
         {
             onGameRestart();
         }
+        
         Gamemanager.instance.LoadLevel(0);
     }
 }

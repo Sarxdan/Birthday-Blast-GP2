@@ -15,12 +15,13 @@ public class MainMenu : MonoBehaviour
 
     private void Start()
     {
-        //Events.ChangeLanguage(0);
+        
     }
 
     public void PlayGame () 
     {
         PlayerPrefs.DeleteAll();
+        
         SceneManager.LoadScene(FirstGameScene);
     }
 

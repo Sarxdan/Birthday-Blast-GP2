@@ -23,7 +23,7 @@ public class Gamemanager : Singleton<Gamemanager>
         get{return currentGameState;}
     }
     [SerializeField] KeyItems.Items unlockedItems;
-    GameState currentGameState = GameState.Pregame;
+    public GameState currentGameState = GameState.Pregame;
 
     public void LoadLevel(int levelIndex)
     {       
@@ -66,7 +66,7 @@ public class Gamemanager : Singleton<Gamemanager>
 
     private void SceneLoaded(Scene scene, LoadSceneMode mode)
     {      
-        UpdateGameState(GameState.Playing);
+        //UpdateGameState(GameState.Playing);
         if(onSceneLoaded != null)
         {
             onSceneLoaded();
