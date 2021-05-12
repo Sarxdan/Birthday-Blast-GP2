@@ -18,12 +18,17 @@ public class CharacterSelector : MonoBehaviour
     public int charactersIndex;
     public GameObject chosenCharacter;
     bool charactersSpawned = false;
+    [SerializeField] Transform circleCenter;
+    [SerializeField] Transform circleEnd;
+    [SerializeField] Transform cameraFollowTarget;
+    [SerializeField] float cameraDistance;
     
     CinemachineVirtualCamera CinemachineVirtualCamera;
     private void Awake() {
         Object[] characterPrefabs = Resources.LoadAll("CharacterPrefabs", typeof(GameObject));
         characters = FillFromObjectArray(characterPrefabs);
         CinemachineVirtualCamera = FindObjectOfType<CinemachineVirtualCamera>();
+        CinemachineVirtualCamera.Follow = cameraFollowTarget;
         PopulateScene();
     }
 
@@ -49,6 +54,8 @@ public class CharacterSelector : MonoBehaviour
                 charactersIndex = 0;
             }
             chosenCharacter = characters[charactersIndex];
+            cameraFollowTarget.position = chosenCharacter.transform.position + chosenCharacter.transform.forward * cameraDistance;
+            cameraFollowTarget.transform.forward = chosenCharacter.transform.forward;
             CinemachineVirtualCamera.LookAt = chosenCharacter.transform;
             break;
 
@@ -59,6 +66,8 @@ public class CharacterSelector : MonoBehaviour
                 charactersIndex = characters.Length - 1;
             }
             chosenCharacter = characters[charactersIndex];
+            cameraFollowTarget.position = chosenCharacter.transform.position + chosenCharacter.transform.forward * cameraDistance;
+            cameraFollowTarget.transform.forward = chosenCharacter.transform.forward;
             CinemachineVirtualCamera.LookAt = chosenCharacter.transform;
             break;
         }
@@ -83,20 +92,25 @@ public class CharacterSelector : MonoBehaviour
 
     void PopulateScene()
     {
-        Vector3 instantiatedPosition = new Vector3(0,0.5f,0);
+        float angle = 360/(float)characters.Length;
+        float radius = Vector3.Distance(circleCenter.position, circleEnd.position);
         GameObject parent = new GameObject();
         parent.name = "characters";
             for(int i = 0; i < characters.Length; i++)
             {
-                GameObject character = Instantiate(characters[i], instantiatedPosition, Quaternion.identity);
+                Quaternion rotation = Quaternion.AngleAxis(i * angle, Vector3.up);
+                Vector3 direction = rotation * Vector3.forward;
+                Vector3 position = circleCenter.position + (direction * radius);
+                GameObject character = Instantiate(characters[i], position, rotation);
                 character.transform.parent = parent.transform;
                 character.name = characters[i].name;
                 characters[i] = character;
-                instantiatedPosition.x += 2;
                 
             }
         charactersSpawned = true;
-        chosenCharacter = characters[0];
+        chosenCharacter = characters[0]; // set a default chosen character to look at
+        cameraFollowTarget.position = chosenCharacter.transform.position + chosenCharacter.transform.forward * cameraDistance;
+        cameraFollowTarget.transform.forward = chosenCharacter.transform.forward;
         CinemachineVirtualCamera.LookAt = chosenCharacter.transform;
         charactersIndex = 0;
     }
