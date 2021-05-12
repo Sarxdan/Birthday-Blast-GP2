@@ -120,7 +120,17 @@ public class PlayerManager : Singleton<PlayerManager>
                 jetpackObject.parent = jetpackParent;
                 pewpewObject.parent = pewpewParent;
 
-                jetpackObject.position = jetpackParent.position;
+                var jetPos = new Vector3(0, 0, 0);
+                if (FindObjectOfType<Level>().levelType == LevelType.Jetpack)
+                {
+                    jetPos = jetpackParent.position + -Vector3.forward * 1f;
+                }
+                else
+                {
+                    jetPos = jetpackParent.position;
+                }
+
+                jetpackObject.position = jetPos;
                 pewpewObject.position = pewpewParent.position;
                 pewpewObject.localRotation = Quaternion.Euler(0, -270, 255);
 
