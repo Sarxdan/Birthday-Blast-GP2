@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,11 @@ public class PlayerHealth : Health
     bool invulnerable = false;
 
     public Animator damageAnimator;
+
+    private void OnCollisionStay(Collision other)
+    {
+        damageAnimator = GameObject.FindGameObjectWithTag("CharModel").GetComponent<Animator>();
+    }
 
     public override void Heal(int amount)
     {
@@ -42,13 +48,22 @@ public class PlayerHealth : Health
         
         float timer = invulnerableTime;   
         invulnerable = true;
-        damageAnimator.SetBool("IsDamaged", true);
+        if (damageAnimator != null)
+        {
+            damageAnimator.SetBool("IsDamaged", true);
+        }
+
         while(timer > 0)
         {
             yield return new WaitForEndOfFrame();
             timer -= Time.deltaTime;
-        }   
-        damageAnimator.SetBool("IsDamaged", false);
+        }
+
+        if (damageAnimator != null)
+        {
+            damageAnimator.SetBool("IsDamaged", false);
+        }
+
         invulnerable = false;
     }
     protected override IEnumerator Death()
@@ -65,7 +80,7 @@ public class PlayerHealth : Health
     }
 
     private void Start() {
-        PlayerManager.instance.PlayerAwake();
+        PlayerManager.instance.PutOnModel();
         if(FindObjectOfType<CheckpointManager>() != null) CheckpointManager.instance.Setup();    
         OutOfBounds[] bounds = FindObjectsOfType<OutOfBounds>();   
         foreach(OutOfBounds bound in bounds)
