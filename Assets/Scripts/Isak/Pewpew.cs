@@ -29,7 +29,6 @@ public class Pewpew : MonoBehaviour
     {
         if (CanShoot())
         {
-            GameObject.FindGameObjectWithTag("CharModel").GetComponent<Animator>().SetTrigger("Shoot");
             Shoot();
         }
     }
@@ -51,6 +50,7 @@ public class Pewpew : MonoBehaviour
         ammo --;
         canShoot = false;
         effect.Play();
+        GameObject.FindGameObjectWithTag("CharModel").GetComponent<Animator>().SetTrigger("Shoot");
         if (FindObjectOfType<Level>().levelType == LevelType.Island)
         {
             if (FindObjectOfType<ThirdPersonController>().disableCameraController == false)
