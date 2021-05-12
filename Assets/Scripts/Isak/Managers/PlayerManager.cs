@@ -123,7 +123,8 @@ public class PlayerManager : Singleton<PlayerManager>
                 var jetPos = new Vector3(0, 0, 0);
                 if (FindObjectOfType<Level>().levelType == LevelType.Jetpack)
                 {
-                    jetPos = jetpackParent.position + -Vector3.forward * 1f;
+                    jetPos = new Vector3(jetpackParent.position.x, jetpackParent.position.y,
+                        jetpackParent.position.z - 0.27f);
                 }
                 else
                 {

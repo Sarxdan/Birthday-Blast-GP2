@@ -12,7 +12,7 @@ public class LevelTransition : MonoBehaviour
     public static Events.TransitionEvent onLevelTransit;
     [Header("Insert LVL ID of the level you want to transition TO")]
     public int nextLevel;
-    public float transitionDuration = 1.5f;
+    public float transitionDuration = 0;
 
     [Header("If going from Island => new level")]
     public Transform directionOfLaunch;
@@ -35,7 +35,8 @@ public class LevelTransition : MonoBehaviour
             cineCam.LookAt = player.GetComponentInChildren<Rigidbody>().transform;
 
             PlayerPrefs.SetInt("LandJetpack", 1);
-            Invoke(nameof(LaunchPlayer),0.2f);
+            LaunchPlayer();
+            //Invoke(nameof(LaunchPlayer),0.2f);
             
         }
         else
