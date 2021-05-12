@@ -103,8 +103,7 @@ public class CharacterSelector : MonoBehaviour
                 GameObject character = Instantiate(characters[i], position, rotation);
                 character.transform.parent = parent.transform;
                 character.name = characters[i].name;
-                characters[i] = character;
-                
+                characters[i] = character;                
             }
         charactersSpawned = true;
         chosenCharacter = characters[0]; // set a default chosen character to look at

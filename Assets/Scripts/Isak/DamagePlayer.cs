@@ -30,7 +30,6 @@ public class DamagePlayer : MonoBehaviour
             if(jetPack != null && jetPack.Invulnerable || jetPack != null && jetPack.GameOver) return;
             if(onPlayerCollision != null)
             {           
-                print(gameObject.name);
                 onPlayerCollision(damageToPlayerOnCollision);
             }           
         }
