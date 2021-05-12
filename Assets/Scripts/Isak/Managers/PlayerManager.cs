@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
+using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerManager : Singleton<PlayerManager>
 {   
     [HideInInspector]
     public int playerHealth;
+    
+    public List<string> chosenCharacterMeshesNames;
 
     [Header("Player health settings")]
     [Range(1, 10)]public int playerMaxHealth;
@@ -16,19 +22,9 @@ public class PlayerManager : Singleton<PlayerManager>
     [Tooltip("How fast fuel recharges")] public int fuelRechargePerTick = 1;
     [Range(1, 10)] public int maxFuel = 10;
 
-    [Header("Mouse input settings")]
-
-    public float horizontalSensitivity = 100f;
-    public float verticalSensitivity = 50f;
-
-    [HideInInspector]
     public GameObject chosenCharacterPrefab;
-
-    // settings
-    [HideInInspector]
-    public float mouseSensitivityMultiplier = 1;
-    [HideInInspector]
-    public bool invertMouse = false;
+    public RuntimeAnimatorController playerAnimator;
+    public RuntimeAnimatorController cutsceneAnimator;
     
 
     GameObject player;
@@ -36,6 +32,7 @@ public class PlayerManager : Singleton<PlayerManager>
     protected override void Awake() {
         base.Awake();
         playerHealth = playerMaxHealth;
+        chosenCharacterMeshesNames = new List<string>();
     }
 
     public void ResetPlayerHealth()
@@ -46,13 +43,7 @@ public class PlayerManager : Singleton<PlayerManager>
     public void PlayerAwake()
     {
         if (chosenCharacterPrefab == null) return;
-        List<string> characterParts = new List<string>();
         var players = FindObjectsOfType<PlayerHealth>();
-        foreach(Transform skin in chosenCharacterPrefab.transform)
-        {
-            if(skin.name == "Root") continue;
-            if(skin.gameObject.activeSelf) characterParts.Add(skin.name);
-        }
         foreach (var _player in players)
         {
             foreach (Transform child in _player.transform)
@@ -63,14 +54,66 @@ public class PlayerManager : Singleton<PlayerManager>
                     {
 
                         if (grandchild.name == "Root") continue;
-                        
                         grandchild.gameObject.SetActive(false);
-                        foreach(string part in characterParts)
+                        if(grandchild.name == chosenCharacterPrefab.name)
                         {
-                            if(grandchild.name == part) grandchild.gameObject.SetActive(true);
+                            grandchild.gameObject.SetActive(true);
                         }
                     }
                 }
+            }
+        }
+
+    }
+
+    public void PutOnModel()
+    {
+        var players = FindObjectsOfType<PlayerHealth>();
+        foreach (var player in players)
+        {
+
+
+            var currPlayerModel = player.transform.Find("MeshBase");
+            var spawnedModel = Instantiate(chosenCharacterPrefab, player.transform.position, Quaternion.identity, player.transform);
+            var isPlayer = player.CompareTag("Player");
+            var animatorToUse = playerAnimator;
+            if (isPlayer)
+            {
+                animatorToUse = playerAnimator;
+            }
+            else
+            {
+                animatorToUse = cutsceneAnimator;
+            }
+
+
+            Destroy(currPlayerModel.gameObject);
+
+            spawnedModel.GetComponent<Animator>().runtimeAnimatorController = animatorToUse;
+
+            if (isPlayer)
+            {
+
+                //Doesn't work for some reason
+                var jetpackParent = GameObject.FindGameObjectWithTag("JetParent").transform;
+                var pewpewParent = GameObject.FindGameObjectWithTag("PewParent").transform;
+
+                var jetpackObject = FindObjectOfType<JetpackBase>().transform;
+                var pewpewObject = FindObjectOfType<Pewpew>().transform;
+
+
+                jetpackObject.parent = jetpackParent;
+                pewpewObject.parent = pewpewParent;
+                
+
+
+                spawnedModel.transform.position = FindObjectOfType<SpawnPoint>().transform.localPosition;
+                spawnedModel.transform.SetParent(player.transform);
+            }
+            else
+            {
+                spawnedModel.transform.SetParent(GameObject.Find("CutscenePlayer").transform);
+                spawnedModel.transform.localPosition = new Vector3(0, 0, 0);
             }
         }
 

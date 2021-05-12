@@ -44,13 +44,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: 0
-  playerMaxHealth: 3
-  fuelRechargeTime: 0.05
+  chosenCharacterMeshesNames: []
+  playerMaxHealth: 10
+  fuelRechargeTime: 1
   fuelUsage: 1
   fuelRechargePerTick: 1
-  maxFuel: 5
-  horizontalSensitivity: 100
-  verticalSensitivity: 50
+  maxFuel: 10
   chosenCharacterPrefab: {fileID: 0}
-  mouseSensitivityMultiplier: 1
-  invertMouse: 0
+  playerAnimator: {fileID: 9100000, guid: 4f363b679b2c7e2429834bfc5c6b9587, type: 2}
+  cutsceneAnimator: {fileID: 9100000, guid: 91efd186a5682c8438953562a5fc30b0, type: 2}
