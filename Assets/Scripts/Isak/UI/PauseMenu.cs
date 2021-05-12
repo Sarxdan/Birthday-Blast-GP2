@@ -44,7 +44,7 @@ public class PauseMenu : MonoBehaviour
         foreach(Transform child in transform)
         {
             child.gameObject.SetActive(false);
-            if(child.name == "BaseScreen") child.gameObject.SetActive(true);
+            if(child.name == "Menu") child.gameObject.SetActive(true);
         }
     }
 
