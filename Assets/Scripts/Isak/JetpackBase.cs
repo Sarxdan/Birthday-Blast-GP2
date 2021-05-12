@@ -23,7 +23,7 @@ public class JetpackBase : MonoBehaviour
     protected float fuel = 0;
     protected float fuelPercentage; //how much fuel is left in %
     protected bool invulnerable = false;
-    protected Vector3 movement; //added
+    protected Vector3 movement; 
     protected bool overCharged = false; //did the jetpack overheat?
     protected bool dashOnCooldown = false;
     protected bool rightAxisPushed = false; //check if player wants to dash right
@@ -32,7 +32,6 @@ public class JetpackBase : MonoBehaviour
     protected float lastKeyPressTime = 0; //last time player pushed a direction key, counted in time.time  
     protected float cooldown = 0; //cooldown of dash ability, resets when dashing
     protected float dashTimeLeft = 0; //remaining dash length
-    protected IEnumerator dashEnumerator;
     protected float fuelRechargeTime = 1;
     protected int fuelUsage = 1; 
     protected int fuelRechargePerTick = 1;
@@ -62,18 +61,24 @@ public class JetpackBase : MonoBehaviour
 
         Inventory.instance.onUpgradeApplied += ApplyUpgradeStats;
     }
-    protected virtual void Start() {
+    protected virtual void Start()
+    {
+        FuelSetup();
+        if (onJetpackAwake != null)
+        {
+            onJetpackAwake(fuel);
+        }
+
+        ApplyUpgradeStats();
+    }
+
+    private void FuelSetup()
+    {
         maxFuel = PlayerManager.instance.maxFuel;
         fuelRechargePerTick = PlayerManager.instance.fuelRechargePerTick;
         fuelRechargeTime = PlayerManager.instance.fuelRechargeTime;
         fuelUsage = PlayerManager.instance.fuelUsage;
         fuel = maxFuel;
-        if(onJetpackAwake != null)
-        {
-            onJetpackAwake(fuel);
-        }
-        
-        ApplyUpgradeStats();
     }
 
     protected void ToggleDashAnimation(bool toggle)
@@ -82,7 +87,7 @@ public class JetpackBase : MonoBehaviour
         if(toggle) dashEffect.Play();        
         else
         {
-                dashEffect.Stop();
+            dashEffect.Stop();
         }           
     }
 
@@ -107,7 +112,6 @@ public class JetpackBase : MonoBehaviour
 
     protected virtual void Update() {
         GetDashInput();
-
     }
 
     protected void ApplyUpgradeStats()
@@ -125,9 +129,6 @@ public class JetpackBase : MonoBehaviour
 
     protected virtual void GetDashInput()
     {        
-        //if(overCharged) return;
-        //if(dashOnCooldown) return; //funkar ej med inheritance????
-        //if(!dashUnlocked) return;
         if(Time.time - lastKeyPressTime > doubleTapTimer)
         {
             ResetAxisBools();
@@ -136,8 +137,7 @@ public class JetpackBase : MonoBehaviour
         {
             dashDirections = DashDirections.Forward;    
             ResetAxisBools();
-            dashEnumerator = DashInDirection(dashDirections);
-            StartCoroutine(dashEnumerator);
+            StartCoroutine(DashInDirection(dashDirections));
         }
     }
 

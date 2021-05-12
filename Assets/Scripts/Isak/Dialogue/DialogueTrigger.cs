@@ -78,7 +78,6 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
         if(rewarded) return;
         if(dialogueToUse.Reward == null) return;
         if(timesSpokenWith != dialogueToUse.Sentences().Length - 1) return;
-        print("rewarded with " + dialogueToUse.Reward.name);
         GameObject reward = Instantiate(dialogueToUse.Reward, new Vector3(transform.position.x, transform.position.y, transform.position.z + 1), Quaternion.identity);
         rewarded = true;
     }
@@ -105,11 +104,7 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
         CheckIfNewDialogue();
         RewardPlayer();
         SetPlayerMovement();
-        if(dialogueToUse == null)
-        {
-            Debug.LogError("requirements for dialogue is not met");
-            return;
-        }
+        if(dialogueToUse == null) return;
         if(onNPCDialogue != null)
         {
             onNPCDialogue(GetNextDialogue(), dialogues.Name, dialogues.NPCSprite);
