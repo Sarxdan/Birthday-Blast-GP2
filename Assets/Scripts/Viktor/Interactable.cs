@@ -14,8 +14,8 @@ public class Interactable : MonoBehaviour
     public bool oneTimeInteraction = false;
     private bool interactedWith;
     public string interactText;
-    public string interactTextEN = "*interact*";
-    public string interactTextSE = "*interagera*";
+    public string interactTextEN = "(E) *Interact*";
+    public string interactTextSE = "(E) *Interagera*";
     public string unableToInteracteText;
     public string unableToInteracteTextEN = "Can't interact!";
     public string unableToInteracteTextSE = "Kan inte interagera!";
