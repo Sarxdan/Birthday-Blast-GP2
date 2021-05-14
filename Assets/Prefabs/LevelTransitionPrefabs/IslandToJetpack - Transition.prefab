@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextLevel: 0
-  transitionDuration: 1.75
+  transitionDuration: 0
   directionOfLaunch: {fileID: 7622359349658166114}
   launchForce: 3000
 --- !u!114 &7784056178707813390
@@ -164,8 +164,10 @@ MonoBehaviour:
     shovel: 0
   oneTimeInteraction: 0
   interactText: Transition To Jetpack
-  interactTextSE: "\xD6verg\xE5ng Till Jetpack"
+  interactTextEN: (E) Transition To Jetpack
+  interactTextSE: "(E) \xD6verg\xE5ng Till Jetpack"
   unableToInteracteText: Can't interact!
+  unableToInteracteTextEN: Can't interact!
   unableToInteracteTextSE: Kan inte interagera!
   interactRadius: 2
   minimumTimeBetweenInteractions: 2

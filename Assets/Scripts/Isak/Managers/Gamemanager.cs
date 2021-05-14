@@ -12,7 +12,8 @@ public class Gamemanager : Singleton<Gamemanager>
     {
         Pregame,
         Playing,
-        Paused
+        Paused,
+        CutScene
     }
     public KeyItems.Items UnlockedItems
     {
@@ -23,11 +24,18 @@ public class Gamemanager : Singleton<Gamemanager>
         get{return currentGameState;}
     }
     [SerializeField] KeyItems.Items unlockedItems;
-    GameState currentGameState = GameState.Pregame;
+    public GameState currentGameState = GameState.Pregame;
 
     public void LoadLevel(int levelIndex)
     {       
         SceneManager.LoadScene(levelIndex);       
+    }
+
+    public void ResetUnlockedItems()
+    {
+        unlockedItems.jetpack = false;
+        unlockedItems.pewpew = false;
+        unlockedItems.shovel = false;
     }
 
     public void UpdateGameState(GameState newState)
@@ -39,11 +47,17 @@ public class Gamemanager : Singleton<Gamemanager>
             case GameState.Pregame:
             Time.timeScale = 1;
             break;
+
             case GameState.Playing:
             Time.timeScale = 1;
             break;
+
             case GameState.Paused:
             Time.timeScale = 0;
+            break;
+
+            case GameState.CutScene:
+            Time.timeScale = 1;
             break;
         }
         if(onGameStateChange != null)
@@ -54,8 +68,7 @@ public class Gamemanager : Singleton<Gamemanager>
 
     void OnPlayerDeath()
     {
-        LoadLevel(6);
-        //StartCoroutine(PlayerDeath());       
+        LoadLevel(6);     
     }
 
     IEnumerator PlayerDeath()
@@ -66,7 +79,6 @@ public class Gamemanager : Singleton<Gamemanager>
 
     private void SceneLoaded(Scene scene, LoadSceneMode mode)
     {      
-        UpdateGameState(GameState.Playing);
         if(onSceneLoaded != null)
         {
             onSceneLoaded();

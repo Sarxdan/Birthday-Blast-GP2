@@ -151,7 +151,7 @@ public class AudioManager : Singleton<AudioManager>
             case Gamemanager.GameState.Pregame:
                 foreach(Sound s in sounds)
         {
-            s.source.Stop();
+            if(!s.backgroundMusic) s.source.Stop();
         }
             break;
 

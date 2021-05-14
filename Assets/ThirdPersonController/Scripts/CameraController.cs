@@ -9,7 +9,9 @@ using Cursor = UnityEngine.Cursor;
 
 public class CameraController : MonoBehaviour
 {
+    [HideInInspector]
     public float horizontalSensitivity = 100f;
+    [HideInInspector]
     public float verticalSensitivity = 50f;
 
     //Limit the vertical rotation of the camera
@@ -44,8 +46,17 @@ public class CameraController : MonoBehaviour
     bool invertMouse = false;
 
     private void Awake() {
+        OnMouseSensitivityChanged();
+        OnMouseInverted();
+    }
+
+    public void OnMouseSensitivityChanged()
+    {
         horizontalSensitivity = PlayerManager.instance.horizontalSensitivity * PlayerManager.instance.mouseSensitivityMultiplier;
         verticalSensitivity = PlayerManager.instance.verticalSensitivity * PlayerManager.instance.mouseSensitivityMultiplier;
+    }
+    public void OnMouseInverted()
+    {
         invertMouse = PlayerManager.instance.invertMouse;
     }
 
@@ -100,44 +111,60 @@ public class CameraController : MonoBehaviour
 
         return false;
     }
+
+    private void ResetTouchInput()
+    {
+        mouseXInput = 0;
+        mouseYInput = 0;
+    }
+
+    private void RotateUsingTouch()
+    {
+        //right side of screen
+        var deltaTouchPos = Input.GetTouch(0).deltaPosition;
+
+        if (Input.touchCount > 1)
+        {
+            //1st touch on joystick
+            //second is this
+
+            deltaTouchPos = Input.GetTouch(1).deltaPosition;
+        }
+
+        mouseXInput = deltaTouchPos.x * horizontalSensitivity;
+        mouseYInput = -deltaTouchPos.y * verticalSensitivity;
+    }
+
+
+    private bool CanRotateUsingTouch()
+    {
+        if (Input.touchCount > 0 == false) return false;
+
+        var touch = Input.GetTouch(0);
+        if (Input.touchCount > 1)
+        {
+            touch = Input.GetTouch(1);
+        }
+        
+
+        var canRotate = (touch.position.x < Screen.width * 0.5f && touch.position.y > Screen.height * 0.5f) ||
+                    (touch.position.x > Screen.width * 0.5f);
+
+
+        return canRotate;
+    }
     
     public void HandleCamera()
     {
-
         
 #if UNITY_IOS || UNITY_ANDROID
-
-        if (Input.touchCount > 0)
+        if (CanRotateUsingTouch())
         {
-            if (CanRotateCameraOnMobile())
-            {
-                if (Finger0OnUI() == false)
-                {
-                    var deltaTouchPos = Input.GetTouch(0).deltaPosition;
-
-                    mouseXInput = deltaTouchPos.x * horizontalSensitivity;
-                    mouseYInput = -deltaTouchPos.y * verticalSensitivity;
-                }
-                else if (Finger1OnUI())
-                {
-                    var deltaTouchPos = Input.GetTouch(1).deltaPosition;
-
-                    mouseXInput = deltaTouchPos.x * horizontalSensitivity;
-                    mouseYInput = -deltaTouchPos.y * verticalSensitivity;
-                }
-            }
-            else
-            {
-                mouseXInput = 0;
-                mouseYInput = 0;
-            }
+            RotateUsingTouch();
         }
         else
         {
-            
-            //Reset rotation movement to 0 when not touching the screen
-            mouseXInput = 0;
-            mouseYInput = 0;
+            ResetTouchInput();
         }
 #endif
         

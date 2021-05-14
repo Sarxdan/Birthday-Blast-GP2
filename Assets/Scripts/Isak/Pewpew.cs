@@ -50,7 +50,19 @@ public class Pewpew : MonoBehaviour
         ammo --;
         canShoot = false;
         effect.Play();
-        AudioManager.instance.Play("Pewpew");
+        GameObject.FindGameObjectWithTag("CharModel").GetComponent<Animator>().SetTrigger("Shoot");
+        if (FindObjectOfType<Level>().levelType == LevelType.Island)
+        {
+            if (FindObjectOfType<ThirdPersonController>().disableCameraController == false)
+            {
+                AudioManager.instance.Play("Pewpew");
+            }
+        }
+        else
+        {
+            AudioManager.instance.Play("Pewpew");
+        }
+
         Collider[] colliders;
         colliders = Physics.OverlapSphere(transform.position, projectileRadius, LayerMask.GetMask("Enemy"));
         foreach(Collider collider in colliders)

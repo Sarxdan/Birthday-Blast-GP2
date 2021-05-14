@@ -27,7 +27,16 @@ public class UIManager : Singleton<UIManager>
 
     private Controls controls;
     
-    
+    private void Update() {
+        if(Gamemanager.instance.CurrentGameState == Gamemanager.GameState.Pregame || Gamemanager.instance.CurrentGameState == Gamemanager.GameState.CutScene)
+        {
+            inGameUI.gameObject.SetActive(false);
+        }
+        else
+        {
+            inGameUI.gameObject.SetActive(true);
+        }
+    }
 
     public void EnablePopUp(GameObject popup)
     {
@@ -96,13 +105,14 @@ public class UIManager : Singleton<UIManager>
         inGameUI = GetComponentInChildren<InGameUI>();
         pauseMenu = GetComponentInChildren<PauseMenu>();
         shopUI = GetComponentInChildren<ShopUI>();
+        ToggleInventoryUI();
+        TogglePauseMenu();
+        ToggleShopUI();
     }
     
 
     private void Start() {
-        ToggleInventoryUI();
-        TogglePauseMenu();
-        ToggleShopUI();
+        
     }
 
     void TogglePauseMenu()
@@ -112,7 +122,7 @@ public class UIManager : Singleton<UIManager>
         pauseMenu.ResetPauseMenu();
         pauseMenu.gameObject.SetActive(toggle);
         ToggleMouse(toggle);
-        if(toggle)
+        if(toggle && Gamemanager.instance.currentGameState != Gamemanager.GameState.Pregame)
         {
             Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Paused);
         }
@@ -136,7 +146,7 @@ public class UIManager : Singleton<UIManager>
         shopUI.gameObject.SetActive(toggle);
         ToggleMouse(toggle);
         
-        if(toggle)
+        if(toggle && Gamemanager.instance.currentGameState != Gamemanager.GameState.Pregame)
         {
             Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Paused); //toggle player movement instead
         }
@@ -177,6 +187,7 @@ public class UIManager : Singleton<UIManager>
 
     private void OnPlayerHealthChange(int amount)
     {
+        inGameUI.gameObject.SetActive(true);
         if(onPlayerHealthChange != null)
         {
             onPlayerHealthChange(amount);
@@ -209,12 +220,11 @@ public class UIManager : Singleton<UIManager>
 
     void OnPlayerDeath()
     {
-        inGameUI.gameObject.SetActive(false);
+        //inGameUI.gameObject.SetActive(false);
     }
 
     void OnGameRestart()
     {
-        inGameUI.gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
@@ -238,7 +248,6 @@ public class UIManager : Singleton<UIManager>
     private void OnDisable() {
         
         controls.Disable();
-        
         GameOver.onGameRestart -= OnGameRestart;
         PauseMenu.onResumeClicked -= TogglePauseMenu;
         PlayerHealth.onPlayerHealthChange -= OnPlayerHealthChange;

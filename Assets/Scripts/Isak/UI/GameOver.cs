@@ -10,15 +10,18 @@ public class GameOver : MonoBehaviour
     void Start()
     {
         StartCoroutine(RestartGame());
+        Gamemanager.instance.ResetUnlockedItems();
     }
 
     IEnumerator RestartGame()
     {
+        Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Pregame);
         yield return new WaitForSeconds(loadTime);
         if(onGameRestart != null)
         {
             onGameRestart();
         }
+        
         Gamemanager.instance.LoadLevel(0);
     }
 }

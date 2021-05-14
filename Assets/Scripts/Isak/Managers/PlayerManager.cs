@@ -22,18 +22,19 @@ public class PlayerManager : Singleton<PlayerManager>
     [Tooltip("How fast fuel recharges")] public int fuelRechargePerTick = 1;
     [Range(1, 10)] public int maxFuel = 10;
 
+    [Header("Mouse sensitivity settings")]
+    public float verticalSensitivity;    
+    public float horizontalSensitivity;
+
     public GameObject chosenCharacterPrefab;
     public RuntimeAnimatorController playerAnimator;
     public RuntimeAnimatorController jetpackAnimator;
     public RuntimeAnimatorController cutsceneAnimator;
-    GameObject player;
     //settings
     [HideInInspector]
     public float mouseSensitivityMultiplier;
-    [HideInInspector]
-    public float verticalSensitivity;
-    [HideInInspector]
-    public float horizontalSensitivity;
+    
+    
     [HideInInspector]
     public bool invertMouse;
 
@@ -46,6 +47,20 @@ public class PlayerManager : Singleton<PlayerManager>
     public void ResetPlayerHealth()
     {
         playerHealth = playerMaxHealth;
+    }
+
+    public void OnMouseSensitivityChanged(float value)
+    {
+        mouseSensitivityMultiplier = value;
+        CameraController camera = FindObjectOfType<CameraController>();
+        if(camera != null) camera.OnMouseSensitivityChanged();
+    }
+
+    public void OnMouseInverted(bool isOn)
+    {
+        invertMouse = isOn;
+        CameraController camera = FindObjectOfType<CameraController>();
+        if(camera != null) camera.OnMouseInverted();
     }
 
     public void PlayerAwake()
@@ -120,7 +135,18 @@ public class PlayerManager : Singleton<PlayerManager>
                 jetpackObject.parent = jetpackParent;
                 pewpewObject.parent = pewpewParent;
 
-                jetpackObject.position = jetpackParent.position;
+                var jetPos = new Vector3(0, 0, 0);
+                if (FindObjectOfType<Level>().levelType == LevelType.Jetpack)
+                {
+                    jetPos = new Vector3(jetpackParent.position.x, jetpackParent.position.y,
+                        jetpackParent.position.z - 0.27f);
+                }
+                else
+                {
+                    jetPos = jetpackParent.position;
+                }
+
+                jetpackObject.position = jetPos;
                 pewpewObject.position = pewpewParent.position;
                 pewpewObject.localRotation = Quaternion.Euler(0, -270, 255);
 
