@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
@@ -15,13 +16,17 @@ public class GameOver : MonoBehaviour
 
     IEnumerator RestartGame()
     {
-        Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Pregame);
         yield return new WaitForSeconds(loadTime);
         if(onGameRestart != null)
         {
             onGameRestart();
         }
+
+        SceneManager.LoadScene("S_GameScene");
+        Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Playing);
         
-        Gamemanager.instance.LoadLevel(0);
+        //Make sure cursor is locked when returning to the game scene
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 }
