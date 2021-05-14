@@ -48,6 +48,10 @@ public class UIManager : Singleton<UIManager>
             case Gamemanager.GameState.Paused:
             inGameUI.gameObject.SetActive(false);
             break;
+
+            case Gamemanager.GameState.GameOver:
+            inGameUI.gameObject.SetActive(false);
+            break;
         }
     }
 
