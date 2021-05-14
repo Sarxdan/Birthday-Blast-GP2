@@ -199,7 +199,6 @@ public class UIManager : Singleton<UIManager>
         
         ToggleMouse(toggle);
         
-        if (FindObjectOfType<ThirdPersonController>() == null || FindObjectOfType<Level>() == null) return;
         
         if (FindObjectOfType<ThirdPersonController>() == null || FindObjectOfType<Level>() == null) return;
         if (FindObjectOfType<Level>().levelType == LevelType.Island)
