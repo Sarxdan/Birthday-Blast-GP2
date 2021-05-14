@@ -199,22 +199,6 @@ public class UIManager : Singleton<UIManager>
         
         ToggleMouse(toggle);
         
-        
-        if (FindObjectOfType<ThirdPersonController>() == null || FindObjectOfType<Level>() == null) return;
-        if (FindObjectOfType<Level>().levelType == LevelType.Island)
-        {           
-            if (!toggle && FindObjectOfType<ThirdPersonController>().disableCameraController)
-            {
-                ToggleMouse(true);
-            }
-            else
-            {
-                FindObjectOfType<ThirdPersonController>().ToggleControls(!toggle);
-            }
-        }
-        
-        
-        
     }
     
     public void OnTogglePause(InputAction.CallbackContext context)

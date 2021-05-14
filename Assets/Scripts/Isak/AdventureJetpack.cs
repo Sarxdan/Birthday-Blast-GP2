@@ -107,9 +107,7 @@ public class AdventureJetpack : JetpackBase //make script check if jetpack is un
     }
 
     
-
     
-
     
 
     void StopDashingOnJump() //function checks if player wants to stop dash early
