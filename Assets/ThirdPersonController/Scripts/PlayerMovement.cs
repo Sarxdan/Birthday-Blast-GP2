@@ -117,9 +117,14 @@ public class PlayerMovement : MonoBehaviour
             .normalized;
         if(isSliding)
         {
-            float slideFriction = 0.5f;
+            float slideFriction = 0.9f;//0.5f;
             movementDirection.x = (1f - hitNormal.y) * hitNormal.x * (1f - slideFriction);
             movementDirection.z = (1f - hitNormal.y) * hitNormal.z * (1f - slideFriction);
+        }
+        else
+        {
+            //Rotate player towards movement
+            RotatePlayerTowardsDirection(movementDirection);
         }
         //Move in direction * movementSpeed
         controller.Move(movementDirection * (Time.deltaTime * movementSpeed));
@@ -128,8 +133,6 @@ public class PlayerMovement : MonoBehaviour
         //Gravity
         controller.Move(velocity * Time.deltaTime);
         
-        //Rotate player towards movement
-        RotatePlayerTowardsDirection(movementDirection);
         if(isGrounded && !AudioManager.instance.IsPlaying("PlayerWalk"))
         {
             if(vertical != 0 || horizontal != 0)

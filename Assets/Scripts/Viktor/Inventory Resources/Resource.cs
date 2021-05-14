@@ -45,7 +45,7 @@ public class Resource : PickUp
         if (resourceType == ResourceTypes.MagicRoot)
         {
             PlayerManager.instance.playerMaxHealth++;
-            PlayerManager.instance.playerHealth++;
+            PlayerManager.instance.ResetPlayerHealth();
         }
     }
 
