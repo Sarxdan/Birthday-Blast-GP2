@@ -26,15 +26,28 @@ public class UIManager : Singleton<UIManager>
 
 
     private Controls controls;
-    
-    private void Update() {
-        if(Gamemanager.instance.CurrentGameState == Gamemanager.GameState.Pregame || Gamemanager.instance.CurrentGameState == Gamemanager.GameState.CutScene)
+
+    Gamemanager.GameState lastState;
+
+    void OnGameStateChange(Gamemanager.GameState state)
+    {
+        switch(state)
         {
+            case Gamemanager.GameState.Pregame:
             inGameUI.gameObject.SetActive(false);
-        }
-        else
-        {
+            break;
+
+            case Gamemanager.GameState.CutScene:
+            inGameUI.gameObject.SetActive(false);
+            break;
+
+            case Gamemanager.GameState.Playing:
             inGameUI.gameObject.SetActive(true);
+            break;
+
+            case Gamemanager.GameState.Paused:
+            inGameUI.gameObject.SetActive(false);
+            break;
         }
     }
 
@@ -117,20 +130,27 @@ public class UIManager : Singleton<UIManager>
 
     void TogglePauseMenu()
     {
+        if(Gamemanager.instance.currentGameState != Gamemanager.GameState.Paused)
+        {
+            lastState = Gamemanager.instance.currentGameState;
+        }
         if(FindObjectOfType<Gamemanager>() == null) return;
         bool toggle = !pauseMenu.gameObject.activeSelf;
         pauseMenu.ResetPauseMenu();
         pauseMenu.gameObject.SetActive(toggle);
-        ToggleMouse(toggle);
-        if(toggle && Gamemanager.instance.currentGameState != Gamemanager.GameState.Pregame)
+        
         {
-            Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Paused);
+            ToggleMouse(toggle);
+            if(toggle)
+            {
+                Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Paused);
+            }
+            else
+            {
+                Gamemanager.instance.UpdateGameState(lastState);
+            }
         }
-        else
-        {
-            Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Playing);
-        }
-        if (FindObjectOfType<ThirdPersonController>() == null || FindObjectOfType<Level>() == null) return;
+          if (FindObjectOfType<ThirdPersonController>() == null || FindObjectOfType<Level>() == null) return;
         if (FindObjectOfType<Level>().levelType == LevelType.Island)
         {           
             if (!toggle && FindObjectOfType<ThirdPersonController>().disableCameraController)
@@ -138,6 +158,7 @@ public class UIManager : Singleton<UIManager>
                 ToggleMouse(true);
             }
         }
+        
     }
 
     public void ToggleShopUI() 
@@ -217,24 +238,12 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    void OnPlayerDeath()
-    {
-        //inGameUI.gameObject.SetActive(false);
-    }
-
-    void OnGameRestart()
-    {
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
-    }
-
     private void OnEnable() {
         
         controls.Enable();
-        GameOver.onGameRestart += OnGameRestart;
+        Gamemanager.onGameStateChange += OnGameStateChange;
         PauseMenu.onResumeClicked += TogglePauseMenu;
         PlayerHealth.onPlayerHealthChange += OnPlayerHealthChange;
-        PlayerHealth.onPlayerDeath += OnPlayerDeath;
         JetPack.onFuelUse += OnFuelUse;
         JetPack.onJetpackAwake += OnJetpackAwake;
         JetpackBase.onFuelUse += OnFuelUse;
@@ -247,10 +256,9 @@ public class UIManager : Singleton<UIManager>
     private void OnDisable() {
         
         controls.Disable();
-        GameOver.onGameRestart -= OnGameRestart;
+        Gamemanager.onGameStateChange -= OnGameStateChange;
         PauseMenu.onResumeClicked -= TogglePauseMenu;
         PlayerHealth.onPlayerHealthChange -= OnPlayerHealthChange;
-        PlayerHealth.onPlayerDeath -= OnPlayerDeath;
         JetPack.onFuelUse -= OnFuelUse;
         JetPack.onJetpackAwake -= OnJetpackAwake;
         JetpackBase.onFuelUse -= OnFuelUse;

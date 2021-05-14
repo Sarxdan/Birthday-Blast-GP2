@@ -137,7 +137,7 @@ public class AudioManager : Singleton<AudioManager>
         }
     }
 
-    void OnGameStateChange(Gamemanager.GameState newState, Gamemanager.GameState lastState)
+    void OnGameStateChange(Gamemanager.GameState newState)
     {
         switch(newState)
         {

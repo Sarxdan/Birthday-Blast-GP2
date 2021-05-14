@@ -17,11 +17,11 @@ public class TimelineManager : MonoBehaviour
 
 
    private void Start()
-   {
-      Gamemanager.instance.UpdateGameState(Gamemanager.GameState.CutScene);
+   {     
       var playCutscene = !PlayerPrefs.HasKey("TutCutscene");
       if (playCutscene)
       {
+         Gamemanager.instance.UpdateGameState(Gamemanager.GameState.CutScene);
          director.Play();
          PlayerPrefs.SetInt("TutCutscene", 1);
       }

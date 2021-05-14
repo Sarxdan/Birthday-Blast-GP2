@@ -5,22 +5,18 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour
 {
-    public static Events.EmptyEvent onGameRestart;
     [SerializeField] float loadTime = 1;
     // Start is called before the first frame update
     void Start()
     {
         StartCoroutine(RestartGame());
-        Gamemanager.instance.ResetUnlockedItems();
+        Gamemanager.instance.UpdateGameState(Gamemanager.GameState.GameOver);
+        //Gamemanager.instance.ResetUnlockedItems();
     }
 
     IEnumerator RestartGame()
     {
         yield return new WaitForSeconds(loadTime);
-        if(onGameRestart != null)
-        {
-            onGameRestart();
-        }
 
         SceneManager.LoadScene("S_GameScene");
         Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Playing);
