@@ -27,8 +27,6 @@ public class Gamemanager : Singleton<Gamemanager>
     [SerializeField] KeyItems.Items unlockedItems;
     public GameState currentGameState = GameState.Pregame;
 
-    public bool gameInPlay = false; //is the game currently in playmode?
-
     public void LoadLevel(int levelIndex)
     {       
         SceneManager.LoadScene(levelIndex);       
@@ -47,29 +45,24 @@ public class Gamemanager : Singleton<Gamemanager>
         switch(currentGameState)
         {
             case GameState.Pregame:
-            gameInPlay = false;
             Time.timeScale = 1;
             break;
 
             case GameState.Playing:
-            gameInPlay = true;
             Time.timeScale = 1;
             break;
 
             case GameState.Paused:
-            gameInPlay = true;
             Time.timeScale = 0;
             break;
 
             case GameState.CutScene:
-            gameInPlay = false;
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             Time.timeScale = 1;
             break;
 
             case GameState.GameOver:
-            gameInPlay = false;
             Time.timeScale = 1;
             break;
         }
