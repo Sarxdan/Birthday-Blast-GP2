@@ -1,31 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!135 &8910182868680816563
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1687801561947951648}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.041084375
-  m_Center: {x: 0.025856894, y: 0.0000009525821, z: 0.0000018831342}
---- !u!135 &2619038929813970899
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1687801561947951650}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.0507877
-  m_Center: {x: 0.006227851, y: 0.0000000020481354, z: -0.000000018626453}
 --- !u!65 &822392505
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -69,8 +43,13 @@ MonoBehaviour:
     jetpack: 0
     pewpew: 0
     shovel: 0
-  interactText: '*interact*'
+  oneTimeInteraction: 0
+  interactText: '*Interact*'
+  interactTextEN: '*Interact*'
+  interactTextSE: '*Interagera*'
   unableToInteracteText: Can't interact!
+  unableToInteracteTextEN: Can't interact!
+  unableToInteracteTextSE: Kan inte interagera!
   interactRadius: 1
   minimumTimeBetweenInteractions: 2
   OnInteractEvent:
@@ -101,6 +80,32 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.041084375
   m_Center: {x: -0.025849264, y: -0.0000009563074, z: -0.00000002421439}
+--- !u!135 &8910182868680816563
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687801561947951648}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.041084375
+  m_Center: {x: 0.025856894, y: 0.0000009525821, z: 0.0000018831342}
+--- !u!135 &2619038929813970899
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687801561947951650}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.0507877
+  m_Center: {x: 0.006227851, y: 0.0000000020481354, z: -0.000000018626453}
 --- !u!135 &2429513723345084908
 SphereCollider:
   m_ObjectHideFlags: 0
