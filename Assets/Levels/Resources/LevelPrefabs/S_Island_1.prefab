@@ -28742,59 +28742,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 7de7a55808b4b6748ba5bc71671fc4c7, type: 3}
---- !u!114 &4258672115978512821
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8158408275202418467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51b50cef069b20b48983ce3fd52a6248, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  requiredItems:
-    jetpack: 0
-    pewpew: 0
-    shovel: 0
-  oneTimeInteraction: 0
-  interactText: '*Interact*'
-  interactTextEN: '*Interact*'
-  interactTextSE: '*Interagera*'
-  unableToInteracteText: Can't interact!
-  unableToInteracteTextEN: Can't interact!
-  unableToInteracteTextSE: Kan inte interagera!
-  interactRadius: 2
-  minimumTimeBetweenInteractions: 2
-  OnInteractEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 6248701674005018813}
-        m_TargetAssemblyTypeName: PopUp, Assembly-CSharp
-        m_MethodName: InteractWithPopUp
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
---- !u!114 &6248701674005018813
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8158408275202418467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b3655ea6fe5e594194df3c79c30ba0c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popUp: {fileID: 1383179132466389875, guid: 4fa2852b1e378d04486dbe339a44b730, type: 3}
 --- !u!1 &8218416135115046439
 GameObject:
   m_ObjectHideFlags: 0
@@ -36748,11 +36695,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1870753774303615405, guid: f74e823bc4e431a4a987e5a2a4c8b6a0, type: 3}
       propertyPath: interactTextEN
-      value: Speak
+      value: (E) Speak
       objectReference: {fileID: 0}
     - target: {fileID: 1870753774303615405, guid: f74e823bc4e431a4a987e5a2a4c8b6a0, type: 3}
       propertyPath: interactTextSE
-      value: Prata med
+      value: (E) Prata med
       objectReference: {fileID: 0}
     - target: {fileID: 1870753774303615406, guid: f74e823bc4e431a4a987e5a2a4c8b6a0, type: 3}
       propertyPath: m_RootOrder
@@ -63659,11 +63606,6 @@ PrefabInstance:
 --- !u!4 &8156938096454861615 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4326932557418544, guid: cde552c6ccc41204392f66529783d760, type: 3}
-  m_PrefabInstance: {fileID: 8159428138137703199}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &8158408275202418467 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1233311268238396, guid: cde552c6ccc41204392f66529783d760, type: 3}
   m_PrefabInstance: {fileID: 8159428138137703199}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8164626974908158126

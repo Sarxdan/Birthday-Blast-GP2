@@ -14606,7 +14606,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.3333334, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -30246,9 +30246,9 @@ MonoBehaviour:
     pewpew: 0
     shovel: 0
   oneTimeInteraction: 0
-  interactText: '*interact*'
-  interactTextEN: '*interact*'
-  interactTextSE: '*interagera*'
+  interactText: (E) *Interact*
+  interactTextEN: (E) *Interact*
+  interactTextSE: (E) *interagera*
   unableToInteracteText: Can't interact!
   unableToInteracteTextEN: Can't interact!
   unableToInteracteTextSE: Kan inte interagera!
@@ -37612,9 +37612,9 @@ MonoBehaviour:
     pewpew: 0
     shovel: 0
   oneTimeInteraction: 0
-  interactText: '*base interact*'
-  interactTextEN: '*Read note*'
-  interactTextSE: "*L\xE4s brevet*"
+  interactText: (E) *base interact*
+  interactTextEN: (E) *Read note*
+  interactTextSE: "(E) *L\xE4s brevet*"
   unableToInteracteText: Can't interact!
   unableToInteracteTextEN: Can't interact!
   unableToInteracteTextSE: Kan inte interagera!
@@ -37933,7 +37933,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.3333334, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -40065,6 +40065,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3014112238727292381}
     m_Modifications:
+    - target: {fileID: -2404196902955632302, guid: b9c47419c777dd149ac7dd023a3f9325, type: 3}
+      propertyPath: interactText
+      value: (E) *Interact*
+      objectReference: {fileID: 0}
+    - target: {fileID: -2404196902955632302, guid: b9c47419c777dd149ac7dd023a3f9325, type: 3}
+      propertyPath: interactTextEN
+      value: (E) *Interact*
+      objectReference: {fileID: 0}
+    - target: {fileID: -2404196902955632302, guid: b9c47419c777dd149ac7dd023a3f9325, type: 3}
+      propertyPath: interactTextSE
+      value: (E) *Interagera*
+      objectReference: {fileID: 0}
     - target: {fileID: 4501555345057455517, guid: b9c47419c777dd149ac7dd023a3f9325, type: 3}
       propertyPath: m_Name
       value: SM_Chr_Attach_Helmet_Soldier_01
