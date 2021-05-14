@@ -18,6 +18,7 @@ public class TimelineManager : MonoBehaviour
 
    private void Start()
    {
+      Gamemanager.instance.UpdateGameState(Gamemanager.GameState.CutScene);
       var playCutscene = !PlayerPrefs.HasKey("TutCutscene");
       if (playCutscene)
       {
@@ -51,6 +52,8 @@ public class TimelineManager : MonoBehaviour
 
    public void StopCutScene()
    {
+      print("test");
+      Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Playing);
       director.Stop();
       cutsceneBlink.GetComponent<Animator>().enabled = false;
       cutsceneFade.GetComponent<Animator>().enabled = false;

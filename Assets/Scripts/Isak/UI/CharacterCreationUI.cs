@@ -28,7 +28,7 @@ public class CharacterCreationUI : MonoBehaviour
     public void SelectionDone()
     {
         PlayerPrefs.DeleteAll();
-        Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Playing);
+        //Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Playing);
         selector.SelectionDone();       
     }
 }
