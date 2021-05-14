@@ -85,7 +85,7 @@ public class InGameUI : MonoBehaviour
         npcName.text = name;
     }
 
-    void UpdateHealthText(int amount)
+    public void UpdateHealthText(int amount)
     {
         for(int i = 0; i < healthbar.Length; i++)
         {

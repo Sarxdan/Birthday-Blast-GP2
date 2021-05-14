@@ -46,6 +46,8 @@ public class Resource : PickUp
         {
             PlayerManager.instance.playerMaxHealth++;
             PlayerManager.instance.ResetPlayerHealth();
+            
+            FindObjectOfType<InGameUI>().UpdateHealthText(PlayerManager.instance.playerHealth);
         }
     }
 
