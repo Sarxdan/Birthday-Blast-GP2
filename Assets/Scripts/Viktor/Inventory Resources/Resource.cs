@@ -24,10 +24,10 @@ public class Resource : PickUp
         
         doubleResourceChance = Inventory.instance.gardenSpadeLuck;
         
-        Inventory.instance.PickUpResource(this);
+        PutIntoInventory();
         if (DoubleResource())
         {
-            Inventory.instance.PickUpResource(this);
+            PutIntoInventory();
         }
         
         
@@ -38,6 +38,16 @@ public class Resource : PickUp
         }
     }
 
+
+    private void PutIntoInventory()
+    {
+        Inventory.instance.PickUpResource(this);
+        if (resourceType == ResourceTypes.MagicRoot)
+        {
+            PlayerManager.instance.playerMaxHealth++;
+            PlayerManager.instance.playerHealth++;
+        }
+    }
 
     private bool DoubleResource()
     {
