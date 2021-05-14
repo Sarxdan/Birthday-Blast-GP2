@@ -152,8 +152,16 @@ public class PlayerManager : Singleton<PlayerManager>
 
 
 
-                spawnedModel.transform.position = FindObjectOfType<SpawnPoint>().transform.localPosition;
-                spawnedModel.transform.SetParent(player.transform);
+                if (FindObjectOfType<Level>().levelType == LevelType.Island)
+                {
+                    spawnedModel.transform.position = FindObjectOfType<SpawnPoint>().transform.localPosition;
+                    spawnedModel.transform.SetParent(player.transform);
+                }
+                else
+                {
+                    spawnedModel.transform.position = FindObjectOfType<PlayerHealth>().transform.localPosition;
+                    spawnedModel.transform.SetParent(player.transform);
+                }
             }
             else
             {
