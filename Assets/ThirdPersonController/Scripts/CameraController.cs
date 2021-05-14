@@ -9,7 +9,9 @@ using Cursor = UnityEngine.Cursor;
 
 public class CameraController : MonoBehaviour
 {
+    [HideInInspector]
     public float horizontalSensitivity = 100f;
+    [HideInInspector]
     public float verticalSensitivity = 50f;
 
     //Limit the vertical rotation of the camera
@@ -44,8 +46,17 @@ public class CameraController : MonoBehaviour
     bool invertMouse = false;
 
     private void Awake() {
+        OnMouseSensitivityChanged();
+        OnMouseInverted();
+    }
+
+    public void OnMouseSensitivityChanged()
+    {
         horizontalSensitivity = PlayerManager.instance.horizontalSensitivity * PlayerManager.instance.mouseSensitivityMultiplier;
         verticalSensitivity = PlayerManager.instance.verticalSensitivity * PlayerManager.instance.mouseSensitivityMultiplier;
+    }
+    public void OnMouseInverted()
+    {
         invertMouse = PlayerManager.instance.invertMouse;
     }
 
