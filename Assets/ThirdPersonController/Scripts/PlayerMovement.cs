@@ -117,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
             .normalized;
         if(isSliding)
         {
-            float slideFriction = 0.9f;//0.5f;
+            float slideFriction = 0.5f;
             movementDirection.x = (1f - hitNormal.y) * hitNormal.x * (1f - slideFriction);
             movementDirection.z = (1f - hitNormal.y) * hitNormal.z * (1f - slideFriction);
         }
