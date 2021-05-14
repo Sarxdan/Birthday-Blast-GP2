@@ -13,6 +13,11 @@ public class InGameUI : MonoBehaviour
     Slider[] fuelBars;
     private void Awake()
     {       
+        UIManager.onNPCDialogue += PrintNPCText;
+        UIManager.onPlayerHealthChange += UpdateHealthText;
+        UIManager.onFuelUse += UpdateFuelText;
+        UIManager.onJetpackAwake += SetupFuel;
+        UIManager.onPlayerLeavingConversation += ClearConversation;
         GetHealthBar();
         GetFuelBar();
         ClearScreen();
@@ -123,15 +128,8 @@ public class InGameUI : MonoBehaviour
             amount--;
         }
     }
-    private void OnEnable() {
-        UIManager.onNPCDialogue += PrintNPCText;
-        UIManager.onPlayerHealthChange += UpdateHealthText;
-        UIManager.onFuelUse += UpdateFuelText;
-        UIManager.onJetpackAwake += SetupFuel;
-        UIManager.onPlayerLeavingConversation += ClearConversation;
-    }
-
-    private void OnDisable() {
+    
+    private void OnDestroy() {
         UIManager.onNPCDialogue -= PrintNPCText;
         UIManager.onPlayerHealthChange -= UpdateHealthText;
         UIManager.onFuelUse -= UpdateFuelText;
