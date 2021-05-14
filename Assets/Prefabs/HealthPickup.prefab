@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8675724047288417917}
   - component: {fileID: 8675724047288417905}
   - component: {fileID: 7227592360564990460}
+  - component: {fileID: 7123241562884614133}
   m_Layer: 0
   m_Name: HealthPickup
   m_TagString: Untagged
@@ -27,7 +28,7 @@ Transform:
   m_GameObject: {fileID: 8675724047288417904}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1.085, z: 2.083}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 243682228589538718}
   m_Father: {fileID: 0}
@@ -59,6 +60,25 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.72287166, y: 0.7709187, z: 0.23436236}
   m_Center: {x: 0.018481672, y: -0.20496243, z: 0.09469092}
+--- !u!95 &7123241562884614133
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8675724047288417904}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1ad7962a277c2004a989b60eb88bc748, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &415952424944756768
 PrefabInstance:
   m_ObjectHideFlags: 0
