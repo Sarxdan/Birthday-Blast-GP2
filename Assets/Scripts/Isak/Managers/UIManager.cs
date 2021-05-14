@@ -140,7 +140,7 @@ public class UIManager : Singleton<UIManager>
         }
     }
 
-    public void ToggleShopUI() //change to event later?
+    public void ToggleShopUI() 
     {
         bool toggle = !shopUI.gameObject.activeSelf;        
         shopUI.gameObject.SetActive(toggle);
@@ -148,7 +148,7 @@ public class UIManager : Singleton<UIManager>
         
         if(toggle && Gamemanager.instance.currentGameState != Gamemanager.GameState.Pregame)
         {
-            Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Paused); //toggle player movement instead
+            Gamemanager.instance.UpdateGameState(Gamemanager.GameState.Paused); 
         }
         else
         {
@@ -187,7 +187,6 @@ public class UIManager : Singleton<UIManager>
 
     private void OnPlayerHealthChange(int amount)
     {
-        inGameUI.gameObject.SetActive(true);
         if(onPlayerHealthChange != null)
         {
             onPlayerHealthChange(amount);
