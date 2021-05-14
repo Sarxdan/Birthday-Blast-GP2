@@ -37,11 +37,11 @@ public class Settings : MonoBehaviour
 
     void mouseSensitivityChanged(float value)
     {
-        PlayerManager.instance.mouseSensitivityMultiplier = value;
+        PlayerManager.instance.OnMouseSensitivityChanged(value);
     }
 
     public void InvertMouse()
     {
-        PlayerManager.instance.invertMouse = invertMouse.isOn;
+        PlayerManager.instance.OnMouseInverted(invertMouse.isOn);
     }
 }
