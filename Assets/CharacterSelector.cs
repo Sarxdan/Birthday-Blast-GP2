@@ -100,6 +100,10 @@ public class CharacterSelector : MonoBehaviour
                 Quaternion rotation = Quaternion.AngleAxis(i * angle, Vector3.up);
                 Vector3 direction = rotation * Vector3.forward;
                 Vector3 position = circleCenter.position + (direction * radius);
+                position.y += 5;
+                RaycastHit hit;
+                Physics.Raycast(position, Vector3.down, out hit);
+                position.y = hit.point.y;
                 GameObject character = Instantiate(characters[i], position, rotation);
                 character.transform.parent = parent.transform;
                 character.name = characters[i].name;
