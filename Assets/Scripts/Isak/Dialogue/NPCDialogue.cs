@@ -64,11 +64,26 @@ public class NPCDialogue : ScriptableObject
          
     }
 
-    [SerializeField] new string name;  
+    [SerializeField] new string nameEN;  
+    [SerializeField] new string nameSE;  
     [SerializeField] Sprite npcSprite;
     [SerializeField][Tooltip("the dialogue to use if requirements are not met")] Dialogue defaultDialogue;   
     [SerializeField][Tooltip("alternative dialogues with requirements")] AlternativeDialogue[] alternativeDialogues;
-    
+
+    public string GetName()
+    {
+        // Send sentence according to current locale
+        switch(LocalizationSettings.AvailableLocales.Locales.IndexOf(LocalizationSettings.Instance
+            .GetSelectedLocale()))
+        {
+            case 0:
+                return nameEN;
+            case 1:
+                return nameSE;
+        }
+
+        return nameEN;
+    }
 
     public string Name
     {

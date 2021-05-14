@@ -110,7 +110,7 @@ public class DialogueTrigger : MonoBehaviour // improve to use reward system
         if(dialogueToUse == null) return;
         if(onNPCDialogue != null)
         {
-            onNPCDialogue(GetNextDialogue(), dialogues.Name, dialogues.NPCSprite);
+            onNPCDialogue(GetNextDialogue(), dialogues.GetName(), dialogues.NPCSprite);
         }
     }
     Dialogue ChooseDialogue()
