@@ -53,6 +53,11 @@ public class PauseMenu : MonoBehaviour
         print("quitting game");
         Application.Quit();
     }
+    
+    public void SetLocale(int i)
+    {
+        Events.ChangeLanguage(i);
+    }
 
     public void ToggleControlGuide(bool toggle)
     {

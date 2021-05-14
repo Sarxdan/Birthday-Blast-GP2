@@ -73,7 +73,12 @@ public class UIManager : Singleton<UIManager>
             }
         }
         goPopup.SetActive(true);
+        if(FindObjectOfType<Level>().levelType == LevelType.Island)
         FindObjectOfType<ThirdPersonController>().ToggleControls(false);
+        else
+        {
+            FindObjectOfType<JetPack>().enabled = false;
+        }
         ToggleMouse(true);
     }
 
@@ -109,7 +114,12 @@ public class UIManager : Singleton<UIManager>
 
     public void ClosePopUp(GameObject popup)
     {
-        FindObjectOfType<ThirdPersonController>().ToggleControls(true);
+        if(FindObjectOfType<Level>().levelType == LevelType.Island)
+            FindObjectOfType<ThirdPersonController>().ToggleControls(true);
+        else
+        {
+            FindObjectOfType<JetPack>().enabled = true;
+        }
         popup.SetActive(false);
 
         ToggleMouse(false);
